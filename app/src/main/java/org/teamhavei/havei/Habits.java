@@ -9,7 +9,7 @@ public class Habits {
     private String habitName;//名称
     private String habitTag;//标签
     private int habitFrequency;//频率：次数
-    private int habitFrequencyPer;//频率：时间单位
+    private int habitFrequencyPer;//频率：时间单位，对应上方的3个常量
     private int habitExecTimes;//已执行次数
 
     public Habits(String habitName, String habitTag, int habitFrequency, int habitFrequencyPer, int habitExecTimes) {
