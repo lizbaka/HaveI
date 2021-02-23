@@ -10,12 +10,14 @@ public class Habits {
     private String habitTag;
     private int habitFrequency;
     private int habitFrequencyPer;
+    private int habitExecTimes;
 
-    public Habits(String habitName, String habitTag, int habitFrequency, int habitFrequencyPer) {
+    public Habits(String habitName, String habitTag, int habitFrequency, int habitFrequencyPer, int habitExecTimes) {
         this.habitName = habitName;
         this.habitTag = habitTag;
         this.habitFrequency = habitFrequency;
         this.habitFrequencyPer = habitFrequencyPer;
+        this.habitExecTimes = habitExecTimes;
     }
 
     public String getHabitName() {
@@ -48,5 +50,13 @@ public class Habits {
 
     public void setHabitFrequencyPer(int habitFrequencyPer) {
         this.habitFrequencyPer = habitFrequencyPer;
+    }
+
+    public int getHabitExecTimes() {
+        return habitExecTimes;
+    }
+
+    public void setHabitExecTimes(int habitExecTimes) {
+        this.habitExecTimes = habitExecTimes;
     }
 }
