@@ -32,7 +32,7 @@ public class FragmentDashBoard extends Fragment {
 
     private List<Habit> getCards(){
         List<Habit> habitList = new ArrayList<>();
-        for(int i = 0; i<3; i++){
+        for(int i = 0; i<10; i++){
             Habit habit = new Habit();
             habit.setHabitName("习惯" + i);
             habit.setHabitTag("标签1");
