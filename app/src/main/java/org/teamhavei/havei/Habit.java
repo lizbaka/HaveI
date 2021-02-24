@@ -1,6 +1,8 @@
 package org.teamhavei.havei;
 
-public class Habits {
+import androidx.annotation.Nullable;
+
+public class Habit {
 
     public static final int FREQUENCY_PER_DAY = 1;
     public static final int FREQUENCY_PER_WEEK = 2;
@@ -11,14 +13,6 @@ public class Habits {
     private int habitFrequency;//频率：次数
     private int habitFrequencyPer;//频率：时间单位，对应上方的3个常量
     private int habitExecTimes;//已执行次数
-
-    public Habits(String habitName, String habitTag, int habitFrequency, int habitFrequencyPer, int habitExecTimes) {
-        this.habitName = habitName;
-        this.habitTag = habitTag;
-        this.habitFrequency = habitFrequency;
-        this.habitFrequencyPer = habitFrequencyPer;
-        this.habitExecTimes = habitExecTimes;
-    }
 
     public String getHabitName() {
         return habitName;
