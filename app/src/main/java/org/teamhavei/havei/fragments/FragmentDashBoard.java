@@ -1,6 +1,7 @@
 package org.teamhavei.havei.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,14 @@ import java.util.List;
 
 public class FragmentDashBoard extends Fragment {
 
+    private List<Habit> habitList;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        habitList = getHabits();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
@@ -25,12 +34,13 @@ public class FragmentDashBoard extends Fragment {
         RecyclerView dashboardCardList = (RecyclerView) view.findViewById(R.id.dashboard_card_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         dashboardCardList.setLayoutManager(layoutManager);
-        DashboardCardAdapter adapter = new DashboardCardAdapter(getCards());
+        DashboardCardAdapter adapter = new DashboardCardAdapter(habitList);
         dashboardCardList.setAdapter(adapter);
+        Log.d("TAG", "onCreateView: onCreateView executed");
         return view;
     }
 
-    private List<Habit> getCards(){
+    private List<Habit> getHabits(){
         List<Habit> habitList = new ArrayList<>();
         for(int i = 0; i<10; i++){
             Habit habit = new Habit();
