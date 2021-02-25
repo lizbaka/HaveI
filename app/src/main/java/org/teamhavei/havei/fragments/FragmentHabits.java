@@ -23,22 +23,22 @@ public class FragmentHabits extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        habitList = getHabits();
+        habitList = getHabitList();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         View view = inflater.inflate(R.layout.fragment_habits, container, false);
-        RecyclerView dashboardCardList = (RecyclerView) view.findViewById(R.id.dashboard_card_list);
+        RecyclerView habitCardList = (RecyclerView) view.findViewById(R.id.habit_card_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        dashboardCardList.setLayoutManager(layoutManager);
+        habitCardList.setLayoutManager(layoutManager);
         HabitCardAdapter adapter = new HabitCardAdapter(habitList);
-        dashboardCardList.setAdapter(adapter);
+        habitCardList.setAdapter(adapter);
         return view;
     }
 
-    private List<Habit> getHabits(){
+    private List<Habit> getHabitList(){
         List<Habit> habitList = new ArrayList<>();
         for(int i = 0; i<10; i++){
             Habit habit = new Habit();
