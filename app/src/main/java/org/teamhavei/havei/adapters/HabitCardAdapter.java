@@ -13,7 +13,7 @@ import org.teamhavei.havei.R;
 
 import java.util.List;
 
-public class DashboardCardAdapter extends RecyclerView.Adapter<DashboardCardAdapter.ViewHolder> {
+public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.ViewHolder> {
 
     private List<Habit> mHabitList;
 
@@ -35,14 +35,14 @@ public class DashboardCardAdapter extends RecyclerView.Adapter<DashboardCardAdap
 
     }
 
-    public DashboardCardAdapter(List<Habit> habitList){
+    public HabitCardAdapter(List<Habit> habitList){
         mHabitList = habitList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_dashboard_card_habit,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_habit_card,parent,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }

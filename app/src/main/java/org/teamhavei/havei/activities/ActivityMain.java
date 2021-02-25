@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ActivityMain extends AppCompatActivity {
 
-    private String[] titles = new String[] {"记账","总览","习惯","备忘"};
+    private String[] titles = new String[] {"记账","习惯","备忘"};
 
     private int defaultSelectedTab = 1;
 
@@ -38,7 +38,7 @@ public class ActivityMain extends AppCompatActivity {
 
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new FragmentAccount());
-        fragmentList.add(new FragmentDashBoard());
+//        fragmentList.add(new FragmentDashBoard());
         fragmentList.add(new FragmentHabits());
         fragmentList.add(new FragmentNote());
 
