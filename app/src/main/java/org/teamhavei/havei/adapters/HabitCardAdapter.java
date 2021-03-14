@@ -26,11 +26,11 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
 
         public ViewHolder(View view){
             super(view);
-            name = (TextView) view.findViewById(R.id.habit_name);
-            tag = (TextView) view.findViewById(R.id.habit_tag);
-            frequency = (TextView) view.findViewById(R.id.habit_frequency);
-            times = (TextView) view.findViewById(R.id.habit_times);
-            last = (TextView) view.findViewById(R.id.habit_last);
+            name = (TextView) view.findViewById(R.id.card_habit_name);
+            tag = (TextView) view.findViewById(R.id.card_habit_tag);
+            frequency = (TextView) view.findViewById(R.id.card_habit_frequency);
+            times = (TextView) view.findViewById(R.id.card_habit_times);
+            last = (TextView) view.findViewById(R.id.card_habit_last);
         }
 
     }
@@ -52,7 +52,19 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         Habit habit = mHabitList.get(position);
         holder.name.setText(habit.getHabitName());
         holder.tag.setText(habit.getHabitTag());
-        holder.frequency.setText(habit.getHabitFrequency() + "次每" + habit.getHabitFrequencyType());
+        String FrequencyType = new String();
+        switch(habit.getHabitFrequencyType()){
+            case Habit.FREQUENCY_TYPE_DAY:
+                FrequencyType = "天";
+                break;
+            case Habit.FREQUENCY_TYPE_WEEK:
+                FrequencyType = "周";
+                break;
+            case Habit.FREQUENCY_TYPE_MONTH:
+                FrequencyType = "月";
+                break;
+        }
+        holder.frequency.setText(habit.getHabitFrequency() + "次每" + FrequencyType);
         holder.times.setText("已执行" + habit.getHabitExecTimes() + "次");
         holder.last.setText("上次执行时间：[未实现]");
     }

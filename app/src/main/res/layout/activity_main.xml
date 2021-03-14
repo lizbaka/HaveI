@@ -26,13 +26,18 @@
                 android:fitsSystemWindows="true"
                 android:gravity="center"
                 android:minHeight="?attr/actionBarSize"
+
+                app:contentInsetEnd="0dp"
+                app:contentInsetEndWithActions="0dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetStart="0dp"
                 app:contentInsetStartWithNavigation="0dp">
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/main_tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     app:tabGravity="center"
                     app:tabMode="auto"
                     app:tabPadding="12dp"

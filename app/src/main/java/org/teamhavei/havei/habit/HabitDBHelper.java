@@ -1,5 +1,5 @@
 /*可能需要的数据表
-* Habit(id integer name text, tag text, frequency integer, frequency_type integer, exec_times integer)
+* Habit(id integer, name text, tag text, frequency integer, frequency_type integer, exec_times integer)
 * HabitExecs(name text, date date)
  */
 package org.teamhavei.havei.habit;

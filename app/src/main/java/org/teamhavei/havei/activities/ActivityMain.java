@@ -28,6 +28,14 @@ public class ActivityMain extends BaseActivity{
 
     static final String[] PAGE_TITLE = {"记账","总览","习惯","备忘"};
 
+    static final int ACCOUNT_INDEX = 0;
+    static final int DASHBOARD_INDEX = 1;
+    static final int HABIT_INDEX = 2;
+    static final int NOTE_INDEX = 3;
+
+    private int defaultFragment = 1;
+
+
     private Toolbar mToolbar;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private DrawerLayout mDrawerLayout;
@@ -35,8 +43,6 @@ public class ActivityMain extends BaseActivity{
     private ViewPager mViewPager;
     private ExtendedFloatingActionButton fab;
 
-
-    private int defaultFragment = 1;
     private List<Fragment> fragmentList = new ArrayList<>();
     View.OnClickListener addHabit;
 
@@ -55,11 +61,10 @@ public class ActivityMain extends BaseActivity{
 
     void initOnClickListeners(){
         addHabit = new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityMain.this,ActivityModifyHabit.class);
-                startActivity(intent);
+                FragmentHabit fragmentHabit = (FragmentHabit)fragmentList.get(HABIT_INDEX);
+                fragmentHabit.addHabit();
             }
         };
     }

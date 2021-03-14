@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import org.teamhavei.havei.R;
 
-public class FragmentNote extends Fragment {
+public class FragmentNote extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
