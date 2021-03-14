@@ -27,7 +27,7 @@ public class ActivityMain extends BaseActivity implements View.OnClickListener{
     private DrawerLayout mDrawerLayout;
     private TabLayout mTabLayout;
 
-    private int defaultPage = 1;
+    private int defaultFragment = 1;
 
     private List<Fragment> fragmentList = new ArrayList<>();
 
@@ -82,6 +82,7 @@ public class ActivityMain extends BaseActivity implements View.OnClickListener{
 
             }
         });
+        mTabLayout.selectTab(mTabLayout.getTabAt(defaultFragment));
     }
 
     @Override

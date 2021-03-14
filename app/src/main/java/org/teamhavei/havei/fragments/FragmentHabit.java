@@ -42,6 +42,9 @@ public class FragmentHabit extends Fragment {
         habitCardList.setLayoutManager(layoutManager);
         HabitCardAdapter adapter = new HabitCardAdapter(habitList);
         habitCardList.setAdapter(adapter);
+        if(habitList.size()>0){
+            view.findViewById(R.id.habit_empty_hint).setVisibility(View.INVISIBLE);
+        }
         return view;
     }
 
