@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.teamhavei.havei.Habit;
+import org.teamhavei.havei.habit.Habit;
 import org.teamhavei.havei.R;
 
 import java.util.List;
@@ -52,7 +52,7 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         Habit habit = mHabitList.get(position);
         holder.name.setText(habit.getHabitName());
         holder.tag.setText(habit.getHabitTag());
-        holder.frequency.setText(habit.getHabitFrequency() + "次每" + habit.getHabitFrequencyPer());
+        holder.frequency.setText(habit.getHabitFrequency() + "次每" + habit.getHabitFrequencyType());
         holder.times.setText("已执行" + habit.getHabitExecTimes() + "次");
         holder.last.setText("上次执行时间：[未实现]");
     }

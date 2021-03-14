@@ -1,4 +1,4 @@
-package org.teamhavei.havei;
+package org.teamhavei.havei.habit;
 
 public class Habit {
 
