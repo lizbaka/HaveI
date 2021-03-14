@@ -10,12 +10,6 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent">
 
-        <FrameLayout
-            android:id="@+id/main_fragment_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,15 +26,7 @@
                 android:fitsSystemWindows="true"
                 android:gravity="center"
                 android:minHeight="?attr/actionBarSize"
-
-                app:contentInsetEnd="0dp"
-                app:contentInsetEndWithActions="0dp"
-                app:contentInsetLeft="0dp"
-                app:contentInsetRight="0dp"
-                app:contentInsetStart="0dp"
-                app:contentInsetStartWithNavigation="0dp"
-
-                app:theme="?attr/toolbarStyle">
+                app:contentInsetStartWithNavigation="0dp">
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/main_tab_layout"
@@ -50,7 +36,7 @@
                     app:tabGravity="center"
                     app:tabMode="auto"
                     app:tabPadding="12dp"
-                    app:tabIndicatorHeight="0dp"
+                    app:tabIndicatorFullWidth="false"
                     app:tabUnboundedRipple="true">
 
                     <com.google.android.material.tabs.TabItem
@@ -58,6 +44,12 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="记账" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="总览" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
@@ -76,6 +68,12 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/main_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/main_fab"
             android:layout_width="wrap_content"
@@ -83,8 +81,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="30dp"
             app:icon="@drawable/ic_add_24px"
-            app:iconTint="@color/white"
-            />
+            app:iconTint="@color/white" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

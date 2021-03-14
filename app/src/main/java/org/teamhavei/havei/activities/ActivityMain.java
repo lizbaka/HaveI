@@ -5,44 +5,68 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import org.teamhavei.havei.R;
+import org.teamhavei.havei.adapters.MainPagerAdapter;
 import org.teamhavei.havei.fragments.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityMain extends BaseActivity implements View.OnClickListener{
+public class ActivityMain extends BaseActivity{
+
+    static final String[] PAGE_TITLE = {"记账","总览","习惯","备忘"};
 
     private Toolbar mToolbar;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private TabLayout mTabLayout;
+    private ViewPager mViewPager;
+    private ExtendedFloatingActionButton fab;
+
 
     private int defaultFragment = 1;
-
     private List<Fragment> fragmentList = new ArrayList<>();
+    View.OnClickListener addHabit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initOnClickListeners();
         initFragments();
         initDrawer();
         initToolbar();
+        initPager();
+        fab = findViewById(R.id.main_fab);
+    }
+
+    void initOnClickListeners(){
+        addHabit = new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityMain.this,ActivityModifyHabit.class);
+                startActivity(intent);
+            }
+        };
     }
 
     void initFragments(){
         fragmentList.add(new FragmentAccount());
+        fragmentList.add(new FragmentDashBoard());
         fragmentList.add(new FragmentHabit());
         fragmentList.add(new FragmentNote());
     }
@@ -63,46 +87,49 @@ public class ActivityMain extends BaseActivity implements View.OnClickListener{
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
         getSupportActionBar().setTitle("");
         mToolbar.inflateMenu(R.menu.toolbar);
+    }
 
-        mTabLayout = findViewById(R.id.main_tab_layout);
-        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
+    void initPager(){
+        mViewPager = (ViewPager) findViewById(R.id.main_view_pager);
+        mTabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
+        mTabLayout.setupWithViewPager(mViewPager);
+        mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(),fragmentList, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT));
+        for(int i=0;i<fragmentList.size();i++){
+            mTabLayout.getTabAt(i).setText(PAGE_TITLE[i]);
+        }
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
 
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                replaceFragment(fragmentList.get(tab.getPosition()));
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
+            public void onPageSelected(int position) {
+                switch(position){
+                    case 0://account
+                        break;
+                    case 1://dashboard
+                        break;
+                    case 2://habit
+                        fab.setOnClickListener(addHabit);
+                        break;
+                    case 3://note
+                        break;
+                    default:
+                        break;
+                }
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+            public void onPageScrollStateChanged(int state) {
             }
         });
-        mTabLayout.selectTab(mTabLayout.getTabAt(defaultFragment));
+        mViewPager.setCurrentItem(defaultFragment);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public void onClick(View v){
-        switch(v.getId()){
-            default:
-                break;
-        }
-    }
-
-    private void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.main_fragment_layout, fragment);
-        transaction.commit();
     }
 }
