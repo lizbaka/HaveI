@@ -1,46 +1,50 @@
 package org.teamhavei.havei.activities;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 
 import org.teamhavei.havei.R;
-import org.teamhavei.havei.adapters.MainPagerAdapter;
 import org.teamhavei.havei.fragments.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityMain extends AppCompatActivity {
+public class ActivityMain extends BaseActivity implements View.OnClickListener{
 
-    ViewPager mViewPager;
-    Toolbar mToolbar;
-    ActionBarDrawerToggle mActionBarDrawerToggle;
-    DrawerLayout mDrawerLayout;
-    TabLayout mTabLayout;
-
-    private String[] tabTitles = new String[] {"记账","习惯","备忘"};
+    private Toolbar mToolbar;
+    private ActionBarDrawerToggle mActionBarDrawerToggle;
+    private DrawerLayout mDrawerLayout;
+    private TabLayout mTabLayout;
 
     private int defaultPage = 1;
+
+    private List<Fragment> fragmentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initFragments();
         initDrawer();
         initToolbar();
-        initPager();
+    }
+
+    void initFragments(){
+        fragmentList.add(new FragmentAccount());
+        fragmentList.add(new FragmentHabit());
+        fragmentList.add(new FragmentNote());
     }
 
     private void initDrawer(){
@@ -49,28 +53,7 @@ public class ActivityMain extends AppCompatActivity {
 
     }
 
-    private void initPager(){
-
-        mViewPager = (ViewPager) findViewById(R.id.main_view_pager);
-        List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new FragmentAccount());
-//        fragmentList.add(new FragmentDashBoard());
-        fragmentList.add(new FragmentHabit());
-        fragmentList.add(new FragmentNote());
-        mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(),fragmentList, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT));
-        mViewPager.setCurrentItem(defaultPage);
-        mTabLayout = findViewById(R.id.main_tab);
-        for(int i=0;i<tabTitles.length;i++){
-            mTabLayout.addTab(mTabLayout.newTab());
-        }
-        mTabLayout.setupWithViewPager(mViewPager,false);
-        for(int i=0;i<tabTitles.length;i++){
-            mTabLayout.getTabAt(i).setText(tabTitles[i]);
-        }
-    }
-
     private void initToolbar(){
-
         mToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -80,6 +63,25 @@ public class ActivityMain extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
         getSupportActionBar().setTitle("");
         mToolbar.inflateMenu(R.menu.toolbar);
+
+        mTabLayout = findViewById(R.id.main_tab_layout);
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
+
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                replaceFragment(fragmentList.get(tab.getPosition()));
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override
@@ -88,29 +90,18 @@ public class ActivityMain extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public void onClick(View v){
+        switch(v.getId()){
+            default:
+                break;
+        }
+    }
 
-//    private void initToolbarAndPager(){
-//
-//        TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tab);
-//
-//
-//        List<Fragment> fragmentList = new ArrayList<>();
-//        fragmentList.add(new FragmentAccount());
-////        fragmentList.add(new FragmentDashBoard());
-//        fragmentList.add(new FragmentHabit());
-//        fragmentList.add(new FragmentNote());
-//
-//        for(int i=0;i<tabTitles.length;i++){
-//            tabLayout.addTab(tabLayout.newTab());
-//        }
-//
-//        tabLayout.setupWithViewPager(viewPager,false);
-//        viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(),fragmentList, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT));
-//
-//        for(int i=0;i<tabTitles.length;i++){
-//            tabLayout.getTabAt(i).setText(tabTitles[i]);
-//        }
-//        tabLayout.getTabAt(defaultSelectedTab).select();
-//    }
-
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.main_fragment_layout, fragment);
+        transaction.commit();
+    }
 }
