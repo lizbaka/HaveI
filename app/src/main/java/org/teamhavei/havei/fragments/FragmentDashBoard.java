@@ -32,7 +32,7 @@ public class FragmentDashBoard extends Fragment {
 //            habit.setHabitName("习惯" + i);
 //            habit.setHabitTag("标签1");
 //            habit.setHabitFrequency(7-i);
-//            habit.setHabitFrequencyPer(Habit.FREQUENCY_PER_MONTH);
+//            habit.setHabitFrequencyType(Habit.FREQUENCY_TYPE_MONTH);
 //            habit.setHabitExecTimes(20-i);
 //            habitList.add(habit);
 //        }
