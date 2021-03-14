@@ -1,5 +1,5 @@
 /*可能需要的数据表
-* Habit(name text, tag text, frequency integer, frequency_type integer, exec_times integer)
+* Habit(id integer name text, tag text, frequency integer, frequency_type integer, exec_times integer)
 * HabitExecs(name text, date date)
  */
 package org.teamhavei.havei.habit;
@@ -16,6 +16,7 @@ public class HabitDBHelper extends SQLiteOpenHelper {
 
     public static final String CREATE_HABIT =
             "create table Habit(" +
+                    "id integer primary key autoincrement," +
                     "name text," +
                     "tag text," +
                     "frequency integer," +
