@@ -84,6 +84,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:layout_gravity="center"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:maxLength="5"
                 android:gravity="center" />
 
             <TextView

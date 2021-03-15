@@ -18,6 +18,13 @@ import org.teamhavei.havei.habit.*;
 
 public class ActivityModifyHabit extends BaseActivity {
 
+    static final int HABIT_FREQUENCY_OK = 0;
+    static final int HABIT_FREQUENCY_EMPTY = 1;
+    static final int HABIT_FREQUENCY_ZERO = 2;
+
+    static final int MODE_ADD = 0;
+    static final int MODE_MODIFY = 1;
+
     EditText habitNameLayout;
     EditText habitTagLayout;
     EditText habitFrequencyView;
@@ -26,7 +33,7 @@ public class ActivityModifyHabit extends BaseActivity {
     HabitDBHelper mHabitDBHelper;
     int habitFrequencyType;
 
-    int mode = 0;//0:add 1:modify
+    int mode = MODE_ADD;//0:add 1:modify
     //modify 待实现
 
     @Override
@@ -63,28 +70,47 @@ public class ActivityModifyHabit extends BaseActivity {
         modifyHabitDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SQLiteDatabase db = mHabitDBHelper.getWritableDatabase();
-                int frequency = Integer.parseInt(habitFrequencyView.getText().toString());
-                if(frequency <= 0){
-                    Toast.makeText(ActivityModifyHabit.this,"频率应大于0！",Toast.LENGTH_SHORT).show();
-                    return;
+                switch(checkHabitFrequencyValidate()){
+                    case HABIT_FREQUENCY_EMPTY:
+                        habitFrequencyView.setError("请输入次数！");
+                        habitFrequencyView.requestFocus();
+                        return;
+                    case HABIT_FREQUENCY_ZERO:
+                        habitFrequencyView.setError("次数应大于0！");
+                        habitFrequencyView.requestFocus();
+                        return;
+                    case HABIT_FREQUENCY_OK:
+                        habitFrequencyView.setError(null);
+                        break;
                 }
+                int frequency = Integer.parseInt(habitFrequencyView.getText().toString());
+                SQLiteDatabase db = mHabitDBHelper.getWritableDatabase();
                 ContentValues values = new ContentValues();
                 values.put("name",habitNameLayout.getText().toString());
                 values.put("tag", habitTagLayout.getText().toString());
                 values.put("frequency",frequency);
                 values.put("frequency_type",habitFrequencyType);
-                if(mode == 0) {
+                if(mode == MODE_ADD) {
                     db.insert("Habit", null, values);
                     Intent intent = new Intent();
                     intent.putExtra("new_habit",values);
                     setResult(RESULT_OK, intent);
                 }
-                if(mode==1){
+                else if(mode == MODE_MODIFY){
 
                 }
                 finish();
             }
         });
+    }
+
+    private int checkHabitFrequencyValidate(){
+        int result = HABIT_FREQUENCY_OK;
+        String originHabitFrequency = habitFrequencyView.getText().toString();
+        if(originHabitFrequency.length()==0)
+            result = HABIT_FREQUENCY_EMPTY;
+        else if(Integer.parseInt(originHabitFrequency)<=0)
+            result = HABIT_FREQUENCY_ZERO;
+        return result;
     }
 }
