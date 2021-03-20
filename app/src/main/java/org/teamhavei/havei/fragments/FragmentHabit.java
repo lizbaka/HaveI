@@ -75,9 +75,6 @@ public class FragmentHabit extends BaseFragment {
                 Habit insertHabit = new Habit();
                 insertHabit.setHabitName(cursor.getString(cursor.getColumnIndex("name")));
                 insertHabit.setHabitTag(cursor.getString(cursor.getColumnIndex("tag")));
-                insertHabit.setHabitFrequency(cursor.getInt(cursor.getColumnIndex("frequency")));
-                insertHabit.setHabitFrequencyType(cursor.getInt(cursor.getColumnIndex("frequency_type")));
-                insertHabit.setHabitExecTimes(cursor.getInt(cursor.getColumnIndex("exec_times")));
                 habitList.add(insertHabit);
             }while(cursor.moveToNext());
         }
@@ -98,8 +95,6 @@ public class FragmentHabit extends BaseFragment {
                     Habit newHabit = new Habit();
                     newHabit.setHabitName(values.getAsString("name"));
                     newHabit.setHabitTag(values.getAsString("tag"));
-                    newHabit.setHabitFrequency(values.getAsInteger("frequency"));
-                    newHabit.setHabitFrequencyType(values.getAsInteger("frequency_type"));
                     mHabitList.add(newHabit);
                     adapter.notifyItemInserted(mHabitList.size()-1);
                 }

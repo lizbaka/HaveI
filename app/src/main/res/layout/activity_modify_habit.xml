@@ -1,4 +1,5 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent"
@@ -7,7 +8,6 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00000000"
         android:elevation="0dp"
         app:elevation="0dp">
 
@@ -15,11 +15,12 @@
             android:id="@+id/modify_habit_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#00000000"
             android:elevation="0dp"
             android:fitsSystemWindows="true"
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:title="添加习惯">
 
         </androidx.appcompat.widget.Toolbar>
@@ -65,47 +66,6 @@
                 android:hint="习惯标签" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="重复" />
-
-            <EditText
-                android:id="@+id/modify_habit_frequency"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:layout_gravity="center"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:maxLength="5"
-                android:gravity="center" />
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="次  每" />
-
-            <Spinner
-                android:id="@+id/modify_habit_frequency_type"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:entries="@array/habit_frequency_type"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 

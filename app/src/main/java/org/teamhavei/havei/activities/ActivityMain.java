@@ -4,9 +4,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -35,16 +33,15 @@ public class ActivityMain extends BaseActivity{
 
     private int defaultFragment = 1;
 
-
-    private Toolbar mToolbar;
-    private ActionBarDrawerToggle mActionBarDrawerToggle;
-    private DrawerLayout mDrawerLayout;
-    private TabLayout mTabLayout;
-    private ViewPager mViewPager;
-    private ExtendedFloatingActionButton fab;
+    Toolbar mToolbar;
+    ActionBarDrawerToggle mActionBarDrawerToggle;
+    DrawerLayout mDrawerLayout;
+    TabLayout mTabLayout;
+    ViewPager mViewPager;
+    ExtendedFloatingActionButton fab;
+    View.OnClickListener addHabit;
 
     private List<Fragment> fragmentList = new ArrayList<>();
-    View.OnClickListener addHabit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +88,6 @@ public class ActivityMain extends BaseActivity{
         mActionBarDrawerToggle.syncState();
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
         getSupportActionBar().setTitle("");
-        mToolbar.inflateMenu(R.menu.toolbar);
     }
 
     void initPager(){
@@ -134,7 +130,7 @@ public class ActivityMain extends BaseActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar, menu);
+        getMenuInflater().inflate(R.menu.main_toolbar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 }

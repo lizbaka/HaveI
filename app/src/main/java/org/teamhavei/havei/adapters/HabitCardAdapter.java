@@ -1,13 +1,16 @@
 package org.teamhavei.havei.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.teamhavei.havei.activities.ActivityHabitDetail;
 import org.teamhavei.havei.habit.Habit;
 import org.teamhavei.havei.R;
 
@@ -20,17 +23,11 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
     static class ViewHolder extends RecyclerView.ViewHolder{
         TextView name;
         TextView tag;
-        TextView frequency;
-        TextView times;
-        TextView last;
 
         public ViewHolder(View view){
             super(view);
-            name = (TextView) view.findViewById(R.id.card_habit_name);
-            tag = (TextView) view.findViewById(R.id.card_habit_tag);
-            frequency = (TextView) view.findViewById(R.id.card_habit_frequency);
-            times = (TextView) view.findViewById(R.id.card_habit_times);
-            last = (TextView) view.findViewById(R.id.card_habit_last);
+            name = (TextView) view.findViewById(R.id.habit_card_name);
+            tag = (TextView) view.findViewById(R.id.habit_card_tag);
         }
 
     }
@@ -44,6 +41,20 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_habit_card,parent,false);
         ViewHolder holder = new ViewHolder(view);
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                ActivityHabitDetail.startAction(parent.getContext(),holder.name.getText().toString());
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //增加执行记录
+                //动画
+                return true;
+            }
+        });
         return holder;
     }
 
@@ -52,21 +63,6 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         Habit habit = mHabitList.get(position);
         holder.name.setText(habit.getHabitName());
         holder.tag.setText(habit.getHabitTag());
-        String FrequencyType = new String();
-        switch(habit.getHabitFrequencyType()){
-            case Habit.FREQUENCY_TYPE_DAY:
-                FrequencyType = "天";
-                break;
-            case Habit.FREQUENCY_TYPE_WEEK:
-                FrequencyType = "周";
-                break;
-            case Habit.FREQUENCY_TYPE_MONTH:
-                FrequencyType = "月";
-                break;
-        }
-        holder.frequency.setText(habit.getHabitFrequency() + "次每" + FrequencyType);
-        holder.times.setText("已执行" + habit.getHabitExecTimes() + "次");
-        holder.last.setText("上次执行时间：[未实现]");
     }
 
     @Override
