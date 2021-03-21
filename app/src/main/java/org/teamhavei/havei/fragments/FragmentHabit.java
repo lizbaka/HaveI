@@ -1,5 +1,6 @@
 package org.teamhavei.havei.fragments;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -35,7 +36,8 @@ public class FragmentHabit extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mHabitDBHelper = new HabitDBHelper(getActivity(),HabitDBHelper.DB_NAME,null,HabitDBHelper.DATABASE_VERSION);
-        mHabitList = getmHabitList();
+        mHabitList = new ArrayList<>();
+        updatemHabitList();
     }
 
     @Override
@@ -58,6 +60,9 @@ public class FragmentHabit extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        updatemHabitList();
+        adapter.notifyDataSetChanged();
         if(mHabitList.size()>0){
             getView().findViewById(R.id.habit_empty_hint).setVisibility(View.INVISIBLE);
         }
@@ -66,8 +71,8 @@ public class FragmentHabit extends BaseFragment {
         }
     }
 
-    private List<Habit> getmHabitList(){
-        List<Habit> habitList = new ArrayList<>();
+    private void updatemHabitList(){
+        mHabitList.clear();
         SQLiteDatabase habitDB = mHabitDBHelper.getReadableDatabase();
         Cursor cursor = habitDB.query("Habit",null,null,null,null,null,null);
         if(cursor.moveToFirst()){
@@ -75,30 +80,14 @@ public class FragmentHabit extends BaseFragment {
                 Habit insertHabit = new Habit();
                 insertHabit.setHabitName(cursor.getString(cursor.getColumnIndex("name")));
                 insertHabit.setHabitTag(cursor.getString(cursor.getColumnIndex("tag")));
-                habitList.add(insertHabit);
+                mHabitList.add(insertHabit);
             }while(cursor.moveToNext());
         }
         cursor.close();
-        return habitList;
     }
 
     public void addHabit(){
-        Intent intent = new Intent(getActivity(), ActivityModifyHabit.class);
-        startActivityForResult(intent,REQUEST_CODE_ADD);
+        ActivityModifyHabit.StartAction(getActivity(),ActivityModifyHabit.MODE_ADD);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        switch(requestCode){
-            case REQUEST_CODE_ADD:
-                if(resultCode == RESULT_OK){
-                    ContentValues values = data.getParcelableExtra("new_habit");
-                    Habit newHabit = new Habit();
-                    newHabit.setHabitName(values.getAsString("name"));
-                    newHabit.setHabitTag(values.getAsString("tag"));
-                    mHabitList.add(newHabit);
-                    adapter.notifyItemInserted(mHabitList.size()-1);
-                }
-        }
-    }
 }

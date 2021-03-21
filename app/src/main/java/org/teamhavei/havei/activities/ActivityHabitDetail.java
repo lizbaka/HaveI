@@ -61,6 +61,7 @@ public class ActivityHabitDetail extends BaseActivity {
     }
 
     private void showExecutionDate(){
+        Log.d(TAG, "showExecutionDate: begin");
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = db.query("HabitExecs",new String[]{"date"},"name=?",new String[]{habitName},null,null,null);
         if(cursor.moveToFirst()){
@@ -73,5 +74,6 @@ public class ActivityHabitDetail extends BaseActivity {
             }while(cursor.moveToNext());
         }
         cursor.close();
+        Log.d(TAG, "showExecutionDate: end");
     }
 }
