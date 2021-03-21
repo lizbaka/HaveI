@@ -13,13 +13,14 @@ import androidx.annotation.Nullable;
 public class HabitDBHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
+    public static final String DB_NAME = "Habit.db";
 
-    public static final String CREATE_HABIT =
+    private static final String CREATE_HABIT =
             "create table Habit(" +
                     "name text," +
                     "tag text)";
 
-    public static final String CREATE_HABITEXECS =
+    private static final String CREATE_HABITEXECS =
             "create table HabitExecs(" +
                     "name text," +
                     "date datetime)";

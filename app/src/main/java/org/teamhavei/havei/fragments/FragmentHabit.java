@@ -34,14 +34,14 @@ public class FragmentHabit extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHabitDBHelper = new HabitDBHelper(getActivity(),"Habit.db",null,HabitDBHelper.DATABASE_VERSION);
+        mHabitDBHelper = new HabitDBHelper(getActivity(),HabitDBHelper.DB_NAME,null,HabitDBHelper.DATABASE_VERSION);
         mHabitList = getmHabitList();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_habit, container, false);
-        RecyclerView habitCardList = (RecyclerView) view.findViewById(R.id.habit_card_list);
+        RecyclerView habitCardList = view.findViewById(R.id.habit_card_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         habitCardList.setLayoutManager(layoutManager);
         adapter = new HabitCardAdapter(mHabitList);
@@ -78,6 +78,7 @@ public class FragmentHabit extends BaseFragment {
                 habitList.add(insertHabit);
             }while(cursor.moveToNext());
         }
+        cursor.close();
         return habitList;
     }
 
@@ -91,7 +92,7 @@ public class FragmentHabit extends BaseFragment {
         switch(requestCode){
             case REQUEST_CODE_ADD:
                 if(resultCode == RESULT_OK){
-                    ContentValues values = (ContentValues)data.getParcelableExtra("new_habit");
+                    ContentValues values = data.getParcelableExtra("new_habit");
                     Habit newHabit = new Habit();
                     newHabit.setHabitName(values.getAsString("name"));
                     newHabit.setHabitTag(values.getAsString("tag"));
