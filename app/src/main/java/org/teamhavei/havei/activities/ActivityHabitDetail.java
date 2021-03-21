@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -17,16 +16,16 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.habit.HabitDBHelper;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 public class ActivityHabitDetail extends BaseActivity {
 
     private Toolbar mToolbar;
     private MaterialCalendarView mCalendar;
-    private String habitName;
+
     private HabitDBHelper dbHelper;
+    SQLiteDatabase db;
+
+    private String habitName;
+    private int habitID;
 
     public static void startAction(Context context, String habitName){
         Intent intent = new Intent(context, ActivityHabitDetail.class);
@@ -39,17 +38,16 @@ public class ActivityHabitDetail extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_detail);
 
-
         mToolbar = findViewById(R.id.habit_detail_toolbar);
         mToolbar.inflateMenu(R.menu.habit_detail_toolbar);
         setSupportActionBar(mToolbar);
         mCalendar = findViewById(R.id.habit_detail_calendar);
-
-        Intent intent = getIntent();
-        habitName = intent.getStringExtra("habit_name");
-        getSupportActionBar().setTitle(habitName);
-
         dbHelper = new HabitDBHelper(this,HabitDBHelper.DB_NAME,null,HabitDBHelper.DATABASE_VERSION);
+        db = dbHelper.getWritableDatabase();
+
+        habitName = getIntent().getStringExtra("habit_name");
+        getSupportActionBar().setTitle(habitName);
+        habitID = dbHelper.getHabitID(habitName);
 
         showExecutionDate();
     }
@@ -61,9 +59,7 @@ public class ActivityHabitDetail extends BaseActivity {
     }
 
     private void showExecutionDate(){
-        Log.d(TAG, "showExecutionDate: begin");
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor cursor = db.query("HabitExecs",new String[]{"date"},"name=?",new String[]{habitName},null,null,null);
+        Cursor cursor = db.query("HabitExecs",new String[]{"date"},"habit_id = ?",new String[]{Integer.toString(habitID)},null,null,null);
         if(cursor.moveToFirst()){
             do {
                 String dateString = cursor.getString(cursor.getColumnIndex("date"));
@@ -74,6 +70,5 @@ public class ActivityHabitDetail extends BaseActivity {
             }while(cursor.moveToNext());
         }
         cursor.close();
-        Log.d(TAG, "showExecutionDate: end");
     }
 }
