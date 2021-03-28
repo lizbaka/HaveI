@@ -26,8 +26,6 @@ import static android.app.Activity.RESULT_OK;
 
 public class FragmentHabit extends BaseFragment {
 
-    static final int REQUEST_CODE_ADD = 1001;
-
     private List<Habit> mHabitList;
     private HabitDBHelper mHabitDBHelper;
     HabitCardAdapter adapter;
@@ -46,7 +44,7 @@ public class FragmentHabit extends BaseFragment {
         RecyclerView habitCardList = view.findViewById(R.id.habit_card_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         habitCardList.setLayoutManager(layoutManager);
-        adapter = new HabitCardAdapter(mHabitList);
+        adapter = new HabitCardAdapter(mHabitList,getContext());
         habitCardList.setAdapter(adapter);
         if(mHabitList.size()>0){
             view.findViewById(R.id.habit_empty_hint).setVisibility(View.INVISIBLE);
@@ -78,6 +76,7 @@ public class FragmentHabit extends BaseFragment {
         if(cursor.moveToFirst()){
             do{
                 Habit insertHabit = new Habit();
+                insertHabit.setHabitID(cursor.getInt(cursor.getColumnIndex("id")));
                 insertHabit.setHabitName(cursor.getString(cursor.getColumnIndex("name")));
                 insertHabit.setHabitTag(cursor.getString(cursor.getColumnIndex("tag")));
                 mHabitList.add(insertHabit);
