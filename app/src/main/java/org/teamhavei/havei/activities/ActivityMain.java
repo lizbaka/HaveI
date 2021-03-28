@@ -1,5 +1,6 @@
 package org.teamhavei.havei.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -10,9 +11,12 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import org.teamhavei.havei.R;
@@ -39,7 +43,9 @@ public class ActivityMain extends BaseActivity{
     TabLayout mTabLayout;
     ViewPager mViewPager;
     ExtendedFloatingActionButton fab;
-    View.OnClickListener addHabit;
+    NavigationView mNavView;
+
+    View.OnClickListener addAccount,addAny,addHabit,addNote;
 
     private List<Fragment> fragmentList = new ArrayList<>();
 
@@ -48,20 +54,39 @@ public class ActivityMain extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initOnClickListeners();
+        initFABOnClickListeners();
+        fab = findViewById(R.id.main_fab);
         initFragments();
         initDrawer();
         initToolbar();
         initPager();
-        fab = findViewById(R.id.main_fab);
+        initNavigationView();
     }
 
-    void initOnClickListeners(){
+    void initFABOnClickListeners(){
+        addAccount = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ActivityMain.this,"功能：添加记账敬请期待",Toast.LENGTH_SHORT).show();
+            }
+        };
+        addAny = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ActivityMain.this,"添加任意项目功能：敬请期待",Toast.LENGTH_SHORT).show();
+            }
+        };
         addHabit = new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 FragmentHabit fragmentHabit = (FragmentHabit)fragmentList.get(HABIT_INDEX);
                 fragmentHabit.addHabit();
+            }
+        };
+        addNote = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ActivityMain.this,"添加备忘录功能：敬请期待",Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -108,13 +133,16 @@ public class ActivityMain extends BaseActivity{
             public void onPageSelected(int position) {
                 switch(position){
                     case 0://account
+                        fab.setOnClickListener(addAccount);
                         break;
                     case 1://dashboard
+                        fab.setOnClickListener(addAny);
                         break;
                     case 2://habit
                         fab.setOnClickListener(addHabit);
                         break;
                     case 3://note
+                        fab.setOnClickListener(addNote);
                         break;
                     default:
                         break;
@@ -128,9 +156,37 @@ public class ActivityMain extends BaseActivity{
         mViewPager.setCurrentItem(defaultFragment);
     }
 
+    private void initNavigationView(){
+        mNavView = findViewById(R.id.nav_view);
+        mNavView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.nav_theme:
+                        Toast.makeText(ActivityMain.this,"主题切换功能：敬请期待",Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.nav_settings:
+                        Toast.makeText(ActivityMain.this,"设置：敬请期待",Toast.LENGTH_SHORT).show();
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_toolbar, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.main_toolbar_analyze:
+                Toast.makeText(this,"数据分析功能：敬请期待",Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return false;
     }
 }
