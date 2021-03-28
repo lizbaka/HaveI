@@ -8,9 +8,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -53,11 +57,15 @@ public class ActivityModifyHabit extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_habit);
 
+        setSupportActionBar((Toolbar)findViewById(R.id.modify_habit_toolbar));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mode = getIntent().getIntExtra("mode",MODE_ADD);
 
         habitNameET = ((TextInputLayout) findViewById(R.id.modify_habit_name)).getEditText();
         habitTagET = ((TextInputLayout) findViewById(R.id.modify_habit_tag)).getEditText();
         modifyHabitDone = findViewById(R.id.modify_habit_done_button);
+
         dbHelper = new HabitDBHelper(this, HabitDBHelper.DB_NAME, null, HabitDBHelper.DATABASE_VERSION);
         db = dbHelper.getWritableDatabase();
 
@@ -75,7 +83,7 @@ public class ActivityModifyHabit extends BaseActivity {
                     values.put("name", habitNameET.getText().toString());
                     values.put("tag", habitTagET.getText().toString());
                     if (mode == MODE_ADD) {
-                        if(!checkHabitDuplicated()) {
+                        if(!isHabitDuplicated()) {
                             db.insert("Habit", null, values);
                         }
                         else {
@@ -102,7 +110,14 @@ public class ActivityModifyHabit extends BaseActivity {
                         }
                     }
                     else if (mode == MODE_MODIFY) {
-                        db.update("Habit", values, "name = ?", new String[]{habitName});
+                        if(!isHabitDuplicated() || habitNameET.getText().toString().equals(habitName)) {
+                            db.update("Habit", values, "name = ?", new String[]{habitName});
+                        }
+                        else{
+                            habitNameET.setError("该习惯已存在");
+                            habitNameET.requestFocus();
+                            return;
+                        }
                     }
                     finish();
                 }
@@ -126,16 +141,21 @@ public class ActivityModifyHabit extends BaseActivity {
             return true;
     }
 
-    private boolean checkHabitDuplicated(){
+    private boolean isHabitDuplicated(){
         String newHabitName = habitNameET.getText().toString();
         Cursor cursor = db.query("Habit",new String[]{"name"},"name = ?",new String[]{newHabitName},null,null,null);
-        if(cursor.getCount()>0) {
-            cursor.close();
-            return true;
+        int count = cursor.getCount();
+        cursor.close();
+        return count > 0;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
         }
-        else{
-            cursor.close();
-            return false;
-        }
+        return false;
     }
 }
