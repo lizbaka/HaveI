@@ -68,10 +68,10 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
             public boolean onLongClick(View v) {
                 int habitID = holder.mHabit.getHabitID();
                 if(dbHelper.switchHabitExec(habitID)){
-                    holder.done.setText("太棒了！今天已经完成");
+                    holder.done.setText(mContext.getString(R.string.dynamic_habit_card_done));
                 }
                 else{
-                    holder.done.setText("今天尚未完成");
+                    holder.done.setText(mContext.getString(R.string.dynamic_habit_card_undone));
                 }
                 return true;
             }
@@ -88,12 +88,12 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         holder.name.setText(habitName);
         holder.tag.setText(habitTag);
         int count = dbHelper.getHabitExecCount(habitID);
-        holder.count.setText("您已坚持完成习惯 " + count + " 次，持之以恒！");
+        holder.count.setText(mContext.getString(R.string.dynamic_habit_card_count1) + count + mContext.getString(R.string.dynamic_habit_card_count2));
         if(dbHelper.isHabitDoneToday(habitID)){
-            holder.done.setText("太棒了！今天已经完成");
+            holder.done.setText(mContext.getString(R.string.dynamic_habit_card_done));
         }
         else{
-            holder.done.setText("今天尚未完成");
+            holder.done.setText(mContext.getString(R.string.dynamic_habit_card_undone));
         }
     }
 

@@ -48,25 +48,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="记账" />
+                        android:text="[tag1]" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="总览" />
+                        android:text="[tag2]" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="习惯" />
+                        android:text="[tag3]" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="备忘" />
+                        android:text="[tag4]" />
                 </com.google.android.material.tabs.TabLayout>
 
             </androidx.appcompat.widget.Toolbar>

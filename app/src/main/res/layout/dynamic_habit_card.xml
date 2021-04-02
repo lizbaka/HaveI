@@ -46,7 +46,7 @@
             android:textSize="15sp"
             android:layout_margin="5dp"
             android:layout_below="@id/habit_card_name"
-            android:text="今日尚未完成"/>
+            android:text="[今日尚未完成]"/>
 
         <TextView
             android:id="@+id/habit_card_count"
@@ -56,7 +56,7 @@
             android:textSize="15sp"
             android:layout_margin="5dp"
             android:layout_below="@id/habit_card_done"
-            android:text="您已坚持完成习惯 0 次，持之以恒！"/>
+            android:text="[您已坚持完成习惯 0 次，持之以恒！]"/>
 
     </RelativeLayout>
 

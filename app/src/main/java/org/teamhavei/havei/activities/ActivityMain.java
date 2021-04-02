@@ -28,13 +28,12 @@ import java.util.List;
 
 public class ActivityMain extends BaseActivity{
 
-    static final String[] PAGE_TITLE = {"记账","总览","习惯","备忘"};
+    private static final int ACCOUNT_INDEX = 0;
+    private static final int DASHBOARD_INDEX = 1;
+    private static final int HABIT_INDEX = 2;
+    private static final int NOTE_INDEX = 3;
 
-    static final int ACCOUNT_INDEX = 0;
-    static final int DASHBOARD_INDEX = 1;
-    static final int HABIT_INDEX = 2;
-    static final int NOTE_INDEX = 3;
-
+    private String[] pageTitle;
     private int defaultFragment = 1;
 
     Toolbar mToolbar;
@@ -108,7 +107,7 @@ public class ActivityMain extends BaseActivity{
         mToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,R.string.drawer_open, R.string.drawer_close);
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,R.string.main_drawer_open, R.string.main_drawer_close);
         mActionBarDrawerToggle.setDrawerSlideAnimationEnabled(true);
         mActionBarDrawerToggle.syncState();
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
@@ -116,12 +115,13 @@ public class ActivityMain extends BaseActivity{
     }
 
     void initPager(){
+        pageTitle = getResources().getStringArray(R.array.main_page_title);
         mViewPager = (ViewPager) findViewById(R.id.main_view_pager);
         mTabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(),fragmentList, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT));
         for(int i=0;i<fragmentList.size();i++){
-            mTabLayout.getTabAt(i).setText(PAGE_TITLE[i]);
+            mTabLayout.getTabAt(i).setText(pageTitle[i]);
         }
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
 

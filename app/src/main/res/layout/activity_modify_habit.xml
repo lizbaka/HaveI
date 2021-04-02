@@ -21,7 +21,7 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="添加习惯">
+            app:title="@string/activity_modify_habit_title">
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -47,7 +47,7 @@
                 android:background="#00000000"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:hint="习惯名称" />
+                android:hint="@string/activity_modify_habit_hint_name" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,7 +63,7 @@
                 android:background="#00000000"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:hint="习惯标签" />
+                android:hint="@string/activity_modify_habit_hint_tag" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,6 +78,6 @@
         style="?attr/borderlessButtonStyle"
         app:backgroundTint="#00000000"
         android:textColor="?attr/colorPrimary"
-        android:text="完成"/>
+        android:text="@string/activity_modify_habit_done"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

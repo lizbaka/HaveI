@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -18,15 +17,11 @@ import android.widget.Toast;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateLongClickListener;
-import com.prolificinteractive.materialcalendarview.format.DayFormatter;
 
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.habit.HabitDBHelper;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 public class ActivityHabitDetail extends BaseActivity {
 
@@ -39,9 +34,11 @@ public class ActivityHabitDetail extends BaseActivity {
     private String habitName;
     private int habitID;
 
+
+    public static final String START_PARAM_HABIT_NAME = "habit_name";
     public static void startAction(Context context, String habitName){
         Intent intent = new Intent(context, ActivityHabitDetail.class);
-        intent.putExtra("habit_name",habitName);
+        intent.putExtra(START_PARAM_HABIT_NAME,habitName);
         context.startActivity(intent);
     }
 
@@ -57,7 +54,7 @@ public class ActivityHabitDetail extends BaseActivity {
         dbHelper = new HabitDBHelper(this,HabitDBHelper.DB_NAME,null,HabitDBHelper.DATABASE_VERSION);
         db = dbHelper.getWritableDatabase();
 
-        habitName = getIntent().getStringExtra("habit_name");
+        habitName = getIntent().getStringExtra(START_PARAM_HABIT_NAME);
         habitID = dbHelper.getHabitID(habitName);
 
         getSupportActionBar().setTitle(habitName);
@@ -67,7 +64,7 @@ public class ActivityHabitDetail extends BaseActivity {
             @Override
             public void onDateLongClick(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date) {
                 if(date.isAfter(CalendarDay.today())){
-                    Toast.makeText(ActivityHabitDetail.this,"不能提前标记哦！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityHabitDetail.this,getString(R.string.activity_habit_detail_advanced),Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -77,10 +74,10 @@ public class ActivityHabitDetail extends BaseActivity {
                 widget.setDateSelected(date,done);
                 String toastMessage;
                 if(done){
-                    toastMessage = "习惯执行记录成功！";
+                    toastMessage = getString(R.string.activity_habit_detail_marked);
                 }
                 else{
-                    toastMessage = "习惯执行记录已删除";
+                    toastMessage = getString(R.string.activity_habit_detail_unmarked);
                 }
                 Toast.makeText(ActivityHabitDetail.this,toastMessage,Toast.LENGTH_SHORT).show();
             }
@@ -108,16 +105,16 @@ public class ActivityHabitDetail extends BaseActivity {
                 return true;
             case R.id.habit_detail_delete:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("删除习惯");
-                builder.setMessage("习惯将被永久删除，且对应执行记录也将被删除，您确定要删除" + habitName + "吗？");
-                builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                builder.setTitle(getString(R.string.activity_habit_detail_delete_dialog_title));
+                builder.setMessage(getString(R.string.activity_habit_detail_delete_dialog_msg1) + habitName + getString(R.string.activity_habit_detail_delete_dialog_msg2));
+                builder.setPositiveButton(getString(R.string.dialog_positive), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deleteHabit();
                         finish();
                     }
                 });
-                builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getString(R.string.dialog_negative), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }

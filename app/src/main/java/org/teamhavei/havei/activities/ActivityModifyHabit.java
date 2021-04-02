@@ -39,16 +39,18 @@ public class ActivityModifyHabit extends BaseActivity {
     int mode = MODE_ADD;//0:add 1:modify
     //modify 待实现
 
+    public static final String START_PARAM_MODE = "mode";
+    public static final String START_PARAM_HABIT_NAME = "habit_name";
     static public void StartAction(Context context, int mode){
         Intent intent = new Intent(context, ActivityModifyHabit.class);
-        intent.putExtra("mode",mode);
+        intent.putExtra(START_PARAM_MODE,mode);
         context.startActivity(intent);
     }
 
     static public void StartAction(Context context, int mode, String habitName){
         Intent intent = new Intent(context, ActivityModifyHabit.class);
-        intent.putExtra("mode", mode);
-        intent.putExtra("habit_name",habitName);
+        intent.putExtra(START_PARAM_MODE, mode);
+        intent.putExtra(START_PARAM_HABIT_NAME,habitName);
         context.startActivity(intent);
     }
 
@@ -60,7 +62,7 @@ public class ActivityModifyHabit extends BaseActivity {
         setSupportActionBar((Toolbar)findViewById(R.id.modify_habit_toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mode = getIntent().getIntExtra("mode",MODE_ADD);
+        mode = getIntent().getIntExtra(START_PARAM_MODE,MODE_ADD);
 
         habitNameET = ((TextInputLayout) findViewById(R.id.modify_habit_name)).getEditText();
         habitTagET = ((TextInputLayout) findViewById(R.id.modify_habit_tag)).getEditText();
@@ -70,7 +72,7 @@ public class ActivityModifyHabit extends BaseActivity {
         db = dbHelper.getWritableDatabase();
 
         if(mode == MODE_MODIFY) {
-            habitName = getIntent().getStringExtra("habit_name");
+            habitName = getIntent().getStringExtra(START_PARAM_HABIT_NAME);
             habitTag = dbHelper.getHabitTag(habitName);
             setOriginalText();
         }
@@ -88,9 +90,9 @@ public class ActivityModifyHabit extends BaseActivity {
                         }
                         else {
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityModifyHabit.this);
-                            dialog.setTitle("该习惯已存在");
-                            dialog.setMessage("是否更新已有习惯？");
-                            dialog.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            dialog.setTitle(getString(R.string.activity_modify_habit_exist_dialog_title));
+                            dialog.setMessage(getString(R.string.activity_modify_habit_exist_dialog_msg));
+                            dialog.setPositiveButton(getString(R.string.dialog_positive), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     habitName = habitNameET.getText().toString();
@@ -98,10 +100,10 @@ public class ActivityModifyHabit extends BaseActivity {
                                     finish();
                                 }
                             });
-                            dialog.setNegativeButton("否", new DialogInterface.OnClickListener() {
+                            dialog.setNegativeButton(getString(R.string.dialog_negative), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    habitNameET.setError("该习惯已存在");
+                                    habitNameET.setError(getString(R.string.activity_modify_habit_exist_error));
                                     habitNameET.requestFocus();
                                 }
                             });
@@ -114,7 +116,7 @@ public class ActivityModifyHabit extends BaseActivity {
                             db.update("Habit", values, "name = ?", new String[]{habitName});
                         }
                         else{
-                            habitNameET.setError("该习惯已存在");
+                            habitNameET.setError(getString(R.string.activity_modify_habit_exist_error));
                             habitNameET.requestFocus();
                             return;
                         }
@@ -133,7 +135,7 @@ public class ActivityModifyHabit extends BaseActivity {
     private boolean checkHabitValidate(){
         String newHabitName = habitNameET.getText().toString();
         if(newHabitName.equals("")){
-            habitNameET.setError("习惯名不能为空");
+            habitNameET.setError(getString(R.string.activity_modify_habit_empty_name));
             habitNameET.requestFocus();
             return false;
         }

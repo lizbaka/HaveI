@@ -3,10 +3,10 @@
     <item
         android:id="@+id/nav_theme"
         android:icon="@drawable/ic_baseline_format_paint_24"
-        android:title="主题"/>
+        android:title="@string/menu_nav_menu_theme"/>
 
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="设置"/>
+        android:title="@string/menu_nav_menu_settings"/>
 </menu>

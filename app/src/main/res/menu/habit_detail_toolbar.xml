@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/habit_detail_modify"
-        android:title="修改"
+        android:title="@string/menu_habit_detail_toolbar_modify"
         android:icon="@drawable/ic_baseline_edit_24"
         android:iconTint="@color/white"
         app:iconTint="@color/white"
@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/habit_detail_delete"
-        android:title="删除"
+        android:title="@string/menu_habit_detail_toolbar_delete"
         android:icon="@drawable/ic_baseline_delete_24"
         android:iconTint="@color/white"
         app:iconTint="@color/white"

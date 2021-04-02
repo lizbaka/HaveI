@@ -1,5 +1,74 @@
 <resources>
+<!--universal:Begin-->
     <string name="app_name">HaveI</string>
-    <string name="drawer_open">抽屉打开</string>
-    <string name="drawer_close">抽屉关闭</string>
+    <string name="dialog_positive">是</string>
+    <string name="dialog_negative">否</string>
+<!--universal:end-->
+
+
+
+<!--activity_main:Begin-->
+    <string name="main_drawer_open">抽屉打开</string>
+    <string name="main_drawer_close">抽屉关闭</string>
+    <string-array name="main_page_title">
+        <item>记账</item>
+        <item>总览</item>
+        <item>习惯</item>
+        <item>备忘</item>
+    </string-array>
+<!--activity_main:end-->
+    
+<!--activity_habit_detail:Begin-->
+    <string name="activity_habit_detail_advanced">不能提前标记哦！</string>
+    <string name="activity_habit_detail_marked">习惯执行记录成功！</string>
+    <string name="activity_habit_detail_unmarked">习惯执行记录已删除</string>
+    <string name="activity_habit_detail_delete_dialog_title">删除习惯</string>
+    <string name="activity_habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除</string>
+    <string name="activity_habit_detail_delete_dialog_msg2">吗？</string>
+<!--activity_habit_detail:End-->
+
+<!--activity_modify_habit:Begin-->
+    <string name="activity_modify_habit_title">添加习惯</string>
+    <string name="activity_modify_habit_hint_name">习惯名称</string>
+    <string name="activity_modify_habit_hint_tag">习惯标签</string>
+    <string name="activity_modify_habit_done">完成</string>
+    <string name="activity_modify_habit_exist_dialog_title">习惯已存在</string>
+    <string name="activity_modify_habit_exist_dialog_msg">是否更新到已有习惯？</string>
+    <string name="activity_modify_habit_exist_error">习惯已存在</string>
+    <string name="activity_modify_habit_empty_name">习惯名不能为空</string>
+<!--activity_modify_habit:end-->
+
+
+
+<!--fragment_habit:Begin-->
+    <string name="fragment_habit_add_first">添加您的第一个习惯！</string>
+<!--fragment_habit:end-->
+
+
+
+<!--dynamic_habit_card:Begin-->
+    <string name="dynamic_habit_card_done">太棒了！今天已经完成</string>
+    <string name="dynamic_habit_card_undone">今天尚未完成</string>
+    <string name="dynamic_habit_card_count1">您已坚持完成习惯 </string>
+    <string name="dynamic_habit_card_count2"> 次，持之以恒！</string>
+<!--dynamic_habit_card:end-->
+
+<!--dynamic_nav_header:Begin-->
+    <string name="dynamic_nav_header_title">HaveI</string>
+<!--dynamic_nav_header:end-->
+
+
+
+<!--menu_habit_detail_toolbar:Begin-->
+    <string name="menu_habit_detail_toolbar_modify">修改</string>
+    <string name="menu_habit_detail_toolbar_delete">删除</string>
+<!--menu_habit_detail_toolbar:end-->
+
+<!--menu_main_toolbar_Begin-->
+    <string name="menu_main_toolbar_analyze">分析</string>
+<!--menu_main_toolbar:end-->
+
+<!--menu_nav_menu:Begin-->
+    <string name="menu_nav_menu_theme">主题</string>
+    <string name="menu_nav_menu_settings">设置</string>
 </resources>
