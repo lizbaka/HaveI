@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textColor="#ffffffff"
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:text="[habit name]"/>
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textColor="#ffffffff"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:layout_alignBaseline="@id/habit_card_name"
             android:layout_toEndOf="@id/habit_card_name"
             android:text="[habit tag]"/>
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#ffffffff"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:layout_margin="5dp"
             android:layout_below="@id/habit_card_name"
             android:text="[今日尚未完成]"/>
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#ffffffff"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:layout_margin="5dp"
             android:layout_below="@id/habit_card_done"
             android:text="[您已坚持完成习惯 0 次，持之以恒！]"/>

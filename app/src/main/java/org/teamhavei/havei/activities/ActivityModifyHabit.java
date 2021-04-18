@@ -37,7 +37,6 @@ public class ActivityModifyHabit extends BaseActivity {
     String habitTag;
 
     int mode = MODE_ADD;//0:add 1:modify
-    //modify 待实现
 
     public static final String START_PARAM_MODE = "mode";
     public static final String START_PARAM_HABIT_NAME = "habit_name";
@@ -59,7 +58,7 @@ public class ActivityModifyHabit extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_habit);
 
-        setSupportActionBar((Toolbar)findViewById(R.id.modify_habit_toolbar));
+        setSupportActionBar(findViewById(R.id.modify_habit_toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mode = getIntent().getIntExtra(START_PARAM_MODE,MODE_ADD);
