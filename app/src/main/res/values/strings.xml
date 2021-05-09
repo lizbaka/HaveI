@@ -28,7 +28,8 @@
 <!--activity_habit_detail:End-->
 
 <!--activity_modify_habit:Begin-->
-    <string name="activity_modify_habit_title">添加习惯</string>
+    <string name="activity_modify_habit_title_add">添加习惯</string>
+    <string name="activity_modify_habit_title_modify">修改习惯</string>
     <string name="activity_modify_habit_hint_name">习惯名称</string>
     <string name="activity_modify_habit_hint_tag">习惯标签</string>
     <string name="activity_modify_habit_done">完成</string>

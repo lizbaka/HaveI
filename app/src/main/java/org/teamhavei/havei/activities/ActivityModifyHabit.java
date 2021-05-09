@@ -73,6 +73,7 @@ public class ActivityModifyHabit extends BaseActivity {
         if(mode == MODE_MODIFY) {
             habitName = getIntent().getStringExtra(START_PARAM_HABIT_NAME);
             habitTag = dbHelper.getHabitTag(habitName);
+            getSupportActionBar().setTitle(R.string.activity_modify_habit_title_modify);
             setOriginalText();
         }
 

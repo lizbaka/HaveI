@@ -19,7 +19,7 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="@string/activity_modify_habit_title">
+            app:title="@string/activity_modify_habit_title_add">
 
         </androidx.appcompat.widget.Toolbar>
 
