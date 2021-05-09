@@ -57,7 +57,7 @@ public class ActivityHabitDetail extends BaseActivity {
         habitName = getIntent().getStringExtra(START_PARAM_HABIT_NAME);
         habitID = dbHelper.getHabitID(habitName);
 
-        getSupportActionBar().setTitle(habitName);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mCalendar.setOnDateLongClickListener(new OnDateLongClickListener() {
@@ -88,6 +88,7 @@ public class ActivityHabitDetail extends BaseActivity {
     protected void onResume() {
         super.onResume();
         habitName = dbHelper.getHabitName(habitID);
+        getSupportActionBar().setTitle(habitName);
         showExecutionDate();
     }
 
