@@ -14,17 +14,19 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.teamhavei.havei.R;
-import org.teamhavei.havei.habit.*;
+import org.teamhavei.havei.databases.HabitDBHelper;
 
 public class ActivityModifyHabit extends BaseActivity {
 
     public static final int MODE_ADD = 0;
     public static final int MODE_MODIFY = 1;
+
+    public static final String START_PARAM_MODE = "mode";
+    public static final String START_PARAM_HABIT_NAME = "habit_name";
 
     EditText habitNameET;
     EditText habitTagET;
@@ -38,15 +40,13 @@ public class ActivityModifyHabit extends BaseActivity {
 
     int mode = MODE_ADD;//0:add 1:modify
 
-    public static final String START_PARAM_MODE = "mode";
-    public static final String START_PARAM_HABIT_NAME = "habit_name";
-    static public void StartAction(Context context, int mode){
+    static public void startAction(Context context, int mode){
         Intent intent = new Intent(context, ActivityModifyHabit.class);
         intent.putExtra(START_PARAM_MODE,mode);
         context.startActivity(intent);
     }
 
-    static public void StartAction(Context context, int mode, String habitName){
+    static public void startAction(Context context, int mode, String habitName){
         Intent intent = new Intent(context, ActivityModifyHabit.class);
         intent.putExtra(START_PARAM_MODE, mode);
         intent.putExtra(START_PARAM_HABIT_NAME,habitName);
@@ -73,7 +73,7 @@ public class ActivityModifyHabit extends BaseActivity {
         if(mode == MODE_MODIFY) {
             habitName = getIntent().getStringExtra(START_PARAM_HABIT_NAME);
             habitTag = dbHelper.getHabitTag(habitName);
-            getSupportActionBar().setTitle(R.string.activity_modify_habit_title_modify);
+            getSupportActionBar().setTitle(R.string.modify_habit_title_modify);
             setOriginalText();
         }
 
@@ -90,8 +90,8 @@ public class ActivityModifyHabit extends BaseActivity {
                         }
                         else {
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityModifyHabit.this);
-                            dialog.setTitle(getString(R.string.activity_modify_habit_exist_dialog_title));
-                            dialog.setMessage(getString(R.string.activity_modify_habit_exist_dialog_msg));
+                            dialog.setTitle(getString(R.string.modify_habit_exist_dialog_title));
+                            dialog.setMessage(getString(R.string.modify_habit_exist_dialog_msg));
                             dialog.setPositiveButton(getString(R.string.dialog_positive), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -103,7 +103,7 @@ public class ActivityModifyHabit extends BaseActivity {
                             dialog.setNegativeButton(getString(R.string.dialog_negative), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    habitNameET.setError(getString(R.string.activity_modify_habit_exist_error));
+                                    habitNameET.setError(getString(R.string.modify_habit_exist_error));
                                     habitNameET.requestFocus();
                                 }
                             });
@@ -116,7 +116,7 @@ public class ActivityModifyHabit extends BaseActivity {
                             db.update("Habit", values, "name = ?", new String[]{habitName});
                         }
                         else{
-                            habitNameET.setError(getString(R.string.activity_modify_habit_exist_error));
+                            habitNameET.setError(getString(R.string.modify_habit_exist_error));
                             habitNameET.requestFocus();
                             return;
                         }
@@ -135,7 +135,7 @@ public class ActivityModifyHabit extends BaseActivity {
     private boolean checkHabitValidate(){
         String newHabitName = habitNameET.getText().toString();
         if(newHabitName.equals("")){
-            habitNameET.setError(getString(R.string.activity_modify_habit_empty_name));
+            habitNameET.setError(getString(R.string.modify_habit_empty_name));
             habitNameET.requestFocus();
             return false;
         }

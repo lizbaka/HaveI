@@ -18,58 +18,59 @@
     </string-array>
 <!--activity_main:end-->
     
-<!--activity_habit_detail:Begin-->
-    <string name="activity_habit_detail_advanced">不能提前标记哦！</string>
-    <string name="activity_habit_detail_marked">习惯执行记录成功！</string>
-    <string name="activity_habit_detail_unmarked">习惯执行记录已删除</string>
-    <string name="activity_habit_detail_delete_dialog_title">删除习惯</string>
-    <string name="activity_habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除</string>
-    <string name="activity_habit_detail_delete_dialog_msg2">吗？</string>
-<!--activity_habit_detail:End-->
+<!--habit_detail:Begin-->
+    <string name="habit_detail_advanced">不能提前标记哦！</string>
+    <string name="habit_detail_marked">习惯执行记录成功！</string>
+    <string name="habit_detail_unmarked">习惯执行记录已删除</string>
+    <string name="habit_detail_delete_dialog_title">删除习惯</string>
+    <string name="habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除</string>
+    <string name="habit_detail_delete_dialog_msg2">吗？</string>
+<!--habit_detail:End-->
 
-<!--activity_modify_habit:Begin-->
-    <string name="activity_modify_habit_title_add">添加习惯</string>
-    <string name="activity_modify_habit_title_modify">修改习惯</string>
-    <string name="activity_modify_habit_hint_name">习惯名称</string>
-    <string name="activity_modify_habit_hint_tag">习惯标签</string>
-    <string name="activity_modify_habit_done">完成</string>
-    <string name="activity_modify_habit_exist_dialog_title">习惯已存在</string>
-    <string name="activity_modify_habit_exist_dialog_msg">是否更新到已有习惯？</string>
-    <string name="activity_modify_habit_exist_error">习惯已存在</string>
-    <string name="activity_modify_habit_empty_name">习惯名不能为空</string>
-<!--activity_modify_habit:end-->
-
-
-
-<!--fragment_habit:Begin-->
-    <string name="fragment_habit_add_first">添加您的第一个习惯！</string>
-<!--fragment_habit:end-->
+<!--modify_habit:Begin-->
+    <string name="modify_habit_title_add">添加习惯</string>
+    <string name="modify_habit_title_modify">修改习惯</string>
+    <string name="modify_habit_hint_name">习惯名称</string>
+    <string name="modify_habit_hint_tag">习惯标签</string>
+    <string name="modify_habit_done">完成</string>
+    <string name="modify_habit_exist_dialog_title">习惯已存在</string>
+    <string name="modify_habit_exist_dialog_msg">是否更新到已有习惯？</string>
+    <string name="modify_habit_exist_error">习惯已存在</string>
+    <string name="modify_habit_empty_name">习惯名不能为空</string>
+<!--modify_habit:end-->
 
 
 
-<!--dynamic_habit_card:Begin-->
-    <string name="dynamic_habit_card_done">太棒了！今天已经完成</string>
-    <string name="dynamic_habit_card_undone">今天尚未完成</string>
-    <string name="dynamic_habit_card_count1">您已坚持完成习惯 </string>
-    <string name="dynamic_habit_card_count2"> 次，持之以恒！</string>
-<!--dynamic_habit_card:end-->
-
-<!--dynamic_nav_header:Begin-->
-    <string name="dynamic_nav_header_title">HaveI</string>
-<!--dynamic_nav_header:end-->
+<!--habit:Begin-->
+    <string name="habit_add_first">添加您的第一个习惯！</string>
+<!--habit:end-->
 
 
 
-<!--menu_habit_detail_toolbar:Begin-->
-    <string name="menu_habit_detail_toolbar_modify">修改</string>
-    <string name="menu_habit_detail_toolbar_delete">删除</string>
-<!--menu_habit_detail_toolbar:end-->
+<!--habit_card:Begin-->
+    <string name="habit_card_done">太棒了！今天已经完成</string>
+    <string name="habit_card_undone">今天尚未完成</string>
+    <string name="habit_card_count1">您已坚持完成习惯 </string>
+    <string name="habit_card_count2"> 次，持之以恒！</string>
+<!--habit_card:end-->
 
-<!--menu_main_toolbar_Begin-->
-    <string name="menu_main_toolbar_analyze">分析</string>
+<!--nav_header:Begin-->
+    <string name="nav_header_title">HaveI</string>
+<!--nav_header:end-->
+
+
+
+<!--habit_detail_toolbar:Begin-->
+    <string name="habit_detail_toolbar_modify">修改</string>
+    <string name="habit_detail_toolbar_delete">删除</string>
+<!--habit_detail_toolbar:end-->
+
+<!--main_toolbar_Begin-->
+    <string name="main_toolbar_analyze">分析</string>
 <!--menu_main_toolbar:end-->
 
-<!--menu_nav_menu:Begin-->
-    <string name="menu_nav_menu_theme">主题</string>
-    <string name="menu_nav_menu_settings">设置</string>
+<!--nav_menu:Begin-->
+    <string name="nav_menu_theme">主题</string>
+    <string name="nav_menu_settings">设置</string>
+<!--menu_nav_menu:End-->
 </resources>

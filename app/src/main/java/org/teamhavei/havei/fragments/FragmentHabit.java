@@ -1,8 +1,5 @@
 package org.teamhavei.havei.fragments;
 
-import android.app.Activity;
-import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,12 +14,10 @@ import org.teamhavei.havei.activities.ActivityModifyHabit;
 import org.teamhavei.havei.habit.Habit;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.adapters.HabitCardAdapter;
-import org.teamhavei.havei.habit.HabitDBHelper;
+import org.teamhavei.havei.databases.HabitDBHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.app.Activity.RESULT_OK;
 
 public class FragmentHabit extends BaseFragment {
 
@@ -35,7 +30,7 @@ public class FragmentHabit extends BaseFragment {
         super.onCreate(savedInstanceState);
         mHabitDBHelper = new HabitDBHelper(getActivity(),HabitDBHelper.DB_NAME,null,HabitDBHelper.DATABASE_VERSION);
         mHabitList = new ArrayList<>();
-        updatemHabitList();
+        updateMHabitList();
     }
 
     @Override
@@ -59,7 +54,7 @@ public class FragmentHabit extends BaseFragment {
     public void onResume() {
         super.onResume();
 
-        updatemHabitList();
+        updateMHabitList();
         adapter.notifyDataSetChanged();
         if(mHabitList.size()>0){
             getView().findViewById(R.id.habit_empty_hint).setVisibility(View.INVISIBLE);
@@ -69,7 +64,7 @@ public class FragmentHabit extends BaseFragment {
         }
     }
 
-    private void updatemHabitList(){
+    private void updateMHabitList(){
         mHabitList.clear();
         SQLiteDatabase habitDB = mHabitDBHelper.getReadableDatabase();
         Cursor cursor = habitDB.query("Habit",null,null,null,null,null,null);
@@ -86,7 +81,7 @@ public class FragmentHabit extends BaseFragment {
     }
 
     public void addHabit(){
-        ActivityModifyHabit.StartAction(getActivity(),ActivityModifyHabit.MODE_ADD);
+        ActivityModifyHabit.startAction(getActivity(),ActivityModifyHabit.MODE_ADD);
     }
 
 }

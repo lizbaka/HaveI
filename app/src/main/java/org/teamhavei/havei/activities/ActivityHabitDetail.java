@@ -19,7 +19,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateLongClickListener;
 
 import org.teamhavei.havei.R;
-import org.teamhavei.havei.habit.HabitDBHelper;
+import org.teamhavei.havei.databases.HabitDBHelper;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;
 
@@ -64,7 +64,7 @@ public class ActivityHabitDetail extends BaseActivity {
             @Override
             public void onDateLongClick(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date) {
                 if(date.isAfter(CalendarDay.today())){
-                    Toast.makeText(ActivityHabitDetail.this,getString(R.string.activity_habit_detail_advanced),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityHabitDetail.this,getString(R.string.habit_detail_advanced),Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -74,10 +74,10 @@ public class ActivityHabitDetail extends BaseActivity {
                 widget.setDateSelected(date,done);
                 String toastMessage;
                 if(done){
-                    toastMessage = getString(R.string.activity_habit_detail_marked);
+                    toastMessage = getString(R.string.habit_detail_marked);
                 }
                 else{
-                    toastMessage = getString(R.string.activity_habit_detail_unmarked);
+                    toastMessage = getString(R.string.habit_detail_unmarked);
                 }
                 Toast.makeText(ActivityHabitDetail.this,toastMessage,Toast.LENGTH_SHORT).show();
             }
@@ -101,13 +101,13 @@ public class ActivityHabitDetail extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.habit_detail_modify:
-                ActivityModifyHabit.StartAction(this,ActivityModifyHabit.MODE_MODIFY,habitName);
+            case R.id.habit_detail_toolbar_modify:
+                ActivityModifyHabit.startAction(this,ActivityModifyHabit.MODE_MODIFY,habitName);
                 return true;
-            case R.id.habit_detail_delete:
+            case R.id.habit_detail_toolbar_delete:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(getString(R.string.activity_habit_detail_delete_dialog_title));
-                builder.setMessage(getString(R.string.activity_habit_detail_delete_dialog_msg1) + habitName + getString(R.string.activity_habit_detail_delete_dialog_msg2));
+                builder.setTitle(getString(R.string.habit_detail_delete_dialog_title));
+                builder.setMessage(getString(R.string.habit_detail_delete_dialog_msg1) + habitName + getString(R.string.habit_detail_delete_dialog_msg2));
                 builder.setPositiveButton(getString(R.string.dialog_positive), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

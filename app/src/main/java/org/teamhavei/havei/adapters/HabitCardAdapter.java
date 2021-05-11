@@ -2,7 +2,6 @@ package org.teamhavei.havei.adapters;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.teamhavei.havei.activities.ActivityHabitDetail;
 import org.teamhavei.havei.habit.Habit;
 import org.teamhavei.havei.R;
-import org.teamhavei.havei.habit.HabitDBHelper;
+import org.teamhavei.havei.databases.HabitDBHelper;
 
 import java.util.List;
 
@@ -68,10 +67,10 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
             public boolean onLongClick(View v) {
                 int habitID = holder.mHabit.getHabitID();
                 if(dbHelper.switchHabitExec(habitID)){
-                    holder.done.setText(mContext.getString(R.string.dynamic_habit_card_done));
+                    holder.done.setText(mContext.getString(R.string.habit_card_done));
                 }
                 else{
-                    holder.done.setText(mContext.getString(R.string.dynamic_habit_card_undone));
+                    holder.done.setText(mContext.getString(R.string.habit_card_undone));
                 }
                 return true;
             }
@@ -88,12 +87,12 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         holder.name.setText(habitName);
         holder.tag.setText(habitTag);
         int count = dbHelper.getHabitExecCount(habitID);
-        holder.count.setText(mContext.getString(R.string.dynamic_habit_card_count1) + count + mContext.getString(R.string.dynamic_habit_card_count2));
+        holder.count.setText(mContext.getString(R.string.habit_card_count1) + count + mContext.getString(R.string.habit_card_count2));
         if(dbHelper.isHabitDoneToday(habitID)){
-            holder.done.setText(mContext.getString(R.string.dynamic_habit_card_done));
+            holder.done.setText(mContext.getString(R.string.habit_card_done));
         }
         else{
-            holder.done.setText(mContext.getString(R.string.dynamic_habit_card_undone));
+            holder.done.setText(mContext.getString(R.string.habit_card_undone));
         }
     }
 

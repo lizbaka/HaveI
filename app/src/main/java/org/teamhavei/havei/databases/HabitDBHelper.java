@@ -3,7 +3,7 @@
 * HabitExecs(habit_id integer, date text)
 * date的格式为yyyyMMdd
  */
-package org.teamhavei.havei.habit;
+package org.teamhavei.havei.databases;
 
 import android.content.ContentValues;
 import android.content.Context;

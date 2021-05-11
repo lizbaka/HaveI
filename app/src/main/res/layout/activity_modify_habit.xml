@@ -19,7 +19,7 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="@string/activity_modify_habit_title_add">
+            app:title="@string/modify_habit_title_add">
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
-                android:hint="@string/activity_modify_habit_hint_name"
+                android:hint="@string/modify_habit_hint_name"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:drawableStart="@drawable/ic_baseline_note_add_24"/>
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
-                android:hint="@string/activity_modify_habit_hint_tag"
+                android:hint="@string/modify_habit_hint_tag"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:drawableStart="@drawable/ic_baseline_label_24"/>
@@ -84,7 +84,7 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:textColor="?attr/colorPrimary"
-            android:text="@string/activity_modify_habit_done"/>
+            android:text="@string/modify_habit_done"/>
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

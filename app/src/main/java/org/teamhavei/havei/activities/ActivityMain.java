@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -162,10 +161,10 @@ public class ActivityMain extends BaseActivity{
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-                    case R.id.nav_theme:
+                    case R.id.nav_menu_theme:
                         Toast.makeText(ActivityMain.this,"主题切换功能：敬请期待",Toast.LENGTH_SHORT).show();
                         return true;
-                    case R.id.nav_settings:
+                    case R.id.nav_menu_settings:
                         Toast.makeText(ActivityMain.this,"设置：敬请期待",Toast.LENGTH_SHORT).show();
                         return true;
                 }
