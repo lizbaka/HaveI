@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     app:tabGravity="center"
                     app:tabMode="auto"
-                    app:tabPadding="12dp"
+                    app:tabPadding="8dp"
                     app:tabIndicatorFullWidth="false"
                     app:tabUnboundedRipple="true">
 
@@ -65,6 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="[tag4]" />
+                    
                 </com.google.android.material.tabs.TabLayout>
 
             </androidx.appcompat.widget.Toolbar>

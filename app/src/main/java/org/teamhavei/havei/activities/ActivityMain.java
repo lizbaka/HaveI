@@ -30,7 +30,7 @@ public class ActivityMain extends BaseActivity{
     private static final int ACCOUNT_INDEX = 0;
     private static final int DASHBOARD_INDEX = 1;
     private static final int HABIT_INDEX = 2;
-    private static final int NOTE_INDEX = 3;
+    private static final int TODO_INDEX = 3;
 
     private String[] pageTitle;
     private int defaultFragment = 1;
@@ -43,7 +43,7 @@ public class ActivityMain extends BaseActivity{
     ExtendedFloatingActionButton fab;
     NavigationView mNavView;
 
-    View.OnClickListener addAccount,addAny,addHabit,addNote;
+    View.OnClickListener addAccount, addAny, addHabit, addTodo;
 
     private List<Fragment> fragmentList = new ArrayList<>();
 
@@ -81,10 +81,10 @@ public class ActivityMain extends BaseActivity{
                 fragmentHabit.addHabit();
             }
         };
-        addNote = new View.OnClickListener() {
+        addTodo = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityMain.this,"添加备忘录功能：敬请期待",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityMain.this,"日程功能：敬请期待",Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -93,7 +93,7 @@ public class ActivityMain extends BaseActivity{
         fragmentList.add(new FragmentAccount());
         fragmentList.add(new FragmentDashBoard());
         fragmentList.add(new FragmentHabit());
-        fragmentList.add(new FragmentNote());
+        fragmentList.add(new FragmentTodo());
     }
 
     private void initDrawer(){
@@ -141,7 +141,7 @@ public class ActivityMain extends BaseActivity{
                         fab.setOnClickListener(addHabit);
                         break;
                     case 3://note
-                        fab.setOnClickListener(addNote);
+                        fab.setOnClickListener(addTodo);
                         break;
                     default:
                         break;
@@ -187,5 +187,15 @@ public class ActivityMain extends BaseActivity{
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mDrawerLayout.isDrawerOpen(mNavView)){
+            mDrawerLayout.closeDrawer(mNavView);
+        }
+        else {
+            super.onBackPressed();
+        }
     }
 }
