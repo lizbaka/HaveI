@@ -13,62 +13,29 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#00000000"
+            android:backgroundTint="#00000000"
             app:elevation="0dp">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/main_toolbar"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:fitsSystemWindows="true"
-                android:gravity="center"
-                android:minHeight="?attr/actionBarSize"
+                style="@style/Dynamic_card"
+                app:strokeWidth="@dimen/toolbar_border_width"
+                app:strokeColor="#dddddd"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
 
-                app:contentInsetEnd="0dp"
-                app:contentInsetEndWithActions="0dp"
-                app:contentInsetLeft="0dp"
-                app:contentInsetRight="0dp"
-                app:contentInsetStart="0dp"
-                app:contentInsetStartWithNavigation="0dp">
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/main_tab_layout"
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/main_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:tabGravity="center"
-                    app:tabMode="auto"
-                    app:tabPadding="8dp"
-                    app:tabIndicatorFullWidth="false"
-                    app:tabUnboundedRipple="true">
+                    android:backgroundTint="#00000000"
+                    app:title="@string/app_name"
+                    android:fitsSystemWindows="true"
+                    android:gravity="center"
+                    android:minHeight="?attr/actionBarSize">
 
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="[tag1]" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="[tag2]" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="[tag3]" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="[tag4]" />
-                    
-                </com.google.android.material.tabs.TabLayout>
-
-            </androidx.appcompat.widget.Toolbar>
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.card.MaterialCardView>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -77,15 +44,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/main_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="30dp"
-            app:icon="@drawable/ic_baseline_add_24"
-            app:iconTint="@color/white"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

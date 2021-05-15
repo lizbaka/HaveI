@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <dimen name="card_corner_radius">10dp</dimen>
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="toolbar_border_width">2dp</dimen>
+</resources>
