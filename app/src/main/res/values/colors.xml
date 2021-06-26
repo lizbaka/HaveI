@@ -9,4 +9,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="ic_launcher_background">#FF3DDC84</color>
+
+    <color name="DIECHILAN_200">#FF95B5D0</color>
+    <color name="DIECHILAN_500">#FF4E7CA1</color>
+    <color name="DIECHILAN_700">#FF194569</color>
+
 </resources>
