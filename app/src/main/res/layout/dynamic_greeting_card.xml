@@ -1,0 +1,46 @@
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/Dynamic_card"
+    android:backgroundTint="?attr/colorPrimary"
+    app:cardElevation="100dp"
+    android:elevation="100dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/greeting_card_time"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_marginVertical="@dimen/greeting_card_text_marginVertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="[Greeting_Time]"/>
+
+        <TextView
+            android:id="@+id/greeting_card_reminder"
+            android:layout_below="@id/greeting_card_time"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_marginVertical="@dimen/greeting_card_text_marginVertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/greeting_card_reminder"/>
+
+        <TextView
+            android:id="@+id/greeting_card_account"
+            android:layout_below="@id/greeting_card_reminder"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_marginVertical="@dimen/greeting_card_text_marginVertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/greeting_card_account"/>
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
