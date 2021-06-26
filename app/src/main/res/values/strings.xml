@@ -54,6 +54,19 @@
     <string name="habit_card_count2"> 次，持之以恒！</string>
 <!--habit_card:end-->
 
+<!--greeting_card:Begin-->
+    <string-array name="greeting_card_time">
+        <item>早上好！</item>
+        <item>中午好！</item>
+        <item>下午好！</item>
+        <item>晚上好！</item>
+        <item>晚安！</item>
+    </string-array>
+    <string name="greeting_card_reminder">今天的习惯执行了吗？</string>
+    <string name="greeting_card_account">用记账记录生活吧！</string>
+<!--greeting_card:end-->
+
+
 <!--nav_header:Begin-->
     <string name="nav_header_title">HaveI</string>
 <!--nav_header:end-->
