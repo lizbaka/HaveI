@@ -2,6 +2,10 @@
 <resources>
     <style name="Dynamic_card" parent="Widget.MaterialComponents.CardView" >
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="android:layout_marginVertical">@dimen/card_marginVertical</item>
+        <item name="android:layout_marginHorizontal">@dimen/card_marginHorizontal</item>
         <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="contentPadding">@dimen/card_padding</item>
+        <item name="android:padding">@dimen/card_padding</item>
     </style>
 </resources>

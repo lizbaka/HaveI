@@ -19,7 +19,9 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Dynamic_card"
+                android:padding="@dimen/toolbar_padding"
+                android:layout_margin="@dimen/toolbar_margin"
+                app:cardCornerRadius="@dimen/toolbar_corner_radius"
                 app:strokeWidth="@dimen/toolbar_border_width"
                 app:strokeColor="#dddddd"
                 app:layout_scrollFlags="scroll|enterAlways|snap">
@@ -29,6 +31,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#00000000"
+                    app:titleTextColor="#888888"
                     app:title="@string/app_name"
                     android:fitsSystemWindows="true"
                     android:gravity="center"
@@ -39,11 +42,6 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/main_view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -54,5 +52,6 @@
         app:menu="@menu/nav_menu"
         app:headerLayout="@layout/dynamic_nav_header"
         android:layout_gravity="start"/>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
