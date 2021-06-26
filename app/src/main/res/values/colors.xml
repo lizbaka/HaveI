@@ -14,4 +14,8 @@
     <color name="DIECHILAN_500">#FF4E7CA1</color>
     <color name="DIECHILAN_700">#FF194569</color>
 
+    <color name="amber_200">#FFFFE082</color>
+    <color name="amber_500">#FFFFC107</color>
+    <color name="amber_700">#FFFFA000</color>
+
 </resources>
