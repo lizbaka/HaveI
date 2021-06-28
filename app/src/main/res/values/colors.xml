@@ -18,4 +18,6 @@
     <color name="amber_500">#FFFFC107</color>
     <color name="amber_700">#FFFFA000</color>
 
+    <color name="light_grey">#FFEEEEEE</color>
+
 </resources>
