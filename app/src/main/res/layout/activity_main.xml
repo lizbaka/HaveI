@@ -19,11 +19,8 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/toolbar_padding"
-                android:layout_margin="@dimen/toolbar_margin"
-                app:cardCornerRadius="@dimen/toolbar_corner_radius"
-                app:strokeWidth="@dimen/toolbar_border_width"
-                app:strokeColor="#dddddd"
+                app:contentPadding="@dimen/toolbar_padding"
+                style="@style/Dynamic_card.border"
                 app:layout_scrollFlags="scroll|enterAlways|snap">
 
                 <androidx.appcompat.widget.Toolbar
@@ -33,14 +30,26 @@
                     android:backgroundTint="#00000000"
                     app:titleTextColor="#888888"
                     app:title="@string/app_name"
-                    android:fitsSystemWindows="true"
-                    android:gravity="center"
                     android:minHeight="?attr/actionBarSize">
 
                 </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.card.MaterialCardView>
 
         </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <include
+                layout="@layout/dynamic_greeting_card" />
+            <include
+                layout="@layout/dynamic_todo_card" />
+            <include
+                layout="@layout/dynamic_habit_card"/>
+
+        </LinearLayout>
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -52,6 +61,7 @@
         app:menu="@menu/nav_menu"
         app:headerLayout="@layout/dynamic_nav_header"
         android:layout_gravity="start"/>
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
