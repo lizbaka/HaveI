@@ -15,31 +15,32 @@
         <TextView
             android:id="@+id/greeting_card_time"
             style="@style/TextAppearance.AppCompat.Title"
-            android:layout_marginVertical="@dimen/greeting_card_text_marginVertical"
-            android:layout_width="match_parent"
+            android:layout_margin="@dimen/widget_inview_margin"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text="[Greeting_Time]"/>
 
         <TextView
-            android:id="@+id/greeting_card_reminder"
-            android:layout_below="@id/greeting_card_time"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_marginVertical="@dimen/greeting_card_text_marginVertical"
-            android:layout_width="match_parent"
+            android:id="@+id/greeting_card_secondary"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@id/greeting_card_time"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_margin="@dimen/widget_inview_margin"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:text="@string/greeting_card_reminder"/>
+            android:text="[Greeting_Secondary]"/>
 
         <TextView
             android:id="@+id/greeting_card_account"
-            android:layout_below="@id/greeting_card_reminder"
+            android:layout_below="@id/greeting_card_secondary"
             style="@style/TextAppearance.AppCompat.Title"
-            android:layout_marginVertical="@dimen/greeting_card_text_marginVertical"
+            android:layout_margin="@dimen/widget_inview_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:text="@string/greeting_card_account"/>
+            android:text="@string/greeting_card_slogan"/>
 
     </RelativeLayout>
 
