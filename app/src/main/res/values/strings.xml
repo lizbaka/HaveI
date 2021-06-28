@@ -62,8 +62,7 @@
         <item>晚上好！</item>
         <item>晚安！</item>
     </string-array>
-    <string name="greeting_card_reminder">今天的习惯执行了吗？</string>
-    <string name="greeting_card_account">用记账记录生活吧！</string>
+    <string name="greeting_card_slogan">记录你的生活！</string>
 <!--greeting_card:end-->
 
 
