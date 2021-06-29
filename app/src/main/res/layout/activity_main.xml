@@ -30,26 +30,38 @@
                     android:backgroundTint="#00000000"
                     app:titleTextColor="#888888"
                     app:title="@string/app_name"
-                    android:minHeight="?attr/actionBarSize">
+                    android:minHeight="?attr/actionBarSize"/>
 
-                </androidx.appcompat.widget.Toolbar>
+
             </com.google.android.material.card.MaterialCardView>
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-            <include
-                layout="@layout/dynamic_greeting_card" />
-            <include
-                layout="@layout/dynamic_todo_card" />
-            <include
-                layout="@layout/dynamic_habit_card"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <include
+                    layout="@layout/dynamic_greeting_card" />
+                <include
+                    layout="@layout/dynamic_sentence"/>
+                <include
+                    layout="@layout/dynamic_todo_card" />
+                <include
+                    layout="@layout/dynamic_account_note_card"/>
+                <include
+                    layout="@layout/dynamic_habit_card"/>
+                <include
+                    layout="@layout/dynamic_habit_card"/>
+                <include
+                    layout="@layout/dynamic_habit_card"/>
 
-        </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
