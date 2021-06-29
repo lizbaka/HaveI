@@ -40,7 +40,7 @@
         <TextView
             android:id="@+id/todo_card_tag"
             android:layout_toRightOf="@id/todo_card_icon_container"
-            android:layout_toLeftOf="@id/todo_card_time"
+            android:layout_toLeftOf="@id/todo_card_date"
             android:layout_below="@id/todo_card_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
