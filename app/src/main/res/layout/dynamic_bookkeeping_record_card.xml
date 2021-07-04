@@ -9,7 +9,7 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/bookkeeping_note_card_icon_container"
+            android:id="@+id/bookkeeping_record_card_icon_container"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/widget_inview_margin"
             android:layout_width="@dimen/round_icon_background_size"
@@ -25,30 +25,30 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/bookkeeping_note_card_title"
-            android:layout_toRightOf="@id/bookkeeping_note_card_icon_container"
-            android:layout_toLeftOf="@id/bookkeeping_note_card_io"
+            android:id="@+id/bookkeeping_record_card_title"
+            android:layout_toRightOf="@id/bookkeeping_record_card_icon_container"
+            android:layout_toLeftOf="@id/bookkeeping_record_card_io"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_margin="@dimen/widget_inview_margin"
             android:maxLines="1"
-            android:text="[bookkeeping_Note_Card_Title]" />
+            android:text="[bookkeeping_Record_Card_Title]" />
 
         <TextView
             android:id="@+id/todo_card_tag"
-            android:layout_toRightOf="@id/bookkeeping_note_card_icon_container"
-            android:layout_toLeftOf="@id/bookkeeping_note_card_io"
-            android:layout_below="@id/bookkeeping_note_card_title"
+            android:layout_toRightOf="@id/bookkeeping_record_card_icon_container"
+            android:layout_toLeftOf="@id/bookkeeping_record_card_io"
+            android:layout_below="@id/bookkeeping_record_card_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.AppCompat.Body1"
             android:layout_margin="@dimen/widget_inview_margin"
             android:maxLines="1"
-            android:text="[bookkeeping_Note_Card_Tag]"/>
+            android:text="[bookkeeping_Record_Card_Tag]"/>
 
         <TextView
-            android:id="@+id/bookkeeping_note_card_io"
+            android:id="@+id/bookkeeping_record_card_io"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
