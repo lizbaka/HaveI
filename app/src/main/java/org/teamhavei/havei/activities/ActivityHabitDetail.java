@@ -1,4 +1,4 @@
-//package org.teamhavei.havei.activities;
+package org.teamhavei.havei.activities;
 //
 //import androidx.annotation.NonNull;
 //import androidx.appcompat.widget.Toolbar;
@@ -23,7 +23,7 @@
 //import org.threeten.bp.LocalDate;
 //import org.threeten.bp.format.DateTimeFormatter;
 //
-//public class ActivityHabitDetail extends BaseActivity {
+public class ActivityHabitDetail extends BaseActivity {
 //
 //    private Toolbar mToolbar;
 //    private MaterialCalendarView mCalendar;
@@ -149,4 +149,4 @@
 //        db.delete("HabitExecs","habit_id = ?",new String[]{Integer.toString(habitID)});
 //        db.delete("Habit","id = ?",new String[]{Integer.toString(habitID)});
 //    }
-//}
+}

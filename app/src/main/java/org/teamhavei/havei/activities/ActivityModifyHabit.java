@@ -1,4 +1,4 @@
-//package org.teamhavei.havei.activities;
+package org.teamhavei.havei.activities;
 //
 //import android.app.AlertDialog;
 //import android.content.ContentValues;
@@ -20,7 +20,7 @@
 //import org.teamhavei.havei.R;
 //import org.teamhavei.havei.databases.EventDBHelper;
 //
-//public class ActivityModifyHabit extends BaseActivity {
+public class ActivityModifyHabit extends BaseActivity {
 //
 //    public static final int MODE_ADD = 0;
 //    public static final int MODE_MODIFY = 1;
@@ -160,4 +160,4 @@
 //        }
 //        return false;
 //    }
-//}
+}
