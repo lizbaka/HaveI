@@ -73,6 +73,9 @@ public class ActivityMain extends BaseActivity{
                     case R.id.nav_menu_settings:
                         Toast.makeText(ActivityMain.this,"设置：敬请期待",Toast.LENGTH_SHORT).show();
                         return true;
+                    case R.id.nav_menu_help:
+                        ActivityTest.startAction(ActivityMain.this);
+                        return true;
                 }
                 return false;
             }

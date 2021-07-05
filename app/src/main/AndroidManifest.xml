@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HaveI">
-        <activity android:name=".activities.ActivityHabitDetail"></activity>
+        <activity android:name=".activities.ActivityTest"></activity>
+        <activity android:name=".activities.ActivityHabitDetail" />
         <activity android:name=".activities.ActivityModifyHabit" />
         <activity android:name=".activities.ActivityMain">
             <intent-filter>
