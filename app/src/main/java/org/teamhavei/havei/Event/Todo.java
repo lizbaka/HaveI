@@ -6,7 +6,7 @@ public class Todo {
     private String name;
     private int tagId;
     private String dateTime;
-    private int done;
+    private boolean done;
 
     public int getId() {
         return id;
@@ -40,11 +40,12 @@ public class Todo {
         this.dateTime = dateTime;
     }
 
-    public int getDone() {
+    public boolean isDone() {
         return done;
     }
 
-    public void setDone(int done) {
+    public void setDone(boolean done) {
         this.done = done;
     }
+
 }

@@ -1,5 +1,7 @@
 package org.teamhavei.havei.Event;
 
+import android.util.Log;
+
 public class Habit {
 
     private int id;
@@ -55,5 +57,14 @@ public class Habit {
 
     public void setReminderTime(String reminderTime) {
         this.reminderTime = reminderTime;
+    }
+
+    public void showHabitInformation(){
+        Log.d("EventInformation", "id=" + id +
+                " name=" + name +
+                " tag=" + tagId +
+                " repeatunit=" + repeatUnit +
+                " repeatTimes=" + repeatTimes +
+                " reminderTime=" + reminderTime);
     }
 }
