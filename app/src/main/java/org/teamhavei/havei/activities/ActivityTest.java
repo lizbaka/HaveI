@@ -41,7 +41,7 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
             case R.id.test_btn1:
                 habit = new Habit();
                 habit.setName("name1");
-                habit.setReminderTime("11:22");
+                habit.setReminderTime("18:00");
                 habit.setRepeatTimes(5);
                 habit.setRepeatUnit(5);
                 habit.setTagId(3);
