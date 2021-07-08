@@ -28,3 +28,5 @@
 
 [Material Calendar View](https://github.com/prolificinteractive/material-calendarview)
 
+[MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
+
