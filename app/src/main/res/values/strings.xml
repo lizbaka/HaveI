@@ -3,6 +3,8 @@
     <string name="app_name">HaveI</string>
     <string name="dialog_positive">是</string>
     <string name="dialog_negative">否</string>
+    <string name="todo_reminder_notification_channel_name">待办提醒</string>
+    <string name="habit_reminder_notification_channel_name">习惯执行提醒</string>
     <!--universal:end-->
 
 
@@ -81,5 +83,13 @@
     <string name="nav_menu_theme">主题</string>
     <string name="nav_menu_settings">设置</string>
     <string name="nav_menu_help">帮助</string>
-    <!--menu_nav_menu:End-->
+    <!--nav_menu:End-->
+
+    <!--event_notification:Begin-->
+    <string name="todo_notification_title">即将进行的待办</string>
+    <string name="todo_notification_content">将要进行</string>
+    <string name="todo_advance_notification_title">30分钟内将要进行的待办</string>
+    <string name="todo_advance_notification_content">在30分钟后将要进行</string>
+    <string name="habit_notification_title">习惯执行提醒</string>
+    <string name="habit_notification_content">记得要</string>
 </resources>

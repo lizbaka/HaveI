@@ -1,31 +1,38 @@
 package org.teamhavei.havei.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabLayout;
 
 import org.teamhavei.havei.R;
-import org.teamhavei.havei.adapters.MainPagerAdapter;
-import org.teamhavei.havei.fragments.*;
+import org.teamhavei.havei.services.HaveITimeWatcher;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityMain extends BaseActivity{
+
+    public static final String TODO_NOTIFICATION_CHANNEL_ID = "HaveI_Notification_todo";
+    public static final String HABIT_NOTIFICATION_CHANNEL_ID = "HaveI_Notification_habit";
+    public static final int NOTIFICATION_ID = 998244353;
+
+    private String habitNotificationChannelName;
+    private String todoNotificationChannelName;
+
 
     Toolbar mToolbar;
     ActionBarDrawerToggle mActionBarDrawerToggle;
@@ -40,9 +47,32 @@ public class ActivityMain extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //处理界面，需要先执行
         initDrawer();
         initToolbar();
         initNavigationView();
+
+        startServices();
+        if(Build.VERSION.SDK_INT >= 26) {
+            initNotificationChannel();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void initNotificationChannel(){
+        todoNotificationChannelName = getResources().getString(R.string.todo_reminder_notification_channel_name);
+        habitNotificationChannelName = getResources().getString(R.string.habit_reminder_notification_channel_name);
+            NotificationChannel todoChannel = new NotificationChannel(TODO_NOTIFICATION_CHANNEL_ID, todoNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel habitChannel = new NotificationChannel(HABIT_NOTIFICATION_CHANNEL_ID, todoNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            manager.createNotificationChannel(todoChannel);
+            manager.createNotificationChannel(habitChannel);
+
+    }
+
+    private void startServices(){
+        Intent startTimeWatcher = new Intent(ActivityMain.this, HaveITimeWatcher.class);
+        startService(startTimeWatcher);
     }
 
     private void initDrawer(){
