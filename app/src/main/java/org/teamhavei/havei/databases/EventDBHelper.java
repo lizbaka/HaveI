@@ -60,7 +60,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
                     HABIT_TAG_ID + " integer," +//标签id
                     HABIT_REPEAT_UNIT + " integer," +//目标计数周期 天为单位
                     HABIT_REPEAT_TIMES + " integer," +//目标计数次数
-                    HABIT_REMINDER_TIME + " text)";//提醒时间 格式HH:MM
+                    HABIT_REMINDER_TIME + " text)";//提醒时间 格式HH:mm
 
     private static final String CREATE_HABIT_EXECS =
             "create table " + TABLE_HABIT_EXECS + "(" +
@@ -79,7 +79,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
                     TODO_ID + " integer primary key autoincrement," +//待办id
                     TODO_NAME + " text," +//待办名称
                     TODO_TAG_ID + " integer," +//标签id
-                    TODO_DATETIME + " text," +//预期日期时间 格式 YYYY-MM-DD HH:MM
+                    TODO_DATETIME + " text," +//预期日期时间 格式 yyyy-MM-dd HH:mm
                     TODO_DONE + " integer)";//是否已完成 0:未完成 1:已完成
 
     private Context mContext;
@@ -162,6 +162,11 @@ public class EventDBHelper extends SQLiteOpenHelper {
     public void deleteHabit(Habit mHabit) {
         db.delete(TABLE_HABIT, HABIT_ID + " = ? ", new String[]{Integer.toString(mHabit.getId())});
         db.delete(TABLE_HABIT_EXECS, HABIT_EXECS_HABIT_ID + " = ?", new String[]{Integer.toString(mHabit.getId())});
+    }
+
+    public List findHabitByReminderTime(String time){
+        Cursor cursor = db.query(TABLE_HABIT,null,HABIT_REMINDER_TIME + " = ?",new String[]{time},null,null,null);
+        return cursorToHabitList(cursor);
     }
     //========Habit相关功能:end========
 
@@ -323,6 +328,11 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     public void deleteTodo(Todo mTodo) {
         db.delete(TABLE_TODO, TODO_ID + " = ?", new String[]{Integer.toString(mTodo.getId())});
+    }
+
+    public List findTodoByDatetime(String datetime){
+        Cursor cursor = db.query(TABLE_TODO,null,TODO_DATETIME + " = ?",new String[]{datetime},null,null,null);
+        return cursorToTodoList(cursor);
     }
 
     //========Todo相关功能:end========
