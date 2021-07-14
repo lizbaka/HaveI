@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <size
+        android:height="@dimen/round_icon_background_size"
+        android:width="@dimen/round_icon_background_size"/>
+    <solid android:color="?attr/colorSecondary"/>
+</shape>
