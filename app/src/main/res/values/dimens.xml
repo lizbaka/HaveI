@@ -17,4 +17,6 @@
 
     <dimen name="habit_status_size">50dp</dimen>
 
+    <dimen name="fab_margin">30dp</dimen>
+
 </resources>

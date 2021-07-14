@@ -10,59 +10,50 @@
 
         <RelativeLayout
             android:id="@+id/habit_card_icon_container"
-            android:layout_margin="@dimen/widget_inview_margin"
             android:layout_width="@dimen/round_icon_background_size"
             android:layout_height="@dimen/round_icon_background_size"
+            android:layout_margin="@dimen/widget_inview_margin"
             android:background="@drawable/bg_round_icon_secondary">
 
             <ImageView
                 android:id="@+id/habit_card_icon"
-                android:layout_centerInParent="true"
                 android:layout_width="@dimen/round_icon_size"
-                android:layout_height="@dimen/round_icon_size"/>
+                android:layout_height="@dimen/round_icon_size"
+                android:layout_centerInParent="true" />
 
         </RelativeLayout>
 
         <TextView
             android:id="@+id/habit_card_name"
-            android:layout_toRightOf="@id/habit_card_icon_container"
-            android:layout_width="wrap_content"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_toLeftOf="@id/habit_card_status"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/widget_inview_margin"
-            android:textColor="#ffffffff"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:text="[habit name]"/>
+            android:layout_toRightOf="@id/habit_card_icon_container"
+            android:text="[habit name]"
+            android:textColor="#ffffffff" />
 
         <TextView
             android:id="@+id/habit_card_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/habit_card_name"
+            android:layout_toLeftOf="@id/habit_card_status"
+            android:layout_margin="@dimen/widget_inview_margin"
             android:layout_toRightOf="@id/habit_card_icon_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/widget_inview_margin"
+            android:text="[habit tag]"
             android:textColor="#ffffffff"
-            android:textSize="20sp"
-            android:text="[habit tag]"/>
+            android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/habit_card_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/habit_card_icon_container"
-            android:textColor="#ffffffff"
-            style="@style/TextAppearance.AppCompat.Body1"
+        <ImageView
+            android:id="@+id/habit_card_status"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/habit_status_size"
+            android:layout_height="@dimen/habit_status_size"
             android:layout_margin="@dimen/widget_inview_margin"
-            android:text="[今日尚未完成]"/>
-
-        <TextView
-            android:id="@+id/habit_card_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#ffffffff"
-            style="@style/TextAppearance.AppCompat.Body1"
-            android:layout_margin="@dimen/widget_inview_margin"
-            android:layout_below="@id/habit_card_done"
-            android:text="[您已坚持完成习惯 0 次，持之以恒！]"/>
+            android:src="@drawable/ic_baseline_close_24"/>
 
     </RelativeLayout>
 
