@@ -52,7 +52,7 @@
                 <include
                     layout="@layout/dynamic_todo_card" />
                 <include
-                    layout="@layout/dynamic_bookkeeping_record_card"/>
+                    layout="@layout/dynamic_bookkeep_record_card"/>
                 <include
                     layout="@layout/dynamic_habit_card"/>
                 <include
