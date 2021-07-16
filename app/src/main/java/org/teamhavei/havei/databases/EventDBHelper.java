@@ -15,15 +15,21 @@ import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.HabitExec;
 import org.teamhavei.havei.Event.Todo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EventDBHelper extends SQLiteOpenHelper {
 
     public static final String TAG = "DEBUG";
 
-    public static final int DATABASE_VERSION = 2;
+    public static final int DB = 2;
     public static final String DB_NAME = "Event.db";
+
+    public static final String EVENT_DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
+    public static final String EVENT_DATE_FORMAT = "yyyy-MM-dd";
+    public static final String EVENT_TIME_FORMAT = "HH:mm";
 
     //========const column and table names:Begin========
     private static final String TABLE_HABIT = "Habit";
@@ -66,7 +72,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
             "create table " + TABLE_HABIT_EXECS + "(" +
                     HABIT_EXECS_ID + " integer primary key autoincrement," +//执行记录id
                     HABIT_EXECS_HABIT_ID + " integer," +//执行习惯id
-                    HABIT_EXECS_DATE + " text)";//执行日期
+                    HABIT_EXECS_DATE + " text)";//执行日期 格式 yyyy-MM-dd
 
     private static final String CREATE_EVENT_TAGS =
             "create table " + TABLE_EVENT_TAGS + "(" +
@@ -108,6 +114,23 @@ public class EventDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    //========通用功能:Begin========
+    public String eventDatetimeFormatter(Date dateTime){
+        SimpleDateFormat datetimeSDF = new SimpleDateFormat(EVENT_DATETIME_FORMAT);
+        return datetimeSDF.format(dateTime);
+    }
+
+    public String eventTimeFormatter(Date time){
+        SimpleDateFormat timeSDF = new SimpleDateFormat(EVENT_TIME_FORMAT);
+        return timeSDF.format(time);
+    }
+
+    public String eventDateFormatter(Date date){
+        SimpleDateFormat dateSDF = new SimpleDateFormat(EVENT_DATE_FORMAT);
+        return dateSDF.format(date);
+    }
+    //========通用功能:End========
+
 
     //========Habit相关功能:Begin========
     private ContentValues habitToValues(Habit mHabit) {
@@ -122,24 +145,27 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     private List cursorToHabitList(Cursor cursor) {
         List<Habit> mHabitList = new ArrayList<>();
-        try {
-            if (cursor.getCount() > 1) {
-                Log.d(TAG, "cursorToHabit: Found more than one habit");
+        if(cursor!=null && cursor.getCount()>0) {
+            try {
+                if (cursor.getCount() > 1) {
+                    Log.d(TAG, "cursorToHabit: Found more than one habit");
+                }
+                while(cursor.moveToNext()){
+                    Habit mHabit = new Habit();
+                    mHabit.setId(cursor.getInt(cursor.getColumnIndex(HABIT_ID)));
+                    mHabit.setName(cursor.getString(cursor.getColumnIndex(HABIT_NAME)));
+                    mHabit.setTagId(cursor.getInt(cursor.getColumnIndex(HABIT_TAG_ID)));
+                    mHabit.setRepeatUnit(cursor.getInt(cursor.getColumnIndex(HABIT_REPEAT_UNIT)));
+                    mHabit.setRepeatTimes(cursor.getInt(cursor.getColumnIndex(HABIT_REPEAT_TIMES)));
+                    mHabit.setReminderTime(cursor.getString(cursor.getColumnIndex(HABIT_REMINDER_TIME)));
+                    mHabitList.add(mHabit);
+                }
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
             }
-            cursor.moveToFirst();
-            do {
-                Habit mHabit = new Habit();
-                mHabit.setId(cursor.getInt(cursor.getColumnIndex(HABIT_ID)));
-                mHabit.setName(cursor.getString(cursor.getColumnIndex(HABIT_NAME)));
-                mHabit.setTagId(cursor.getInt(cursor.getColumnIndex(HABIT_TAG_ID)));
-                mHabit.setRepeatUnit(cursor.getInt(cursor.getColumnIndex(HABIT_REPEAT_UNIT)));
-                mHabit.setRepeatTimes(cursor.getInt(cursor.getColumnIndex(HABIT_REPEAT_TIMES)));
-                mHabit.setReminderTime(cursor.getString(cursor.getColumnIndex(HABIT_REMINDER_TIME)));
-                mHabitList.add(mHabit);
-            } while (cursor.moveToNext());
-        } catch (CursorIndexOutOfBoundsException e) {
-            e.printStackTrace();
-            Log.e(TAG, "cursorToHabitList: No such habit", e);
+        }
+        else{
+            Log.d(TAG, "cursorToHabitList: No such habit");
         }
         return mHabitList;
     }
@@ -164,8 +190,13 @@ public class EventDBHelper extends SQLiteOpenHelper {
         db.delete(TABLE_HABIT_EXECS, HABIT_EXECS_HABIT_ID + " = ?", new String[]{Integer.toString(mHabit.getId())});
     }
 
-    public List findHabitByReminderTime(String time){
+    public List<Habit> findHabitByReminderTime(String time){
         Cursor cursor = db.query(TABLE_HABIT,null,HABIT_REMINDER_TIME + " = ?",new String[]{time},null,null,null);
+        return cursorToHabitList(cursor);
+    }
+
+    public List<Habit> findAllHabit(){
+        Cursor cursor = db.query(TABLE_HABIT,null,null,null,null,null,null);
         return cursorToHabitList(cursor);
     }
     //========Habit相关功能:end========
@@ -181,21 +212,24 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     private List cursorToHabitExecList(Cursor cursor) {
         List<HabitExec> mHabitExecList = new ArrayList<>();
-        try {
-            if (cursor.getCount() > 1) {
-                Log.d(TAG, "cursorToHabitExecList: Found more than one habit execution record");
+        if(cursor!=null && cursor.getCount()>0) {
+            try {
+                if (cursor.getCount() > 1) {
+                    Log.d(TAG, "cursorToHabitExecList: Found more than one habit execution record");
+                }
+                while(cursor.moveToNext()){
+                    HabitExec mHabitExec = new HabitExec();
+                    mHabitExec.setId(cursor.getInt(cursor.getColumnIndex(HABIT_EXECS_ID)));
+                    mHabitExec.setHabitId(cursor.getInt(cursor.getColumnIndex(HABIT_EXECS_HABIT_ID)));
+                    mHabitExec.setDate(cursor.getString(cursor.getColumnIndex(HABIT_EXECS_DATE)));
+                    mHabitExecList.add(mHabitExec);
+                };
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
             }
-            cursor.moveToFirst();
-            do {
-                HabitExec mHabitExec = new HabitExec();
-                mHabitExec.setId(cursor.getInt(cursor.getColumnIndex(HABIT_EXECS_ID)));
-                mHabitExec.setHabitId(cursor.getInt(cursor.getColumnIndex(HABIT_EXECS_HABIT_ID)));
-                mHabitExec.setDate(cursor.getString(cursor.getColumnIndex(HABIT_EXECS_DATE)));
-                mHabitExecList.add(mHabitExec);
-            } while (cursor.moveToNext());
-        } catch (CursorIndexOutOfBoundsException e) {
-            e.printStackTrace();
-            Log.e(TAG, "cursorToHabitExecList: No such Habit execution record", e);
+        }
+        else{
+            Log.d(TAG, "cursorToHabitExecList: No such HabitExec");
         }
         return mHabitExecList;
     }
@@ -214,6 +248,19 @@ public class EventDBHelper extends SQLiteOpenHelper {
         cursor.close();
         return mHabitExec;
     }
+
+    public List<HabitExec> findHabitExecByHabitId(int HabitId){
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ?",new String[]{Integer.toString(HabitId)},null,null,null);
+        List<HabitExec> habitExecList = cursorToHabitExecList(cursor);
+        cursor.close();
+        return habitExecList;
+    }
+
+    public boolean isHabitDoneToday(int habitId){
+        // TODO: 2021/7/14
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ?" + " AND " + HABIT_EXECS_DATE + " = ?",new String[]{Integer.toString(habitId),eventDateFormatter(new Date())},null,null,null);
+        return cursor.getCount() > 0;
+    }
     //========Habit_Exec相关功能:end========
 
 
@@ -228,17 +275,21 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     private EventTag cursorToEventTag(Cursor cursor) {
         EventTag mEventTag = new EventTag();
-        try {
-            if (cursor.getCount() > 1) {
-                Log.d(TAG, "cursorToEventTag: Found more than one event tag");
+        if(cursor!=null && cursor.getCount()>0) {
+            try {
+                if (cursor.getCount() > 1) {
+                    Log.d(TAG, "cursorToEventTag: Found more than one event tag");
+                }
+                cursor.moveToFirst();
+                mEventTag.setId(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_ID)));
+                mEventTag.setName(cursor.getString(cursor.getColumnIndex(EVENT_TAGS_NAME)));
+                mEventTag.setIconId(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_ICON_ID)));
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
             }
-            cursor.moveToFirst();
-            mEventTag.setId(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_ID)));
-            mEventTag.setName(cursor.getString(cursor.getColumnIndex(EVENT_TAGS_NAME)));
-            mEventTag.setIconId(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_ICON_ID)));
-        } catch (CursorIndexOutOfBoundsException e) {
-            e.printStackTrace();
-            Log.e(TAG, "cursorToEventTag: No such cursor", e);
+        }
+        else{
+            Log.d(TAG, "cursorToEventTag: No such EventTag");
         }
         return mEventTag;
     }
@@ -290,23 +341,27 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     private List cursorToTodoList(Cursor cursor) {
         List<Todo> mTodoList = new ArrayList<>();
-        try {
-            if (cursor.getCount() > 1) {
-                Log.d(TAG, "cursorToTodoList: Found more than one todo");
+        if(cursor!=null && cursor.getCount()>0) {
+            try {
+                if (cursor.getCount() > 1) {
+                    Log.d(TAG, "cursorToTodoList: Found more than one todo");
+                }
+                cursor.moveToFirst();
+                do {
+                    Todo mTodo = new Todo();
+                    mTodo.setId(cursor.getInt(cursor.getColumnIndex(TODO_ID)));
+                    mTodo.setName(cursor.getString(cursor.getColumnIndex(TODO_NAME)));
+                    mTodo.setTagId(cursor.getInt(cursor.getColumnIndex(TODO_TAG_ID)));
+                    mTodo.setDateTime(cursor.getString(cursor.getColumnIndex(TODO_DATETIME)));
+                    mTodo.setDone(cursor.getInt(cursor.getColumnIndex(TODO_DONE)) == 1);
+                    mTodoList.add(mTodo);
+                } while (cursor.moveToNext());
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
             }
-            cursor.moveToFirst();
-            do {
-                Todo mTodo = new Todo();
-                mTodo.setId(cursor.getInt(cursor.getColumnIndex(TODO_ID)));
-                mTodo.setName(cursor.getString(cursor.getColumnIndex(TODO_NAME)));
-                mTodo.setTagId(cursor.getInt(cursor.getColumnIndex(TODO_TAG_ID)));
-                mTodo.setDateTime(cursor.getString(cursor.getColumnIndex(TODO_DATETIME)));
-                mTodo.setDone(cursor.getInt(cursor.getColumnIndex(TODO_DONE)) == 1);
-                mTodoList.add(mTodo);
-            } while (cursor.moveToNext());
-        } catch (CursorIndexOutOfBoundsException e) {
-            e.printStackTrace();
-            Log.e(TAG, "cursorToTodoList: No such todo", e);
+        }
+        else{
+            Log.d(TAG, "cursorToTodoList: No such Todo");
         }
         return mTodoList;
     }
@@ -330,8 +385,9 @@ public class EventDBHelper extends SQLiteOpenHelper {
         db.delete(TABLE_TODO, TODO_ID + " = ?", new String[]{Integer.toString(mTodo.getId())});
     }
 
-    public List findTodoByDatetime(String datetime){
-        Cursor cursor = db.query(TABLE_TODO,null,TODO_DATETIME + " = ?",new String[]{datetime},null,null,null);
+    public List findTodoByDatetime(Date datetime){
+        String sDatetime = eventDatetimeFormatter(datetime);
+        Cursor cursor = db.query(TABLE_TODO,null,TODO_DATETIME + " = ?",new String[]{sDatetime},null,null,null);
         return cursorToTodoList(cursor);
     }
 

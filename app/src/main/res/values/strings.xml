@@ -26,7 +26,7 @@
     <string name="habit_detail_delete_dialog_title">删除习惯</string>
     <string name="habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除</string>
     <string name="habit_detail_delete_dialog_msg2">吗？</string>
-    <!--habit_detail:End-->
+    <!--habit_detail:end-->
 
     <!--modify_habit:Begin-->
     <string name="modify_habit_title_add">添加习惯</string>
@@ -83,7 +83,7 @@
     <string name="nav_menu_theme">主题</string>
     <string name="nav_menu_settings">设置</string>
     <string name="nav_menu_help">帮助</string>
-    <!--nav_menu:End-->
+    <!--nav_menu:end-->
 
     <!--event_notification:Begin-->
     <string name="todo_notification_title">即将进行的待办</string>
@@ -92,4 +92,10 @@
     <string name="todo_advance_notification_content">在30分钟后将要进行</string>
     <string name="habit_notification_title">习惯执行提醒</string>
     <string name="habit_notification_content">记得要</string>
+    <!--event_notification:end-->
+
+    <!--habit_list:Begin-->
+    <string name="habit_list_title">查看您的习惯</string>
+    <string name="habit_list_add">添加一个习惯！</string>
+    <!--habit_list:end-->
 </resources>

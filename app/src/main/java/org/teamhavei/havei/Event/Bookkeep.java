@@ -1,5 +1,5 @@
 package org.teamhavei.havei.Event;
-public class Account {
+public class Bookkeep {
     private int id;
     private int tagID;
     private String name;

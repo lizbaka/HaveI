@@ -63,7 +63,7 @@ public class ActivityMain extends BaseActivity{
         todoNotificationChannelName = getResources().getString(R.string.todo_reminder_notification_channel_name);
         habitNotificationChannelName = getResources().getString(R.string.habit_reminder_notification_channel_name);
             NotificationChannel todoChannel = new NotificationChannel(TODO_NOTIFICATION_CHANNEL_ID, todoNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationChannel habitChannel = new NotificationChannel(HABIT_NOTIFICATION_CHANNEL_ID, todoNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel habitChannel = new NotificationChannel(HABIT_NOTIFICATION_CHANNEL_ID, habitNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             manager.createNotificationChannel(todoChannel);
             manager.createNotificationChannel(habitChannel);

@@ -3,7 +3,6 @@ package org.teamhavei.havei.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -24,7 +23,7 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        eventDBHelper = new EventDBHelper(ActivityTest.this,EventDBHelper.DB_NAME,null,EventDBHelper.DATABASE_VERSION);
+        eventDBHelper = new EventDBHelper(ActivityTest.this,EventDBHelper.DB_NAME,null,EventDBHelper.DB);
         Button btn1 = findViewById(R.id.test_btn1);
         btn1.setOnClickListener(this);
         Button btn2 = findViewById(R.id.test_btn2);
@@ -53,11 +52,7 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
                 habit.showHabitInformation();
                 break;
             case R.id.test_btn3:
-                habit = eventDBHelper.findHabitById(1);
-                habit1 = eventDBHelper.findHabitById(1);
-                habit1.setId(3);
-                habit1.setName("name2");
-                eventDBHelper.updateHabit(habit,habit1);
+                ActivityHabitList.startAction(this);
         }
     }
 }

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/bookkeeping_record_card_icon_container"
+            android:id="@+id/bookkeep_record_card_icon_container"
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/widget_inview_margin"
             android:layout_width="@dimen/round_icon_background_size"
@@ -17,44 +17,50 @@
             android:background="@drawable/bg_round_icon">
 
             <ImageView
-                android:id="@+id/bookkeeping_note_card_icon"
+                android:id="@+id/bookkeep_note_card_icon"
                 android:layout_centerInParent="true"
                 android:layout_width="@dimen/round_icon_size"
                 android:layout_height="@dimen/round_icon_size"/>
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/bookkeeping_record_card_title"
-            android:layout_toRightOf="@id/bookkeeping_record_card_icon_container"
-            android:layout_toLeftOf="@id/bookkeeping_record_card_io"
+        <RelativeLayout
+            android:id="@+id/bookkeep_record_card_text_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_margin="@dimen/widget_inview_margin"
-            android:maxLines="1"
-            android:text="[bookkeeping_Record_Card_Title]" />
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/bookkeep_record_card_icon_container"
+            android:layout_toLeftOf="@id/bookkeep_record_card_io">
+
+            <TextView
+                android:id="@+id/bookkeep_record_card_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:maxLines="1"
+                android:text="[bookkeep_Record_Card_Tag]" />
+
+            <TextView
+                android:id="@+id/todo_card_title"
+                android:layout_below="@id/bookkeep_record_card_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:maxLines="1"
+                android:text="[bookkeep_Record_Card_Title]"
+                android:visibility="gone"/>
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/todo_card_tag"
-            android:layout_toRightOf="@id/bookkeeping_record_card_icon_container"
-            android:layout_toLeftOf="@id/bookkeeping_record_card_io"
-            android:layout_below="@id/bookkeeping_record_card_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Body1"
-            android:layout_margin="@dimen/widget_inview_margin"
-            android:maxLines="1"
-            android:text="[bookkeeping_Record_Card_Tag]"/>
-
-        <TextView
-            android:id="@+id/bookkeeping_record_card_io"
+            android:id="@+id/bookkeep_record_card_io"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.AppCompat.Title"
-            android:textColor="?attr/colorPrimary"
+            android:textColor="@color/red_500"
             android:layout_margin="@dimen/widget_inview_margin"
             android:text="¥-1234.56"/>
 

@@ -50,7 +50,7 @@ public class HaveITimeWatcher extends Service {
     }
 
     private void initEventReminder(){
-        eventDBHelper = new EventDBHelper(this,EventDBHelper.DB_NAME,null,EventDBHelper.DATABASE_VERSION);
+        eventDBHelper = new EventDBHelper(this,EventDBHelper.DB_NAME,null,EventDBHelper.DB);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_TIME_TICK);
         intentFilter.addAction(Intent.ACTION_TIME_CHANGED);
@@ -68,14 +68,13 @@ public class HaveITimeWatcher extends Service {
     }
 
     private void checkTodo() {
-        SimpleDateFormat dateTimeSDF = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date dateTime = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(dateTime);
         cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
         Date dateTimeAdvance = cal.getTime();
-        List<Todo> todoList = eventDBHelper.findTodoByDatetime(dateTimeSDF.format(dateTime));
-        List<Todo> todoListAdvance = eventDBHelper.findTodoByDatetime(dateTimeSDF.format(dateTimeAdvance));
+        List<Todo> todoList = eventDBHelper.findTodoByDatetime(new Date());
+        List<Todo> todoListAdvance = eventDBHelper.findTodoByDatetime(dateTimeAdvance);
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         for (Todo i : todoList) {
             Notification notification = new NotificationCompat.Builder(this, ActivityMain.TODO_NOTIFICATION_CHANNEL_ID)

@@ -10,7 +10,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import org.teamhavei.havei.Event.Account;
+import org.teamhavei.havei.Event.Bookkeep;
 import org.teamhavei.havei.Event.Habit;
 
 
@@ -23,21 +23,21 @@ public class BookkeepingDBHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 2;
     public static final String DB_NAME = "Bookkeeping.db";
-    private static final String TABLE_ACCOUNT = "Account";
-    private static final String ACCOUNT_ID = "id";
-    private static final String ACCOUNT_NAME = "name";
-    private static final String ACCOUNT_TAG_ID = "tagid";
-    private static final String ACCOUNT_TIME = "time";
-    private static final String ACCOUNT_ICON_ID = "iconid";
-    private static final String ACCOUNT_PM = "pm";
+    private static final String TABLE_BOOKKEEP = "Account";
+    private static final String BOOKKEEP_ID = "id";
+    private static final String BOOKKEEP_NAME = "name";
+    private static final String BOOKKEEP_TAG_ID = "tagid";
+    private static final String BOOKKEEP_TIME = "time";
+    private static final String BOOKKEEP_ICON_ID = "iconid";
+    private static final String BOOKKEEP_PM = "pm";
     private static final String CREATE_ACCOUNT =
-            "create table " + TABLE_ACCOUNT + "(" +
-                    ACCOUNT_ID + " integer primary key autoincrement," +//id
-                    ACCOUNT_NAME + " text," +//习惯名
-                    ACCOUNT_TAG_ID + " integer," +//标签id
-                    ACCOUNT_TIME+ "text,"+
-                    ACCOUNT_ICON_ID+"integer,"+
-                    ACCOUNT_PM + " integer)"; //计算参数
+            "create table " + TABLE_BOOKKEEP + "(" +
+                    BOOKKEEP_ID + " integer primary key autoincrement," +//id
+                    BOOKKEEP_NAME + " text," +//习惯名
+                    BOOKKEEP_TAG_ID + " integer," +//标签id
+                    BOOKKEEP_TIME + "text,"+
+                    BOOKKEEP_ICON_ID +"integer,"+
+                    BOOKKEEP_PM + " integer)"; //计算参数
 
     private Context mContext;
     private SQLiteDatabase db = getReadableDatabase();
@@ -58,53 +58,57 @@ public class BookkeepingDBHelper extends SQLiteOpenHelper {
         }
         onCreate(db);
     }
-    private ContentValues accountToValues(Account mAccount) {
+    private ContentValues accountToValues(Bookkeep mBookkeep) {
         ContentValues values = new ContentValues();
-        values.put(ACCOUNT_NAME,mAccount.getname());
-        values.put(ACCOUNT_TAG_ID, mAccount.gettag());
-        values.put(ACCOUNT_TIME, mAccount.gettime());
-        values.put(ACCOUNT_ICON_ID, mAccount.getIconId());
-        values.put(ACCOUNT_PM, mAccount.getPM());
+        values.put(BOOKKEEP_NAME, mBookkeep.getname());
+        values.put(BOOKKEEP_TAG_ID, mBookkeep.gettag());
+        values.put(BOOKKEEP_TIME, mBookkeep.gettime());
+        values.put(BOOKKEEP_ICON_ID, mBookkeep.getIconId());
+        values.put(BOOKKEEP_PM, mBookkeep.getPM());
         return values;
     }
-    private List cursorToAccountList(Cursor cursor) {
-        List<Account> mAccountList = new ArrayList<>();
-        try {
-            if (cursor.getCount() > 1) {
-                Log.d(TAG, "cursorToAccont: Found more than one habit");
+
+    private List cursorToBookkeepList(Cursor cursor) {
+        List<Bookkeep> mBookkeepList = new ArrayList<>();
+        if(cursor!=null && cursor.getCount()>0) {
+            try {
+                if (cursor.getCount() > 1) {
+                    Log.d(TAG, "cursorToBookkeep: Found more than one");
+                }
+                while(cursor.moveToNext()){
+                    Bookkeep mBookkeep = new Bookkeep();
+                    mBookkeep.setId(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_ID)));
+                    mBookkeep.setname(cursor.getString(cursor.getColumnIndex(BOOKKEEP_NAME)));
+                    mBookkeep.settag(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_TAG_ID)));
+                    mBookkeep.setTime(cursor.getString(cursor.getColumnIndex(BOOKKEEP_TIME)));
+                    mBookkeep.setIconId(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_ICON_ID)));
+                    mBookkeep.setPM(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_PM)));
+                    mBookkeepList.add(mBookkeep);
+                }
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
             }
-            cursor.moveToFirst();
-            do {
-                Account mAccount = new Account();
-                mAccount.setId(cursor.getInt(cursor.getColumnIndex(ACCOUNT_ID)));
-                mAccount.setname(cursor.getString(cursor.getColumnIndex(ACCOUNT_NAME)));
-                mAccount.settag(cursor.getInt(cursor.getColumnIndex(ACCOUNT_TAG_ID)));
-                mAccount.setTime(cursor.getString(cursor.getColumnIndex(ACCOUNT_TIME)));
-                mAccount.setIconId(cursor.getInt(cursor.getColumnIndex(ACCOUNT_ICON_ID)));
-                mAccount.setPM(cursor.getInt(cursor.getColumnIndex(ACCOUNT_PM)));
-                mAccountList.add(mAccount);
-            } while (cursor.moveToNext());
-        } catch (CursorIndexOutOfBoundsException e) {
-            e.printStackTrace();
-            Log.e(TAG, "cursorToHabitList: No such account", e);
         }
-        return mAccountList;
+        else{
+            Log.d(TAG, "cursorToBookkeepList: No such keep");
+        }
+        return mBookkeepList;
     }
-    public void insertAccount(Account mAccount) {
-        db.insert(TABLE_ACCOUNT, null, accountToValues(mAccount));
+    public void insertBookkeep(Bookkeep mBookkeep) {
+        db.insert(TABLE_BOOKKEEP, null, accountToValues(mBookkeep));
     }
-    public Account findAccountById(int id) {
-        Cursor cursor = db.query(TABLE_ACCOUNT, null, ACCOUNT_ID + "= ?", new String[]{Integer.toString(id)}, null, null, null);
-        Account mAccount = (Account) cursorToAccountList(cursor).get(0);
+    public Bookkeep findBookkeepById(int id) {
+        Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_ID + "= ?", new String[]{Integer.toString(id)}, null, null, null);
+        Bookkeep mBookkeep = (Bookkeep) cursorToBookkeepList(cursor).get(0);
         cursor.close();
-        return mAccount;
+        return mBookkeep;
     }
-    public void updateAccount(Account oldAccount, Account newAccount) {
-        db.update(TABLE_ACCOUNT, accountToValues(newAccount), ACCOUNT_ID + " = ?", new String[]{Integer.toString(oldAccount.getid())});
+    public void updateBookkeep(Bookkeep oldBookkeep, Bookkeep newBookkeep) {
+        db.update(TABLE_BOOKKEEP, accountToValues(newBookkeep), BOOKKEEP_ID + " = ?", new String[]{Integer.toString(oldBookkeep.getid())});
     }
 
-    public void deleteAccount(Account mAccount) {
-        db.delete(TABLE_ACCOUNT, ACCOUNT_ID + " = ? ", new String[]{Integer.toString(mAccount.getid())});
+    public void deleteBookkeep(Bookkeep mBookkeep) {
+        db.delete(TABLE_BOOKKEEP, BOOKKEEP_ID + " = ? ", new String[]{Integer.toString(mBookkeep.getid())});
     }
 
 
