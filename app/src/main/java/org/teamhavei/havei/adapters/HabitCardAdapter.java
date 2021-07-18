@@ -47,7 +47,7 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
     public HabitCardAdapter(List<Habit> habitList,Context context){
         mHabitList = habitList;
         mContext = context;
-        dbHelper = new EventDBHelper(mContext, EventDBHelper.DB_NAME,null, EventDBHelper.DB);
+        dbHelper = new EventDBHelper(mContext, EventDBHelper.DB_NAME,null, EventDBHelper.DB_VERSION);
         db = dbHelper.getWritableDatabase();
     }
 
