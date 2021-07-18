@@ -35,14 +35,14 @@ public class EventDBHelper extends SQLiteOpenHelper {
     private static final String TABLE_HABIT = "Habit";
     private static final String HABIT_ID = "id";
     private static final String HABIT_NAME = "name";
-    private static final String HABIT_TAG_ID = "tagid";
-    private static final String HABIT_REPEAT_UNIT = "repeatunit";
-    private static final String HABIT_REPEAT_TIMES = "repeattimes";
-    private static final String HABIT_REMINDER_TIME = "remindertime";
+    private static final String HABIT_TAG_ID = "tag_id";
+    private static final String HABIT_REPEAT_UNIT = "repeat_unit";
+    private static final String HABIT_REPEAT_TIMES = "repeat_times";
+    private static final String HABIT_REMINDER_TIME = "reminder_time";
 
     private static final String TABLE_HABIT_EXECS = "Habit_execs";
     private static final String HABIT_EXECS_ID = "id";
-    private static final String HABIT_EXECS_HABIT_ID = "habitid";
+    private static final String HABIT_EXECS_HABIT_ID = "habit_id";
     private static final String HABIT_EXECS_DATE = "date";
 
     private static final String TABLE_EVENT_TAGS = "EventTags";
@@ -53,8 +53,9 @@ public class EventDBHelper extends SQLiteOpenHelper {
     private static final String TABLE_TODO = "Todo";
     private static final String TODO_ID = "id";
     private static final String TODO_NAME = "name";
-    private static final String TODO_TAG_ID = "tagid";
+    private static final String TODO_TAG_ID = "tag_id";
     private static final String TODO_DATETIME = "datetime";
+    private static final String TODO_REMINDER_DATETIME = "reminder_datetime";
     private static final String TODO_DONE = "done";
 
     //========const column and table names:end========
@@ -86,6 +87,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
                     TODO_NAME + " text," +//待办名称
                     TODO_TAG_ID + " integer," +//标签id
                     TODO_DATETIME + " text," +//预期日期时间 格式 yyyy-MM-dd HH:mm
+                    TODO_REMINDER_DATETIME + " text," +//提醒日期时间 格式 yyyy-MM-dd HH:mm
                     TODO_DONE + " integer)";//是否已完成 0:未完成 1:已完成
 
     private Context mContext;
@@ -257,7 +259,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
     }
 
     public boolean isHabitDoneToday(int habitId){
-        // TODO: 2021/7/14
         Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ?" + " AND " + HABIT_EXECS_DATE + " = ?",new String[]{Integer.toString(habitId),eventDateFormatter(new Date())},null,null,null);
         return cursor.getCount() > 0;
     }
@@ -388,6 +389,12 @@ public class EventDBHelper extends SQLiteOpenHelper {
     public List findTodoByDatetime(Date datetime){
         String sDatetime = eventDatetimeFormatter(datetime);
         Cursor cursor = db.query(TABLE_TODO,null,TODO_DATETIME + " = ?",new String[]{sDatetime},null,null,null);
+        return cursorToTodoList(cursor);
+    }
+
+    public List findTodoByReminderDateTime(Date datetime){
+        String sDatetime = eventDatetimeFormatter(datetime);
+        Cursor cursor = db.query(TABLE_TODO,null,TODO_REMINDER_DATETIME + " = ?",new String[]{sDatetime},null,null,null);
         return cursorToTodoList(cursor);
     }
 
