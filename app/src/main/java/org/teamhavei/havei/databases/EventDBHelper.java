@@ -14,8 +14,8 @@ import org.teamhavei.havei.Event.EventTag;
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.HabitExec;
 import org.teamhavei.havei.Event.Todo;
+import org.teamhavei.havei.UniToolKit;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,12 +24,8 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     public static final String TAG = "DEBUG";
 
-    public static final int DB = 2;
+    public static final int DB_VERSION = 2;
     public static final String DB_NAME = "Event.db";
-
-    public static final String EVENT_DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
-    public static final String EVENT_DATE_FORMAT = "yyyy-MM-dd";
-    public static final String EVENT_TIME_FORMAT = "HH:mm";
 
     //========const column and table names:Begin========
     private static final String TABLE_HABIT = "Habit";
@@ -116,23 +112,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //========通用功能:Begin========
-    public String eventDatetimeFormatter(Date dateTime){
-        SimpleDateFormat datetimeSDF = new SimpleDateFormat(EVENT_DATETIME_FORMAT);
-        return datetimeSDF.format(dateTime);
-    }
-
-    public String eventTimeFormatter(Date time){
-        SimpleDateFormat timeSDF = new SimpleDateFormat(EVENT_TIME_FORMAT);
-        return timeSDF.format(time);
-    }
-
-    public String eventDateFormatter(Date date){
-        SimpleDateFormat dateSDF = new SimpleDateFormat(EVENT_DATE_FORMAT);
-        return dateSDF.format(date);
-    }
-    //========通用功能:End========
-
 
     //========Habit相关功能:Begin========
     private ContentValues habitToValues(Habit mHabit) {
@@ -145,7 +124,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return values;
     }
 
-    private List cursorToHabitList(Cursor cursor) {
+    private List<Habit> cursorToHabitList(Cursor cursor) {
         List<Habit> mHabitList = new ArrayList<>();
         if(cursor!=null && cursor.getCount()>0) {
             try {
@@ -178,7 +157,13 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     public Habit findHabitById(int id) {
         Cursor cursor = db.query(TABLE_HABIT, null, HABIT_ID + "= ?", new String[]{Integer.toString(id)}, null, null, null);
-        Habit mHabit = (Habit) cursorToHabitList(cursor).get(0);
+        List<Habit> habitList = cursorToHabitList(cursor);
+        Habit mHabit;
+        if(habitList.isEmpty()) {
+            mHabit = new Habit();
+        }else{
+            mHabit = habitList.get(0);
+        }
         cursor.close();
         return mHabit;
     }
@@ -192,8 +177,9 @@ public class EventDBHelper extends SQLiteOpenHelper {
         db.delete(TABLE_HABIT_EXECS, HABIT_EXECS_HABIT_ID + " = ?", new String[]{Integer.toString(mHabit.getId())});
     }
 
-    public List<Habit> findHabitByReminderTime(String time){
-        Cursor cursor = db.query(TABLE_HABIT,null,HABIT_REMINDER_TIME + " = ?",new String[]{time},null,null,null);
+    public List<Habit> findHabitByReminderTime(Date time){
+        String sTime = UniToolKit.eventTimeFormatter(time);
+        Cursor cursor = db.query(TABLE_HABIT,null,HABIT_REMINDER_TIME + " = ?",new String[]{sTime},null,null,null);
         return cursorToHabitList(cursor);
     }
 
@@ -212,7 +198,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return values;
     }
 
-    private List cursorToHabitExecList(Cursor cursor) {
+    private List<HabitExec> cursorToHabitExecList(Cursor cursor) {
         List<HabitExec> mHabitExecList = new ArrayList<>();
         if(cursor!=null && cursor.getCount()>0) {
             try {
@@ -225,7 +211,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
                     mHabitExec.setHabitId(cursor.getInt(cursor.getColumnIndex(HABIT_EXECS_HABIT_ID)));
                     mHabitExec.setDate(cursor.getString(cursor.getColumnIndex(HABIT_EXECS_DATE)));
                     mHabitExecList.add(mHabitExec);
-                };
+                }
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
@@ -259,7 +245,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
     }
 
     public boolean isHabitDoneToday(int habitId){
-        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ?" + " AND " + HABIT_EXECS_DATE + " = ?",new String[]{Integer.toString(habitId),eventDateFormatter(new Date())},null,null,null);
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ?" + " AND " + HABIT_EXECS_DATE + " = ?",new String[]{Integer.toString(habitId),UniToolKit.eventDateFormatter(new Date())},null,null,null);
         return cursor.getCount() > 0;
     }
     //========Habit_Exec相关功能:end========
@@ -268,7 +254,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
     //========Event_Tag相关功能:Begin========
     private ContentValues eventTagToValues(EventTag mEventTag) {
         ContentValues values = new ContentValues();
-        values.put(EVENT_TAGS_ID, mEventTag.getId());
         values.put(EVENT_TAGS_NAME, mEventTag.getName());
         values.put(EVENT_TAGS_ICON_ID, mEventTag.getIconId());
         return values;
@@ -302,28 +287,16 @@ public class EventDBHelper extends SQLiteOpenHelper {
     //找不到tag时返回默认tag
     public EventTag findEventTagById(int id) {
         Cursor cursor = db.query(TABLE_EVENT_TAGS, null, EVENT_TAGS_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
-        if (cursor.getCount() < 1) {
-            db.query(TABLE_EVENT_TAGS, null, EVENT_TAGS_ID + " = ?", new String[]{"1"}, null, null, null);
-            Log.d(TAG, "findEventTagById: No such event tag, return default tag");
-        }
         EventTag mEventTag = cursorToEventTag(cursor);
         cursor.close();
         return mEventTag;
     }
 
     public void updateEventTag(EventTag oldEventTag, EventTag newEventTag) {
-        if (oldEventTag.getId() == 1) {
-            Log.d(TAG, "updateEventTag: Can not change default event tag");
-            return;
-        }
         db.update(TABLE_EVENT_TAGS, eventTagToValues(newEventTag), EVENT_TAGS_ID + " = ?", new String[]{Integer.toString(oldEventTag.getId())});
     }
 
     public void deleteEventTag(EventTag mEventTag) {
-        if (mEventTag.getId() == 1) {
-            Log.d(TAG, "deleteEventTag: Can not delete default event tag");
-            return;
-        }
         db.delete(TABLE_EVENT_TAGS, EVENT_TAGS_ID + " = ?", new String[]{Integer.toString(mEventTag.getIconId())});
     }
     //========Event_Tag相关功能:end========
@@ -332,15 +305,15 @@ public class EventDBHelper extends SQLiteOpenHelper {
     //========Todo相关功能:Begin========
     private ContentValues todoToValues(Todo mTodo) {
         ContentValues values = new ContentValues();
-        values.put(TODO_ID, mTodo.getId());
         values.put(TODO_NAME, mTodo.getName());
         values.put(TODO_TAG_ID, mTodo.getTagId());
         values.put(TODO_DATETIME, mTodo.getDateTime());
+        values.put(TODO_REMINDER_DATETIME, mTodo.getReminderDateTime());
         values.put(TODO_DONE, mTodo.isDone() ? 1 : 0);
         return values;
     }
 
-    private List cursorToTodoList(Cursor cursor) {
+    private List<Todo> cursorToTodoList(Cursor cursor) {
         List<Todo> mTodoList = new ArrayList<>();
         if(cursor!=null && cursor.getCount()>0) {
             try {
@@ -355,6 +328,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
                     mTodo.setTagId(cursor.getInt(cursor.getColumnIndex(TODO_TAG_ID)));
                     mTodo.setDateTime(cursor.getString(cursor.getColumnIndex(TODO_DATETIME)));
                     mTodo.setDone(cursor.getInt(cursor.getColumnIndex(TODO_DONE)) == 1);
+                    mTodo.setReminderDateTime(cursor.getString(cursor.getColumnIndex(TODO_REMINDER_DATETIME)));
                     mTodoList.add(mTodo);
                 } while (cursor.moveToNext());
             } catch (CursorIndexOutOfBoundsException e) {
@@ -386,14 +360,14 @@ public class EventDBHelper extends SQLiteOpenHelper {
         db.delete(TABLE_TODO, TODO_ID + " = ?", new String[]{Integer.toString(mTodo.getId())});
     }
 
-    public List findTodoByDatetime(Date datetime){
-        String sDatetime = eventDatetimeFormatter(datetime);
+    public List<Todo> findTodoByDatetime(Date datetime){
+        String sDatetime = UniToolKit.eventDatetimeFormatter(datetime);
         Cursor cursor = db.query(TABLE_TODO,null,TODO_DATETIME + " = ?",new String[]{sDatetime},null,null,null);
         return cursorToTodoList(cursor);
     }
 
-    public List findTodoByReminderDateTime(Date datetime){
-        String sDatetime = eventDatetimeFormatter(datetime);
+    public List<Todo> findTodoByReminderDatetime(Date datetime){
+        String sDatetime = UniToolKit.eventDatetimeFormatter(datetime);
         Cursor cursor = db.query(TABLE_TODO,null,TODO_REMINDER_DATETIME + " = ?",new String[]{sDatetime},null,null,null);
         return cursorToTodoList(cursor);
     }

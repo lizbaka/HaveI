@@ -19,7 +19,8 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 import org.teamhavei.havei.R;
-import org.teamhavei.havei.UniversalConstantManager;
+import org.teamhavei.havei.UniToolKit;
+import org.teamhavei.havei.databases.EventDBHelper;
 import org.teamhavei.havei.services.HaveITimeWatcher;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class ActivityMain extends BaseActivity{
     ActionBarDrawerToggle mActionBarDrawerToggle;
     DrawerLayout mDrawerLayout;
     NavigationView mNavView;
+    EventDBHelper eventDBHelper;
 
 
     private List<Fragment> fragmentList = new ArrayList<>();
@@ -53,14 +55,16 @@ public class ActivityMain extends BaseActivity{
         if(Build.VERSION.SDK_INT >= 26) {
             initNotificationChannel();
         }
+
+        eventDBHelper = new EventDBHelper(ActivityMain.this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initNotificationChannel(){
         todoNotificationChannelName = getResources().getString(R.string.todo_reminder_notification_channel_name);
         habitNotificationChannelName = getResources().getString(R.string.habit_reminder_notification_channel_name);
-            NotificationChannel todoChannel = new NotificationChannel(UniversalConstantManager.TODO_NOTIFICATION_CHANNEL_ID, todoNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationChannel habitChannel = new NotificationChannel(UniversalConstantManager.HABIT_NOTIFICATION_CHANNEL_ID, habitNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel todoChannel = new NotificationChannel(UniToolKit.TODO_NOTIFICATION_CHANNEL_ID, todoNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel habitChannel = new NotificationChannel(UniToolKit.HABIT_NOTIFICATION_CHANNEL_ID, habitNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             manager.createNotificationChannel(todoChannel);
             manager.createNotificationChannel(habitChannel);

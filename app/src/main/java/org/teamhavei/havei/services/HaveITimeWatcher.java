@@ -1,6 +1,6 @@
-/*
-    todo:尝试防杀后台？
-    大量常量位于ActivityMain和此class中，需要降低耦合
+/**
+ * @author lbc
+ * @last_modifier lbc
  */
 package org.teamhavei.havei.services;
 
@@ -20,18 +20,23 @@ import androidx.core.app.NotificationCompat;
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.Todo;
 import org.teamhavei.havei.R;
-import org.teamhavei.havei.UniversalConstantManager;
-import org.teamhavei.havei.activities.ActivityMain;
+import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.databases.EventDBHelper;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class HaveITimeWatcher extends Service {
 
     private static final String TAG = "DEBUG";
+
+    /*
+        通知ID生成方法：
+        date.getTime()+ SEED * [Event]id
+     */
+    private static final int HABIT_NOTIFICATION_SEED = 114;
+    private static final int TODO_NOTIFICATION_SEED = 514;
+    private static final int TODO_REMINDER_NOTIFICATION_SEED = 1919;
 
     private BroadcastReceiver timeChangeReceiver;
     private EventDBHelper eventDBHelper;
@@ -51,7 +56,7 @@ public class HaveITimeWatcher extends Service {
     }
 
     private void initEventReminder(){
-        eventDBHelper = new EventDBHelper(this,EventDBHelper.DB_NAME,null,EventDBHelper.DB);
+        eventDBHelper = new EventDBHelper(this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_TIME_TICK);
         intentFilter.addAction(Intent.ACTION_TIME_CHANGED);
@@ -69,49 +74,50 @@ public class HaveITimeWatcher extends Service {
     }
 
     private void checkTodo() {
-        Date dateTime = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(dateTime);
-        cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE) + 30);
-        Date dateTimeAdvance = cal.getTime();
-        List<Todo> todoList = eventDBHelper.findTodoByDatetime(new Date());
-        List<Todo> todoListAdvance = eventDBHelper.findTodoByDatetime(dateTimeAdvance);
+        Date date = new Date();
+        List<Todo> todoList = eventDBHelper.findTodoByDatetime(date);
+        List<Todo> todoListReminder = eventDBHelper.findTodoByReminderDatetime(date);
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         for (Todo i : todoList) {
-            Notification notification = new NotificationCompat.Builder(this, UniversalConstantManager.TODO_NOTIFICATION_CHANNEL_ID)
+            if(i.isDone()){
+                continue;
+            }
+            Notification notification = new NotificationCompat.Builder(this, UniToolKit.TODO_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.todo_notification_title))
                     .setContentText(i.getName() + getResources().getString(R.string.todo_notification_content))
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                     .build();
-            manager.notify(UniversalConstantManager.NOTIFICATION_ID, notification);
+            manager.notify((int)new Date().getTime() + TODO_NOTIFICATION_SEED * i.getId(), notification);
         }
-        for (Todo i : todoListAdvance) {
-            Notification notification = new NotificationCompat.Builder(this, UniversalConstantManager.TODO_NOTIFICATION_CHANNEL_ID)
+        for (Todo i : todoListReminder) {
+            if(i.isDone()){
+                continue;
+            }
+            Notification notification = new NotificationCompat.Builder(this, UniToolKit.TODO_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.todo_advance_notification_title))
-                    .setContentText(i.getName() + getResources().getString(R.string.todo_advance_notification_content))
+                    .setContentText(i.getName() + getResources().getString(R.string.todo_advance_notification_content1) + i.getDateTime() + getResources().getString(R.string.todo_advance_notification_content2))
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                     .build();
-            manager.notify(UniversalConstantManager.NOTIFICATION_ID, notification);
+            manager.notify((int)new Date().getTime() + TODO_REMINDER_NOTIFICATION_SEED * i.getId(), notification);
         }
     }
 
     private void checkHabit(){
-        SimpleDateFormat timeSDF = new SimpleDateFormat("HH:mm");
-        List<Habit> habitList = eventDBHelper.findHabitByReminderTime(timeSDF.format(new Date()));
+        List<Habit> habitList = eventDBHelper.findHabitByReminderTime(new Date());
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         for (Habit i : habitList) {
-            Notification notification = new NotificationCompat.Builder(this, UniversalConstantManager.HABIT_NOTIFICATION_CHANNEL_ID)
+            Notification notification = new NotificationCompat.Builder(this, UniToolKit.HABIT_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.habit_notification_title))
                     .setContentText(getResources().getString(R.string.habit_notification_content) + i.getName())
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                     .build();
-            manager.notify(UniversalConstantManager.NOTIFICATION_ID, notification);
+            manager.notify((int)new Date().getTime() + HABIT_NOTIFICATION_SEED * i.getId(), notification);
         }
     }
 

@@ -88,8 +88,9 @@
     <!--event_notification:Begin-->
     <string name="todo_notification_title">即将进行的待办</string>
     <string name="todo_notification_content">将要进行</string>
-    <string name="todo_advance_notification_title">30分钟内将要进行的待办</string>
-    <string name="todo_advance_notification_content">在30分钟后将要进行</string>
+    <string name="todo_advance_notification_title">您有一个待办提醒</string>
+    <string name="todo_advance_notification_content1">将在</string>
+    <string name="todo_advance_notification_content2">进行</string>
     <string name="habit_notification_title">习惯执行提醒</string>
     <string name="habit_notification_content">记得要</string>
     <!--event_notification:end-->
