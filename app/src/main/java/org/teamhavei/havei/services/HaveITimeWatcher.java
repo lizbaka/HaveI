@@ -20,6 +20,7 @@ import androidx.core.app.NotificationCompat;
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.Todo;
 import org.teamhavei.havei.R;
+import org.teamhavei.havei.UniversalConstantManager;
 import org.teamhavei.havei.activities.ActivityMain;
 import org.teamhavei.havei.databases.EventDBHelper;
 
@@ -77,24 +78,24 @@ public class HaveITimeWatcher extends Service {
         List<Todo> todoListAdvance = eventDBHelper.findTodoByDatetime(dateTimeAdvance);
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         for (Todo i : todoList) {
-            Notification notification = new NotificationCompat.Builder(this, ActivityMain.TODO_NOTIFICATION_CHANNEL_ID)
+            Notification notification = new NotificationCompat.Builder(this, UniversalConstantManager.TODO_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.todo_notification_title))
                     .setContentText(i.getName() + getResources().getString(R.string.todo_notification_content))
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                     .build();
-            manager.notify(ActivityMain.NOTIFICATION_ID, notification);
+            manager.notify(UniversalConstantManager.NOTIFICATION_ID, notification);
         }
         for (Todo i : todoListAdvance) {
-            Notification notification = new NotificationCompat.Builder(this, ActivityMain.TODO_NOTIFICATION_CHANNEL_ID)
+            Notification notification = new NotificationCompat.Builder(this, UniversalConstantManager.TODO_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.todo_advance_notification_title))
                     .setContentText(i.getName() + getResources().getString(R.string.todo_advance_notification_content))
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                     .build();
-            manager.notify(ActivityMain.NOTIFICATION_ID, notification);
+            manager.notify(UniversalConstantManager.NOTIFICATION_ID, notification);
         }
     }
 
@@ -103,14 +104,14 @@ public class HaveITimeWatcher extends Service {
         List<Habit> habitList = eventDBHelper.findHabitByReminderTime(timeSDF.format(new Date()));
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         for (Habit i : habitList) {
-            Notification notification = new NotificationCompat.Builder(this, ActivityMain.TODO_NOTIFICATION_CHANNEL_ID)
+            Notification notification = new NotificationCompat.Builder(this, UniversalConstantManager.HABIT_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.habit_notification_title))
                     .setContentText(getResources().getString(R.string.habit_notification_content) + i.getName())
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                     .build();
-            manager.notify(ActivityMain.NOTIFICATION_ID, notification);
+            manager.notify(UniversalConstantManager.NOTIFICATION_ID, notification);
         }
     }
 
