@@ -53,7 +53,7 @@
             android:layout_width="@dimen/habit_status_size"
             android:layout_height="@dimen/habit_status_size"
             android:layout_margin="@dimen/widget_inview_margin"
-            android:src="@drawable/ic_baseline_close_24"/>
+            android:src="@drawable/ic_baseline_radio_button_unchecked_24"/>
 
     </RelativeLayout>
 
