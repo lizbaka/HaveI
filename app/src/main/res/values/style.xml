@@ -13,7 +13,7 @@
     </style>
     <style name="Dynamic_card.border">
         <item name="strokeWidth">@dimen/card_border_width</item>
-        <item name="strokeColor">@color/light_grey</item>
+        <item name="strokeColor">@color/grey_200</item>
         <item name="android:backgroundTint">@color/white</item>
     </style>
 </resources>
