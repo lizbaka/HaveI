@@ -19,4 +19,13 @@
 
     <dimen name="fab_margin">30dp</dimen>
 
+    <!--activity_add_account_detail:Begin-->
+    <dimen name="record_height">44dp</dimen>
+    <dimen name="calculator_margin">10dp</dimen>
+    <dimen name="calculator_border_margin">14dp</dimen>
+    <dimen name="button_width">88dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <!--activity_add_account_detail:End-->
+
+
 </resources>
