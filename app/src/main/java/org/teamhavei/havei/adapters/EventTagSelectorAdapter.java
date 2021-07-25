@@ -1,8 +1,6 @@
 package org.teamhavei.havei.adapters;
 
 import android.content.Context;
-import android.media.Image;
-import android.media.ImageWriter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +31,8 @@ public class EventTagSelectorAdapter extends RecyclerView.Adapter<EventTagSelect
 
         public ViewHolder(View view){
             super(view);
-            tagNameView = (TextView) view.findViewById(R.id.icon_tag_name);
-            tagIconView = (ImageView) view.findViewById(R.id.icon_tag_icon);
+            tagNameView = (TextView) view.findViewById(R.id.icon_title_title);
+            tagIconView = (ImageView) view.findViewById(R.id.icon_title_icon);
         }
 
     }
@@ -49,7 +47,7 @@ public class EventTagSelectorAdapter extends RecyclerView.Adapter<EventTagSelect
         ViewHolder holder = null;
         switch(viewType) {
             case VIEW_TYPE_TAGS:
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_icon_tag, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_icon_title, parent, false);
                 holder = new ViewHolder(view);
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
 
