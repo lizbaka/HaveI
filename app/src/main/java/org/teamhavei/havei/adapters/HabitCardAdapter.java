@@ -84,10 +84,10 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         holder.tagView.setText(tag);
         holder.isHabitDoneToday = dbHelper.isHabitDoneToday(habitID);
         if(holder.isHabitDoneToday){
-            holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_check_24));
+            holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_check_24_color_pv));
         }
         else{
-            holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_close_24));
+            holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_close_24_white));
         }
     }
 
