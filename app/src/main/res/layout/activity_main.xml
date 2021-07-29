@@ -20,7 +20,7 @@
                 <include
                     layout="@layout/dynamic_greeting_card" />
                 <include
-                    layout="@layout/dynamic_sentence"/>
+                    layout="@layout/dynamic_proverb"/>
                 <include
                     layout="@layout/dynamic_todo_card" />
                 <include
