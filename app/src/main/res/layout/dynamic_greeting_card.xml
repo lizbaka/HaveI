@@ -29,15 +29,14 @@
             android:textColor="@color/white"
             android:text="[Greeting_Secondary]"/>
 
-        <TextView
-            android:id="@+id/greeting_card_slogan"
+        <ImageView
+            android:id="@+id/greeting_card_icon"
             android:layout_below="@id/greeting_card_secondary"
-            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_baseline_check_24"
             android:layout_margin="@dimen/widget_inview_margin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="@string/greeting_card_slogan"/>
+            android:layout_width="@dimen/greeting_card_icon_size"
+            android:layout_height="@dimen/greeting_card_icon_size"/>
 
     </RelativeLayout>
 
