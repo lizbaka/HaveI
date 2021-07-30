@@ -33,7 +33,7 @@
             android:id="@+id/greeting_card_icon"
             android:layout_below="@id/greeting_card_secondary"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_baseline_check_24"
+            android:src="@drawable/ic_baseline_check_24_white"
             android:layout_margin="@dimen/widget_inview_margin"
             android:layout_width="@dimen/greeting_card_icon_size"
             android:layout_height="@dimen/greeting_card_icon_size"/>
