@@ -14,7 +14,6 @@
     <dimen name="round_icon_size">35dp</dimen>
 
     <dimen name="widget_inview_margin">4dp</dimen>
-    <dimen name="widget_inview_margin">5dp</dimen>
 
     <dimen name="habit_status_size">50dp</dimen>
 
