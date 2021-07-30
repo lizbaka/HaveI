@@ -19,12 +19,22 @@
 
     <dimen name="fab_margin">30dp</dimen>
 
+    <dimen name="bookkeep_spinner_margin">8dp</dimen>
+    <dimen name="account_window_record_border">20dp</dimen>
+    <dimen name="account_window_record_margin">10dp</dimen>
+    <dimen name="bookkeep_bottom_bar_button_vertical_margin">15dp</dimen>
+    <dimen name="bookkeep_bottom_bar_button_horizontal_margin">28dp</dimen>
+    <dimen name="bookkeep_bottom_bar_imageButton_size">95dp</dimen>
+    <dimen name="bookkeep_bottom_bar_button_width">88dp</dimen>
+    <dimen name="bookkeep_bottom_bar_button_height">48dp</dimen>
+
+
     <!--activity_add_account_detail:Begin-->
-    <dimen name="record_height">44dp</dimen>
-    <dimen name="calculator_margin">10dp</dimen>
-    <dimen name="calculator_border_margin">14dp</dimen>
-    <dimen name="button_width">88dp</dimen>
-    <dimen name="button_height">48dp</dimen>
+    <dimen name="add_account_detail_record_height">44dp</dimen>
+    <dimen name="add_account_detail_calculator_margin">10dp</dimen>
+    <dimen name="add_account_detail_calculator_border_margin">14dp</dimen>
+    <dimen name="add_account_detail_button_width">88dp</dimen>
+    <dimen name="add_account_detail_button_height">48dp</dimen>
     <!--activity_add_account_detail:End-->
 
 
