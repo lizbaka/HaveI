@@ -64,7 +64,7 @@ public class EventTagSelectorAdapter extends RecyclerView.Adapter<EventTagSelect
     @Override
     public void onBindViewHolder(@NonNull EventTagSelectorAdapter.ViewHolder holder, int position) {
         holder.mEventTag = mEventTagList.get(position);
-        holder.tagIconView.setImageDrawable();// TODO: 2021.07.20 实现iconAdapter后接入
+        holder.tagIconView.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_baseline_help_24));// TODO: 2021.07.20 实现iconAdapter后接入
         holder.tagNameView.setText(holder.mEventTag.getName());
     }
 
