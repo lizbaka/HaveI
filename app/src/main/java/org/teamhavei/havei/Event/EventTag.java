@@ -5,6 +5,7 @@ public class EventTag {
     private int id;
     private int iconId;
     private String name;
+    private boolean del;
 
     public int getId() {
         return id;
@@ -28,5 +29,13 @@ public class EventTag {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isDel() {
+        return del;
+    }
+
+    public void setDel(boolean del) {
+        this.del = del;
     }
 }
