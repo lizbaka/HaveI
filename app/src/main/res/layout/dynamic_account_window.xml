@@ -1,0 +1,61 @@
+ <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<TextView
+    android:id="@+id/account_window_expenditure"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/account_window_record_border"
+    android:layout_marginTop="@dimen/account_window_record_border"
+    android:text="@string/account_window_expenditure" />
+
+    <TextView
+        android:id="@+id/account_window_expenditure_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/account_window_record_border"
+        android:layout_alignTop="@+id/account_window_expenditure" />
+
+
+    <TextView
+        android:id="@+id/account_window_remaining_budget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/account_window_expenditure"
+        android:layout_below="@+id/account_window_expenditure"
+        android:layout_marginTop="@dimen/account_window_record_margin"
+        android:text="@string/account_window_remaining_budget" />
+
+    <TextView
+        android:id="@+id/account_window_remaining_budget_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/account_window_expenditure_value"
+        android:layout_below="@+id/account_window_expenditure_value"
+        android:layout_alignTop="@+id/account_window_remaining_budget"
+        android:layout_marginTop="@dimen/account_window_record_margin"/>
+
+
+    <TextView
+        android:id="@+id/account_window_income"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/account_window_expenditure"
+        android:layout_below="@+id/account_window_remaining_budget"
+        android:layout_marginTop="@dimen/account_window_record_margin"
+        android:layout_marginBottom="@dimen/account_window_record_border"
+        android:text="@string/account_window_income" />
+
+    <TextView
+        android:id="@+id/account_window_income_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/account_window_expenditure_value"
+        android:layout_below="@+id/account_window_remaining_budget_value"
+        android:layout_alignTop="@+id/account_window_income"
+        android:layout_marginTop="@dimen/account_window_record_margin"/>
+
+</RelativeLayout>
