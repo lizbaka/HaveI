@@ -6,7 +6,17 @@ public class Todo {
     private String name;
     private int tagId;
     private String dateTime;
+    private String reminderDateTime;
     private boolean done;
+
+    public String getReminderDateTime() {
+        return reminderDateTime;
+    }
+
+    public void setReminderDateTime(String reminderDateTime) {
+        this.reminderDateTime = reminderDateTime;
+    }
+
 
     public int getId() {
         return id;

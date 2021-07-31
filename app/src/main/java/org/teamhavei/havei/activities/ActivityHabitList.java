@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import org.teamhavei.havei.R;
@@ -28,7 +27,7 @@ public class ActivityHabitList extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_list);
         habitCardList = findViewById(R.id.habit_list_card_list);
-        dbHelper = new EventDBHelper(this,EventDBHelper.DB_NAME,null,EventDBHelper.DB);
+        dbHelper = new EventDBHelper(this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
         setSupportActionBar(findViewById(R.id.habit_list_toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

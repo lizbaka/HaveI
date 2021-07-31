@@ -4,5 +4,5 @@
     <size
         android:height="@dimen/round_icon_background_size"
         android:width="@dimen/round_icon_background_size"/>
-    <solid android:color="@color/light_grey"/>
+    <solid android:color="@color/grey_200"/>
 </shape>

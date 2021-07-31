@@ -25,7 +25,6 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/bookkeep_record_card_text_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

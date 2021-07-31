@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import org.teamhavei.havei.Event.Habit;
+import org.teamhavei.havei.Event.Todo;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.databases.EventDBHelper;
 
@@ -23,7 +24,7 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        eventDBHelper = new EventDBHelper(ActivityTest.this,EventDBHelper.DB_NAME,null,EventDBHelper.DB);
+        eventDBHelper = new EventDBHelper(ActivityTest.this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
         Button btn1 = findViewById(R.id.test_btn1);
         btn1.setOnClickListener(this);
         Button btn2 = findViewById(R.id.test_btn2);
@@ -35,17 +36,16 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         Habit habit;
-        Habit habit1;
+        Todo todo;
         switch(v.getId()){
             case R.id.test_btn1:
-                habit = new Habit();
-                habit.setName("name1");
-                habit.setReminderTime("18:00");
-                habit.setRepeatTimes(5);
-                habit.setRepeatUnit(5);
-                habit.setTagId(3);
-                habit.showHabitInformation();
-                eventDBHelper.insertHabit(habit);
+                todo = new Todo();
+                todo.setName("todo4");
+                todo.setDateTime("2021-07-18 16:20");
+                todo.setReminderDateTime("2021-07-18 16:02");
+                todo.setTagId(1);
+                todo.setDone(false);
+                eventDBHelper.insertTodo(todo);
                 break;
             case R.id.test_btn2:
                 habit = eventDBHelper.findHabitById(1);

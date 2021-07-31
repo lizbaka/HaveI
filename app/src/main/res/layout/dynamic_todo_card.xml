@@ -24,28 +24,33 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/todo_card_title"
-            android:layout_toRightOf="@id/todo_card_icon_container"
-            android:layout_toLeftOf="@id/todo_card_time"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_margin="@dimen/widget_inview_margin"
-            android:maxLines="1"
-            android:text="[Todo_Card_Title]" />
-
-        <TextView
-            android:id="@+id/todo_card_tag"
             android:layout_toRightOf="@id/todo_card_icon_container"
             android:layout_toLeftOf="@id/todo_card_date"
-            android:layout_below="@id/todo_card_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Body1"
-            android:layout_margin="@dimen/widget_inview_margin"
-            android:maxLines="1"
-            android:text="[Todo_Card_Tag]"/>
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/todo_card_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:maxLines="1"
+                android:text="[Todo_Card_Title]" />
+
+            <TextView
+                android:id="@+id/todo_card_tag"
+                android:layout_below="@id/todo_card_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:maxLines="1"
+                android:visibility="gone"
+                android:text="[Todo_Card_Tag]"/>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/todo_card_time"

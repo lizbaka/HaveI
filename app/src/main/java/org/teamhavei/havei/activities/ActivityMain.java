@@ -19,16 +19,14 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 import org.teamhavei.havei.R;
+import org.teamhavei.havei.UniToolKit;
+import org.teamhavei.havei.databases.EventDBHelper;
 import org.teamhavei.havei.services.HaveITimeWatcher;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityMain extends BaseActivity{
-
-    public static final String TODO_NOTIFICATION_CHANNEL_ID = "HaveI_Notification_todo";
-    public static final String HABIT_NOTIFICATION_CHANNEL_ID = "HaveI_Notification_habit";
-    public static final int NOTIFICATION_ID = 998244353;
 
     private String habitNotificationChannelName;
     private String todoNotificationChannelName;
@@ -38,6 +36,7 @@ public class ActivityMain extends BaseActivity{
     ActionBarDrawerToggle mActionBarDrawerToggle;
     DrawerLayout mDrawerLayout;
     NavigationView mNavView;
+    EventDBHelper eventDBHelper;
 
 
     private List<Fragment> fragmentList = new ArrayList<>();
@@ -56,14 +55,16 @@ public class ActivityMain extends BaseActivity{
         if(Build.VERSION.SDK_INT >= 26) {
             initNotificationChannel();
         }
+
+        eventDBHelper = new EventDBHelper(ActivityMain.this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initNotificationChannel(){
         todoNotificationChannelName = getResources().getString(R.string.todo_reminder_notification_channel_name);
         habitNotificationChannelName = getResources().getString(R.string.habit_reminder_notification_channel_name);
-            NotificationChannel todoChannel = new NotificationChannel(TODO_NOTIFICATION_CHANNEL_ID, todoNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationChannel habitChannel = new NotificationChannel(HABIT_NOTIFICATION_CHANNEL_ID, habitNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel todoChannel = new NotificationChannel(UniToolKit.TODO_NOTIFICATION_CHANNEL_ID, todoNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel habitChannel = new NotificationChannel(UniToolKit.HABIT_NOTIFICATION_CHANNEL_ID, habitNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             manager.createNotificationChannel(todoChannel);
             manager.createNotificationChannel(habitChannel);
@@ -82,13 +83,13 @@ public class ActivityMain extends BaseActivity{
     }
 
     private void initToolbar(){
-        mToolbar = findViewById(R.id.main_toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,R.string.main_drawer_open, R.string.main_drawer_close);
-        mActionBarDrawerToggle.setDrawerSlideAnimationEnabled(true);
-        mActionBarDrawerToggle.syncState();
-        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
+//        mToolbar = findViewById(R.id.main_toolbar);
+//        setSupportActionBar(mToolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,R.string.main_drawer_open, R.string.main_drawer_close);
+//        mActionBarDrawerToggle.setDrawerSlideAnimationEnabled(true);
+//        mActionBarDrawerToggle.syncState();
+//        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
     }
 
     private void initNavigationView(){

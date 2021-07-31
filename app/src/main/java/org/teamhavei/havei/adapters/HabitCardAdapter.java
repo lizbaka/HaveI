@@ -33,6 +33,7 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         ImageView statusIcon;
         ImageView iconView;
         Habit mHabit;
+        Boolean isHabitDoneToday;
 
         public ViewHolder(View view){
             super(view);
@@ -47,7 +48,7 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
     public HabitCardAdapter(List<Habit> habitList,Context context){
         mHabitList = habitList;
         mContext = context;
-        dbHelper = new EventDBHelper(mContext, EventDBHelper.DB_NAME,null, EventDBHelper.DB);
+        dbHelper = new EventDBHelper(mContext, EventDBHelper.DB_NAME,null, EventDBHelper.DB_VERSION);
         db = dbHelper.getWritableDatabase();
     }
 
@@ -59,13 +60,13 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                // TODO: 2021/7/14
+                // TODO: 2021/7/14 实现习惯详情界面后接入
             }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                // TODO: 2021/7/14
+                // TODO: 2021/7/14 实现习惯标记功能
                 return true;
             }
         });
@@ -81,11 +82,12 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         int habitID = holder.mHabit.getId();
         holder.nameView.setText(name);
         holder.tagView.setText(tag);
-        if(dbHelper.isHabitDoneToday(habitID)){
-            holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_check_24));
+        holder.isHabitDoneToday = dbHelper.isHabitDoneToday(habitID);
+        if(holder.isHabitDoneToday){
+            holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_check_24_color_pv));
         }
         else{
-            holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_close_24));
+            holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_close_24_white));
         }
     }
 

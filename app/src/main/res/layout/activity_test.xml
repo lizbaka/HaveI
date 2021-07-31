@@ -8,7 +8,7 @@
         android:id="@+id/test_btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="insert habit"/>
+        android:text="insert todo"/>
     <Button
         android:id="@+id/test_btn2"
         android:layout_width="match_parent"
@@ -18,6 +18,6 @@
         android:id="@+id/test_btn3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="update habit"/>
+        android:text="go to ActivityHabitList"/>
 
 </LinearLayout>

@@ -1,7 +1,6 @@
 package org.teamhavei.havei.Event;
 
-public class EventTag {
-
+public class BookTag {
     private int id;
     private int iconId;
     private String name;
