@@ -1,0 +1,116 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/habit_list_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:gravity="center"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/daily_habit_title"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:backgroundTint="@color/amber_500"
+                android:id="@+id/switch_habit"
+                android:src="@drawable/ic_all_habit_rename"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/habit_list_card_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/daily_habit_library"
+            android:layout_marginBottom="@dimen/widget_inview_margin">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_height"
+                android:background="@color/amber_200"
+                android:layout_margin="@dimen/widget_inview_margin"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/daily_habit_library">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/amber_500"
+                app:cornerRadius="@dimen/card_corner_radius"
+                android:textColor="@color/white"
+                android:text="@string/daily_habit_library"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/daily_habit_library"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/button_margin">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/amber_500"
+                app:cornerRadius="@dimen/card_corner_radius"
+                android:textColor="@color/white"
+                android:text="@string/daily_habit_today"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/daily_habit_library"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/button_margin">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/amber_500"
+                app:cornerRadius="@dimen/card_corner_radius"
+                android:textColor="@color/white"
+                android:text="@string/daily_habit_completion_record"/>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -7,7 +7,8 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/modify_habit_toolbar"
@@ -63,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00000000"
-                    android:hint="@string/modify_habit_hint_name"
+                    android:hint="@string/modify_schedule_hint_name"
                     android:textSize="@dimen/font_size"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -71,6 +72,11 @@
             </RelativeLayout>
 
         </RelativeLayout>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/modify_schedule_hint_remark"/>
 
         <LinearLayout
             android:id="@+id/modify_habit_frequency"
@@ -84,40 +90,24 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
                 android:background="#00000000"
-                android:text="@string/modify_habit_text_frequency"
+                android:text="@string/modify_schedule_text_frequency"
                 android:maxLines="1"
                 android:singleLine="true" />
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="几"/>
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:background="#00000000"
-                android:text="次"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="几"/>
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:background="#00000000"
-                android:text="天"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:id="@+id/schedule_implement_time"
+                android:text="@string/modify_schedule_button_frequency"
+                android:textSize="@dimen/font_size"
+                android:backgroundTint="@color/amber_500"
+                android:textColor="@color/white"
+                app:cornerRadius="@dimen/card_corner_radius"
+                android:layout_weight="0.2" >
 
 
 
+            </com.google.android.material.button.MaterialButton>
 
         </LinearLayout>
 
@@ -139,20 +129,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
                 android:background="#00000000"
-                android:text="@string/modify_habit_text_time"
+                android:text="@string/modify_schedule_text_time"
                 android:maxLines="1"
                 android:singleLine="true" />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/habit_remind_time"
-                android:text="@string/modify_habit_button_time"
+                android:id="@+id/schedule_remind_time"
+                android:text="@string/modify_schedule_button_time"
                 android:textSize="@dimen/font_size"
                 android:backgroundTint="@color/amber_500"
                 android:textColor="@color/white"
-                android:layout_weight="0.2"
-                app:cornerRadius="@dimen/card_corner_radius"/>
+                app:cornerRadius="@dimen/card_corner_radius"
+                android:layout_weight="0.2"/>
 
         </LinearLayout>
 
@@ -163,8 +153,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            android:layout_height="match_parent"/>
 
 
     </LinearLayout>
@@ -185,7 +174,7 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:textColor="?attr/colorPrimary"
-            android:text="@string/modify_habit_done"
+            android:text="@string/modify_schedule_done"
             android:textSize="@dimen/font_size"/>
     </LinearLayout>
 
