@@ -24,8 +24,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/each_day_sentence"
-                android:gravity="center" />
+                android:id="@+id/habit_name"
+                android:layout_gravity="center" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -41,7 +41,7 @@
             android:id="@+id/chooser_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp">
+            android:layout_marginVertical="@dimen/widget_inview_margin">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -49,14 +49,17 @@
                 android:id="@+id/button_year"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/habit_detail_fixed_point"
-                android:layout_marginRight="30dp">
+                android:layout_marginRight="@dimen/button_margin_narrow">
 
-                <androidx.appcompat.widget.AppCompatButton
+                <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/widget_inview_margin"
                     android:text="@string/button_year"
+                    android:textSize="@dimen/font_size"
                     android:textColor="@color/white"
-                    android:backgroundTint="@color/amber_200"/>
+                    android:backgroundTint="@color/amber_500"
+                    app:cornerRadius="@dimen/card_corner_radius"/>
 
             </RelativeLayout>
 
@@ -75,25 +78,23 @@
                 android:id="@+id/button_month"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/habit_detail_fixed_point"
-                android:layout_marginLeft="30dp">
+                android:layout_marginLeft="@dimen/button_margin_narrow">
 
-                <androidx.appcompat.widget.AppCompatButton
+                <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/widget_inview_margin"
                     android:text="@string/button_month"
+                    android:textSize="@dimen/font_size"
                     android:textColor="@color/white"
-                    android:backgroundTint="@color/amber_200" />
+                    app:cornerRadius="@dimen/card_corner_radius"
+                    android:backgroundTint="@color/amber_500" />
 
 
             </RelativeLayout>
 
         </RelativeLayout>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            app:contentPadding="5dp">
 
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/habit_detail_calendar"
@@ -103,21 +104,19 @@
             app:mcv_selectionColor="?attr/colorPrimary"
             app:mcv_selectionMode="none"/>
 
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/amber_200"
+            style="@style/Dynamic_card"
             android:layout_margin="@dimen/widget_inview_margin"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="@dimen/widget_inview_margin">
+            app:contentPadding="@dimen/card_content_padding"
+            app:cardElevation="@dimen/card_elevation">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/widget_inview_margin"
-                android:background="@color/amber_200"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -140,21 +139,20 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/amber_200"
+            style="@style/Dynamic_card"
             android:layout_margin="@dimen/widget_inview_margin"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="@dimen/widget_inview_margin">
+            app:contentPadding="@dimen/card_border_width"
+            app:cardElevation="@dimen/card_elevation">
 
             <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/widget_inview_margin"
-            android:background="@color/amber_200"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -177,22 +175,21 @@
 
         </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/amber_200"
+            style="@style/Dynamic_card"
             android:layout_margin="@dimen/widget_inview_margin"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="@dimen/widget_inview_margin">
+            app:contentPadding="@dimen/card_border_width"
+            app:cardElevation="@dimen/card_elevation">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/widget_inview_margin"
-                android:background="@color/amber_200"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -215,7 +212,7 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
