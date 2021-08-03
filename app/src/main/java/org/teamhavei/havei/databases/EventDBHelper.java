@@ -45,6 +45,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
     private static final String EVENT_TAGS_ID = "id";
     private static final String EVENT_TAGS_ICON_ID = "icon_id";
     private static final String EVENT_TAGS_NAME = "name";
+    private static final String EVENT_TAGS_DELETE = "del";
 
     private static final String TABLE_TODO = "Todo";
     private static final String TODO_ID = "id";
@@ -75,7 +76,8 @@ public class EventDBHelper extends SQLiteOpenHelper {
             "create table " + TABLE_EVENT_TAGS + "(" +
                     EVENT_TAGS_ID + " integer primary key autoincrement," +//标签id
                     EVENT_TAGS_ICON_ID + " integer," +//图标id
-                    EVENT_TAGS_NAME + " text)";//标签名称
+                    EVENT_TAGS_NAME + " text," +//标签名称
+                    EVENT_TAGS_DELETE + " integer)";//标签是否被删除 0:未删除 1:已删除
 
     private static final String CREATE_TODO =
             "create table " + TABLE_TODO + "(" +
@@ -109,6 +111,10 @@ public class EventDBHelper extends SQLiteOpenHelper {
             db.execSQL("drop table if exists Habit");
             db.execSQL("drop table if exists HabitExecs");
         }
+        db.execSQL("drop table if exists " + TABLE_EVENT_TAGS);
+        db.execSQL("drop table if exists " + TABLE_HABIT);
+        db.execSQL("drop table if exists " + TABLE_HABIT_EXECS);
+        db.execSQL("drop table if exists " + TABLE_TODO);
         onCreate(db);
     }
 
@@ -187,7 +193,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_HABIT,null,null,null,null,null,null);
         return cursorToHabitList(cursor);
     }
-    //========Habit相关功能:end========
+    //========Habit相关功能:end===============
 
 
     //========Habit_Exec相关功能:Begin========
@@ -248,7 +254,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ?" + " AND " + HABIT_EXECS_DATE + " = ?",new String[]{Integer.toString(habitId),UniToolKit.eventDateFormatter(new Date())},null,null,null);
         return cursor.getCount() > 0;
     }
-    //========Habit_Exec相关功能:end========
+    //========Habit_Exec相关功能:end=========
 
 
     //========Event_Tag相关功能:Begin========
@@ -256,6 +262,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(EVENT_TAGS_NAME, mEventTag.getName());
         values.put(EVENT_TAGS_ICON_ID, mEventTag.getIconId());
+        values.put(EVENT_TAGS_DELETE, mEventTag.isDel()?1:0);
         return values;
     }
 
@@ -270,6 +277,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
                 mEventTag.setId(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_ID)));
                 mEventTag.setName(cursor.getString(cursor.getColumnIndex(EVENT_TAGS_NAME)));
                 mEventTag.setIconId(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_ICON_ID)));
+                mEventTag.setDel(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_DELETE)) == 1);
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
@@ -284,7 +292,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
         db.insert(TABLE_EVENT_TAGS, null, eventTagToValues(mEventTag));
     }
 
-    //找不到tag时返回默认tag
     public EventTag findEventTagById(int id) {
         Cursor cursor = db.query(TABLE_EVENT_TAGS, null, EVENT_TAGS_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
         EventTag mEventTag = cursorToEventTag(cursor);
@@ -297,7 +304,9 @@ public class EventDBHelper extends SQLiteOpenHelper {
     }
 
     public void deleteEventTag(EventTag mEventTag) {
-        db.delete(TABLE_EVENT_TAGS, EVENT_TAGS_ID + " = ?", new String[]{Integer.toString(mEventTag.getIconId())});
+        EventTag delEventTag = mEventTag;
+        delEventTag.setDel(true);
+        updateEventTag(mEventTag,delEventTag);
     }
     //========Event_Tag相关功能:end========
 

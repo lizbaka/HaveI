@@ -2,7 +2,9 @@
 <resources>
     <style name="Dynamic_card" parent="Widget.MaterialComponents.CardView" >
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
-        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="android:layout_marginLeft">@dimen/card_margin</item>
+        <item name="android:layout_marginRight">@dimen/card_margin</item>
+        <item name="android:layout_marginTop">@dimen/card_margin</item>
         <item name="contentPadding">@dimen/card_padding</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
@@ -11,7 +13,7 @@
     </style>
     <style name="Dynamic_card.border">
         <item name="strokeWidth">@dimen/card_border_width</item>
-        <item name="strokeColor">@color/light_grey</item>
+        <item name="strokeColor">@color/grey_200</item>
         <item name="android:backgroundTint">@color/white</item>
     </style>
 </resources>
