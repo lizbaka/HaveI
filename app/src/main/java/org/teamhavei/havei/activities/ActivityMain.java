@@ -83,13 +83,13 @@ public class ActivityMain extends BaseActivity{
     }
 
     private void initToolbar(){
-        mToolbar = findViewById(R.id.main_toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,R.string.main_drawer_open, R.string.main_drawer_close);
-        mActionBarDrawerToggle.setDrawerSlideAnimationEnabled(true);
-        mActionBarDrawerToggle.syncState();
-        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
+//        mToolbar = findViewById(R.id.main_toolbar);
+//        setSupportActionBar(mToolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,R.string.main_drawer_open, R.string.main_drawer_close);
+//        mActionBarDrawerToggle.setDrawerSlideAnimationEnabled(true);
+//        mActionBarDrawerToggle.syncState();
+//        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
     }
 
     private void initNavigationView(){

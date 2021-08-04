@@ -10,37 +10,9 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#00000000"
-            app:elevation="0dp">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:contentPadding="@dimen/toolbar_padding"
-                style="@style/Dynamic_card.border"
-                app:layout_scrollFlags="scroll|enterAlways|snap">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/main_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#00000000"
-                    app:titleTextColor="#888888"
-                    app:title="@string/app_name"
-                    android:minHeight="?attr/actionBarSize"/>
-
-
-            </com.google.android.material.card.MaterialCardView>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -48,7 +20,7 @@
                 <include
                     layout="@layout/dynamic_greeting_card" />
                 <include
-                    layout="@layout/dynamic_sentence"/>
+                    layout="@layout/dynamic_proverb_card"/>
                 <include
                     layout="@layout/dynamic_todo_card" />
                 <include
