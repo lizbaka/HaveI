@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.HaveI">
-        <activity android:name=".activities.ActivityHabitList"></activity>
+        <activity android:name=".activities.ActivityProverbList"></activity>
+        <activity android:name=".activities.ActivityHabitList" />
 
         <service
             android:name=".services.HaveITimeWatcher"
