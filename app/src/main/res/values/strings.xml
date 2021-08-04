@@ -1,8 +1,12 @@
 <resources>
     <!--universal:Begin-->
     <string name="app_name">HaveI</string>
-    <string name="dialog_positive">是</string>
-    <string name="dialog_negative">否</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+    <string name="back">返回</string>
+    <string name="confirm">确定</string>
     <string name="todo_reminder_notification_channel_name">待办提醒</string>
     <string name="habit_reminder_notification_channel_name">习惯执行提醒</string>
     <!--universal:end-->
@@ -99,4 +103,14 @@
     <string name="habit_list_title">查看您的习惯</string>
     <string name="habit_list_add">添加一个习惯！</string>
     <!--habit_list:end-->
+
+    <!--proverb:Begin-->
+    <string name="proverb_list_title">我收藏的句子</string>
+    <string name="proverb_list_add">添加一个喜欢的句子！</string>
+    <string name="proverb_card_title">句子</string>
+    <string name="proverb_add_empty_alert">句子不能为空</string>
+    <string name="proverb_remove_confirm_title">确认取消句子收藏</string>
+    <string name="proverb_remove_confirm_msg">您取消了一些句子的收藏，您确定吗？</string>
+    <!--proverb:end-->
+
 </resources>
