@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_bookkeep_annual_account_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <Spinner
+        android:id="@+id/bookkeep_annual_account_detail_year_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar_bookkeep_annual_account_detail"
+        android:layout_marginTop="@dimen/bookkeep_spinner_margin"
+        android:layout_marginLeft="@dimen/bookkeep_spinner_margin" />
+
+    <include
+        android:id="@+id/bookkeep_annual_income_and_expenses"
+        layout="@layout/dynamic_bookkeep_annual_income_and_expenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bookkeep_window_border"
+        android:layout_marginLeft="@dimen/bookkeep_window_border"
+        android:layout_marginRight="@dimen/bookkeep_window_border"
+        android:layout_below="@+id/bookkeep_annual_account_detail_year_spinner"/>
+
+    <TextView
+        android:id="@+id/bookkeep_month_in_year_income_and_expenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookkeep_annual_income_and_expenses"
+        android:layout_marginTop="@dimen/bookkeep_window_border"
+        android:layout_marginLeft="@dimen/bookkeep_window_border"
+        android:text="@string/bookkeep_month_in_year_income_and_expenses" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookkeep_month_in_year_income_and_expenses"
+        android:layout_marginTop="@dimen/bookkeep_window_border"
+        android:layout_marginLeft="@dimen/bookkeep_window_border"
+        android:layout_marginRight="@dimen/bookkeep_window_border"/>
+
+</RelativeLayout>
