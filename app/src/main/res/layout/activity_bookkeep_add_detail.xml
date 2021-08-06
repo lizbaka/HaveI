@@ -47,10 +47,11 @@
         android:id="@+id/add_account_detail_wallet"
         android:layout_width="@dimen/add_account_detail_record_height"
         android:layout_height="@dimen/add_account_detail_record_height"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="@dimen/add_account_detail_calculator_border_margin"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/add_account_detail_relativeLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@drawable/ic_account_book" />
 
     <EditText
         android:id="@+id/add_account_detail_account_label"
@@ -67,7 +68,7 @@
         android:id="@+id/add_account_detail__money_value"
         android:layout_width="100dp"
         android:layout_height="@dimen/add_account_detail_record_height"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="@dimen/add_account_detail_calculator_border_margin"
         android:ems="10"
         android:inputType="number"
         android:text="@string/money_value"
@@ -220,11 +221,9 @@
             android:id="@+id/add_account_detail_symbol_delete"
             android:layout_width="@dimen/add_account_detail_button_width"
             android:layout_height="@dimen/add_account_detail_button_height"
-            android:layout_below="@+id/add_account_detail_symbol_minus"
             android:layout_alignLeft="@+id/add_account_detail_symbol_add"
             android:layout_alignTop="@+id/add_account_detail_number_seven"
-            android:layout_toRightOf="@+id/add_account_detail_number_nine"
-            android:drawableLeft="@drawable/delete1"
+            android:layout_toRightOf="@+id/add_account_detail_number_nine"/>
 
         <Button
             android:id="@+id/add_account_detail_symbol_complete"
@@ -234,9 +233,17 @@
             android:layout_alignLeft="@+id/add_account_detail_symbol_add"
             android:layout_alignTop="@+id/add_account_detail_symbol_point"
             android:layout_toRightOf="@+id/add_account_detail_symbol_equal"
-            android:drawableLeft="@drawable/delete1" />
+            android:text="@string/symbol_complete" />
 
     </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_account_detail_account_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_account_detail_expenditure_or_income" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
