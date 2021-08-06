@@ -5,8 +5,11 @@
       <map>
         <entry key="..\:/Havei/app/src/main/res/layout/activity_main.xml" value="0.2749094202898551" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_test.xml" value="0.2749094202898551" />
+        <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_bottom_bar.xml" value="0.24682971014492755" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_record_card.xml" value="0.2749094202898551" />
+        <entry key="..\:/Havei/app/src/main/res/layout/dynamic_greeting_card.xml" value="0.24682971014492755" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_habit_card.xml" value="0.2749094202898551" />
+        <entry key="..\:/Havei/app/src/main/res/layout/dynamic_habit_shortcut.xml" value="0.24682971014492755" />
       </map>
     </option>
   </component>
@@ -15,6 +18,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-
   </component>
 </project>
