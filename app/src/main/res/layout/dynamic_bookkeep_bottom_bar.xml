@@ -12,7 +12,8 @@
         android:layout_marginLeft="@dimen/bookkeep_bottom_bar_button_horizontal_margin"
         android:layout_marginBottom="@dimen/bookkeep_bottom_bar_button_vertical_margin"
         android:gravity="center"
-        android:text="@string/bookkeep_statistics" />
+        android:text="@string/bookkeep_statistics"
+        android:onClick="onClickFindStatisticsView"/>
 
     <ImageButton
         android:id="@+id/bookkeep_bottom_bar_add"

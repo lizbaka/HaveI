@@ -149,6 +149,10 @@
     <string name="bookkeep_property_view_goal">目标</string>
     <!--activity_bookkeep_property_view:end-->
 
+    <!--activity_bookkeep_statistics_view:start-->
+    <string name="bookkeep_statistics_surplus">结余</string>
+    <!--activity_bookkeep_statistics_view:end-->
+
     <!--activity_bookkeep_annual_account_detail:start-->
     <string name="bookkeep_annual_account">收支详情</string>
     <string name="bookkeep_annual_income">总收入</string>

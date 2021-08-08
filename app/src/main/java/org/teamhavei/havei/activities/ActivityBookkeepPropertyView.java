@@ -1,5 +1,6 @@
 package org.teamhavei.havei.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -16,5 +17,7 @@ public class ActivityBookkeepPropertyView extends AppCompatActivity {
         setContentView(R.layout.activity_bookkeep_property_view);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_bookkeep_property_view);
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 }
