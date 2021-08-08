@@ -21,7 +21,11 @@
 
     <dimen name="greeting_card_icon_size">80dp</dimen>
 
-    <dimen name="bookkeep_spinner_margin">8dp</dimen>
+    <dimen name="proverb_card_text_margin">10dp</dimen>
+    <dimen name="proverb_card_favorite_size">30dp</dimen>
+
+    <dimen name="dialog_padding">10dp</dimen>
+<dimen name="bookkeep_spinner_margin">8dp</dimen>
     <dimen name="bookkeep_window_record_border">8dp</dimen>
     <dimen name="bookkeep_window_record_margin">10dp</dimen>
     <dimen name="bookkeep_window_border">12dp</dimen>
@@ -30,11 +34,12 @@
     <dimen name="bookkeep_bottom_bar_button_horizontal_margin">28dp</dimen>
     <dimen name="bookkeep_bottom_bar_imageButton_size">95dp</dimen>
     <dimen name="bookkeep_bottom_bar_button_width">88dp</dimen>
-    <dimen name="bookkeep_bottom_bar_button_height">48dp</dimen><!--activity_add_account_detail:Begin-->
-    <dimen name="bookkeep_add_detail_record_height">44dp</dimen>
-    <dimen name="bookkeep_add_detail_calculator_margin">10dp</dimen>
-    <dimen name="bookkeep_add_detail_calculator_border_margin">14dp</dimen>
-    <dimen name="bookkeep_add_detail_button_width">88dp</dimen>
-    <dimen name="bookkeep_add_detail_button_height">48dp</dimen>
-    <!--activity_add_account_detail:End-->
-</resources>
+    <dimen name="bookkeep_bottom_bar_button_height">48dp</dimen>
+
+    <!--activity_add_account_detail:Begin-->
+    <dimen name="bookkeep_add_account_detail_record_height">44dp</dimen>
+    <dimen name="bookkeep_add_account_detail_calculator_margin">10dp</dimen>
+    <dimen name="bookkeep_add_account_detail_calculator_border_margin">14dp</dimen>
+    <dimen name="bookkeep_add_account_detail_button_width">88dp</dimen>
+    <dimen name="bookkeep_add_account_detail_button_height">48dp</dimen>
+    <!--activity_add_account_detail:End--></resources>
