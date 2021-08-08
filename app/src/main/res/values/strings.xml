@@ -135,11 +135,13 @@
     <!--activity_bookkeep:end-->
 
     <!--activity_bookkeep_property_view:start-->
+    <string name="bookkeep_property_view">我的资产</string>
     <string name="bookkeep_property_view_toolbar_name">我的资产</string>
     <string name="bookkeep_property_view_goal">目标</string>
     <!--activity_bookkeep_property_view:end-->
 
     <!--activity_bookkeep_annual_account_detail:start-->
+    <string name="bookkeep_annual_account">收支详情</string>
     <string name="bookkeep_annual_income">总收入</string>
     <string name="bookkeep_annual_expenses">总支出</string>
     <string name="bookkeep_annual_surplus">总结余</string>
