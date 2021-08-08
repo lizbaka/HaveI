@@ -63,7 +63,8 @@ public class UtilDBHelper extends SQLiteOpenHelper {
     }
 
     public void deleteProverbs(List<String> proverb){
-        db.delete(TABLE_PROVERB,PROVERB_CONTENT + " = ?", (String[]) proverb.toArray());
+        for(String s:proverb)
+            db.delete(TABLE_PROVERB,PROVERB_CONTENT + " = ?", new String[]{s});
     }
 
     public void insertProverb(String s){
