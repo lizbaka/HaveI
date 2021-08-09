@@ -34,7 +34,7 @@
                 android:layout_margin="@dimen/widget_inview_margin">
 
                 <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/habit_timetable_tabs"
+                    android:id="@+id/event_timetable_tabs"
                     android:backgroundTint="@color/amber_500"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:id="@+id/tt_habit_invalidview"
+        android:id="@+id/tt_todo_invalidview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -70,12 +70,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
             android:gravity="center"
-            android:text="没有习惯数据\n请新建习惯" />
+            android:text="没有事件数据\n请新建事件" />
 
     </LinearLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/habit_timetable_viewpager"
+        android:id="@+id/event_timetable_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"

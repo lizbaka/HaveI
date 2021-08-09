@@ -31,6 +31,7 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
         btn2.setOnClickListener(this);
         Button btn3 = findViewById(R.id.test_btn3);
         btn3.setOnClickListener(this);
+        btn3.setText("进入proverb List");
     }
 
     @Override
@@ -52,7 +53,7 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
                 habit.showHabitInformation();
                 break;
             case R.id.test_btn3:
-                ActivityHabitList.startAction(this);
+                ActivityProverbList.startAction(this);
         }
     }
 }
