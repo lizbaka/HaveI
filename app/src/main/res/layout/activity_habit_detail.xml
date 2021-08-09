@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/widget_inview_margin"
                     android:text="@string/button_year"
-                    android:textSize="@dimen/font_size"
+                    android:textSize="@dimen/font_size_enlarged"
                     android:textColor="@color/white"
                     android:backgroundTint="@color/amber_500"
                     app:cornerRadius="@dimen/card_corner_radius"/>
@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/widget_inview_margin"
                     android:text="@string/button_month"
-                    android:textSize="@dimen/font_size"
+                    android:textSize="@dimen/font_size_enlarged"
                     android:textColor="@color/white"
                     app:cornerRadius="@dimen/card_corner_radius"
                     android:backgroundTint="@color/amber_500" />
@@ -124,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
                     android:text="@string/actual_clock_in"
-                    android:textSize="@dimen/font_size"
+                    android:textSize="@dimen/font_size_enlarged"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/widget_inview_margin"
                     android:textColor="@color/white"/>
@@ -132,7 +132,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/font_size"
+                    android:textSize="@dimen/font_size_enlarged"
                     android:layout_margin="@dimen/widget_inview_margin"
                     android:id="@+id/actual_clock_in"
                     android:layout_weight="0.4"/>
@@ -160,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
                 android:text="@string/plan_clock_in"
-                android:textSize="@dimen/font_size"
+                android:textSize="@dimen/font_size_enlarged"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/widget_inview_margin"
                 android:textColor="@color/white"/>
@@ -168,7 +168,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/font_size"
+                android:textSize="@dimen/font_size_enlarged"
                 android:layout_margin="@dimen/widget_inview_margin"
                 android:id="@+id/plan_clock_in"
                 android:layout_weight="0.4"/>
@@ -197,7 +197,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
                     android:text="@string/habit_ranking"
-                    android:textSize="@dimen/font_size"
+                    android:textSize="@dimen/font_size_enlarged"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/widget_inview_margin"
                     android:textColor="@color/white"/>
@@ -206,7 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/widget_inview_margin"
-                    android:textSize="@dimen/font_size"
+                    android:textSize="@dimen/font_size_enlarged"
                     android:id="@+id/habit_ranking"
                     android:layout_weight="0.4"/>
 
