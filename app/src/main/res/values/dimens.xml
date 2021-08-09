@@ -29,10 +29,13 @@
     <dimen name="button_margin_narrow">30dp</dimen>
     <dimen name="round_button_margin">10dp</dimen>
 
-    <dimen name="font_size">20sp</dimen>
+    <dimen name="font_size_enlarged">20sp</dimen>
 
-    <dimen name="view_height">1dp</dimen>
+    <dimen name="dividing_line_view_height">1dp</dimen>
 
     <dimen name="button_margin">30dp</dimen>
+
+    <dimen name="timetable_label_width">24dp</dimen>
+    <dimen name="timetable_font_size">10sp</dimen>
 
 </resources>

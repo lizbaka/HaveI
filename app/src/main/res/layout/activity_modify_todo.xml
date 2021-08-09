@@ -7,8 +7,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/modify_habit_toolbar"
@@ -64,8 +63,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00000000"
-                    android:hint="@string/modify_schedule_hint_name"
-                    android:textSize="@dimen/font_size"
+                    android:hint="@string/modify_todo_hint_name"
+                    android:textSize="@dimen/font_size_enlarged"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -76,7 +75,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/modify_schedule_hint_remark"/>
+            android:hint="@string/modify_todo_hint_remark"/>
 
         <LinearLayout
             android:id="@+id/modify_habit_frequency"
@@ -90,7 +89,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
                 android:background="#00000000"
-                android:text="@string/modify_schedule_text_frequency"
+                android:text="@string/modify_todo_text_frequency"
                 android:maxLines="1"
                 android:singleLine="true" />
 
@@ -98,8 +97,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/schedule_implement_time"
-                android:text="@string/modify_schedule_button_frequency"
-                android:textSize="@dimen/font_size"
+                android:text="@string/modify_todo_button_frequency"
+                android:textSize="@dimen/font_size_enlarged"
                 android:backgroundTint="@color/amber_500"
                 android:textColor="@color/white"
                 app:cornerRadius="@dimen/card_corner_radius"
@@ -113,7 +112,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/view_height"
+            android:layout_height="@dimen/dividing_line_view_height"
             android:background="#22000000"/>
 
 
@@ -129,7 +128,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
                 android:background="#00000000"
-                android:text="@string/modify_schedule_text_time"
+                android:text="@string/modify_todo_text_time"
                 android:maxLines="1"
                 android:singleLine="true" />
 
@@ -137,8 +136,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/schedule_remind_time"
-                android:text="@string/modify_schedule_button_time"
-                android:textSize="@dimen/font_size"
+                android:text="@string/modify_todo_button_time"
+                android:textSize="@dimen/font_size_enlarged"
                 android:backgroundTint="@color/amber_500"
                 android:textColor="@color/white"
                 app:cornerRadius="@dimen/card_corner_radius"
@@ -148,7 +147,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/view_height"
+            android:layout_height="@dimen/dividing_line_view_height"
             android:background="#22000000"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -174,8 +173,8 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:textColor="?attr/colorPrimary"
-            android:text="@string/modify_schedule_done"
-            android:textSize="@dimen/font_size"/>
+            android:text="@string/modify_todo_done"
+            android:textSize="@dimen/font_size_enlarged"/>
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

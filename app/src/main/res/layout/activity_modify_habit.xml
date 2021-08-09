@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:background="#00000000"
                     android:hint="@string/modify_habit_hint_name"
-                    android:textSize="@dimen/font_size"
+                    android:textSize="@dimen/font_size_enlarged"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -123,7 +123,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/view_height"
+            android:layout_height="@dimen/dividing_line_view_height"
             android:background="#22000000"/>
 
 
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/habit_remind_time"
                 android:text="@string/modify_habit_button_time"
-                android:textSize="@dimen/font_size"
+                android:textSize="@dimen/font_size_enlarged"
                 android:backgroundTint="@color/amber_500"
                 android:textColor="@color/white"
                 android:layout_weight="0.2"
@@ -158,7 +158,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/view_height"
+            android:layout_height="@dimen/dividing_line_view_height"
             android:background="#22000000"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -186,7 +186,7 @@
             android:insetBottom="0dp"
             android:textColor="?attr/colorPrimary"
             android:text="@string/modify_habit_done"
-            android:textSize="@dimen/font_size"/>
+            android:textSize="@dimen/font_size_enlarged"/>
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

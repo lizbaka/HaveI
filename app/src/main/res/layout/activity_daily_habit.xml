@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/habit_list_toolbar"
+            android:id="@+id/daily_habit_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
@@ -27,7 +27,7 @@
                 android:layout_gravity="right"
                 android:backgroundTint="@color/amber_500"
                 android:id="@+id/switch_habit"
-                android:src="@drawable/ic_all_habit_rename"/>
+                android:src="@drawable/ic_all_habit_icon"/>
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -36,7 +36,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/habit_list_card_list"
+        android:id="@+id/daily_habit_card_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
@@ -54,7 +54,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/view_height"
+                android:layout_height="@dimen/dividing_line_view_height"
                 android:background="@color/amber_200"
                 android:layout_margin="@dimen/widget_inview_margin"/>
 
@@ -72,7 +72,7 @@
                 android:backgroundTint="@color/amber_500"
                 app:cornerRadius="@dimen/card_corner_radius"
                 android:textColor="@color/white"
-                android:text="@string/daily_habit_library"/>
+                android:text="@string/habit_library"/>
 
         </RelativeLayout>
 

@@ -18,7 +18,7 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="@string/habit_schedule_title"
+            app:title="@string/event_title"
             app:layout_scrollFlags="scroll|enterAlways|snap">
 
         </androidx.appcompat.widget.Toolbar>
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/habit_date"
             android:text="@string/habit_date"
-            android:textSize="@dimen/font_size"
+            android:textSize="@dimen/font_size_enlarged"
             android:backgroundTint="@color/amber_500"
             android:textColor="@color/white"/>
 
@@ -49,7 +49,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/view_height"
+            android:layout_height="@dimen/dividing_line_view_height"
             android:background="#22000000"
             android:layout_margin="@dimen/widget_inview_margin"/>
 
@@ -70,11 +70,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:id="@+id/event_date"
-                    android:text="@string/schedule_date"
+                    android:text="@string/todo_date"
                     android:background="@color/amber_500"
                     android:textColor="@color/white"
                     android:layout_margin="@dimen/widget_inview_margin"
-                    android:textSize="@dimen/font_size"
+                    android:textSize="@dimen/font_size_enlarged"
                     android:padding="@dimen/card_content_padding"/>
 
                 <TextView
@@ -82,11 +82,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
                     android:id="@+id/event_weather"
-                    android:text="@string/schedule_weather"
+                    android:text="@string/todo_weather"
                     android:background="@color/amber_500"
                     android:textColor="@color/white"
                     android:layout_margin="@dimen/widget_inview_margin"
-                    android:textSize="@dimen/font_size"/>
+                    android:textSize="@dimen/font_size_enlarged"/>
 
             </LinearLayout>
 
@@ -141,8 +141,8 @@
                 app:cornerRadius="@dimen/card_corner_radius"
                 android:backgroundTint="@color/amber_500"
                 android:textColor="@color/white"
-                android:text="@string/schedule_library"
-                android:textSize="@dimen/font_size"/>
+                android:text="@string/todo_library"
+                android:textSize="@dimen/font_size_enlarged"/>
 
         </RelativeLayout>
 
@@ -160,7 +160,7 @@
                 android:backgroundTint="@color/amber_500"
                 android:textColor="@color/white"
                 android:text="@string/habit_library"
-                android:textSize="@dimen/font_size"/>
+                android:textSize="@dimen/font_size_enlarged"/>
 
         </RelativeLayout>
 
