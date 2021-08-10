@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_bookkeep.xml" value="0.2857789855072464" />
+        <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_bookkeep_add_detail.xml" value="0.2857789855072464" />
+        <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_bookkeep_annual_account_detail.xml" value="0.2857789855072464" />
+        <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_bookkeep_property_view.xml" value="0.2857789855072464" />
+        <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_bookkeep_statistics_view.xml" value="0.2857789855072464" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep.xml" value="0.23143115942028986" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep_add_detail.xml" value="0.2391304347826087" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep_annual_account_detail.xml" value="0.33" />
