@@ -7,6 +7,7 @@
         <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep_add_detail.xml" value="0.2391304347826087" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep_annual_account_detail.xml" value="0.33" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep_property_view.xml" value="0.2391304347826087" />
+        <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep_statistics_view.xml" value="0.25" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_habit_detail.xml" value="0.23143115942028986" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_habit_list.xml" value="0.23143115942028986" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_main.xml" value="0.2749094202898551" />
@@ -14,6 +15,7 @@
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_annual_income_and_expenses.xml" value="0.2391304347826087" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_bottom_bar.xml" value="0.24682971014492755" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_property_monthview.xml" value="0.23143115942028986" />
+        <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_property_window.xml" value="0.1721014492753623" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_record_card.xml" value="0.2749094202898551" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_window.xml" value="0.23143115942028986" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_greeting_card.xml" value="0.24682971014492755" />

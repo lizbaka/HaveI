@@ -21,7 +21,7 @@
         android:layout_below="@id/toolbar_bookkeep_property_view"
         android:layout_marginLeft="@dimen/bookkeep_window_border"
         android:layout_marginTop="@dimen/bookkeep_window_border"
-        android:layout_marginRight="@dimen/bookkeep_window_border"/>
+        android:layout_marginRight="@dimen/bookkeep_window_border" />
 
 
 </RelativeLayout>
