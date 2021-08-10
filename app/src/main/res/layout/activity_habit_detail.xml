@@ -1,9 +1,8 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -22,9 +21,9 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <TextView
+                android:id="@+id/habit_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/habit_name"
                 android:layout_gravity="center" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -32,9 +31,9 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
@@ -44,51 +43,51 @@
             android:layout_marginVertical="@dimen/widget_inview_margin">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/button_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/habit_detail_fixed_point"
-                android:layout_marginRight="@dimen/button_margin_narrow">
+                android:layout_marginRight="@dimen/button_margin_narrow"
+                android:layout_toLeftOf="@id/habit_detail_fixed_point">
 
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/widget_inview_margin"
-                    android:text="@string/button_year"
-                    android:textSize="@dimen/font_size_enlarged"
-                    android:textColor="@color/white"
                     android:backgroundTint="@color/amber_500"
-                    app:cornerRadius="@dimen/card_corner_radius"/>
+                    android:text="@string/button_year"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_enlarged"
+                    app:cornerRadius="@dimen/card_corner_radius" />
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/habit_detail_fixed_point"
-                android:layout_centerVertical="true"
-                android:layout_centerInParent="true">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true">
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/button_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button_month"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/habit_detail_fixed_point"
-                android:layout_marginLeft="@dimen/button_margin_narrow">
+                android:layout_marginLeft="@dimen/button_margin_narrow"
+                android:layout_toRightOf="@id/habit_detail_fixed_point">
 
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/widget_inview_margin"
+                    android:backgroundTint="@color/amber_500"
                     android:text="@string/button_month"
-                    android:textSize="@dimen/font_size_enlarged"
                     android:textColor="@color/white"
-                    app:cornerRadius="@dimen/card_corner_radius"
-                    android:backgroundTint="@color/amber_500" />
+                    android:textSize="@dimen/font_size_enlarged"
+                    app:cornerRadius="@dimen/card_corner_radius" />
 
 
             </RelativeLayout>
@@ -100,18 +99,17 @@
             android:id="@+id/habit_detail_calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:mcv_showOtherDates="decorated_disabled"
             app:mcv_selectionColor="?attr/colorPrimary"
-            app:mcv_selectionMode="none"/>
+            app:mcv_selectionMode="none"
+            app:mcv_showOtherDates="decorated_disabled" />
 
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/Dynamic_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Dynamic_card"
-            android:layout_margin="@dimen/widget_inview_margin"
-            app:contentPadding="@dimen/card_content_padding"
-            app:cardElevation="@dimen/card_elevation">
+            app:cardElevation="@dimen/card_elevation"
+            app:contentPadding="@dimen/card_content_padding">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -120,71 +118,35 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/widget_inview_margin"
                     android:layout_weight="0.6"
                     android:text="@string/actual_clock_in"
-                    android:textSize="@dimen/font_size_enlarged"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/widget_inview_margin"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_enlarged" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/font_size_enlarged"
-                    android:layout_margin="@dimen/widget_inview_margin"
                     android:id="@+id/actual_clock_in"
-                    android:layout_weight="0.4"/>
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_weight="0.4"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_enlarged"
+                    android:text="[actual_times]"/>
 
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             style="@style/Dynamic_card"
-            android:layout_margin="@dimen/widget_inview_margin"
-            app:contentPadding="@dimen/card_border_width"
-            app:cardElevation="@dimen/card_elevation">
-
-            <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/widget_inview_margin"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.6"
-                android:text="@string/plan_clock_in"
-                android:textSize="@dimen/font_size_enlarged"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:textColor="@color/white"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/font_size_enlarged"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:id="@+id/plan_clock_in"
-                android:layout_weight="0.4"/>
-
-        </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Dynamic_card"
-            android:layout_margin="@dimen/widget_inview_margin"
-            app:contentPadding="@dimen/card_border_width"
-            app:cardElevation="@dimen/card_elevation">
+            app:cardElevation="@dimen/card_elevation"
+            app:contentPadding="@dimen/card_border_width">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -193,26 +155,75 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.6"
-                    android:text="@string/habit_ranking"
-                    android:textSize="@dimen/font_size_enlarged"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/widget_inview_margin"
-                    android:textColor="@color/white"/>
+                    android:layout_weight="0.6"
+                    android:text="@string/plan_clock_in"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_enlarged" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/plan_clock_in"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_weight="0.4"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_size_enlarged"
-                    android:id="@+id/habit_ranking"
-                    android:layout_weight="0.4"/>
+                    android:text="[plan_times]"/>
 
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Dynamic_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="@dimen/card_elevation"
+            app:contentPadding="@dimen/card_border_width">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_weight="0.6"
+                    android:text="@string/habit_ranking"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_enlarged" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/habit_ranking"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_weight="0.4"
+                    android:textSize="@dimen/font_size_enlarged"
+                    android:textColor="@color/white"
+                    android:text="[habit_rank]"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/grey_500"
+            android:layout_margin="@dimen/widget_inview_margin"
+            android:text="@string/habit_detail_analyze_limit"/>
 
     </LinearLayout>
 
