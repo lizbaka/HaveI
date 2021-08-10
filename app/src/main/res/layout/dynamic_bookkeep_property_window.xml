@@ -1,0 +1,82 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Dynamic_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/bookkeep_property_monthview_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/bookkeep_window_record_border"
+            android:layout_marginTop="@dimen/bookkeep_window_record_border"
+            android:text="@string/bookkeep_property_view_goal" />
+
+        <TextView
+            android:id="@+id/bookkeep_property_monthview_goal_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/bookkeep_property_monthview_goal"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/bookkeep_window_record_border"
+            android:text="￥100000（仅做示例文本）"/>
+
+
+        <TextView
+            android:id="@+id/bookkeep_property_monthview_nearest_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookkeep_property_monthview_goal"
+            android:layout_alignLeft="@+id/bookkeep_property_monthview_goal"
+            android:layout_marginTop="@dimen/bookkeep_window_record_margin"
+            android:text="最近月（仅做示例文本）"/>
+
+        <TextView
+            android:id="@+id/bookkeep_property_monthview_nearest_month_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookkeep_property_monthview_goal_value"
+            android:layout_alignTop="@+id/bookkeep_property_monthview_nearest_month"
+            android:layout_alignRight="@+id/bookkeep_property_monthview_goal_value" />
+
+
+        <TextView
+            android:id="@+id/bookkeep_property_monthview_previous_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookkeep_property_monthview_nearest_month"
+            android:layout_alignLeft="@+id/bookkeep_property_monthview_goal"
+            android:layout_marginTop="@dimen/bookkeep_window_record_margin"
+            android:layout_marginBottom="@dimen/bookkeep_window_record_border" />
+
+        <TextView
+            android:id="@+id/bookkeep_property_monthview_previous_month_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookkeep_property_monthview_nearest_month_value"
+            android:layout_alignTop="@+id/bookkeep_property_monthview_previous_month"
+            android:layout_alignRight="@+id/bookkeep_property_monthview_goal_value" />
+
+        <TextView
+            android:id="@+id/bookkeep_property_monthview_previous2_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookkeep_property_monthview_previous_month"
+            android:layout_alignLeft="@+id/bookkeep_property_monthview_goal"
+            android:layout_marginTop="@dimen/bookkeep_window_record_margin"
+            android:layout_marginBottom="@dimen/bookkeep_window_record_border" />
+
+        <TextView
+            android:id="@+id/bookkeep_property_monthview_previous2_month_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookkeep_property_monthview_previous_month_value"
+            android:layout_alignTop="@+id/bookkeep_property_monthview_previous_month"
+            android:layout_alignRight="@+id/bookkeep_property_monthview_goal_value" />
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

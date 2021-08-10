@@ -8,9 +8,19 @@
     <Spinner
         android:id="@+id/bookeep_month_spinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/bookkeep_topbar_button_size"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/bookkeep_spinner_margin" />
+
+    <ImageButton
+        android:id="@+id/bookkeep_annual_account"
+        android:layout_width="@dimen/bookkeep_topbar_button_size"
+        android:layout_height="@dimen/bookkeep_topbar_button_size"
+        android:layout_alignTop="@+id/bookeep_month_spinner"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/bookkeep_window_border"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/calendar" />
 
     <include
         android:id="@+id/bookkeep_window"
