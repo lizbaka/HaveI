@@ -168,3 +168,14 @@
 =======
 </resources>
 >>>>>>> 91e2104ce003255fb7a402c624cb048d1511b99b
+
+    <!--proverb:Begin-->
+    <string name="proverb_list_title">我收藏的句子</string>
+    <string name="proverb_list_add">添加一个喜欢的句子！</string>
+    <string name="proverb_card_title">句子</string>
+    <string name="proverb_add_empty_alert">句子不能为空</string>
+    <string name="proverb_remove_confirm_title">确认取消句子收藏</string>
+    <string name="proverb_remove_confirm_msg">您取消了一些句子的收藏，您确定吗？</string>
+    <!--proverb:end-->
+
+</resources>
