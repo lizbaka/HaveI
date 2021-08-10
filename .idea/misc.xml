@@ -3,26 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep.xml" value="0.23143115942028986" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep_add_detail.xml" value="0.2391304347826087" />
-        <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep_annual_account_detail.xml" value="0.2391304347826087" />
+        <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep_annual_account_detail.xml" value="0.33" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_bookkeep_property_view.xml" value="0.2391304347826087" />
+        <entry key="..\:/Havei/app/src/main/res/layout/activity_habit_detail.xml" value="0.23143115942028986" />
+        <entry key="..\:/Havei/app/src/main/res/layout/activity_habit_list.xml" value="0.23143115942028986" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_main.xml" value="0.2749094202898551" />
         <entry key="..\:/Havei/app/src/main/res/layout/activity_test.xml" value="0.2749094202898551" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_annual_income_and_expenses.xml" value="0.2391304347826087" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_bottom_bar.xml" value="0.24682971014492755" />
+        <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_property_monthview.xml" value="0.23143115942028986" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_record_card.xml" value="0.2749094202898551" />
+        <entry key="..\:/Havei/app/src/main/res/layout/dynamic_bookkeep_window.xml" value="0.23143115942028986" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_greeting_card.xml" value="0.24682971014492755" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_habit_card.xml" value="0.2749094202898551" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_habit_shortcut.xml" value="0.24682971014492755" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_monthly_income_and_expenses.xml" value="0.2391304347826087" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_nav_header.xml" value="0.2391304347826087" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_proverb.xml" value="0.2391304347826087" />
+        <entry key="..\:/Havei/app/src/main/res/layout/dynamic_proverb_card.xml" value="0.23143115942028986" />
         <entry key="..\:/Havei/app/src/main/res/layout/dynamic_todo_card.xml" value="0.2391304347826087" />
         <entry key="..\:/Havei/app/src/main/res/layout/fragment_habit.xml" value="0.2391304347826087" />
+        <entry key="..\:/Havei/app/src/main/res/layout/toolbar_main.xml" value="0.23143115942028986" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

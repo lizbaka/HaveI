@@ -25,6 +25,7 @@
     <dimen name="proverb_card_favorite_size">30dp</dimen>
 
     <dimen name="dialog_padding">10dp</dimen>
+<<<<<<< HEAD
 <dimen name="bookkeep_spinner_margin">8dp</dimen>
     <dimen name="bookkeep_window_record_border">8dp</dimen>
     <dimen name="bookkeep_window_record_margin">10dp</dimen>
@@ -43,3 +44,7 @@
     <dimen name="bookkeep_add_account_detail_button_width">88dp</dimen>
     <dimen name="bookkeep_add_account_detail_button_height">48dp</dimen>
     <!--activity_add_account_detail:End--></resources>
+=======
+
+</resources>
+>>>>>>> 91e2104ce003255fb7a402c624cb048d1511b99b

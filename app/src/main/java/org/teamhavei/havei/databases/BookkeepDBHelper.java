@@ -13,9 +13,12 @@ import androidx.annotation.Nullable;
 import org.teamhavei.havei.Event.BookTag;
 import org.teamhavei.havei.Event.Bookkeep;
 import org.teamhavei.havei.Event.EventTag;
+import org.teamhavei.havei.Event.Habit;
+import org.teamhavei.havei.UniToolKit;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,7 +26,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     public static final String TAG = "DEBUG";
 
     public static final int DATABASE_VERSION = 2;
-    public static final String DB_NAME = "Bookkeeping.db";
+    public static final String DB_NAME = "Bookkeep.db";
     private static final String TABLE_BOOKKEEP = "Bookkeep";
     private static final String BOOKKEEP_ID = "id";
     private static final String BOOKKEEP_NAME = "name";
@@ -34,11 +37,11 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_BOOKKEEP =
             "create table " + TABLE_BOOKKEEP + "(" +
                     BOOKKEEP_ID + " integer primary key autoincrement," +//id
-                    BOOKKEEP_NAME + " text," +//习惯名
-                    BOOKKEEP_TAG_ID + " integer," +//标签id
+                    BOOKKEEP_NAME + " text," +
+                    BOOKKEEP_TAG_ID + " integer," +
                     BOOKKEEP_TIME + "text,"+
                     BOOKKEEP_ICON_ID +"integer,"+
-                    BOOKKEEP_PM + " integer)"; //计算参数
+                    BOOKKEEP_PM + " integer)";
 
     private static final String TABLE_BOOK_TAGS = "BookTags";
     private static final String BOOK_TAGS_ID = "id";
@@ -120,6 +123,11 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         Bookkeep mBookkeep = (Bookkeep) cursorToBookkeepList(cursor).get(0);
         cursor.close();
         return mBookkeep;
+    }
+    public List<Habit> findBookkeepByTime(Date time){
+        String sTime = UniToolKit.eventTimeFormatter(time);
+        Cursor cursor = db.query(TABLE_BOOKKEEP,null,BOOKKEEP_TIME + " = ?",new String[]{sTime},null,null,null);
+        return cursorToBookkeepList(cursor);
     }
     public void updateBookkeep(Bookkeep oldBookkeep, Bookkeep newBookkeep) {
         db.update(TABLE_BOOKKEEP, accountToValues(newBookkeep), BOOKKEEP_ID + " = ?", new String[]{Integer.toString(oldBookkeep.getid())});
