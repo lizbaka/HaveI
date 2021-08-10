@@ -27,7 +27,13 @@
     <dimen name="dialog_padding">10dp</dimen>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <dimen name="bookkeep_spinner_margin">8dp</dimen>
+=======
+
+    <dimen name="bookkeep_spinner_margin">8dp</dimen>
+    <dimen name="bookkeep_topbar_button_size">35dp</dimen>
+>>>>>>> 85886aa764389f7c1dbfe55a628fc8e7e329c0b1
 =======
 
     <dimen name="bookkeep_spinner_margin">8dp</dimen>
@@ -50,11 +56,17 @@
     <dimen name="bookkeep_add_account_detail_button_width">88dp</dimen>
     <dimen name="bookkeep_add_account_detail_button_height">48dp</dimen>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!--activity_add_account_detail:End--></resources>
 =======
 
 </resources>
 >>>>>>> 91e2104ce003255fb7a402c624cb048d1511b99b
+=======
+    <!--activity_add_account_detail:End-->
+
+</resources>
+>>>>>>> 85886aa764389f7c1dbfe55a628fc8e7e329c0b1
 =======
     <!--activity_add_account_detail:End-->
 
