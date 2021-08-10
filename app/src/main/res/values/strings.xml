@@ -119,10 +119,11 @@
     <!--nav_header:end-->
 
 
-    <!--habit_detail_toolbar:Begin-->
+    <!--habit_detail:Begin-->
     <string name="habit_detail_toolbar_modify">修改</string>
     <string name="habit_detail_toolbar_delete">删除</string>
-    <!--habit_detail_toolbar:end-->
+    <string name="habit_detail_analyze_limit">仅计算一年内数据，自第一次执行起计算</string>
+    <!--habit_detail:end-->
 
     <!--main_toolbar_Begin-->
     <string name="main_toolbar_analyze">分析</string>
