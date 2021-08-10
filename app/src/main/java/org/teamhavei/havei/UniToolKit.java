@@ -14,9 +14,9 @@ public class UniToolKit {
     public static final String HABIT_NOTIFICATION_CHANNEL_ID = "HaveI_Notification_habit";
 
 
-    public static final String EVENT_DATETIME_FORMAT = "yyyyMMdd HHmm";
-    public static final String EVENT_DATE_FORMAT = "yyyyMMdd";
-    public static final String EVENT_TIME_FORMAT = "HHmm";
+    public static final String EVENT_DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
+    public static final String EVENT_DATE_FORMAT = "yyyy-MM-dd";
+    public static final String EVENT_TIME_FORMAT = "HH:mm";
 
     public static final SimpleDateFormat datetimeSDF = new SimpleDateFormat(EVENT_DATETIME_FORMAT);
     public static final SimpleDateFormat timeSDF = new SimpleDateFormat(EVENT_TIME_FORMAT);
