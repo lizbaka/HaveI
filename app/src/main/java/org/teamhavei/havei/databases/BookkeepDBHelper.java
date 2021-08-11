@@ -10,12 +10,16 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import org.teamhavei.havei.Event.BookPlan;
 import org.teamhavei.havei.Event.BookTag;
 import org.teamhavei.havei.Event.Bookkeep;
-import org.teamhavei.havei.Event.EventTag;
+import org.teamhavei.havei.Event.BookCou;
+import org.teamhavei.havei.Event.Habit;
+import org.teamhavei.havei.UniToolKit;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,7 +27,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     public static final String TAG = "DEBUG";
 
     public static final int DATABASE_VERSION = 2;
-    public static final String DB_NAME = "Bookkeeping.db";
+    public static final String DB_NAME = "Bookkeep.db";
     private static final String TABLE_BOOKKEEP = "Bookkeep";
     private static final String BOOKKEEP_ID = "id";
     private static final String BOOKKEEP_NAME = "name";
@@ -34,11 +38,11 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_BOOKKEEP =
             "create table " + TABLE_BOOKKEEP + "(" +
                     BOOKKEEP_ID + " integer primary key autoincrement," +//id
-                    BOOKKEEP_NAME + " text," +//习惯名
-                    BOOKKEEP_TAG_ID + " integer," +//标签id
+                    BOOKKEEP_NAME + " text," +
+                    BOOKKEEP_TAG_ID + " integer," +
                     BOOKKEEP_TIME + "text,"+
                     BOOKKEEP_ICON_ID +"integer,"+
-                    BOOKKEEP_PM + " integer)"; //计算参数
+                    BOOKKEEP_PM + " integer)";
 
     private static final String TABLE_BOOK_TAGS = "BookTags";
     private static final String BOOK_TAGS_ID = "id";
@@ -51,6 +55,27 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                     BOOK_TAGS_ICON_ID + " integer," +//图标id
                     BOOK_TAGS_NAME + " text," +//标签名称
                     BOOK_TAGS_DELETE + " integer)";//标签是否被删除 0:未删除 1:已删除
+    private static final String TABLE_BOOK_COUS = "BookCous";
+    private static final String BOOK_COUS_ID = "id";
+    private static final String BOOK_COUS_TIME = "time";
+    private static final String BOOK_COUS_IN = "in";
+    private static final String BOOK_COUS_OUT = "out";
+    private static final String CREATE_BOOK_COUS =
+            "create table "+TABLE_BOOK_COUS+"("+
+                        BOOK_COUS_ID+" integer primary key autoincrement,"+
+                        BOOK_COUS_TIME+" text," +
+                        BOOK_COUS_IN+"integer"+
+                        BOOK_COUS_OUT+"integer)";
+
+    private static final String TABLE_BOOK_PLAN = "BookPlan";
+    private static final String BOOK_PLAN_ID = "id";
+    private static final String BOOK_PLAN_NUM = "num";
+    private static final String BOOK_PLAN_NEED = "need";
+    private static final String CREATE_BOOK_PLAN =
+            "create table "+TABLE_BOOK_PLAN+"("+
+                    BOOK_PLAN_ID+" integer primary key autoincrement,"+
+                    BOOK_PLAN_NUM+"integer"+
+                    BOOK_PLAN_NEED+"integer)";
 
     private Context mContext;
     private SQLiteDatabase db = getReadableDatabase();
@@ -62,6 +87,8 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_BOOKKEEP);
         db.execSQL(CREATE_BOOK_TAGS);
+        db.execSQL(CREATE_BOOK_COUS);
+        db.execSQL(CREATE_BOOK_PLAN);
 
 
     }
@@ -72,6 +99,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         }
         db.execSQL("drop table if exists " + TABLE_BOOK_TAGS);
         db.execSQL("drop table if exists " + TABLE_BOOKKEEP);
+        db.execSQL("drop table if exists " + TABLE_BOOK_COUS);
 
         onCreate(db);
     }
@@ -121,6 +149,11 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         cursor.close();
         return mBookkeep;
     }
+    public List<Habit> findBookkeepByTime(Date time){
+        String sTime = UniToolKit.eventTimeFormatter(time);
+        Cursor cursor = db.query(TABLE_BOOKKEEP,null,BOOKKEEP_TIME + " = ?",new String[]{sTime},null,null,null);
+        return cursorToBookkeepList(cursor);
+    }
     public void updateBookkeep(Bookkeep oldBookkeep, Bookkeep newBookkeep) {
         db.update(TABLE_BOOKKEEP, accountToValues(newBookkeep), BOOKKEEP_ID + " = ?", new String[]{Integer.toString(oldBookkeep.getid())});
     }
@@ -145,7 +178,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         if(cursor!=null && cursor.getCount()>0) {
             try {
                 if (cursor.getCount() > 1) {
-                    Log.d(TAG, "cursorToEventTag: Found more than one event tag");
+                    Log.d(TAG, "cursorToEventTag: Found more than one");
                 }
                 cursor.moveToFirst();
                 mBookTag.setId(cursor.getInt(cursor.getColumnIndex(BOOK_TAGS_ID)));
@@ -183,6 +216,115 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         updateBookTag(mBookTag,delBookTag);
     }
     //========Book_Tag相关功能:end========
+
+    //========Bookcous相关功能:Begin========
+
+
+    private ContentValues bookCousToValues(BookCou mBookCou) {
+        ContentValues values = new ContentValues();
+        values.put(BOOK_COUS_TIME, mBookCou.getTime());
+        values.put(BOOK_COUS_IN, mBookCou.getIn());
+        values.put(BOOK_COUS_OUT, mBookCou.getOut());
+
+        return values;
+    }
+
+    private BookCou cursorToBookCou(Cursor cursor) {
+        BookCou mBookCou = new BookCou();
+        if(cursor!=null && cursor.getCount()>0) {
+            try {
+                if (cursor.getCount() > 1) {
+                    Log.d(TAG, "cursorToEventTag: Found more than one ");
+                }
+                cursor.moveToFirst();
+                mBookCou.setId(cursor.getInt(cursor.getColumnIndex(BOOK_COUS_ID)));
+                mBookCou.setTime(cursor.getString(cursor.getColumnIndex(BOOK_COUS_TIME)));
+                mBookCou.setIn(cursor.getInt(cursor.getColumnIndex(BOOK_COUS_IN)));
+                mBookCou.setOut(cursor.getInt(cursor.getColumnIndex(BOOK_COUS_OUT)));
+
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            Log.d(TAG, "cursorToBookCou: No such BookCou");
+        }
+        return mBookCou;
+    }
+
+    public void insertBookCou(BookCou mBookCou) {
+        db.insert(TABLE_BOOK_COUS, null, bookCousToValues(mBookCou));
+    }
+
+    public BookCou findBookCouById(int id) {
+        Cursor cursor = db.query(TABLE_BOOK_COUS, null, BOOK_COUS_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
+        BookCou mBookCou = cursorToBookCou(cursor);
+        cursor.close();
+        return mBookCou;
+    }
+
+    public void updateBookCou(BookCou oldBookCou, BookCou newBookCou) {
+        db.update(TABLE_BOOK_COUS, bookCousToValues(newBookCou), BOOK_COUS_ID + " = ?", new String[]{Integer.toString(oldBookCou.getId())});
+    }
+
+    public void deleteBookcous(BookCou mBookCou) {
+        db.delete(TABLE_BOOK_COUS, BOOK_COUS_ID + " = ? ", new String[]{Integer.toString(mBookCou.getId())});
+    }
+
+    //========Bookcous相关功能:end========
+
+
+    //========BookpLAN相关功能:start========
+    private ContentValues bookPlanToValues(BookPlan mBookPlan) {
+        ContentValues values = new ContentValues();
+
+        values.put(BOOK_PLAN_NEED, mBookPlan.getNeed());
+        values.put(BOOK_PLAN_NEED, mBookPlan.getNum());
+
+        return values;
+    }
+
+    private BookPlan cursorToBookPlan(Cursor cursor) {
+        BookPlan mBookPlan = new BookPlan();
+        if(cursor!=null && cursor.getCount()>0) {
+            try {
+                if (cursor.getCount() > 1) {
+                    Log.d(TAG, "cursorToEventTag: Found more than one ");
+                }
+                cursor.moveToFirst();
+                mBookPlan.setId(cursor.getInt(cursor.getColumnIndex(BOOK_PLAN_ID)));
+
+                mBookPlan.setNum(cursor.getInt(cursor.getColumnIndex(BOOK_PLAN_NUM)));
+                mBookPlan.setNeed(cursor.getInt(cursor.getColumnIndex(BOOK_PLAN_NEED)));
+
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            Log.d(TAG, "cursorToBookPAN: No such BookPLAN");
+        }
+        return mBookPlan;
+    }
+
+    public void insertBookPlan(BookPlan mBookPlan) {
+        db.insert(TABLE_BOOK_PLAN, null, bookPlanToValues(mBookPlan));
+    }
+
+    public BookPlan findBookPlanById(int id) {
+        Cursor cursor = db.query(TABLE_BOOK_PLAN, null, BOOK_PLAN_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
+        BookPlan mBookPlan = cursorToBookPlan(cursor);
+        cursor.close();
+        return mBookPlan;
+    }
+
+    public void updateBookplan(BookPlan oldBookPlan, BookPlan newBookPlan) {
+        db.update(TABLE_BOOK_PLAN, bookPlanToValues(newBookPlan), BOOK_PLAN_ID + " = ?", new String[]{Integer.toString(oldBookPlan.getId())});
+    }
+
+    public void deleteBookplan(BookPlan mBookplan) {
+        db.delete(TABLE_BOOK_PLAN, BOOK_PLAN_ID + " = ? ", new String[]{Integer.toString(mBookplan.getId())});
+    }
 
 }
 
