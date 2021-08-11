@@ -11,13 +11,22 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
+    <TextView
+        android:id="@+id/bookkeep_annual_account_detail_year_value"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bookkeep_spinner_height"
+        android:layout_below="@+id/toolbar_bookkeep_annual_account_detail"
+        android:layout_marginTop="@dimen/bookkeep_spinner_margin"
+        android:layout_marginLeft="@dimen/bookkeep_spinner_margin"
+        android:gravity="center|bottom"
+        android:text="TextView" />
+
     <Spinner
         android:id="@+id/bookkeep_annual_account_detail_year_spinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar_bookkeep_annual_account_detail"
-        android:layout_marginTop="@dimen/bookkeep_spinner_margin"
-        android:layout_marginLeft="@dimen/bookkeep_spinner_margin" />
+        android:layout_height="@dimen/bookkeep_spinner_height"
+        android:layout_alignTop="@+id/bookkeep_annual_account_detail_year_value"
+        android:layout_toRightOf="@+id/bookkeep_annual_account_detail_year_value" />
 
     <include
         android:id="@+id/bookkeep_annual_income_and_expenses"

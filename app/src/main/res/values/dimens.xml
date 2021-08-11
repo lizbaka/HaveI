@@ -27,6 +27,7 @@
     <dimen name="dialog_padding">10dp</dimen>
 
     <dimen name="bookkeep_spinner_margin">8dp</dimen>
+    <dimen name="bookkeep_spinner_height">30dp</dimen>
     <dimen name="bookkeep_topbar_button_size">35dp</dimen>
     <dimen name="bookkeep_window_record_border">8dp</dimen>
     <dimen name="bookkeep_window_record_margin">10dp</dimen>
