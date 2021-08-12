@@ -15,6 +15,8 @@ public class ActivityBookkeepStatisticsView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookkeep_statistics_view);
     }
+
+
 }
 
 public void OnClickFindStatisticsView(View view){

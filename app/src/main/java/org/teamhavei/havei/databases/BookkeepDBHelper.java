@@ -25,7 +25,6 @@ import java.util.List;
 
 public class BookkeepDBHelper extends SQLiteOpenHelper {
     public static final String TAG = "DEBUG";
-
     public static final int DATABASE_VERSION = 2;
     public static final String DB_NAME = "Bookkeep.db";
     private static final String TABLE_BOOKKEEP = "Bookkeep";
