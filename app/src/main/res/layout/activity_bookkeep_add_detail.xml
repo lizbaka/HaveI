@@ -5,13 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/add_account_detail_date_spinner"
+    <TextView
+        android:id="@+id/bookkeep_add_detail_date_value"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/bookkeep_topbar_button_size"
         android:layout_marginTop="@dimen/bookkeep_spinner_margin"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/bookkeep_add_detail_date_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bookkeep_topbar_button_size"
+        android:layout_marginTop="@dimen/bookkeep_spinner_margin"
+        app:layout_constraintStart_toEndOf="@id/bookkeep_add_detail_date_value"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
@@ -22,7 +31,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_account_detail_date_spinner">
+        app:layout_constraintTop_toBottomOf="@+id/bookkeep_add_detail_date_spinner">
 
         <RadioButton
             android:id="@+id/add_account_detail_radio_expenditure"

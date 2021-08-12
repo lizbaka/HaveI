@@ -4,12 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/bookkeep_statistics_view_spinner_value"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bookkeep_spinner_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/bookkeep_spinner_margin"
+        android:gravity="center"/>
+
     <Spinner
         android:id="@+id/spinner_bookkeep_statistics_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/bookkeep_spinner_margin" />
+        android:layout_height="@dimen/bookkeep_spinner_height"
+        android:layout_toRightOf="@+id/bookkeep_statistics_view_spinner_value"
+        android:layout_alignTop="@+id/bookkeep_statistics_view_spinner_value"/>
 
     <include
         android:id="@+id/bookkeep_statistics_window"

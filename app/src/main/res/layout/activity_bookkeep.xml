@@ -4,19 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/bookkeep_month_value"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bookkeep_topbar_button_size"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/bookkeep_spinner_margin"
+        android:gravity="center" />
 
     <Spinner
         android:id="@+id/bookeep_month_spinner"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/bookkeep_topbar_button_size"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/bookkeep_spinner_margin" />
+        android:layout_alignTop="@+id/bookkeep_month_value"
+        android:layout_toRightOf="@+id/bookkeep_month_value"/>
 
     <ImageButton
         android:id="@+id/bookkeep_annual_account"
         android:layout_width="@dimen/bookkeep_topbar_button_size"
         android:layout_height="@dimen/bookkeep_topbar_button_size"
-        android:layout_alignTop="@+id/bookeep_month_spinner"
+        android:layout_alignTop="@+id/bookkeep_month_value"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/bookkeep_window_border"
         android:scaleType="centerCrop"
