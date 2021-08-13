@@ -30,201 +30,242 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <RelativeLayout
-            android:id="@+id/chooser_button"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/widget_inview_margin">
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/button_year"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/button_margin_narrow"
-                android:layout_toLeftOf="@id/habit_detail_fixed_point">
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
 
-                <com.google.android.material.button.MaterialButton
+                <TextView
+                    android:id="@+id/habit_detail_frequent_info"
+                    style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/widget_inview_margin"
-                    android:backgroundTint="@color/amber_500"
-                    android:text="@string/button_year"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_size_enlarged"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                    android:text="[frequent_info]"
+                    android:textColor="@color/grey_500" />
 
-            </RelativeLayout>
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:src="@drawable/alarm_clock" />
 
-            <RelativeLayout
-                android:id="@+id/habit_detail_fixed_point"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_centerVertical="true">
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/button_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/button_margin_narrow"
-                android:layout_toRightOf="@id/habit_detail_fixed_point">
-
-                <com.google.android.material.button.MaterialButton
+                <TextView
+                    android:id="@+id/habit_detail_reminder_info"
+                    style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/widget_inview_margin"
-                    android:backgroundTint="@color/amber_500"
-                    android:text="@string/button_month"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_size_enlarged"
-                    app:cornerRadius="@dimen/card_corner_radius" />
+                    android:text="[reminder_info]"
+                    android:textColor="@color/grey_500" />
 
+            </LinearLayout>
+
+            <!-- TODO: 2021.08.13 实现年度习惯统计（界面17），实现后解除此隐藏 -->
+            <RelativeLayout
+                android:id="@+id/chooser_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/widget_inview_margin"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:id="@+id/button_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/button_margin_narrow"
+                    android:layout_toLeftOf="@id/habit_detail_fixed_point">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/widget_inview_margin"
+                        android:backgroundTint="@color/amber_500"
+                        android:text="@string/button_year"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_enlarged"
+                        app:cornerRadius="@dimen/card_corner_radius" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/habit_detail_fixed_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true">
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/button_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/button_margin_narrow"
+                    android:layout_toRightOf="@id/habit_detail_fixed_point">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/widget_inview_margin"
+                        android:backgroundTint="@color/amber_500"
+                        android:text="@string/button_month"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_enlarged"
+                        app:cornerRadius="@dimen/card_corner_radius" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
-        </RelativeLayout>
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Dynamic_card.border"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                    android:id="@+id/habit_detail_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:mcv_selectionColor="?attr/colorPrimary"
+                    app:mcv_selectionMode="none"
+                    app:mcv_showOtherDates="decorated_disabled" />
+            </com.google.android.material.card.MaterialCardView>
 
 
-        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-            android:id="@+id/habit_detail_calendar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:mcv_selectionColor="?attr/colorPrimary"
-            app:mcv_selectionMode="none"
-            app:mcv_showOtherDates="decorated_disabled" />
-
-
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Dynamic_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="@dimen/card_elevation"
-            app:contentPadding="@dimen/card_content_padding">
-
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Dynamic_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:orientation="horizontal">
+                app:cardElevation="@dimen/card_elevation"
+                app:contentPadding="@dimen/card_content_padding"
+                android:clickable="false">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/widget_inview_margin"
-                    android:layout_weight="0.6"
-                    android:text="@string/actual_clock_in"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_size_enlarged" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/actual_clock_in"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/widget_inview_margin"
-                    android:layout_weight="0.4"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_size_enlarged"
-                    android:text="[actual_times]"/>
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/widget_inview_margin"
+                        android:layout_weight="0.6"
+                        android:text="@string/actual_clock_in"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_enlarged" />
 
-        </com.google.android.material.card.MaterialCardView>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/actual_clock_in"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/widget_inview_margin"
+                        android:layout_weight="0.4"
+                        android:text="[actual_times]"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_enlarged" />
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Dynamic_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="@dimen/card_elevation"
-            app:contentPadding="@dimen/card_border_width">
+                </LinearLayout>
 
-            <LinearLayout
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Dynamic_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:orientation="horizontal">
+                app:cardElevation="@dimen/card_elevation"
+                app:contentPadding="@dimen/card_border_width"
+                android:clickable="false">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/widget_inview_margin"
-                    android:layout_weight="0.6"
-                    android:text="@string/plan_clock_in"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_size_enlarged" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/plan_clock_in"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/widget_inview_margin"
-                    android:layout_weight="0.4"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_size_enlarged"
-                    android:text="[plan_times]"/>
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/widget_inview_margin"
+                        android:layout_weight="0.6"
+                        android:text="@string/plan_clock_in"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_enlarged" />
 
-        </com.google.android.material.card.MaterialCardView>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/plan_clock_in"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/widget_inview_margin"
+                        android:layout_weight="0.4"
+                        android:text="[plan_times]"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_enlarged" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Dynamic_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="@dimen/card_elevation"
-            app:contentPadding="@dimen/card_border_width">
-
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Dynamic_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:orientation="horizontal">
+                app:cardElevation="@dimen/card_elevation"
+                app:contentPadding="@dimen/card_border_width"
+                android:clickable="false">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/widget_inview_margin"
-                    android:layout_weight="0.6"
-                    android:text="@string/habit_ranking"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_size_enlarged" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/habit_ranking"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/widget_inview_margin"
-                    android:layout_weight="0.4"
-                    android:textSize="@dimen/font_size_enlarged"
-                    android:textColor="@color/white"
-                    android:text="[habit_rank]"/>
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/widget_inview_margin"
+                        android:layout_weight="0.6"
+                        android:text="@string/habit_ranking"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_enlarged" />
 
-        </com.google.android.material.card.MaterialCardView>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/habit_ranking"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/widget_inview_margin"
+                        android:layout_weight="0.4"
+                        android:text="[habit_rank]"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_enlarged" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Body1"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/grey_500"
-            android:layout_margin="@dimen/widget_inview_margin"
-            android:text="@string/habit_detail_analyze_limit"/>
+                </LinearLayout>
 
-    </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

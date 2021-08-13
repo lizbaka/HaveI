@@ -1,9 +1,8 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -29,44 +28,44 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingHorizontal="20dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <RelativeLayout
-            android:id="@+id/modify_habit_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/widget_inview_margin">
 
             <RelativeLayout
                 android:id="@+id/modify_habit_record_card_icon_container"
-                android:layout_centerVertical="true"
-                android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_width="@dimen/round_icon_background_size"
                 android:layout_height="@dimen/round_icon_background_size"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/widget_inview_margin"
                 android:background="@drawable/bg_round_icon">
 
                 <ImageView
                     android:id="@+id/modify_habit_note_card_icon"
-                    android:layout_centerInParent="true"
                     android:layout_width="@dimen/round_icon_size"
-                    android:layout_height="@dimen/round_icon_size"/>
+                    android:layout_height="@dimen/round_icon_size"
+                    android:layout_centerInParent="true" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/modify_habit_record_card_icon_container"
-                android:layout_centerInParent="true">
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/modify_habit_record_card_icon_container">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/modify_habit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00000000"
                     android:hint="@string/modify_habit_hint_name"
-                    android:textSize="@dimen/font_size_enlarged"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textSize="@dimen/font_size_enlarged" />
 
             </RelativeLayout>
 
@@ -76,47 +75,43 @@
             android:id="@+id/modify_habit_frequency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginVertical="@dimen/widget_inview_margin">
+            android:layout_marginVertical="@dimen/widget_inview_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/modify_habit_text_frequency" />
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/habit_times_input"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:hint="" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.8"
-                android:background="#00000000"
-                android:text="@string/modify_habit_text_frequency"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:gravity="center_vertical"
+                android:text="@string/times" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="几"/>
+                android:id="@+id/habit_unit_input"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5" />
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
+                style="@style/TextAppearance.AppCompat.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.1"
                 android:background="#00000000"
-                android:text="次"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="几"/>
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:background="#00000000"
-                android:text="天"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-
+                android:gravity="center_vertical"
+                android:text="@string/day" />
 
 
         </LinearLayout>
@@ -124,69 +119,69 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dividing_line_view_height"
-            android:background="#22000000"/>
+            android:background="#22000000" />
 
 
         <LinearLayout
             android:id="@+id/modify_habit_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginVertical="@dimen/widget_inview_margin">
+            android:layout_marginVertical="@dimen/widget_inview_margin"
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="wrap_content"
+            <TextView
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.8"
-                android:background="#00000000"
-                android:text="@string/modify_habit_text_time"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:gravity="center_vertical"
+                android:text="@string/modify_habit_text_time" />
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
+                android:id="@+id/habit_remind_time_button"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/habit_remind_time"
-                android:text="@string/modify_habit_button_time"
-                android:textSize="@dimen/font_size_enlarged"
+                android:layout_weight="1"
                 android:backgroundTint="@color/amber_500"
+                android:text="@string/modify_habit_button_time"
                 android:textColor="@color/white"
-                android:layout_weight="0.2"
-                app:cornerRadius="@dimen/card_corner_radius"/>
+                android:textSize="@dimen/font_size_enlarged"
+                app:cornerRadius="@dimen/card_corner_radius" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dividing_line_view_height"
-            android:background="#22000000"/>
+            android:background="#22000000" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Dynamic_card.border"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_tag"
+                    android:layout_margin="@dimen/widget_inview_margin"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/modify_habit_tag_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/widget_inview_margin"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/modify_habit_done_button"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_gravity="bottom"
-            style="?attr/borderlessButtonStyle"
-            app:cornerRadius="0dp"
-            app:backgroundTint="#00000000"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:textColor="?attr/colorPrimary"
-            android:text="@string/modify_habit_done"
-            android:textSize="@dimen/font_size_enlarged"/>
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
