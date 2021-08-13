@@ -13,6 +13,10 @@
     <string name="save">保存</string>
     <string name="back">返回</string>
     <string name="confirm">确定</string>
+    <string name="times">次</string>
+    <string name="day">天</string>
+    <string name="each">每</string>
+    <string name="select_tag">选择一个标签</string>
     <!--universal_UI:end-->
 
 
@@ -40,7 +44,6 @@
     <!--activity_daily_habit:end-->
 
 
-
     <!--habit_detail:Begin-->
     <string name="button_year">年度统计</string>
     <string name="button_month">月度统计</string>
@@ -53,6 +56,8 @@
     <string name="habit_detail_delete_dialog_title">删除习惯</string>
     <string name="habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除</string>
     <string name="habit_detail_delete_dialog_msg2">吗？</string>
+    <string name="habit_detail_empty_execution_hint">还没打过卡</string>
+    <string name="habit_detail_empty_reminder_hint">未设置提醒时间</string>
     <!--habit_detail:end-->
 
 
@@ -71,7 +76,6 @@
     <string name="modify_todo_exist_error">事件已存在</string>
     <string name="modify_todo_empty_name">事件名不能为空</string>
     <!--modify_todo:end-->
-
 
 
     <!--modify_habit:Begin-->
@@ -95,13 +99,6 @@
     <!--habit:end-->
 
 
-    <!--habit_card:Begin-->
-    <string name="habit_card_done">太棒了！今天已经完成</string>
-    <string name="habit_card_undone">今天尚未完成</string>
-    <string name="habit_card_count1">您已坚持完成习惯 </string>
-    <string name="habit_card_count2"> 次，持之以恒！</string>
-    <!--habit_card:end-->
-
     <!--greeting_card:Begin-->
     <string-array name="greeting_card_time">
         <item>早上好！</item>
@@ -122,7 +119,6 @@
     <!--habit_detail:Begin-->
     <string name="habit_detail_toolbar_modify">修改</string>
     <string name="habit_detail_toolbar_delete">删除</string>
-    <string name="habit_detail_analyze_limit">仅计算一年内数据，自第一次执行起计算</string>
     <!--habit_detail:end-->
 
     <!--main_toolbar_Begin-->
@@ -160,7 +156,7 @@
     <string name="proverb_remove_confirm_msg">您取消了一些句子的收藏，您确定吗？</string>
     <!--proverb:end-->
 
-<!--time_table:begin-->
+    <!--time_table:begin-->
     <string name="tt_monday">一</string>
     <string name="tt_tuesday">二</string>
     <string name="tt_wednesday">三</string>
