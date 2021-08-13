@@ -12,8 +12,8 @@
         android:layout_marginLeft="@dimen/bookkeep_bottom_bar_button_horizontal_margin"
         android:layout_marginBottom="@dimen/bookkeep_bottom_bar_button_vertical_margin"
         android:gravity="center"
-        android:text="@string/bookkeep_statistics"
-        android:onClick="onClickFindStatisticsView"/>
+        android:onClick="onClickFindStatisticsView"
+        android:text="@string/bookkeep_statistics" />
 
     <ImageButton
         android:id="@+id/bookkeep_bottom_bar_add"
@@ -30,10 +30,11 @@
         android:id="@+id/bookeep_bottom_bar_property"
         android:layout_width="@dimen/bookkeep_bottom_bar_button_width"
         android:layout_height="@dimen/bookkeep_bottom_bar_button_height"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/bookkeep_bottom_bar_button_vertical_margin"
+        android:layout_alignParentBottom="true"
         android:layout_marginRight="@dimen/bookkeep_bottom_bar_button_horizontal_margin"
+        android:layout_marginBottom="@dimen/bookkeep_bottom_bar_button_vertical_margin"
+        android:onClick="onClickFindPropertyView"
         android:text="@string/bookkeep_property" />
 
 </RelativeLayout>

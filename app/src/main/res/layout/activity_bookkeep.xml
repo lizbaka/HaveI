@@ -26,8 +26,11 @@
         android:layout_alignTop="@+id/bookkeep_month_value"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/bookkeep_window_border"
+        android:onClick="onClickFindAnnualAccountDetail"
+        android:padding="0dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/calendar" />
+        android:src="@drawable/calendar"
+        android:contentDescription="@string/bookkeep_annual_account_button"/>
 
     <include
         android:id="@+id/bookkeep_window"
