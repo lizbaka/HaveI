@@ -192,6 +192,24 @@ public class EventDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_HABIT, null, null, null, null, null, null);
         return cursorToHabitList(cursor);
     }
+
+    public int getHabitRank(int habitId) {
+        /* SELECT Habit.id, COUNT(Habit.id) FROM Habit JOIN Habit_execs ON Habit.id = Habit_execs.habit_id GROUP BY Habit.id ORDER BY COUNT(Habit.id) DESC*/
+        final String QUERY_ORDER_BY_RANK =
+                "SELECT " + TABLE_HABIT + "." + HABIT_ID + ", COUNT(" + TABLE_HABIT + "." + HABIT_ID + ") " +
+                        "FROM " + TABLE_HABIT + " JOIN " + TABLE_HABIT_EXECS + " ON " + TABLE_HABIT + "." + HABIT_ID + " = " + TABLE_HABIT_EXECS + "." + HABIT_EXECS_HABIT_ID +
+                        " GROUP BY " + TABLE_HABIT + "." + HABIT_ID +
+                        " ORDER BY COUNT(" + TABLE_HABIT + "." + HABIT_ID + ") DESC";
+        Log.d(TAG, "getHabitRank: " + QUERY_ORDER_BY_RANK);
+        Cursor cursor = db.rawQuery(QUERY_ORDER_BY_RANK,null);
+        while (cursor.moveToNext()) {
+            if (cursor.getInt(cursor.getColumnIndex(HABIT_ID)) == habitId) {
+                return cursor.getPosition() + 1;
+            }
+        }
+        Log.d(TAG, "getHabitRank: no such habit with id of " + habitId);
+        return 0;
+    }
     //========Habit相关功能:end===============
 
 
@@ -235,11 +253,10 @@ public class EventDBHelper extends SQLiteOpenHelper {
     }
 
     public boolean switchHabitExec(int habitId, String date) {
-        if(isHabitDone(habitId,date)){
-            db.delete(TABLE_HABIT_EXECS, HABIT_EXECS_HABIT_ID + " = ?" + " AND " + HABIT_EXECS_DATE + " = ?",new String[]{Integer.toString(habitId),date});
+        if (isHabitDone(habitId, date)) {
+            db.delete(TABLE_HABIT_EXECS, HABIT_EXECS_HABIT_ID + " = ?" + " AND " + HABIT_EXECS_DATE + " = ?", new String[]{Integer.toString(habitId), date});
             return false;
-        }
-        else{
+        } else {
             HabitExec habitExec = new HabitExec();
             habitExec.setDate(date);
             habitExec.setHabitId(habitId);
@@ -255,6 +272,9 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return mHabitExec;
     }
 
+    /**
+     * return a group of HabitExecs chronologically
+     */
     public List<HabitExec> findHabitExecByHabitId(int habitId) {
         Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ?", new String[]{Integer.toString(habitId)}, null, null, HABIT_EXECS_DATE);
         List<HabitExec> habitExecList = cursorToHabitExecList(cursor);
