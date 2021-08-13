@@ -18,8 +18,11 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.teamhavei.havei.Event.Bookkeep;
+import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
+import org.teamhavei.havei.databases.BookkeepDBHelper;
 import org.teamhavei.havei.databases.EventDBHelper;
 import org.teamhavei.havei.services.HaveITimeWatcher;
 
@@ -38,6 +41,7 @@ public class ActivityMain extends BaseActivity{
     DrawerLayout mDrawerLayout;
     NavigationView mNavView;
     EventDBHelper eventDBHelper;
+    public BookkeepDBHelper bookkeepDBHelper;
 
     SharedPreferences pref;
 
@@ -57,6 +61,8 @@ public class ActivityMain extends BaseActivity{
             initNotificationChannel();
         }
         eventDBHelper = new EventDBHelper(ActivityMain.this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
+        bookkeepDBHelper= new BookkeepDBHelper(ActivityMain.this,BookkeepDBHelper.DB_NAME,null, BookkeepDBHelper.DATABASE_VERSION);
+
 
         pref = getSharedPreferences("settings",MODE_PRIVATE);
         if(pref.getBoolean(getString(R.string.pref_first_run),false) == true){

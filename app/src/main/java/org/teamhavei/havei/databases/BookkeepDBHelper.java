@@ -148,7 +148,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         cursor.close();
         return mBookkeep;
     }
-    public List<Habit> findBookkeepByTime(Date time){
+    public List<Bookkeep> findBookkeepByTime(Date time){
         String sTime = UniToolKit.eventTimeFormatter(time);
         Cursor cursor = db.query(TABLE_BOOKKEEP,null,BOOKKEEP_TIME + " = ?",new String[]{sTime},null,null,null);
         return cursorToBookkeepList(cursor);

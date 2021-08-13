@@ -23,5 +23,15 @@
         android:layout_marginTop="@dimen/bookkeep_window_border"
         android:layout_marginRight="@dimen/bookkeep_window_border" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
 
 </RelativeLayout>
