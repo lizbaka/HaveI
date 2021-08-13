@@ -13,8 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.R;
+import org.teamhavei.havei.UniToolKit;
+import org.teamhavei.havei.activities.ActivityHabitDetail;
 import org.teamhavei.havei.databases.EventDBHelper;
 
+import java.util.Date;
 import java.util.List;
 
 public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.ViewHolder> {
@@ -26,7 +29,7 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
     private SQLiteDatabase db;
     private Context mContext;
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameView;
         TextView tagView;
@@ -35,7 +38,7 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         Habit mHabit;
         Boolean isHabitDoneToday;
 
-        public ViewHolder(View view){
+        public ViewHolder(View view) {
             super(view);
             nameView = (TextView) view.findViewById(R.id.habit_card_name);
             tagView = (TextView) view.findViewById(R.id.habit_card_tag);
@@ -45,28 +48,33 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
 
     }
 
-    public HabitCardAdapter(List<Habit> habitList,Context context){
+    public HabitCardAdapter(List<Habit> habitList, Context context) {
         mHabitList = habitList;
         mContext = context;
-        dbHelper = new EventDBHelper(mContext, EventDBHelper.DB_NAME,null, EventDBHelper.DB_VERSION);
+        dbHelper = new EventDBHelper(mContext, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
         db = dbHelper.getWritableDatabase();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_habit_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_habit_card, parent, false);
         ViewHolder holder = new ViewHolder(view);
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 2021/7/14 实现习惯详情界面后接入
+                ActivityHabitDetail.startAction(mContext, holder.mHabit);
             }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                // TODO: 2021/7/14 实现习惯标记功能
+                holder.isHabitDoneToday = dbHelper.switchHabitExec(holder.mHabit.getId(), UniToolKit.eventDateFormatter(new Date()));
+                if (holder.isHabitDoneToday) {
+                    holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_check_24_color_pv));
+                } else {
+                    holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_close_24_white));
+                }
                 return true;
             }
         });
@@ -82,11 +90,14 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         int habitID = holder.mHabit.getId();
         holder.nameView.setText(name);
         holder.tagView.setText(tag);
-        holder.isHabitDoneToday = dbHelper.isHabitDoneToday(habitID);
-        if(holder.isHabitDoneToday){
-            holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_check_24_color_pv));
+        if(tag!=null){
+            holder.tagView.setVisibility(View.VISIBLE);
         }
-        else{
+        // TODO: 2021.08.12 处理tag和图标 
+        holder.isHabitDoneToday = dbHelper.isHabitDoneToday(habitID);
+        if (holder.isHabitDoneToday) {
+            holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_check_24_color_pv));
+        } else {
             holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_close_24_white));
         }
     }
