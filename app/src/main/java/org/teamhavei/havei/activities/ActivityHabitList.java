@@ -8,14 +8,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.adapters.HabitCardAdapter;
 import org.teamhavei.havei.databases.EventDBHelper;
 
+import java.util.List;
+
 public class ActivityHabitList extends BaseActivity {
 
     RecyclerView habitCardList;
+    HabitCardAdapter habitCardAdapter;
     EventDBHelper dbHelper;
+    List<Habit> habitList;
 
     public static void startAction(Context context){
         Intent intent = new Intent(context, ActivityHabitList.class);
@@ -31,10 +36,20 @@ public class ActivityHabitList extends BaseActivity {
         setSupportActionBar(findViewById(R.id.habit_list_toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        habitList = dbHelper.findAllHabit();
         habitCardList.setLayoutManager(new LinearLayoutManager(this));
-        HabitCardAdapter habitCardAdapter = new HabitCardAdapter(dbHelper.findAllHabit(),ActivityHabitList.this);
+        habitCardAdapter = new HabitCardAdapter(dbHelper.findAllHabit(),ActivityHabitList.this);
         habitCardList.setAdapter(habitCardAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        List<Habit> newHabitList = dbHelper.findAllHabit();
+        if(!habitList.equals(newHabitList)){
+            habitList = newHabitList;
+        }
+        habitCardAdapter.notifyDataSetChanged();
     }
 
     @Override
