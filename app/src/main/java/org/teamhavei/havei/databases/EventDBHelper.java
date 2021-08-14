@@ -128,7 +128,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
         values.put(HABIT_REPEAT_TIMES, mHabit.getRepeatTimes());
         if (mHabit.getReminderTime() != null) {
             values.put(HABIT_REMINDER_TIME, mHabit.getReminderTime());
-        }else{
+        } else {
             values.putNull(HABIT_REMINDER_TIME);
         }
         return values;
@@ -307,25 +307,28 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return values;
     }
 
-    private EventTag cursorToEventTag(Cursor cursor) {
-        EventTag mEventTag = new EventTag();
+    private List<EventTag> cursorToEventTagList(Cursor cursor) {
+        List<EventTag> tagList = new ArrayList<>();
         if (cursor != null && cursor.getCount() > 0) {
             try {
                 if (cursor.getCount() > 1) {
                     Log.d(TAG, "cursorToEventTag: Found more than one event tag");
                 }
-                cursor.moveToFirst();
-                mEventTag.setId(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_ID)));
-                mEventTag.setName(cursor.getString(cursor.getColumnIndex(EVENT_TAGS_NAME)));
-                mEventTag.setIconId(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_ICON_ID)));
-                mEventTag.setDel(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_DELETE)) == 1);
+                while (cursor.moveToNext()) {
+                    EventTag mEventTag = new EventTag();
+                    mEventTag.setId(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_ID)));
+                    mEventTag.setName(cursor.getString(cursor.getColumnIndex(EVENT_TAGS_NAME)));
+                    mEventTag.setIconId(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_ICON_ID)));
+                    mEventTag.setDel(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_DELETE)) == 1);
+                    tagList.add(mEventTag);
+                }
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
         } else {
             Log.d(TAG, "cursorToEventTag: No such EventTag");
         }
-        return mEventTag;
+        return tagList;
     }
 
     public void insertEventTag(EventTag mEventTag) {
@@ -334,7 +337,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     public EventTag findEventTagById(int id) {
         Cursor cursor = db.query(TABLE_EVENT_TAGS, null, EVENT_TAGS_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
-        EventTag mEventTag = cursorToEventTag(cursor);
+        EventTag mEventTag = cursorToEventTagList(cursor).get(0);
         cursor.close();
         return mEventTag;
     }
@@ -347,6 +350,18 @@ public class EventDBHelper extends SQLiteOpenHelper {
         EventTag delEventTag = mEventTag;
         delEventTag.setDel(true);
         updateEventTag(mEventTag, delEventTag);
+    }
+
+    public List<EventTag> findAllEventTag(Boolean excludeDeleted) {
+        Cursor cursor;
+        if (excludeDeleted) {
+            cursor = db.query(TABLE_EVENT_TAGS, null, EVENT_TAGS_DELETE + " = ?", new String[]{"0"}, null, null, null);
+        } else {
+            cursor = db.query(TABLE_EVENT_TAGS, null, null, null, null, null, null);
+        }
+        List<EventTag> tagList = cursorToEventTagList(cursor);
+        cursor.close();
+        return tagList;
     }
     //========Event_Tag相关功能:end========
 
