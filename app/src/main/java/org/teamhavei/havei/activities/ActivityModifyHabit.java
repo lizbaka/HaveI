@@ -12,8 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
@@ -21,12 +21,16 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import org.teamhavei.havei.Event.EventTag;
 import org.teamhavei.havei.Event.Habit;
+import org.teamhavei.havei.Event.HaveITag;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;
+import org.teamhavei.havei.adapters.TagListAdapter;
 import org.teamhavei.havei.databases.EventDBHelper;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ActivityModifyHabit extends BaseActivity {
 
@@ -35,7 +39,7 @@ public class ActivityModifyHabit extends BaseActivity {
     public static final int MODE_MODIFY = 1;
 
     private static final int NULL_HABIT_ID = -1;
-    private static final int NULL_EVENT_TAG_ID = -1;
+    private static final int DEFAULT_EVENT_TAG_ID = 1;
     private static final int NULL_REMIND_TIME = -1;
 
     TextInputEditText habitNameView;
@@ -44,13 +48,15 @@ public class ActivityModifyHabit extends BaseActivity {
     TextView habitTagView;
     ImageView iconView;
     MaterialButton remindTimeBtn;
-    RecyclerView tagList;
-    RecyclerView tagListAdapter;
+    RecyclerView tagListRV;
+    TagListAdapter tagListAdapter;
 
     EventDBHelper dbHelper;
+    IconAdapter iconAdapter = new IconAdapter(ActivityModifyHabit.this);
     Habit mHabit;
+    List<HaveITag> tagList;
     int mode = MODE_ADD;
-    int selectedEventTagID = NULL_EVENT_TAG_ID;
+    int selectedEventTagID = DEFAULT_EVENT_TAG_ID;
     int remindHour = NULL_REMIND_TIME;
     int remindMin = NULL_REMIND_TIME;
 
@@ -74,14 +80,7 @@ public class ActivityModifyHabit extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         dbHelper = new EventDBHelper(this, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
 
-        habitTimesView = findViewById(R.id.modify_habit_times);
-        habitUnitView = findViewById(R.id.modify_habit_unit);
-        habitNameView = findViewById(R.id.modify_habit_name);
-        habitTagView = findViewById(R.id.modify_habit_tag);
-        remindTimeBtn = findViewById(R.id.modify_habit_remind_time_button);
-        iconView = findViewById(R.id.modify_habit_icon);
-        tagList = findViewById(R.id.modify_habit_tag_list);
-
+        initView();
 
         if (getIntent().getIntExtra(START_PARAM_HABIT_ID, NULL_HABIT_ID) != NULL_HABIT_ID) {
             mHabit = dbHelper.findHabitById(getIntent().getIntExtra(START_PARAM_HABIT_ID, NULL_HABIT_ID));
@@ -92,6 +91,25 @@ public class ActivityModifyHabit extends BaseActivity {
             mode = MODE_ADD;
             getSupportActionBar().setTitle(R.string.modify_habit_title_add);
         }
+
+        List<EventTag> eventTagList = dbHelper.findAllEventTag(true);
+        tagList = new ArrayList<>();
+        for(EventTag i:eventTagList){
+            tagList.add(i);
+        }
+        tagListAdapter = new TagListAdapter(tagList, ActivityModifyHabit.this, selectedEventTagID, new TagListAdapter.OnTagClickListener() {
+            @Override
+            public void onClick(HaveITag tag) {
+                selectedEventTagID = tag.getId();
+                iconView.setImageDrawable(iconAdapter.getIcon(tag.getIconId()));
+                habitTagView.setText(tag.getName());
+            }
+        });
+        tagListRV.setLayoutManager(new GridLayoutManager(ActivityModifyHabit.this,3,GridLayoutManager.HORIZONTAL,false));
+        tagListRV.setAdapter(tagListAdapter);
+
+        iconView.setImageDrawable(iconAdapter.getIcon(selectedEventTagID));
+
         remindTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +158,10 @@ public class ActivityModifyHabit extends BaseActivity {
                     newHabit.setRepeatTimes(Integer.parseInt(habitTimesView.getText().toString()));
                     newHabit.setRepeatUnit(Integer.parseInt(habitUnitView.getText().toString()));
                     if (remindHour != NULL_REMIND_TIME && remindMin != NULL_REMIND_TIME) {
-                        newHabit.setReminderTime(new StringBuilder().append(remindHour).append(":").append(remindMin).toString());
+                        Date time = new Date();
+                        time.setHours(remindHour);
+                        time.setMinutes(remindMin);
+                        newHabit.setReminderTime(UniToolKit.eventTimeFormatter(time));
                     }
                     if (mode == MODE_ADD) {
                         dbHelper.insertHabit(newHabit);
@@ -165,8 +186,9 @@ public class ActivityModifyHabit extends BaseActivity {
         habitTagView.setText(tag.getName());
         if (mHabit.getReminderTime() != null) {
             remindTimeBtn.setText(mHabit.getReminderTime());
-            remindHour = Integer.parseInt(mHabit.getReminderTime().substring(1, 3));
-            remindMin = Integer.parseInt(mHabit.getReminderTime().substring(4, 6));
+            Date time = UniToolKit.eventTimeParser(mHabit.getReminderTime());
+            remindHour = time.getHours();
+            remindMin = time.getMinutes();
         }
     }
 
@@ -211,12 +233,16 @@ public class ActivityModifyHabit extends BaseActivity {
                 status = false;
             }
         }
-        /* 未选定标签 */
-        if (selectedEventTagID == NULL_EVENT_TAG_ID) {
-            habitTagView.requestFocus();
-            Toast.makeText(this, R.string.modify_habit_null_event_tag, Toast.LENGTH_SHORT).show();
-            status = false;
-        }
         return status;
+    }
+
+    void initView(){
+        habitTimesView = findViewById(R.id.modify_habit_times);
+        habitUnitView = findViewById(R.id.modify_habit_unit);
+        habitNameView = findViewById(R.id.modify_habit_name);
+        habitTagView = findViewById(R.id.modify_habit_tag);
+        remindTimeBtn = findViewById(R.id.modify_habit_remind_time_button);
+        iconView = findViewById(R.id.modify_habit_icon);
+        tagListRV = findViewById(R.id.modify_habit_tag_list);
     }
 }
