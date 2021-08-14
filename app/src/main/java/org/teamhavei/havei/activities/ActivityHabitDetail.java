@@ -1,5 +1,6 @@
 package org.teamhavei.havei.activities;
 // TODO: 2021.08.13 实现年度习惯统计（界面17）
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
@@ -62,7 +63,6 @@ public class ActivityHabitDetail extends BaseActivity {
         initView();
 
 
-
         mHabit = dbHelper.findHabitById(getIntent().getIntExtra(START_PARAM_HABIT_ID, NULL_HABIT_ID));
         getSupportActionBar().setTitle(mHabit.getName());
         habitExecList = dbHelper.findHabitExecByHabitId(mHabit.getId());
@@ -82,9 +82,9 @@ public class ActivityHabitDetail extends BaseActivity {
                 .append(mHabit.getRepeatUnit())
                 .append(getString(R.string.day))
                 .toString());
-        if(mHabit.getReminderTime() == null){
+        if (mHabit.getReminderTime() == null) {
             reminderInfoView.setText(getString(R.string.habit_detail_empty_reminder_hint));
-        }else{
+        } else {
             reminderInfoView.setText(mHabit.getReminderTime());
         }
     }
@@ -197,8 +197,8 @@ public class ActivityHabitDetail extends BaseActivity {
         Date todayDate = new Date();
         /* 24h/day, 60min/h, 60s/min, 1000ms/s */
         final int dayMilli = 24 * 60 * 60 * 1000;
-        int planTimes = (int)((todayDate.getTime() - firstExecDate.getTime())/dayMilli);
-        planTimes = planTimes / mHabit.getRepeatUnit() * mHabit.getRepeatTimes();
+        int planTimes = (int) ((todayDate.getTime() - firstExecDate.getTime()) / dayMilli + 1);
+        planTimes = (int) Math.ceil(1.0 * planTimes / mHabit.getRepeatUnit()) * mHabit.getRepeatTimes();
         planTimesView.setText(Integer.toString(planTimes));
         rankView.setText(Integer.toString(dbHelper.getHabitRank(mHabit.getId())));
     }
