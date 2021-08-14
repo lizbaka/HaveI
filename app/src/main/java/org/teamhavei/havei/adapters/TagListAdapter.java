@@ -75,6 +75,7 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
                 selectedItem = holder.getAdapterPosition();
                 notifyItemChanged(oldSelectedItem);
                 notifyItemChanged(selectedItem);
+                holder.tagNameView.requestFocus();
             }
         });
         return holder;
