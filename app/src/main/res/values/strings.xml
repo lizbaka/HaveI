@@ -81,16 +81,17 @@
     <!--modify_habit:Begin-->
     <string name="modify_habit_title_add">添加习惯</string>
     <string name="modify_habit_title_modify">修改习惯</string>
-    <string name="modify_habit_hint_name">习惯名称</string>
-    <string name="modify_habit_text_frequency">习惯执行频率</string>
-    <string name="modify_habit_button_frequency">频率</string>
-    <string name="modify_habit_button_time">时间</string>
+    <string name="modify_habit_name_hint">习惯名称</string>
+    <string name="modify_habit_name">命名：</string>
+    <string name="modify_habit_text_frequency">习惯打卡频率</string>
+    <string name="modify_habit_reminder_time_null">未选择</string>
     <string name="modify_habit_text_time">习惯提醒时间</string>
-    <string name="modify_habit_done">完成</string>
-    <string name="modify_habit_exist_dialog_title">习惯已存在</string>
-    <string name="modify_habit_exist_dialog_msg">是否更新到已有习惯？</string>
-    <string name="modify_habit_exist_error">习惯已存在</string>
     <string name="modify_habit_empty_name">习惯名不能为空</string>
+    <string name="modify_habit_empty_frequency">未指定频率</string>
+    <string name="modify_habit_null_event_tag">未选择标签</string>
+    <string name="modify_habit_too_many_times">每天最多只能打卡一次</string>
+    <string name="modify_habit_illegal_frequency">请输入正确的频率</string>
+    <string name="modify_habit_clear_reminder">关闭提醒</string>
     <!--modify_habit:end-->
 
 
@@ -109,11 +110,6 @@
     </string-array>
     <string name="greeting_card_slogan">记录你的生活！</string>
     <!--greeting_card:end-->
-
-
-    <!--nav_header:Begin-->
-    <string name="nav_header_title">HaveI</string>
-    <!--nav_header:end-->
 
 
     <!--habit_detail:Begin-->
