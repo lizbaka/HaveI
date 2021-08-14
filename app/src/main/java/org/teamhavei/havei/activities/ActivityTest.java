@@ -25,13 +25,16 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         eventDBHelper = new EventDBHelper(ActivityTest.this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
-        Button btn1 = findViewById(R.id.test_btn1);
-        btn1.setOnClickListener(this);
-        Button btn2 = findViewById(R.id.test_btn2);
-        btn2.setOnClickListener(this);
-        Button btn3 = findViewById(R.id.test_btn3);
-        btn3.setOnClickListener(this);
-        btn3.setText("进入proverb List");
+        Button insertTodo = findViewById(R.id.test_insert_todo);
+        insertTodo.setOnClickListener(this);
+        Button getHabit = findViewById(R.id.test_get_habit);
+        getHabit.setOnClickListener(this);
+        Button proverbList = findViewById(R.id.test_proverb_list);
+        proverbList.setOnClickListener(this);
+        proverbList.setText("进入proverb List");
+        Button habitList = findViewById(R.id.test_habit_list);
+        habitList.setOnClickListener(this);
+        habitList.setText("进入Habit List");
     }
 
     @Override
@@ -39,7 +42,7 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
         Habit habit;
         Todo todo;
         switch(v.getId()){
-            case R.id.test_btn1:
+            case R.id.test_insert_todo:
                 todo = new Todo();
                 todo.setName("todo4");
                 todo.setDateTime("2021-07-18 16:20");
@@ -48,12 +51,15 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
                 todo.setDone(false);
                 eventDBHelper.insertTodo(todo);
                 break;
-            case R.id.test_btn2:
+            case R.id.test_get_habit:
                 habit = eventDBHelper.findHabitById(1);
                 habit.showHabitInformation();
                 break;
-            case R.id.test_btn3:
+            case R.id.test_proverb_list:
                 ActivityProverbList.startAction(this);
+                break;
+            case R.id.test_habit_list:
+                ActivityHabitList.startAction(this);
         }
     }
 }
