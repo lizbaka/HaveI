@@ -20,7 +20,7 @@ import java.util.List;
 
 public class ActivityHabitList extends BaseActivity {
 
-    RecyclerView habitCardList;
+    RecyclerView habitCardListRV;
     HabitCardAdapter habitCardAdapter;
     ExtendedFloatingActionButton fab;
     EventDBHelper dbHelper;
@@ -39,16 +39,15 @@ public class ActivityHabitList extends BaseActivity {
         setSupportActionBar(findViewById(R.id.habit_list_toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        habitCardList = findViewById(R.id.habit_list_card_list);
+        habitCardListRV = findViewById(R.id.habit_list_card_list);
         fab = findViewById(R.id.habit_list_add);
 
         habitList = dbHelper.findAllHabit();
-        habitCardList.setLayoutManager(new LinearLayoutManager(this));
+        habitCardListRV.setLayoutManager(new LinearLayoutManager(this));
         habitCardAdapter = new HabitCardAdapter(dbHelper.findAllHabit(),ActivityHabitList.this);
-        habitCardList.setAdapter(habitCardAdapter);
+        habitCardListRV.setAdapter(habitCardAdapter);
 
         fab.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 ActivityModifyHabit.startAction(ActivityHabitList.this);
@@ -60,10 +59,10 @@ public class ActivityHabitList extends BaseActivity {
     protected void onResume() {
         super.onResume();
         List<Habit> newHabitList = dbHelper.findAllHabit();
-        if(!habitList.equals(newHabitList)){
-            habitList = newHabitList;
-        }
+        habitList.clear();
+        habitList.addAll(newHabitList);
         habitCardAdapter.notifyDataSetChanged();
+        habitCardListRV.setAdapter(habitCardAdapter);
     }
 
     @Override
