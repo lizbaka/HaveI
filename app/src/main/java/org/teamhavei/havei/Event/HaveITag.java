@@ -1,6 +1,7 @@
 package org.teamhavei.havei.Event;
 
-public class BookTag {
+public class HaveITag {
+
     private int id;
     private int iconId;
     private String name;
@@ -37,3 +38,4 @@ public class BookTag {
     public void setDel(boolean del) {
         this.del = del;
     }
+}
