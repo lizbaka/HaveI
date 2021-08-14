@@ -126,7 +126,11 @@ public class EventDBHelper extends SQLiteOpenHelper {
         values.put(HABIT_TAG_ID, mHabit.getTagId());
         values.put(HABIT_REPEAT_UNIT, mHabit.getRepeatUnit());
         values.put(HABIT_REPEAT_TIMES, mHabit.getRepeatTimes());
-        values.put(HABIT_REMINDER_TIME, mHabit.getReminderTime());
+        if (mHabit.getReminderTime() != null) {
+            values.put(HABIT_REMINDER_TIME, mHabit.getReminderTime());
+        }else{
+            values.putNull(HABIT_REMINDER_TIME);
+        }
         return values;
     }
 
@@ -201,7 +205,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
                         " GROUP BY " + TABLE_HABIT + "." + HABIT_ID +
                         " ORDER BY COUNT(" + TABLE_HABIT + "." + HABIT_ID + ") DESC";
         Log.d(TAG, "getHabitRank: " + QUERY_ORDER_BY_RANK);
-        Cursor cursor = db.rawQuery(QUERY_ORDER_BY_RANK,null);
+        Cursor cursor = db.rawQuery(QUERY_ORDER_BY_RANK, null);
         while (cursor.moveToNext()) {
             if (cursor.getInt(cursor.getColumnIndex(HABIT_ID)) == habitId) {
                 return cursor.getPosition() + 1;
