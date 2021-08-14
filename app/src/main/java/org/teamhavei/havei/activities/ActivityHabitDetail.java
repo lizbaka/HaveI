@@ -76,12 +76,12 @@ public class ActivityHabitDetail extends BaseActivity {
         super.onResume();
         mHabit = dbHelper.findHabitById(getIntent().getIntExtra(START_PARAM_HABIT_ID, NULL_HABIT_ID));
         getSupportActionBar().setTitle(mHabit.getName());
-        StringBuilder builder = new StringBuilder();
-        builder.append(mHabit.getRepeatTimes());
-        builder.append(getString(R.string.times) + getString(R.string.each));
-        builder.append(mHabit.getRepeatUnit());
-        builder.append(getString(R.string.day));
-        frequentInfoView.setText(builder.toString());
+        frequentInfoView.setText(new StringBuilder()
+                .append(mHabit.getRepeatTimes())
+                .append(getString(R.string.times) + getString(R.string.each))
+                .append(mHabit.getRepeatUnit())
+                .append(getString(R.string.day))
+                .toString());
         if(mHabit.getReminderTime() == null){
             reminderInfoView.setText(getString(R.string.habit_detail_empty_reminder_hint));
         }else{
@@ -99,8 +99,7 @@ public class ActivityHabitDetail extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.habit_detail_toolbar_modify:
-                // TODO: 2021.08.10 完成ModifyHabit后接入
-//                ActivityModifyHabit.startAction(this, ActivityModifyHabit.MODE_MODIFY, mHabit.getName());
+                ActivityModifyHabit.startAction(this, mHabit.getId());
                 return true;
             case R.id.habit_detail_toolbar_delete:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);

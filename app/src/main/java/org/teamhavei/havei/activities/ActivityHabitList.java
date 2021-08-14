@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.R;
@@ -19,6 +22,7 @@ public class ActivityHabitList extends BaseActivity {
 
     RecyclerView habitCardList;
     HabitCardAdapter habitCardAdapter;
+    ExtendedFloatingActionButton fab;
     EventDBHelper dbHelper;
     List<Habit> habitList;
 
@@ -31,15 +35,25 @@ public class ActivityHabitList extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_list);
-        habitCardList = findViewById(R.id.habit_list_card_list);
         dbHelper = new EventDBHelper(this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
         setSupportActionBar(findViewById(R.id.habit_list_toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        habitCardList = findViewById(R.id.habit_list_card_list);
+        fab = findViewById(R.id.habit_list_add);
 
         habitList = dbHelper.findAllHabit();
         habitCardList.setLayoutManager(new LinearLayoutManager(this));
         habitCardAdapter = new HabitCardAdapter(dbHelper.findAllHabit(),ActivityHabitList.this);
         habitCardList.setAdapter(habitCardAdapter);
+
+        fab.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                ActivityModifyHabit.startAction(ActivityHabitList.this);
+            }
+        });
     }
 
     @Override
