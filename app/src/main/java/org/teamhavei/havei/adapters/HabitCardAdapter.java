@@ -1,7 +1,6 @@
 package org.teamhavei.havei.adapters;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.teamhavei.havei.Event.EventTag;
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
@@ -26,8 +26,8 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
 
     private List<Habit> mHabitList;
     private EventDBHelper dbHelper;
-    private SQLiteDatabase db;
     private Context mContext;
+    private IconAdapter iconAdapter;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -52,7 +52,7 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
         mHabitList = habitList;
         mContext = context;
         dbHelper = new EventDBHelper(mContext, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
-        db = dbHelper.getWritableDatabase();
+        iconAdapter = new IconAdapter(mContext);
     }
 
     @NonNull
@@ -84,17 +84,11 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mHabit = mHabitList.get(position);
-        String name = holder.mHabit.getName();
-        int tagId = holder.mHabit.getTagId();
-        String tag = dbHelper.findEventTagById(tagId).getName();
-        int habitID = holder.mHabit.getId();
-        holder.nameView.setText(name);
-        holder.tagView.setText(tag);
-        if(tag!=null){
-            holder.tagView.setVisibility(View.VISIBLE);
-        }
-        // TODO: 2021.08.12 处理tag和图标 
-        holder.isHabitDoneToday = dbHelper.isHabitDoneToday(habitID);
+        EventTag tag = dbHelper.findEventTagById(holder.mHabit.getTagId());
+        holder.nameView.setText(holder.mHabit.getName());
+        holder.tagView.setText(tag.getName());
+        holder.iconView.setImageDrawable(iconAdapter.getIcon(tag.getIconId()));
+        holder.isHabitDoneToday = dbHelper.isHabitDoneToday(holder.mHabit.getId());
         if (holder.isHabitDoneToday) {
             holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_check_24_color_pv));
         } else {
