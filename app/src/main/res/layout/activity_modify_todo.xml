@@ -38,7 +38,7 @@
             android:layout_marginVertical="@dimen/widget_inview_margin">
 
             <RelativeLayout
-                android:id="@+id/modify_habit_record_card_icon_container"
+                android:id="@+id/modify_todo_icon_container"
                 android:layout_centerVertical="true"
                 android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_width="@dimen/round_icon_background_size"
@@ -56,7 +56,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/modify_habit_record_card_icon_container"
+                android:layout_toRightOf="@id/modify_todo_icon_container"
                 android:layout_centerInParent="true">
 
                 <com.google.android.material.textfield.TextInputEditText
