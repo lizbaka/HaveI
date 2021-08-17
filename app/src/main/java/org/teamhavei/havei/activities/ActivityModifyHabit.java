@@ -1,9 +1,7 @@
 package org.teamhavei.havei.activities;
-// TODO: 2021.08.13 实现tagList及其对应的adapter
 
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,7 +27,7 @@ import org.teamhavei.havei.adapters.TagListAdapter;
 import org.teamhavei.havei.databases.EventDBHelper;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class ActivityModifyHabit extends BaseActivity {
@@ -94,9 +92,7 @@ public class ActivityModifyHabit extends BaseActivity {
 
         List<EventTag> eventTagList = dbHelper.findAllEventTag(true);
         tagList = new ArrayList<>();
-        for(EventTag i:eventTagList){
-            tagList.add(i);
-        }
+        tagList.addAll(eventTagList);
         tagListAdapter = new TagListAdapter(tagList, ActivityModifyHabit.this, selectedEventTagID, new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
@@ -105,7 +101,7 @@ public class ActivityModifyHabit extends BaseActivity {
                 habitTagView.setText(tag.getName());
             }
         });
-        tagListRV.setLayoutManager(new GridLayoutManager(ActivityModifyHabit.this,3,GridLayoutManager.HORIZONTAL,false));
+        tagListRV.setLayoutManager(new GridLayoutManager(ActivityModifyHabit.this, 3, GridLayoutManager.HORIZONTAL, false));
         tagListRV.setAdapter(tagListAdapter);
 
         iconView.setImageDrawable(iconAdapter.getIcon(selectedEventTagID));
@@ -113,26 +109,27 @@ public class ActivityModifyHabit extends BaseActivity {
         remindTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerDialog dialog = new TimePickerDialog(ActivityModifyHabit.this, new TimePickerDialog.OnTimeSetListener() {
+                new TimePickerDialog(ActivityModifyHabit.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         remindHour = hourOfDay;
                         remindMin = minute;
-                        Date time = new Date();
-                        time.setHours(remindHour);
-                        time.setMinutes(remindMin);
-                        remindTimeBtn.setText(UniToolKit.eventTimeFormatter(time));
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.HOUR_OF_DAY, remindHour);
+                        calendar.set(Calendar.MINUTE, remindMin);
+                        remindTimeBtn.setText(UniToolKit.eventTimeFormatter(calendar.getTime()));
                     }
-                }, remindHour == NULL_REMIND_TIME ? 0 : remindHour, remindMin == NULL_REMIND_TIME ? 0 : remindMin, true);
-                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        remindHour = NULL_REMIND_TIME;
-                        remindMin = NULL_REMIND_TIME;
-                        remindTimeBtn.setText(getString(R.string.modify_habit_reminder_time_null));
-                    }
-                });
-                dialog.show();
+                }, remindHour == NULL_REMIND_TIME ? 0 : remindHour, remindMin == NULL_REMIND_TIME ? 0 : remindMin, true).show();
+            }
+        });
+        // TODO: 2021.08.17 设计提示长按清除的逻辑
+        remindTimeBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                remindHour = NULL_REMIND_TIME;
+                remindMin = NULL_REMIND_TIME;
+                remindTimeBtn.setText(getString(R.string.modify_habit_reminder_time_null));
+                return true;
             }
         });
     }
@@ -158,10 +155,10 @@ public class ActivityModifyHabit extends BaseActivity {
                     newHabit.setRepeatTimes(Integer.parseInt(habitTimesView.getText().toString()));
                     newHabit.setRepeatUnit(Integer.parseInt(habitUnitView.getText().toString()));
                     if (remindHour != NULL_REMIND_TIME && remindMin != NULL_REMIND_TIME) {
-                        Date time = new Date();
-                        time.setHours(remindHour);
-                        time.setMinutes(remindMin);
-                        newHabit.setReminderTime(UniToolKit.eventTimeFormatter(time));
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.HOUR_OF_DAY, remindHour);
+                        calendar.set(Calendar.MINUTE, remindMin);
+                        newHabit.setReminderTime(UniToolKit.eventTimeFormatter(calendar.getTime()));
                     }
                     if (mode == MODE_ADD) {
                         dbHelper.insertHabit(newHabit);
@@ -186,9 +183,10 @@ public class ActivityModifyHabit extends BaseActivity {
         habitTagView.setText(tag.getName());
         if (mHabit.getReminderTime() != null) {
             remindTimeBtn.setText(mHabit.getReminderTime());
-            Date time = UniToolKit.eventTimeParser(mHabit.getReminderTime());
-            remindHour = time.getHours();
-            remindMin = time.getMinutes();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(UniToolKit.eventDateParser(mHabit.getReminderTime()));
+            remindHour = calendar.get(Calendar.HOUR_OF_DAY);
+            remindMin = calendar.get(Calendar.MINUTE);
         }
     }
 
@@ -236,7 +234,7 @@ public class ActivityModifyHabit extends BaseActivity {
         return status;
     }
 
-    void initView(){
+    void initView() {
         habitTimesView = findViewById(R.id.modify_habit_times);
         habitUnitView = findViewById(R.id.modify_habit_unit);
         habitNameView = findViewById(R.id.modify_habit_name);
