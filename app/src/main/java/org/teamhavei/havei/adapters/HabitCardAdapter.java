@@ -29,6 +29,10 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
     private Context mContext;
     private IconAdapter iconAdapter;
 
+    public void setHabitList(List<Habit> mHabitList) {
+        this.mHabitList = mHabitList;
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameView;

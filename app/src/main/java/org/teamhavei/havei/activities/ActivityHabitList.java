@@ -26,7 +26,7 @@ public class ActivityHabitList extends BaseActivity {
     EventDBHelper dbHelper;
     List<Habit> habitList;
 
-    public static void startAction(Context context){
+    public static void startAction(Context context) {
         Intent intent = new Intent(context, ActivityHabitList.class);
         context.startActivity(intent);
     }
@@ -35,7 +35,7 @@ public class ActivityHabitList extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_list);
-        dbHelper = new EventDBHelper(this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
+        dbHelper = new EventDBHelper(this, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
         setSupportActionBar(findViewById(R.id.habit_list_toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -44,10 +44,10 @@ public class ActivityHabitList extends BaseActivity {
 
         habitList = dbHelper.findAllHabit();
         habitCardListRV.setLayoutManager(new LinearLayoutManager(this));
-        habitCardAdapter = new HabitCardAdapter(dbHelper.findAllHabit(),ActivityHabitList.this);
+        habitCardAdapter = new HabitCardAdapter(dbHelper.findAllHabit(), ActivityHabitList.this);
         habitCardListRV.setAdapter(habitCardAdapter);
 
-        fab.setOnClickListener(new View.OnClickListener(){
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ActivityModifyHabit.startAction(ActivityHabitList.this);
@@ -58,16 +58,14 @@ public class ActivityHabitList extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        List<Habit> newHabitList = dbHelper.findAllHabit();
-        habitList.clear();
-        habitList.addAll(newHabitList);
+        habitList= dbHelper.findAllHabit();
+        habitCardAdapter.setHabitList(dbHelper.findAllHabit());
         habitCardAdapter.notifyDataSetChanged();
-        habitCardListRV.setAdapter(habitCardAdapter);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 return true;
