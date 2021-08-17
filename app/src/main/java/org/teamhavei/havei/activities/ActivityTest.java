@@ -25,16 +25,6 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         eventDBHelper = new EventDBHelper(ActivityTest.this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
-        Button insertTodo = findViewById(R.id.test_insert_todo);
-        insertTodo.setOnClickListener(this);
-        Button getHabit = findViewById(R.id.test_get_habit);
-        getHabit.setOnClickListener(this);
-        Button proverbList = findViewById(R.id.test_proverb_list);
-        proverbList.setOnClickListener(this);
-        proverbList.setText("进入proverb List");
-        Button habitList = findViewById(R.id.test_habit_list);
-        habitList.setOnClickListener(this);
-        habitList.setText("进入Habit List");
     }
 
     @Override
@@ -60,6 +50,10 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
                 break;
             case R.id.test_habit_list:
                 ActivityHabitList.startAction(this);
+                break;
+            case R.id.test_main_event:
+                ActivityMainEvent.startAction(this);
+                break;
         }
     }
 }
