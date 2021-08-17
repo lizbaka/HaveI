@@ -184,7 +184,7 @@ public class ActivityModifyHabit extends BaseActivity {
         if (mHabit.getReminderTime() != null) {
             remindTimeBtn.setText(mHabit.getReminderTime());
             Calendar calendar = Calendar.getInstance();
-            calendar.setTime(UniToolKit.eventDateParser(mHabit.getReminderTime()));
+            calendar.setTime(UniToolKit.eventTimeParser(mHabit.getReminderTime()));
             remindHour = calendar.get(Calendar.HOUR_OF_DAY);
             remindMin = calendar.get(Calendar.MINUTE);
         }
