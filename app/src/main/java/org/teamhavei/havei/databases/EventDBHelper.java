@@ -17,6 +17,7 @@ import org.teamhavei.havei.Event.Todo;
 import org.teamhavei.havei.UniToolKit;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     public static final String TAG = "DEBUG";
 
-    public static final int DB_VERSION = 2;
+    public static final int DB_VERSION = 3;
     public static final String DB_NAME = "Event.db";
 
     //========const column and table names:Begin========
@@ -53,6 +54,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
     private static final String TODO_TAG_ID = "tag_id";
     private static final String TODO_DATETIME = "datetime";
     private static final String TODO_REMINDER_DATETIME = "reminder_datetime";
+    private static final String TODO_REMARK = "remark";
     private static final String TODO_DONE = "done";
 
     //========const column and table names:end========
@@ -86,6 +88,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
                     TODO_TAG_ID + " integer," +//标签id
                     TODO_DATETIME + " text," +//预期日期时间 格式 yyyy-MM-dd HH:mm
                     TODO_REMINDER_DATETIME + " text," +//提醒日期时间 格式 yyyy-MM-dd HH:mm
+                    TODO_REMARK + " text," +//备注
                     TODO_DONE + " integer)";//是否已完成 0:未完成 1:已完成
 
     private Context mContext;
@@ -181,6 +184,10 @@ public class EventDBHelper extends SQLiteOpenHelper {
         db.update(TABLE_HABIT, habitToValues(newHabit), HABIT_ID + " = ?", new String[]{Integer.toString(oldHabit.getId())});
     }
 
+    public void updateHabit(int habitId, Habit newHabit) {
+        db.update(TABLE_HABIT, habitToValues(newHabit), HABIT_ID + " = ?", new String[]{Integer.toString(habitId)});
+    }
+
     public void deleteHabit(Habit mHabit) {
         db.delete(TABLE_HABIT, HABIT_ID + " = ? ", new String[]{Integer.toString(mHabit.getId())});
         db.delete(TABLE_HABIT_EXECS, HABIT_EXECS_HABIT_ID + " = ?", new String[]{Integer.toString(mHabit.getId())});
@@ -213,6 +220,34 @@ public class EventDBHelper extends SQLiteOpenHelper {
         }
         Log.d(TAG, "getHabitRank: no such habit with id of " + habitId);
         return 0;
+    }
+
+    public Boolean checkHabitFinishBetween(int habitID, Date startDate, Date endDate) {
+        Habit habit = findHabitById(habitID);
+        if (habit == null) {
+            return false;
+        }
+        String sStartDate = UniToolKit.eventDateFormatter(startDate);
+        String sEndDate = UniToolKit.eventDateFormatter(endDate);
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_DATE + " > ? AND " + HABIT_EXECS_DATE + " < ?", new String[]{sStartDate, sEndDate}, null, null, null);
+        return cursor.getCount() >= habit.getRepeatTimes();
+    }
+
+    public List<Habit> findUnfinishedHabit(Calendar centerCalendar) {
+        List<Habit> allHabit = findAllHabit();
+        List<Habit> unfinishedHabit = new ArrayList<>();
+        Calendar startCalendar;
+        Calendar endCalendar;
+        for (Habit mHabit : allHabit) {
+            startCalendar = (Calendar) centerCalendar.clone();
+            endCalendar = (Calendar) centerCalendar.clone();
+            startCalendar.add(Calendar.DAY_OF_YEAR, -1 * (mHabit.getRepeatUnit() - 1));
+            endCalendar.add(Calendar.DAY_OF_YEAR, mHabit.getRepeatUnit() - 1);
+            if (!checkHabitFinishBetween(mHabit.getId(), startCalendar.getTime(), endCalendar.getTime())) {
+                unfinishedHabit.add(mHabit);
+            }
+        }
+        return unfinishedHabit;
     }
     //========Habit相关功能:end===============
 
@@ -346,6 +381,10 @@ public class EventDBHelper extends SQLiteOpenHelper {
         db.update(TABLE_EVENT_TAGS, eventTagToValues(newEventTag), EVENT_TAGS_ID + " = ?", new String[]{Integer.toString(oldEventTag.getId())});
     }
 
+    public void updateEventTag(int eventTagId, EventTag newEventTag) {
+        db.update(TABLE_EVENT_TAGS, eventTagToValues(newEventTag), EVENT_TAGS_ID + " = ?", new String[]{Integer.toString(eventTagId)});
+    }
+
     public void deleteEventTag(EventTag mEventTag) {
         EventTag delEventTag = mEventTag;
         delEventTag.setDel(true);
@@ -372,7 +411,17 @@ public class EventDBHelper extends SQLiteOpenHelper {
         values.put(TODO_NAME, mTodo.getName());
         values.put(TODO_TAG_ID, mTodo.getTagId());
         values.put(TODO_DATETIME, mTodo.getDateTime());
-        values.put(TODO_REMINDER_DATETIME, mTodo.getReminderDateTime());
+        if (mTodo.getReminderDateTime() == null) {
+            values.putNull(TODO_REMINDER_DATETIME);
+        } else {
+            values.put(TODO_REMINDER_DATETIME, mTodo.getReminderDateTime());
+        }
+        if (mTodo.getRemark() == null) {
+            values.putNull(TODO_REMARK);
+        } else {
+            values.put(TODO_REMARK, mTodo.getRemark());
+        }
+        values.put(TODO_REMARK, mTodo.getRemark());
         values.put(TODO_DONE, mTodo.isDone() ? 1 : 0);
         return values;
     }
@@ -392,6 +441,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
                     mTodo.setTagId(cursor.getInt(cursor.getColumnIndex(TODO_TAG_ID)));
                     mTodo.setDateTime(cursor.getString(cursor.getColumnIndex(TODO_DATETIME)));
                     mTodo.setDone(cursor.getInt(cursor.getColumnIndex(TODO_DONE)) == 1);
+                    mTodo.setRemark(cursor.getString(cursor.getColumnIndex(TODO_REMARK)));
                     mTodo.setReminderDateTime(cursor.getString(cursor.getColumnIndex(TODO_REMINDER_DATETIME)));
                     mTodoList.add(mTodo);
                 } while (cursor.moveToNext());
@@ -419,8 +469,19 @@ public class EventDBHelper extends SQLiteOpenHelper {
         db.update(TABLE_TODO, todoToValues(newTodo), TODO_ID + " = ?", new String[]{Integer.toString(oldTodo.getId())});
     }
 
+    public void updateTodo(int todoId, Todo newTodo) {
+        db.update(TABLE_TODO, todoToValues(newTodo), TODO_ID + " = ?", new String[]{Integer.toString(todoId)});
+    }
+
+
     public void deleteTodo(Todo mTodo) {
         db.delete(TABLE_TODO, TODO_ID + " = ?", new String[]{Integer.toString(mTodo.getId())});
+    }
+
+    public List<Todo> findTodoByDate(Date date) {
+        String sDate = UniToolKit.eventDateFormatter(date);
+        Cursor cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " LIKE ?", new String[]{sDate + "%"}, null, null, null);
+        return cursorToTodoList(cursor);
     }
 
     public List<Todo> findTodoByDatetime(Date datetime) {
@@ -433,6 +494,19 @@ public class EventDBHelper extends SQLiteOpenHelper {
         String sDatetime = UniToolKit.eventDatetimeFormatter(datetime);
         Cursor cursor = db.query(TABLE_TODO, null, TODO_REMINDER_DATETIME + " = ?", new String[]{sDatetime}, null, null, null);
         return cursorToTodoList(cursor);
+    }
+
+    public boolean switchTodoDone(int todoId){
+        Todo newTodo = findTodoById(todoId);
+        if(newTodo.isDone()){
+            newTodo.setDone(false);
+            updateTodo(todoId,newTodo);
+            return false;
+        }else{
+            newTodo.setDone(true);
+            updateTodo(todoId,newTodo);
+            return true;
+        }
     }
 
     //========Todo相关功能:end========
