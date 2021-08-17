@@ -17,6 +17,8 @@
     <string name="day">天</string>
     <string name="each">每</string>
     <string name="select_tag">选择一个标签</string>
+    <string name="no_data">暂无数据</string>
+    <string name="optional">可选</string>
     <!--universal_UI:end-->
 
 
@@ -30,6 +32,8 @@
     <string name="habit_library">习惯库</string>
     <string name="todo_library">日程库</string>
     <string name="main_event_uncompleted_habits">在这一天尚未达成目标的习惯</string>
+    <string name="main_event_no_habit">没有未完成的习惯</string>
+    <string name="main_event_no_todo">这一天没有待办</string>
     <!--activity_main_event:end-->
 
     <!--activity_daily_habit:Begin-->
@@ -59,19 +63,16 @@
 
 
     <!--modify_todo:Begin-->
-    <string name="modify_todo_title_add">添加事件</string>
-    <string name="modify_todo_title_modify">修改时间</string>
-    <string name="modify_todo_hint_name">事件名称</string>
-    <string name="modify_todo_hint_remark">事件备注</string>
-    <string name="modify_todo_text_frequency">事件执行时间</string>
-    <string name="modify_todo_button_frequency">时间</string>
-    <string name="modify_todo_button_time">时间</string>
-    <string name="modify_todo_text_time">事件提醒时间</string>
-    <string name="modify_todo_done">完成</string>
-    <string name="modify_todo_exist_dialog_title">事件已存在</string>
-    <string name="modify_todo_exist_dialog_msg">是否更新到已有事件？</string>
-    <string name="modify_todo_exist_error">事件已存在</string>
-    <string name="modify_todo_empty_name">事件名不能为空</string>
+    <string name="modify_todo_title_add">添加待办</string>
+    <string name="modify_todo_title_modify">修改待办</string>
+    <string name="modify_todo_hint_name">待办名称：</string>
+    <string name="modify_todo_remind_me_to">提醒我……</string>
+    <string name="modify_todo_hint_reminder_time">提醒时间：</string>
+    <string name="modify_todo_hint_remark">待办备注：</string>
+    <string name="modify_todo_hint_time">待办时间：</string>
+    <string name="modify_todo_empty_name">待办名不能为空</string>
+    <string name="modify_todo_reminder_time_null">未选择</string>
+    <string name="modify_todo_remind_after_todo">提醒时间不能晚于待办时间</string>
     <!--modify_todo:end-->
 
 
