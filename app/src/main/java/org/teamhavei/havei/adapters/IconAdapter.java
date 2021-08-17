@@ -117,8 +117,8 @@ public class IconAdapter {
             case ID_TREND:
                 return ContextCompat.getDrawable(mContext, R.drawable.cs_lend_out);
             case ID_MAKE_UP:
-                Log.d(TAG, "getIcon: MAKE_UP is currently down");
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_make_up);
+                Log.d(TAG, "getIcon: MAKE_UP is currently down, returning first icon");
+                return ContextCompat.getDrawable(mContext, R.drawable.cs_accommodation);
             case ID_MEDICINE:
                 return ContextCompat.getDrawable(mContext, R.drawable.cs_medicine);
             case ID_REPAY1:
@@ -128,7 +128,8 @@ public class IconAdapter {
             case ID_TISSUE_PAPER_ROLL:
                 return ContextCompat.getDrawable(mContext, R.drawable.cs_paper);
             case ID_PARTY:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_party);
+                Log.d(TAG, "getIcon: PARTY is currently down, returning first icon");
+                return ContextCompat.getDrawable(mContext, R.drawable.cs_accommodation);
             case ID_PETS:
                 return ContextCompat.getDrawable(mContext, R.drawable.cs_pets);
             case ID_PHOTOGRAPHING:
