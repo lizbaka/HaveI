@@ -16,6 +16,9 @@
     <dimen name="toolbar_padding">3dp</dimen>
     <dimen name="toolbar_margin">10dp</dimen>
 
+    <dimen name="ui_icon_size_small">20dp</dimen>
+    <dimen name="ui_icon_size_medium">55dp</dimen>
+
     <dimen name="round_icon_background_size">55dp</dimen>
     <dimen name="round_icon_size">35dp</dimen>
 

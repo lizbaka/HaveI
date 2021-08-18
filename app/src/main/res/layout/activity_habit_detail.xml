@@ -59,8 +59,8 @@
                     android:textColor="@color/grey_500" />
 
                 <ImageView
-                    android:layout_width="19dp"
-                    android:layout_height="19dp"
+                    android:layout_width="@dimen/ui_icon_size_small"
+                    android:layout_height="@dimen/ui_icon_size_small"
                     android:layout_margin="@dimen/widget_inview_margin"
                     android:src="@drawable/alarm_clock" />
 
