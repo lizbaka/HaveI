@@ -91,17 +91,17 @@ public class ActivityHabitDetail extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.habit_detail_toolbar, menu);
+        getMenuInflater().inflate(R.menu.event_detail_toolbar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.habit_detail_toolbar_modify:
+            case R.id.event_detail_toolbar_modify:
                 ActivityModifyHabit.startAction(this, mHabit.getId());
                 return true;
-            case R.id.habit_detail_toolbar_delete:
+            case R.id.event_detail_toolbar_delete:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(getString(R.string.habit_detail_delete_dialog_title));
                 builder.setMessage(getString(R.string.habit_detail_delete_dialog_msg1) + mHabit.getName() + getString(R.string.habit_detail_delete_dialog_msg2));
@@ -133,7 +133,7 @@ public class ActivityHabitDetail extends BaseActivity {
 
     private void initView() {
         mToolbar = findViewById(R.id.habit_detail_toolbar);
-        mToolbar.inflateMenu(R.menu.habit_detail_toolbar);
+        mToolbar.inflateMenu(R.menu.event_detail_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
