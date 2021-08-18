@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.HaveI">
-        <activity android:name=".activities.ActivityModifyTodo"/>
+        <activity
+            android:name=".activities.ActivityTodoDetail"
+            android:exported="true" />
+        <activity android:name=".activities.ActivityModifyTodo" />
         <activity android:name=".activities.ActivityMainEvent" />
         <activity android:name=".activities.ActivityProverbList" />
         <activity android:name=".activities.ActivityHabitList" />
