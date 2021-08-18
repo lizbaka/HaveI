@@ -57,7 +57,6 @@ public class ActivityModifyTodo extends BaseActivity {
     TagListAdapter tagListAdapter;
 
     EventDBHelper dbHelper;
-    int selectedTagID = DEFAULT_EVENT_TAG_ID;
     IconAdapter iconAdapter = new IconAdapter(ActivityModifyTodo.this);
     Todo mTodo;
     List<HaveITag> tagList;
@@ -197,7 +196,7 @@ public class ActivityModifyTodo extends BaseActivity {
             case R.id.save:
                 if (checkTodoValidate()) {
                     mTodo.setName(todoNameET.getText().toString());
-                    mTodo.setTagId(selectedTagID);
+                    mTodo.setTagId(selectedEventTagID);
                     mTodo.setDateTime(UniToolKit.eventDatetimeFormatter(todoDatetime.getTime()));
                     mTodo.setRemark(remarkET.getText().toString());
                     if (!isRemindTimeNull) {
