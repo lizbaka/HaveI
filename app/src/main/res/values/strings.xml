@@ -19,6 +19,8 @@
     <string name="select_tag">选择一个标签</string>
     <string name="no_data">暂无数据</string>
     <string name="optional">可选</string>
+    <string name="finished">已完成</string>
+    <string name="unfinished">未完成</string>
     <!--universal_UI:end-->
 
 
@@ -55,8 +57,8 @@
     <string name="habit_detail_marked">习惯执行记录成功！</string>
     <string name="habit_detail_unmarked">习惯执行记录已删除</string>
     <string name="habit_detail_delete_dialog_title">删除习惯</string>
-    <string name="habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除</string>
-    <string name="habit_detail_delete_dialog_msg2">吗？</string>
+    <string name="habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除习惯 </string>
+    <string name="habit_detail_delete_dialog_msg2"> 吗？</string>
     <string name="habit_detail_empty_execution_hint">还没打过卡</string>
     <string name="habit_detail_empty_reminder_hint">未设置提醒时间</string>
     <!--habit_detail:end-->
@@ -190,5 +192,13 @@
     <string name="tt_24">24:00</string>
     <!--time_table_fragment:end-->
 
+    <!--todo_detail:begin-->
+    <string name="todo_detail_time">待办时间</string>
+    <string name="todo_detail_remind_time">提醒时间</string>
+    <string name="todo_detail_remark">备注信息</string>
+    <string name="todo_detail_delete_dialog_title">删除待办</string>
+    <string name="todo_detail_delete_dialog_msg1">待办将被永久删除，您确定要删除待办 </string>
+    <string name="todo_detail_delete_dialog_msg2"> 吗？</string>
+    <!--todo_detail:end-->
 
 </resources>
