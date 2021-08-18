@@ -1,26 +1,24 @@
 <resources>
-    <!--universal:Begin-->
+    <!--system:Begin-->
     <string name="app_name">HaveI</string>
+    <string name="todo_reminder_notification_channel_name">待办提醒</string>
+    <string name="habit_reminder_notification_channel_name">习惯执行提醒</string>
+    <string name="pref_first_run">first_run</string>
+    <!--system:end-->
+
+    <!--universal_UI:Begin-->
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="cancel">取消</string>
     <string name="save">保存</string>
     <string name="back">返回</string>
     <string name="confirm">确定</string>
-    <string name="todo_reminder_notification_channel_name">待办提醒</string>
-    <string name="habit_reminder_notification_channel_name">习惯执行提醒</string>
-    <!--universal:end-->
+    <!--universal_UI:end-->
 
 
     <!--activity_main:Begin-->
     <string name="main_drawer_open">抽屉打开</string>
     <string name="main_drawer_close">抽屉关闭</string>
-    <string-array name="main_page_title">
-        <item>记账</item>
-        <item>今日</item>
-        <item>习惯</item>
-        <item>日程</item>
-    </string-array>
     <!--activity_main:end-->
 
     <!--habit_detail:Begin-->
