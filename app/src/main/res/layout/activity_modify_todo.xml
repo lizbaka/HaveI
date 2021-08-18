@@ -222,7 +222,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dividing_line_view_height"
                         android:gravity="center"
-                        android:text="图标" />
+                        android:text="@string/select_tag" />
 
                     <View
                         android:layout_width="match_parent"

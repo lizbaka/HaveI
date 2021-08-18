@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     style="@style/Dynamic_card.border"
     app:strokeWidth="0dp"
-    android:layout_margin="0dp">
+    android:layout_margin="0dp"
+    app:cardCornerRadius="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
