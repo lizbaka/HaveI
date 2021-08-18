@@ -106,6 +106,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_HABIT_EXECS);
         db.execSQL(CREATE_EVENT_TAGS);
         db.execSQL(CREATE_TODO);
+        initialize(db);
     }
 
     @Override
@@ -510,4 +511,17 @@ public class EventDBHelper extends SQLiteOpenHelper {
     }
 
     //========Todo相关功能:end========
+
+    /**
+     * 向数据库预先输入数据
+     */
+    // TODO: 2021.08.18 整理完成所需类别后修改
+    private void initialize(SQLiteDatabase db){
+        EventTag tag = new EventTag();
+        for(int i=1;i<=25;i++){
+            tag.setIconId(i);
+            tag.setName("tag"+i);
+            db.insert(TABLE_EVENT_TAGS, null, eventTagToValues(tag));
+        }
+    }
 }
