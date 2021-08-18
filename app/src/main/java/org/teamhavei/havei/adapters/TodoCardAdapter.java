@@ -89,14 +89,6 @@ public class TodoCardAdapter extends RecyclerView.Adapter<TodoCardAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 onCardClickListener.onClick(holder.todo);
-
-            }
-        });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                dbHelper.switchTodoDone(holder.todo.getId());
-                return true;
             }
         });
         return holder;
@@ -112,7 +104,11 @@ public class TodoCardAdapter extends RecyclerView.Adapter<TodoCardAdapter.ViewHo
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(UniToolKit.eventDatetimeParser(holder.todo.getDateTime()));
         holder.todoDateTV.setText(UniToolKit.eventDateFormatter(calendar.getTime()));
-        holder.todoTimeTV.setText(UniToolKit.eventTimeFormatter(calendar.getTime()));
+        if(holder.todo.isDone()){
+            holder.todoTimeTV.setText(R.string.finished);
+        }else{
+            holder.todoTimeTV.setText(UniToolKit.eventTimeFormatter(calendar.getTime()));
+        }
     }
 
     @Override
