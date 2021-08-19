@@ -31,6 +31,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="@dimen/widget_inview_margin"
         android:layout_marginBottom="@dimen/widget_inview_margin"
+        android:gravity="center"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
