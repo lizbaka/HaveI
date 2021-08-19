@@ -18,7 +18,7 @@ import org.teamhavei.havei.databases.EventDBHelper;
 
 import java.util.List;
 
-public class ActivityHabitList extends BaseActivity {
+public class ZDActivityHabitList extends BaseActivity {
 
     RecyclerView habitCardListRV;
     HabitCardAdapter habitCardAdapter;
@@ -27,14 +27,14 @@ public class ActivityHabitList extends BaseActivity {
     List<Habit> habitList;
 
     public static void startAction(Context context) {
-        Intent intent = new Intent(context, ActivityHabitList.class);
+        Intent intent = new Intent(context, ZDActivityHabitList.class);
         context.startActivity(intent);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habit_list);
+        setContentView(R.layout.zd_activity_habit_list);
         dbHelper = new EventDBHelper(this, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
         setSupportActionBar(findViewById(R.id.habit_list_toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -44,13 +44,13 @@ public class ActivityHabitList extends BaseActivity {
 
         habitList = dbHelper.findAllHabit();
         habitCardListRV.setLayoutManager(new LinearLayoutManager(this));
-        habitCardAdapter = new HabitCardAdapter(dbHelper.findAllHabit(), ActivityHabitList.this);
+        habitCardAdapter = new HabitCardAdapter(dbHelper.findAllHabit(), ZDActivityHabitList.this);
         habitCardListRV.setAdapter(habitCardAdapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityModifyHabit.startAction(ActivityHabitList.this);
+                ActivityModifyHabit.startAction(ZDActivityHabitList.this);
             }
         });
     }
