@@ -230,7 +230,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
         }
         String sStartDate = UniToolKit.eventDateFormatter(startDate);
         String sEndDate = UniToolKit.eventDateFormatter(endDate);
-        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_DATE + " > ? AND " + HABIT_EXECS_DATE + " < ?", new String[]{sStartDate, sEndDate}, null, null, null);
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ? AND " + HABIT_EXECS_DATE + " > ? AND " + HABIT_EXECS_DATE + " < ?", new String[]{Integer.toString(habitID), sStartDate, sEndDate}, null, null, null);
         return cursor.getCount() >= habit.getRepeatTimes();
     }
 
@@ -305,6 +305,11 @@ public class EventDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean switchHabitExec(int habitId, Date date) {
+        String sDate = UniToolKit.eventDateFormatter(date);
+        return switchHabitExec(habitId, sDate);
+    }
+
     public HabitExec findHabitExecById(int id) {
         Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
         HabitExec mHabitExec = (HabitExec) cursorToHabitExecList(cursor).get(0);
@@ -329,6 +334,12 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     public boolean isHabitDone(int habitId, String date) {
         Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ?" + " AND " + HABIT_EXECS_DATE + " = ?", new String[]{Integer.toString(habitId), date}, null, null, null);
+        return cursor.getCount() > 0;
+    }
+
+    public boolean isHabitDone(int habitId, Date date) {
+        String sDate = UniToolKit.eventDateFormatter(date);
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ?" + " AND " + HABIT_EXECS_DATE + " = ?", new String[]{Integer.toString(habitId), sDate}, null, null, null);
         return cursor.getCount() > 0;
     }
     //========Habit_Exec相关功能:end=========
@@ -497,15 +508,15 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return cursorToTodoList(cursor);
     }
 
-    public boolean switchTodoDone(int todoId){
+    public boolean switchTodoDone(int todoId) {
         Todo newTodo = findTodoById(todoId);
-        if(newTodo.isDone()){
+        if (newTodo.isDone()) {
             newTodo.setDone(false);
-            updateTodo(todoId,newTodo);
+            updateTodo(todoId, newTodo);
             return false;
-        }else{
+        } else {
             newTodo.setDone(true);
-            updateTodo(todoId,newTodo);
+            updateTodo(todoId, newTodo);
             return true;
         }
     }
@@ -516,11 +527,11 @@ public class EventDBHelper extends SQLiteOpenHelper {
      * 向数据库预先输入数据
      */
     // TODO: 2021.08.18 整理完成所需类别后修改
-    private void initialize(SQLiteDatabase db){
+    private void initialize(SQLiteDatabase db) {
         EventTag tag = new EventTag();
-        for(int i=1;i<=25;i++){
+        for (int i = 1; i <= 25; i++) {
             tag.setIconId(i);
-            tag.setName("tag"+i);
+            tag.setName("tag" + i);
             db.insert(TABLE_EVENT_TAGS, null, eventTagToValues(tag));
         }
     }
