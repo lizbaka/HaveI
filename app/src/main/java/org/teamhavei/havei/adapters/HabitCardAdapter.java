@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -76,8 +77,10 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
                 holder.isHabitDoneToday = dbHelper.switchHabitExec(holder.mHabit.getId(), UniToolKit.eventDateFormatter(new Date()));
                 if (holder.isHabitDoneToday) {
                     holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_check_24_color_pv));
+                    Toast.makeText(mContext,R.string.habit_done,Toast.LENGTH_SHORT).show();
                 } else {
                     holder.statusIcon.setImageDrawable(mContext.getDrawable(R.drawable.ic_baseline_close_24_white));
+                    Toast.makeText(mContext,R.string.habit_undone,Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
