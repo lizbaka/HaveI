@@ -160,9 +160,9 @@ public class ActivityHabitDetail extends BaseActivity {
 
                 String toastMessage;
                 if (done) {
-                    toastMessage = getString(R.string.habit_detail_marked);
+                    toastMessage = getString(R.string.habit_done);
                 } else {
-                    toastMessage = getString(R.string.habit_detail_unmarked);
+                    toastMessage = getString(R.string.habit_undone);
                 }
                 Toast.makeText(ActivityHabitDetail.this, toastMessage, Toast.LENGTH_SHORT).show();
 
