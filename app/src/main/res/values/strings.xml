@@ -21,6 +21,8 @@
     <string name="optional">可选</string>
     <string name="finished">已完成</string>
     <string name="unfinished">未完成</string>
+    <string name="habit_done">打卡成功！</string>
+    <string name="habit_undone">取消打卡</string>
     <!--universal_UI:end-->
 
 
@@ -30,22 +32,25 @@
     <!--activity_main:end-->
 
 
-    <!--activity_main_event:Begin-->
+    <!--main_event:Begin-->
     <string name="habit_library">习惯库</string>
     <string name="todo_library">日程库</string>
-    <string name="main_event_uncompleted_habits">在这一天尚未达成目标的习惯</string>
+    <string name="main_event_unfinished_habits">今天的习惯</string>
     <string name="main_event_no_habit">没有未完成的习惯</string>
     <string name="main_event_no_todo">这一天没有待办</string>
-    <!--activity_main_event:end-->
+    <!--main_event:end-->
 
-    <!--activity_daily_habit:Begin-->
+    <!--deprecated-->
+    <!--daily_habit:Begin-->
     <string name="daily_habit_title">查看您的当日习惯</string>
     <string name="daily_habit_library">习惯库</string>
     <string name="daily_habit_today">today</string>
     <string name="daily_habit_completion_record">完成记录</string>
+    <!--daily_habit:end-->
 
-    <!--activity_daily_habit:end-->
-
+    <!--today_habit:Begin-->
+    <string name="today_habit_title">查看您的当日习惯</string>
+    <!--today_habit:end-->
 
     <!--habit_detail:Begin-->
     <string name="button_year">年度统计</string>
@@ -54,8 +59,6 @@
     <string name="plan_clock_in">计划打卡</string>
     <string name="habit_ranking">习惯排行</string>
     <string name="habit_detail_advanced">不能提前标记哦！</string>
-    <string name="habit_detail_marked">习惯执行记录成功！</string>
-    <string name="habit_detail_unmarked">习惯执行记录已删除</string>
     <string name="habit_detail_delete_dialog_title">删除习惯</string>
     <string name="habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除习惯 </string>
     <string name="habit_detail_delete_dialog_msg2"> 吗？</string>
@@ -94,7 +97,6 @@
     <string name="modify_habit_clear_reminder">关闭提醒</string>
     <!--modify_habit:end-->
 
-
     <!--habit:Begin-->
     <string name="habit_add_first">添加您的第一个习惯！</string>
     <!--habit:end-->
@@ -111,7 +113,6 @@
     <string name="greeting_card_slogan">记录你的生活！</string>
     <!--greeting_card:end-->
 
-
     <!--habit_detail:Begin-->
     <string name="habit_detail_toolbar_modify">修改</string>
     <string name="habit_detail_toolbar_delete">删除</string>
@@ -127,6 +128,12 @@
     <string name="nav_menu_help">帮助</string>
     <!--nav_menu:end-->
 
+    <!--habit_main_bottom_nav_menu:begin-->
+    <string name="habit_main_bottom_nav_today">Today</string>
+    <string name="habit_main_bottom_nav_lib">习惯库</string>
+    <string name="habit_main_bottom_nav_record">完成记录</string>
+    <!--habit_main_bottom_nav_menu:end-->
+
     <!--event_notification:Begin-->
     <string name="todo_notification_title">即将进行的待办</string>
     <string name="todo_notification_content">将要进行</string>
@@ -141,7 +148,6 @@
     <string name="habit_list_title">查看您的习惯</string>
     <string name="habit_list_add">添加一个习惯！</string>
     <!--habit_list:end-->
-
 
     <!--proverb:Begin-->
     <string name="proverb_list_title">我收藏的句子</string>

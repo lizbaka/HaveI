@@ -10,12 +10,15 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.HaveI">
         <activity
+            android:name=".activities.ActivityHabitMain"
+            android:exported="true" />
+        <activity
             android:name=".activities.ActivityTodoDetail"
             android:exported="true" />
         <activity android:name=".activities.ActivityModifyTodo" />
         <activity android:name=".activities.ActivityMainEvent" />
         <activity android:name=".activities.ActivityProverbList" />
-        <activity android:name=".activities.ActivityHabitList" />
+        <activity android:name=".activities.ZDActivityHabitList" />
 
         <service
             android:name=".services.HaveITimeWatcher"
