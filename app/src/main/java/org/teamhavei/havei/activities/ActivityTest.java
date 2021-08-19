@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.Todo;
@@ -48,8 +47,8 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
             case R.id.test_proverb_list:
                 ActivityProverbList.startAction(this);
                 break;
-            case R.id.test_habit_list:
-                ActivityHabitList.startAction(this);
+            case R.id.test_habit:
+                ActivityHabitMain.startAction(this);
                 break;
             case R.id.test_main_event:
                 ActivityMainEvent.startAction(this);

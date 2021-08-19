@@ -23,11 +23,11 @@
         android:onClick="onClick"
         android:text="go to ActivityProverbList"/>
     <Button
-        android:id="@+id/test_habit_list"
+        android:id="@+id/test_habit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClick"
-        android:text="go to ActivityHabitList"/>
+        android:text="go to ActivityHabit"/>
     <Button
         android:id="@+id/test_main_event"
         android:layout_width="match_parent"
