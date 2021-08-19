@@ -3,6 +3,7 @@ package org.teamhavei.havei.activities;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +48,7 @@ public class ActivityMainEvent extends BaseActivity {
     MaterialCardView todayHabitCV;
     GridLayout habitContainerGL;
     TextView habitEmptyHintTV;
+    ImageView habitMoreIV;
     TextView todoDateTV;
     TextView todoWeekdayTV;
     RecyclerView todayTodoRV;
@@ -74,12 +77,12 @@ public class ActivityMainEvent extends BaseActivity {
         todayTodoRVAdapter = new TodoCardAdapter(ActivityMainEvent.this, todayTodoList, TodoCardAdapter.TODO_CARD_TYPE_SIMPLE, new TodoCardAdapter.OnCardClickListener() {
             @Override
             public void onClick(Todo todo) {
-
+                ActivityTodoDetail.startAction(ActivityMainEvent.this, todo.getId());
             }
         });
         todayTodoRV.setAdapter(todayTodoRVAdapter);
         todayTodoRV.setLayoutManager(new LinearLayoutManager(ActivityMainEvent.this));
-        todayTodoRV.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        todayTodoRV.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         calendar = Calendar.getInstance();
         updateSelectedDate();
@@ -109,6 +112,7 @@ public class ActivityMainEvent extends BaseActivity {
         todayHabitCV = findViewById(R.id.main_event_habit_card);
         habitContainerGL = findViewById(R.id.main_event_habit_container);
         habitEmptyHintTV = findViewById(R.id.main_event_habit_empty_hint);
+        habitMoreIV = findViewById(R.id.main_event_habit_more_icon);
         todoDateTV = findViewById(R.id.main_event_todo_date);
         todoWeekdayTV = findViewById(R.id.main_event_todo_weekday);
         todayTodoRV = findViewById(R.id.main_event_todo_list);
@@ -123,23 +127,17 @@ public class ActivityMainEvent extends BaseActivity {
         todoDateTV.setText(UniToolKit.eventDateFormatter(calendar.getTime()).substring(5));
         todoWeekdayTV.setText(new SimpleDateFormat("EEEE").format(calendar.getTime()));
         todayTodoList = dbHelper.findTodoByDate(calendar.getTime());
-        if(todayTodoList.size()<=0){
+        if (todayTodoList.size() <= 0) {
             todayTodoRV.setVisibility(View.GONE);
             todoEmptyHintTV.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             todoEmptyHintTV.setVisibility(View.GONE);
             todayTodoRV.setVisibility(View.VISIBLE);
         }
         todayTodoRVAdapter.setTodoList(todayTodoList);
         todayTodoRVAdapter.notifyDataSetChanged();
         todayHabitList = dbHelper.findUnfinishedHabit(calendar);
-        habitContainerGL.removeAllViews();
-        if(todayHabitList.size()<=0){
-            habitEmptyHintTV.setVisibility(View.VISIBLE);
-        }else{
-            habitEmptyHintTV.setVisibility(View.GONE);
-            configHabitContainerGL();
-        }
+        configHabitContainerGL();
     }
 
     private void bindOnclickListener() {
@@ -158,19 +156,19 @@ public class ActivityMainEvent extends BaseActivity {
         habitLibBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 2021.08.16 等待习惯库后端完成后接入 （界面10）
+                ActivityHabitMain.startAction(ActivityMainEvent.this);
             }
         });
         todayHabitCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 2021.08.16 等待习惯库后端完成后接入 （界面10）
+                ActivityHabitMain.startAction(ActivityMainEvent.this);
             }
         });
         dateSelectorCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(ActivityMainEvent.this,new DatePickerDialog.OnDateSetListener() {
+                new DatePickerDialog(ActivityMainEvent.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         calendar.set(Calendar.YEAR, year);
@@ -184,58 +182,42 @@ public class ActivityMainEvent extends BaseActivity {
     }
 
     private void configHabitContainerGL() {
-        if (todayHabitList.size() <= 4) {
-            habitContainerGL.setColumnCount(todayHabitList.size());
-            habitContainerGL.setRowCount(1);
-        } else {
-            habitContainerGL.setColumnCount(4);
-            habitContainerGL.setRowCount(2);
+        habitContainerGL.removeAllViews();
+        if(todayHabitList.size()>8){
+            habitMoreIV.setVisibility(View.VISIBLE);
+        }else{
+            habitMoreIV.setVisibility(View.GONE);
         }
+        if (todayHabitList.isEmpty()) {
+            habitEmptyHintTV.setVisibility(View.VISIBLE);
+            return;
+        } else {
+            habitEmptyHintTV.setVisibility(View.GONE);
+        }
+
         View child;
         IconAdapter iconAdapter = new IconAdapter(ActivityMainEvent.this);
 
-        Habit mHabit;
-        for (int i = 0; i < (todayHabitList.size() < 4 ? todayHabitList.size() : 4); i++) {
+        for (int i = 0; i < (todayHabitList.size() < 8 ? todayHabitList.size() : 8); i++) {
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-            params.width = 0;
+            params.width = GridLayout.LayoutParams.WRAP_CONTENT;
             params.height = GridLayout.LayoutParams.WRAP_CONTENT;
             child = LayoutInflater.from(ActivityMainEvent.this).inflate(R.layout.dynamic_icon_title_secondary, null);
             ImageView iconIV = child.findViewById(R.id.icon_title_icon);
             View iconContainerV = child.findViewById(R.id.icon_title_icon_container);
             TextView titleTV = child.findViewById(R.id.icon_title_title);
 
-            mHabit = todayHabitList.get(i);
-            params.rowSpec = GridLayout.spec(0);
-            params.columnSpec = GridLayout.spec(i, 1f);
+            Habit mHabit = todayHabitList.get(i);
+            params.rowSpec = GridLayout.spec(i / 4);
+            params.columnSpec = GridLayout.spec(i % 4, 1f);
             iconIV.setImageDrawable(iconAdapter.getIcon(dbHelper.findEventTagById(mHabit.getTagId()).getIconId()));
+            iconContainerV.setBackgroundTintList(ContextCompat.getColorStateList(ActivityMainEvent.this, R.color.habit_finish_icon_background_green));
+            iconContainerV.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
+            if (dbHelper.isHabitDone(mHabit.getId(), Calendar.getInstance().getTime())) {
+                iconContainerV.setSelected(true);
+            }
             titleTV.setText(mHabit.getName());
-            habitContainerGL.addView(child, params);
-        }
-        int secondRowColumnSize = 1;
-        switch (todayHabitList.size()) {
-            case 5:
-                secondRowColumnSize = 4;
-                break;
-            case 6:
-                secondRowColumnSize = 3;
-                break;
-            default:
-                secondRowColumnSize = 1;
-        }
-        for (int i = 4; i < (todayHabitList.size() < 8 ? todayHabitList.size() : 8); i++) {
-            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-            params.width = 0;
-            params.height = GridLayout.LayoutParams.WRAP_CONTENT;
-            child = LayoutInflater.from(ActivityMainEvent.this).inflate(R.layout.dynamic_icon_title_secondary, habitContainerGL,false);
-            ImageView iconIV = child.findViewById(R.id.icon_title_icon);
-            View iconContainerV = child.findViewById(R.id.icon_title_icon_container);
-            TextView titleTV = child.findViewById(R.id.icon_title_title);
 
-            mHabit = todayHabitList.get(i);
-            params.rowSpec = GridLayout.spec(1);
-            params.columnSpec = GridLayout.spec(i % 4, secondRowColumnSize, 1f);
-            iconIV.setImageDrawable(iconAdapter.getIcon(dbHelper.findEventTagById(mHabit.getTagId()).getIconId()));
-            titleTV.setText(mHabit.getName());
             habitContainerGL.addView(child, params);
         }
     }
