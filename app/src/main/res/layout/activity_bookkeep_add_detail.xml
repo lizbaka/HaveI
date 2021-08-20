@@ -99,7 +99,8 @@
             android:layout_height="@dimen/bookkeep_add_account_detail_button_height"
             android:layout_marginLeft="@dimen/bookkeep_add_account_detail_calculator_border_margin"
             android:layout_marginTop="@dimen/bookkeep_add_account_detail_calculator_margin"
-            android:text="@string/number_one" />
+            android:text="@string/number_one"
+            android:onClick="onClick_One"/>
 
         <Button
             android:id="@+id/add_account_detail_number_two"
@@ -108,7 +109,8 @@
             android:layout_alignTop="@+id/add_account_detail_number_one"
             android:layout_marginLeft="@dimen/bookkeep_add_account_detail_calculator_margin"
             android:layout_toRightOf="@+id/add_account_detail_number_one"
-            android:text="@string/number_two" />
+            android:text="@string/number_two"
+            android:onClick="onClick_Two"/>
 
         <Button
             android:id="@+id/add_account_detail_number_three"
@@ -118,7 +120,8 @@
             android:layout_marginLeft="@dimen/bookkeep_add_account_detail_calculator_margin"
             android:layout_marginTop="0dp"
             android:layout_toRightOf="@+id/add_account_detail_number_two"
-            android:text="@string/number_three" />
+            android:text="@string/number_three"
+            android:onClick="onClick_Three"/>
 
         <Button
             android:id="@+id/add_account_detail_number_four"
@@ -127,7 +130,8 @@
             android:layout_below="@+id/add_account_detail_number_one"
             android:layout_alignLeft="@id/add_account_detail_number_one"
             android:layout_marginTop="@dimen/bookkeep_add_account_detail_calculator_margin"
-            android:text="@string/number_four" />
+            android:text="@string/number_four"
+            android:onClick="onClick_Four"/>
 
         <Button
             android:id="@+id/add_account_detail_number_five"

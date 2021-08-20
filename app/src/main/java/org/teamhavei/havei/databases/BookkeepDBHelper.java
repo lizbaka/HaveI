@@ -14,7 +14,6 @@ import org.teamhavei.havei.Event.BookPlan;
 import org.teamhavei.havei.Event.BookTag;
 import org.teamhavei.havei.Event.Bookkeep;
 import org.teamhavei.havei.Event.BookCou;
-import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.UniToolKit;
 
 
@@ -41,7 +40,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                     BOOKKEEP_TAG_ID + " integer," +
                     BOOKKEEP_TIME + "text,"+
                     BOOKKEEP_ICON_ID +"integer,"+
-                    BOOKKEEP_PM + " integer)";
+                    BOOKKEEP_PM + " double)";
 
     private static final String TABLE_BOOK_TAGS = "BookTags";
     private static final String BOOK_TAGS_ID = "id";
@@ -53,7 +52,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                     BOOK_TAGS_ID + " integer primary key autoincrement," +//标签id
                     BOOK_TAGS_ICON_ID + " integer," +//图标id
                     BOOK_TAGS_NAME + " text," +//标签名称
-                    BOOK_TAGS_DELETE + " integer)";//标签是否被删除 0:未删除 1:已删除
+                    BOOK_TAGS_DELETE + " integer)";
     private static final String TABLE_BOOK_COUS = "BookCous";
     private static final String BOOK_COUS_ID = "id";
     private static final String BOOK_COUS_TIME = "time";
@@ -127,7 +126,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                     mBookkeep.settag(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_TAG_ID)));
                     mBookkeep.setTime(cursor.getString(cursor.getColumnIndex(BOOKKEEP_TIME)));
                     mBookkeep.setIconId(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_ICON_ID)));
-                    mBookkeep.setPM(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_PM)));
+                    mBookkeep.setPM(cursor.getDouble(cursor.getColumnIndex(BOOKKEEP_PM)));
                     mBookkeepList.add(mBookkeep);
                 }
             } catch (CursorIndexOutOfBoundsException e) {
