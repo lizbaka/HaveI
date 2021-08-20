@@ -199,5 +199,20 @@
     <string name="tt_24">24:00</string>
     <!--time_table_fragment:end-->
 
+    <!--monthly_report:begin-->
+    <string name="user_name">喜欢月亮</string>
+    <string name="monthly_report_bookkeep_day">28</string>
+    <string name="monthly_report_bookkeep_sum">4321</string>
+    <string name="monthly_report_habit_times">1542</string>
+    <string name="monthly_report_habit_number">27</string>
+    <string name="monthly_report_habit_finish_times">1542</string>
+    <string name="monthly_report_habit_day">25</string>
+    <string name="monthly_report_sentence">也不过是想让这个世界知道，\n柔水终成雕刀。\n——《雕刀》</string>
+    <string name="monthly_report_bookkeep_most">日常干饭</string>
+    <string name="monthly_report_id_date">id:喜欢月亮\ndate:8月20日</string>
+    <string name="monthly_report_habit_one_name">跑步\n132次</string>
+    <string name="monthly_report_habit_two_name">自习\n28次</string>
+    <string name="monthly_report_habit_three_name">一个名字很长的习惯\n38次</string>
+    <!--monthly_report:end-->
 
 </resources>

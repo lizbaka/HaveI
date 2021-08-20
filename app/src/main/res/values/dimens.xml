@@ -46,4 +46,8 @@
     <dimen name="dividing_view_container">2dp</dimen>
     <dimen name="tt_time_font_size">10sp</dimen>
 
+    <dimen name="monthly_report_habit_icon_side_length">30dp</dimen>
+    <dimen name="monthly_report_QR_code">40dp</dimen>
+
+
 </resources>
