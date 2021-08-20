@@ -10,17 +10,20 @@
 
         <RelativeLayout
             android:id="@+id/bookkeep_record_card_icon_container"
-            android:layout_centerVertical="true"
-            android:layout_margin="@dimen/widget_inview_margin"
             android:layout_width="@dimen/round_icon_background_size"
             android:layout_height="@dimen/round_icon_background_size"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="@dimen/widget_inview_margin"
+            android:layout_marginBottom="0dp"
             android:background="@drawable/bg_round_icon">
 
             <ImageView
                 android:id="@+id/bookkeep_note_card_icon"
-                android:layout_centerInParent="true"
                 android:layout_width="@dimen/round_icon_size"
-                android:layout_height="@dimen/round_icon_size"/>
+                android:layout_height="@dimen/round_icon_size"
+                android:layout_centerInParent="true" />
 
         </RelativeLayout>
 
@@ -28,40 +31,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/bookkeep_record_card_icon_container"
-            android:layout_toLeftOf="@id/bookkeep_record_card_io">
+            android:layout_toLeftOf="@id/bookkeep_record_card_io"
+            android:layout_toRightOf="@id/bookkeep_record_card_icon_container">
 
             <TextView
                 android:id="@+id/bookkeep_record_card_tag"
+                style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_marginLeft="@dimen/widget_inview_margin"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="@dimen/widget_inview_margin"
+                android:layout_marginBottom="5dp"
                 android:maxLines="1"
                 android:text="[bookkeep_Record_Card_Tag]" />
 
             <TextView
                 android:id="@+id/todo_card_title"
-                android:layout_below="@id/bookkeep_record_card_tag"
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_below="@id/bookkeep_record_card_tag"
+                android:layout_marginLeft="@dimen/widget_inview_margin"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="@dimen/widget_inview_margin"
+                android:layout_marginBottom="0dp"
                 android:maxLines="1"
-                android:text="[bookkeep_Record_Card_Title]"
-                android:visibility="gone"/>
+                android:text="[bookkeep_Record_Card_Title]" />
         </RelativeLayout>
 
         <TextView
             android:id="@+id/bookkeep_record_card_io"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/red_500"
-            android:layout_margin="@dimen/widget_inview_margin"
-            android:text="¥-1234.56"/>
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/widget_inview_margin"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:text="¥-1234.56"
+            android:textColor="@color/red_500" />
 
 
     </RelativeLayout>

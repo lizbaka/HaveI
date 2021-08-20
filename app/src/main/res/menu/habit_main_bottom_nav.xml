@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/habit_main_bottom_nav_today"
+        android:icon="@drawable/sun4"
+        android:title="@string/habit_main_bottom_nav_today"/>
+
+    <item
+        android:id="@+id/habit_main_bottom_nav_lib"
+        android:icon="@drawable/cs_plaything"
+        android:title="@string/habit_main_bottom_nav_lib"/>
+
+    <item
+        android:id="@+id/habit_main_bottom_nav_record"
+        android:icon="@drawable/cs_pets"
+        android:title="@string/habit_main_bottom_nav_record"/>
+
+</menu>

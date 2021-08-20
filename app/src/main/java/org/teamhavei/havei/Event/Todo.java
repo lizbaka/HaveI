@@ -7,7 +7,16 @@ public class Todo {
     private int tagId;
     private String dateTime;
     private String reminderDateTime;
+    private String remark;
     private boolean done;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     public String getReminderDateTime() {
         return reminderDateTime;

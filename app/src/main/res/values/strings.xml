@@ -13,6 +13,16 @@
     <string name="save">保存</string>
     <string name="back">返回</string>
     <string name="confirm">确定</string>
+    <string name="times">次</string>
+    <string name="day">天</string>
+    <string name="each">每</string>
+    <string name="select_tag">选择一个标签</string>
+    <string name="no_data">暂无数据</string>
+    <string name="optional">可选</string>
+    <string name="finished">已完成</string>
+    <string name="unfinished">未完成</string>
+    <string name="habit_done">打卡成功！</string>
+    <string name="habit_undone">取消打卡</string>
     <!--universal_UI:end-->
 
 
@@ -22,24 +32,25 @@
     <!--activity_main:end-->
 
 
-    <!--activity_main_event:Begin-->
-    <string name="event_title">日程习惯总页面</string>
-    <string name="habit_date">日期</string>
-    <string name="todo_date">日期</string>
-    <string name="todo_weather">天气</string>
+    <!--main_event:Begin-->
     <string name="habit_library">习惯库</string>
     <string name="todo_library">日程库</string>
-    <!--activity_main_event:end-->
+    <string name="main_event_unfinished_habits">今天的习惯</string>
+    <string name="main_event_no_habit">没有未完成的习惯</string>
+    <string name="main_event_no_todo">这一天没有待办</string>
+    <!--main_event:end-->
 
-    <!--activity_daily_habit:Begin-->
+    <!--deprecated-->
+    <!--daily_habit:Begin-->
     <string name="daily_habit_title">查看您的当日习惯</string>
     <string name="daily_habit_library">习惯库</string>
     <string name="daily_habit_today">today</string>
     <string name="daily_habit_completion_record">完成记录</string>
+    <!--daily_habit:end-->
 
-    <!--activity_daily_habit:end-->
-
-
+    <!--today_habit:Begin-->
+    <string name="today_habit_title">查看您的当日习惯</string>
+    <!--today_habit:end-->
 
     <!--habit_detail:Begin-->
     <string name="button_year">年度统计</string>
@@ -48,59 +59,48 @@
     <string name="plan_clock_in">计划打卡</string>
     <string name="habit_ranking">习惯排行</string>
     <string name="habit_detail_advanced">不能提前标记哦！</string>
-    <string name="habit_detail_marked">习惯执行记录成功！</string>
-    <string name="habit_detail_unmarked">习惯执行记录已删除</string>
     <string name="habit_detail_delete_dialog_title">删除习惯</string>
-    <string name="habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除</string>
-    <string name="habit_detail_delete_dialog_msg2">吗？</string>
+    <string name="habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除习惯 </string>
+    <string name="habit_detail_delete_dialog_msg2"> 吗？</string>
+    <string name="habit_detail_empty_execution_hint">还没打过卡</string>
+    <string name="habit_detail_empty_reminder_hint">未设置提醒时间</string>
     <!--habit_detail:end-->
 
 
     <!--modify_todo:Begin-->
-    <string name="modify_todo_title_add">添加事件</string>
-    <string name="modify_todo_title_modify">修改时间</string>
-    <string name="modify_todo_hint_name">事件名称</string>
-    <string name="modify_todo_hint_remark">事件备注</string>
-    <string name="modify_todo_text_frequency">事件执行时间</string>
-    <string name="modify_todo_button_frequency">时间</string>
-    <string name="modify_todo_button_time">时间</string>
-    <string name="modify_todo_text_time">事件提醒时间</string>
-    <string name="modify_todo_done">完成</string>
-    <string name="modify_todo_exist_dialog_title">事件已存在</string>
-    <string name="modify_todo_exist_dialog_msg">是否更新到已有事件？</string>
-    <string name="modify_todo_exist_error">事件已存在</string>
-    <string name="modify_todo_empty_name">事件名不能为空</string>
+    <string name="modify_todo_title_add">添加待办</string>
+    <string name="modify_todo_title_modify">修改待办</string>
+    <string name="modify_todo_hint_name">待办名称：</string>
+    <string name="modify_todo_remind_me_to">提醒我……</string>
+    <string name="modify_todo_hint_reminder_time">提醒时间：</string>
+    <string name="modify_todo_hint_remark">待办备注：</string>
+    <string name="modify_todo_hint_time">待办时间：</string>
+    <string name="modify_todo_empty_name">待办名不能为空</string>
+    <string name="modify_todo_reminder_time_null">未选择</string>
+    <string name="modify_todo_remind_after_todo">提醒时间不能晚于待办时间</string>
     <!--modify_todo:end-->
-
 
 
     <!--modify_habit:Begin-->
     <string name="modify_habit_title_add">添加习惯</string>
     <string name="modify_habit_title_modify">修改习惯</string>
-    <string name="modify_habit_hint_name">习惯名称</string>
-    <string name="modify_habit_text_frequency">习惯执行频率</string>
-    <string name="modify_habit_button_frequency">频率</string>
-    <string name="modify_habit_button_time">时间</string>
+    <string name="modify_habit_name_hint">习惯名称</string>
+    <string name="modify_habit_name">命名：</string>
+    <string name="modify_habit_text_frequency">习惯打卡频率</string>
+    <string name="modify_habit_reminder_time_null">未选择</string>
     <string name="modify_habit_text_time">习惯提醒时间</string>
-    <string name="modify_habit_done">完成</string>
-    <string name="modify_habit_exist_dialog_title">习惯已存在</string>
-    <string name="modify_habit_exist_dialog_msg">是否更新到已有习惯？</string>
-    <string name="modify_habit_exist_error">习惯已存在</string>
     <string name="modify_habit_empty_name">习惯名不能为空</string>
+    <string name="modify_habit_empty_frequency">未指定频率</string>
+    <string name="modify_habit_null_event_tag">未选择标签</string>
+    <string name="modify_habit_too_many_times">每天最多只能打卡一次</string>
+    <string name="modify_habit_illegal_frequency">请输入正确的频率</string>
+    <string name="modify_habit_clear_reminder">关闭提醒</string>
     <!--modify_habit:end-->
-
 
     <!--habit:Begin-->
     <string name="habit_add_first">添加您的第一个习惯！</string>
     <!--habit:end-->
 
-
-    <!--habit_card:Begin-->
-    <string name="habit_card_done">太棒了！今天已经完成</string>
-    <string name="habit_card_undone">今天尚未完成</string>
-    <string name="habit_card_count1">您已坚持完成习惯 </string>
-    <string name="habit_card_count2"> 次，持之以恒！</string>
-    <!--habit_card:end-->
 
     <!--greeting_card:Begin-->
     <string-array name="greeting_card_time">
@@ -113,16 +113,10 @@
     <string name="greeting_card_slogan">记录你的生活！</string>
     <!--greeting_card:end-->
 
-
-    <!--nav_header:Begin-->
-    <string name="nav_header_title">HaveI</string>
-    <!--nav_header:end-->
-
-
-    <!--habit_detail_toolbar:Begin-->
+    <!--habit_detail:Begin-->
     <string name="habit_detail_toolbar_modify">修改</string>
     <string name="habit_detail_toolbar_delete">删除</string>
-    <!--habit_detail_toolbar:end-->
+    <!--habit_detail:end-->
 
     <!--main_toolbar_Begin-->
     <string name="main_toolbar_analyze">分析</string>
@@ -133,6 +127,12 @@
     <string name="nav_menu_settings">设置</string>
     <string name="nav_menu_help">帮助</string>
     <!--nav_menu:end-->
+
+    <!--habit_main_bottom_nav_menu:begin-->
+    <string name="habit_main_bottom_nav_today">Today</string>
+    <string name="habit_main_bottom_nav_lib">习惯库</string>
+    <string name="habit_main_bottom_nav_record">完成记录</string>
+    <!--habit_main_bottom_nav_menu:end-->
 
     <!--event_notification:Begin-->
     <string name="todo_notification_title">即将进行的待办</string>
@@ -149,7 +149,6 @@
     <string name="habit_list_add">添加一个习惯！</string>
     <!--habit_list:end-->
 
-
     <!--proverb:Begin-->
     <string name="proverb_list_title">我收藏的句子</string>
     <string name="proverb_list_add">添加一个喜欢的句子！</string>
@@ -159,7 +158,7 @@
     <string name="proverb_remove_confirm_msg">您取消了一些句子的收藏，您确定吗？</string>
     <!--proverb:end-->
 
-<!--time_table:begin-->
+    <!--time_table:begin-->
     <string name="tt_monday">一</string>
     <string name="tt_tuesday">二</string>
     <string name="tt_wednesday">三</string>
@@ -199,6 +198,14 @@
     <string name="tt_24">24:00</string>
     <!--time_table_fragment:end-->
 
+    <!--todo_detail:begin-->
+    <string name="todo_detail_time">待办时间</string>
+    <string name="todo_detail_remind_time">提醒时间</string>
+    <string name="todo_detail_remark">备注信息</string>
+    <string name="todo_detail_delete_dialog_title">删除待办</string>
+    <string name="todo_detail_delete_dialog_msg1">待办将被永久删除，您确定要删除待办 </string>
+    <string name="todo_detail_delete_dialog_msg2"> 吗？</string>
+    <!--todo_detail:end-->
     <!--monthly_report:begin-->
     <string name="user_name">喜欢月亮</string>
     <string name="monthly_report_bookkeep_day">28</string>

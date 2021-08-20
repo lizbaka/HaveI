@@ -1,16 +1,15 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/modify_habit_toolbar"
+            android:id="@+id/modify_todo_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
@@ -18,164 +17,231 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="@string/modify_habit_title_add">
+            app:title="@string/modify_todo_title_add">
 
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <RelativeLayout
-            android:id="@+id/modify_habit_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/widget_inview_margin">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
 
-            <RelativeLayout
-                android:id="@+id/modify_habit_record_card_icon_container"
-                android:layout_centerVertical="true"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:layout_width="@dimen/round_icon_background_size"
-                android:layout_height="@dimen/round_icon_background_size"
-                android:background="@drawable/bg_round_icon">
-
-                <ImageView
-                    android:id="@+id/modify_habit_note_card_icon"
-                    android:layout_centerInParent="true"
-                    android:layout_width="@dimen/round_icon_size"
-                    android:layout_height="@dimen/round_icon_size"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Dynamic_card.border"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/modify_habit_record_card_icon_container"
-                android:layout_centerInParent="true">
+                android:layout_marginHorizontal="0dp">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:hint="@string/modify_todo_hint_name"
-                    android:textSize="@dimen/font_size_enlarged"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:orientation="vertical">
 
-            </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/widget_inview_margin">
 
-        </RelativeLayout>
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/modify_todo_hint_name" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/modify_todo_hint_remark"/>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/modify_todo_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:hint="@string/modify_todo_remind_me_to"
+                            android:singleLine="true" />
 
-        <LinearLayout
-            android:id="@+id/modify_habit_frequency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginVertical="@dimen/widget_inview_margin">
+                    </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dividing_line_view_height"
+                        android:background="@color/grey_200" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/widget_inview_margin"
+                        android:layout_marginVertical="15dp">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/modify_todo_hint_time" />
+
+                        <LinearLayout
+                            android:id="@+id/modify_todo_datetime_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/modify_todo_date"
+                                style="@style/TextAppearance.AppCompat.Title"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="[MM-DD]" />
+
+                            <View
+                                android:layout_width="@dimen/dividing_line_view_height"
+                                android:layout_height="match_parent"
+                                android:background="@color/grey_500" />
+
+                            <TextView
+                                android:id="@+id/modify_todo_time"
+                                style="@style/TextAppearance.AppCompat.Title"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="[HH:MM]" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dividing_line_view_height"
+                        android:background="@color/grey_200" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/widget_inview_margin">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/modify_todo_hint_remark" />
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/modify_todo_remark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:hint="@string/optional"
+                            android:singleLine="true" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dividing_line_view_height"
+                        android:background="@color/grey_200" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/widget_inview_margin"
+                        android:layout_marginVertical="15dp">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/modify_todo_hint_reminder_time" />
+
+                        <LinearLayout
+                            android:id="@+id/modify_todo_reminder_datetime_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/modify_todo_reminder_empty_hint"
+                                style="@style/TextAppearance.AppCompat.Title"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="@string/modify_todo_reminder_time_null"
+                                android:textColor="@color/grey_500"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/modify_todo_reminder_date"
+                                style="@style/TextAppearance.AppCompat.Title"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="[MM-DD]" />
+
+                            <View
+                                android:layout_width="@dimen/dividing_line_view_height"
+                                android:layout_height="match_parent"
+                                android:background="@color/grey_500" />
+
+                            <TextView
+                                android:id="@+id/modify_todo_reminder_time"
+                                style="@style/TextAppearance.AppCompat.Title"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="[HH:MM]" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Dynamic_card.border"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.8"
-                android:background="#00000000"
-                android:text="@string/modify_todo_text_frequency"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:layout_marginHorizontal="0dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/schedule_implement_time"
-                android:text="@string/modify_todo_button_frequency"
-                android:textSize="@dimen/font_size_enlarged"
-                android:backgroundTint="@color/amber_500"
-                android:textColor="@color/white"
-                app:cornerRadius="@dimen/card_corner_radius"
-                android:layout_weight="0.2" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dividing_line_view_height"
+                        android:gravity="center"
+                        android:text="@string/select_tag" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dividing_line_view_height"
+                        android:layout_margin="@dimen/widget_inview_margin"
+                        android:background="@color/grey_200" />
 
-            </com.google.android.material.button.MaterialButton>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/modify_todo_tag_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dividing_line_view_height"
-            android:background="#22000000"/>
-
-
-        <LinearLayout
-            android:id="@+id/modify_habit_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginVertical="@dimen/widget_inview_margin">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8"
-                android:background="#00000000"
-                android:text="@string/modify_todo_text_time"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/schedule_remind_time"
-                android:text="@string/modify_todo_button_time"
-                android:textSize="@dimen/font_size_enlarged"
-                android:backgroundTint="@color/amber_500"
-                android:textColor="@color/white"
-                app:cornerRadius="@dimen/card_corner_radius"
-                android:layout_weight="0.2"/>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dividing_line_view_height"
-            android:background="#22000000"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/modify_habit_done_button"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_gravity="bottom"
-            style="?attr/borderlessButtonStyle"
-            app:cornerRadius="0dp"
-            app:backgroundTint="#00000000"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:textColor="?attr/colorPrimary"
-            android:text="@string/modify_todo_done"
-            android:textSize="@dimen/font_size_enlarged"/>
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

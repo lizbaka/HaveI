@@ -12,7 +12,11 @@
             android:id="@+id/habit_card_icon_container"
             android:layout_width="@dimen/round_icon_background_size"
             android:layout_height="@dimen/round_icon_background_size"
-            android:layout_margin="@dimen/widget_inview_margin"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="@dimen/widget_inview_margin"
+            android:layout_marginBottom="0dp"
             android:background="@drawable/bg_round_icon_secondary">
 
             <ImageView
@@ -29,37 +33,44 @@
             android:layout_toRightOf="@id/habit_card_icon_container"
             android:layout_toLeftOf="@id/habit_card_status"
             android:layout_centerVertical="true">
+
             <TextView
                 android:id="@+id/habit_card_name"
                 style="@style/TextAppearance.AppCompat.Title"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/widget_inview_margin"
-
+                android:layout_marginLeft="@dimen/widget_inview_margin"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="@dimen/widget_inview_margin"
+                android:layout_marginBottom="@dimen/widget_inview_margin"
                 android:text="[habit name]"
                 android:textColor="#ffffffff" />
 
             <TextView
                 android:id="@+id/habit_card_tag"
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/habit_card_name"
-                android:layout_margin="@dimen/widget_inview_margin"
-                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_marginLeft="@dimen/widget_inview_margin"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="@dimen/widget_inview_margin"
+                android:layout_marginBottom="0dp"
                 android:text="[habit tag]"
-                android:visibility="gone"
                 android:textColor="#ffffffff" />
         </RelativeLayout>
 
         <ImageView
             android:id="@+id/habit_card_status"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_width="@dimen/habit_status_size"
             android:layout_height="@dimen/habit_status_size"
-            android:layout_margin="@dimen/widget_inview_margin"
-            android:src="@drawable/ic_baseline_close_24_white"/>
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/widget_inview_margin"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:src="@drawable/ic_baseline_close_24_white" />
 
     </RelativeLayout>
 

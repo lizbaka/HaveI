@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.Todo;
@@ -25,13 +24,6 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         eventDBHelper = new EventDBHelper(ActivityTest.this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
-        Button btn1 = findViewById(R.id.test_btn1);
-        btn1.setOnClickListener(this);
-        Button btn2 = findViewById(R.id.test_btn2);
-        btn2.setOnClickListener(this);
-        Button btn3 = findViewById(R.id.test_btn3);
-        btn3.setOnClickListener(this);
-        btn3.setText("进入proverb List");
     }
 
     @Override
@@ -39,7 +31,7 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
         Habit habit;
         Todo todo;
         switch(v.getId()){
-            case R.id.test_btn1:
+            case R.id.test_insert_todo:
                 todo = new Todo();
                 todo.setName("todo4");
                 todo.setDateTime("2021-07-18 16:20");
@@ -48,12 +40,19 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
                 todo.setDone(false);
                 eventDBHelper.insertTodo(todo);
                 break;
-            case R.id.test_btn2:
+            case R.id.test_get_habit:
                 habit = eventDBHelper.findHabitById(1);
                 habit.showHabitInformation();
                 break;
-            case R.id.test_btn3:
+            case R.id.test_proverb_list:
                 ActivityProverbList.startAction(this);
+                break;
+            case R.id.test_habit:
+                ActivityHabitMain.startAction(this);
+                break;
+            case R.id.test_main_event:
+                ActivityMainEvent.startAction(this);
+                break;
         }
     }
 }

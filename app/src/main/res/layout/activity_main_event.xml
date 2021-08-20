@@ -1,25 +1,50 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/habit_event_toolbar"
+            android:id="@+id/main_event_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             android:gravity="center"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="@string/event_title"
-            app:layout_scrollFlags="scroll|enterAlways|snap">
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/main_event_date_selector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#00000000"
+                app:cardElevation="0dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/main_event_date_selector_date"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="YYYY-MM-DD"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_round_expand_more_24" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -32,140 +57,167 @@
         android:paddingHorizontal="20dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/habit_date"
-            android:text="@string/habit_date"
-            android:textSize="@dimen/font_size_enlarged"
-            android:backgroundTint="@color/amber_500"
-            android:textColor="@color/white"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/habit_card"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/main_event_habit_card"
+            style="@style/Dynamic_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            android:layout_marginHorizontal="0dp"
+            android:layout_marginVertical="@dimen/card_margin_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_event_unfinished_habits"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/main_event_habit_empty_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/widget_inview_margin"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/grey_500"
+                    android:text="@string/main_event_no_habit"
+                    android:visibility="gone"/>
+
+                <GridLayout
+                    android:id="@+id/main_event_habit_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+
+                <ImageView
+                    android:id="@+id/main_event_habit_more_icon"
+                    android:layout_width="@dimen/ui_icon_size_small"
+                    android:layout_height="@dimen/ui_icon_size_small"
+                    android:layout_gravity="center_horizontal"
+                    app:tint="@color/white"
+                    android:src="@drawable/ic_baseline_more_horiz_24"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/card_margin_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="@dimen/widget_inview_margin"
+                android:src="@drawable/star3"/>
+
+            <TextView
+                android:id="@+id/main_event_todo_date"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/widget_inview_margin"
+                android:text="[MM-DD]" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="@dimen/widget_inview_margin"
+                android:src="@drawable/moon1"/>
+
+            <TextView
+                android:id="@+id/main_event_todo_weekday"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/widget_inview_margin"
+                android:text="[weekday]" />
+
+            <TextView
+                android:id="@+id/event_weather"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_weight="0.3"
+                android:text="[weather]"
+                android:visibility="gone" />
+            <!--todo:暂时去除天气，待接入网络功能后考虑实现-->
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dividing_line_view_height"
-            android:background="#22000000"
-            android:layout_margin="@dimen/widget_inview_margin"/>
+            android:layout_marginVertical="@dimen/card_margin_vertical"
+            android:background="@color/grey_500" />
 
-        <com.google.android.material.card.MaterialCardView
+        <TextView
+            android:id="@+id/main_event_todo_empty_hint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Dynamic_card"
-            android:layout_margin="@dimen/widget_inview_margin"
-            app:contentPadding="@dimen/card_content_padding">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:id="@+id/event_date"
-                    android:text="@string/todo_date"
-                    android:background="@color/amber_500"
-                    android:textColor="@color/white"
-                    android:layout_margin="@dimen/widget_inview_margin"
-                    android:textSize="@dimen/font_size_enlarged"
-                    android:padding="@dimen/card_content_padding"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:id="@+id/event_weather"
-                    android:text="@string/todo_weather"
-                    android:background="@color/amber_500"
-                    android:textColor="@color/white"
-                    android:layout_margin="@dimen/widget_inview_margin"
-                    android:textSize="@dimen/font_size_enlarged"/>
-
-            </LinearLayout>
-
-
-        </com.google.android.material.card.MaterialCardView>
+            android:layout_height="match_parent"
+            android:layout_marginBottom="76dp"
+            android:gravity="center"
+            android:text="@string/main_event_no_todo"
+            android:visibility="gone"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/event_card"
+            android:id="@+id/main_event_todo_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-
+            android:layout_height="match_parent"
+            android:layout_marginBottom="76dp" />
+        <!--留意此处marginBottom：恰为底部RelativeLayout的高度-->
+        <!--若底部RelativeLayout的高度有变动，则需要一并修改此属性-->
     </LinearLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_margin="@dimen/widget_inview_margin">
+        android:layout_gravity="bottom">
 
-        <RelativeLayout
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/main_event_todo_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/habit_event_add">
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/round_button_margin"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_baseline_add_24"
+            app:iconTint="@color/white" />
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/habit_list_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_margin="@dimen/round_button_margin"
-                android:textColor="@color/white"
-                android:backgroundTint="?attr/colorPrimary"
-                app:icon="@drawable/ic_baseline_add_24"
-                app:iconTint="@color/white"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/main_event_todo_library"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/habit_event_add"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/button_margin_narrow">
+            android:layout_marginRight="@dimen/button_margin_narrow"
+            android:layout_toLeftOf="@+id/main_event_todo_add"
+            android:backgroundTint="@color/amber_500"
+            android:text="@string/todo_library"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_enlarged"
+            app:cornerRadius="@dimen/card_corner_radius" />
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cornerRadius="@dimen/card_corner_radius"
-                android:backgroundTint="@color/amber_500"
-                android:textColor="@color/white"
-                android:text="@string/todo_library"
-                android:textSize="@dimen/font_size_enlarged"/>
 
-        </RelativeLayout>
-
-        <RelativeLayout
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/main_event_habit_library"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/habit_event_add"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/button_margin_narrow">
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cornerRadius="@dimen/card_corner_radius"
-                android:backgroundTint="@color/amber_500"
-                android:textColor="@color/white"
-                android:text="@string/habit_library"
-                android:textSize="@dimen/font_size_enlarged"/>
-
-        </RelativeLayout>
+            android:layout_marginLeft="@dimen/button_margin_narrow"
+            android:layout_toRightOf="@+id/main_event_todo_add"
+            android:backgroundTint="@color/amber_500"
+            android:text="@string/habit_library"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_enlarged"
+            app:cornerRadius="@dimen/card_corner_radius" />
 
     </RelativeLayout>
-
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
