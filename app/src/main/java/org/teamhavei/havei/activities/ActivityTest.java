@@ -41,8 +41,8 @@ public class ActivityTest extends BaseActivity implements View.OnClickListener{
                 eventDBHelper.insertTodo(todo);
                 break;
             case R.id.test_get_habit:
-                habit = eventDBHelper.findHabitById(1);
-                habit.showHabitInformation();
+//                habit = eventDBHelper.findHabitById(1);
+//                habit.showHabitInformation();
                 break;
             case R.id.test_proverb_list:
                 ActivityProverbList.startAction(this);
