@@ -230,8 +230,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
         }
         String sStartDate = UniToolKit.eventDateFormatter(startDate);
         String sEndDate = UniToolKit.eventDateFormatter(endDate);
-        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ? AND " + HABIT_EXECS_DATE + " > ? AND " + HABIT_EXECS_DATE + " < ?", new String[]{Integer.toString(habitID), sStartDate, sEndDate}, null, null, null);
-        return cursor.getCount() >= habit.getRepeatTimes();
+        return findHabitExecByHabitIdWithDateRange(habitID, startDate, endDate).size() >= habit.getRepeatTimes();
     }
 
     public List<Habit> findUnfinishedHabit(Calendar centerCalendar) {
@@ -318,13 +317,31 @@ public class EventDBHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * return a group of HabitExecs chronologically
+     * 按时间顺序返回指定habit的打卡记录
      */
     public List<HabitExec> findHabitExecByHabitId(int habitId) {
         Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ?", new String[]{Integer.toString(habitId)}, null, null, HABIT_EXECS_DATE);
         List<HabitExec> habitExecList = cursorToHabitExecList(cursor);
         cursor.close();
         return habitExecList;
+    }
+
+    public List<HabitExec> findHabitExecByHabitIdWithDateRange(int habitId, Date startDate, Date endDate) {
+        String sStartDate = UniToolKit.eventDateFormatter(startDate);
+        String sEndDate = UniToolKit.eventDateFormatter(endDate);
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ? AND " + HABIT_EXECS_DATE + " >= ? AND " + HABIT_EXECS_DATE + " <= ?", new String[]{Integer.toString(habitId), sStartDate, sEndDate}, null, null, null);
+        return cursorToHabitExecList(cursor);
+    }
+
+    public List<HabitExec> findHabitExecByDateRange(Date startDate, Date endDate) {
+        String sStartDate = UniToolKit.eventDateFormatter(startDate);
+        String sEndDate = UniToolKit.eventDateFormatter(endDate);
+        return findHabitExecByDateRange(sStartDate, sEndDate);
+    }
+
+    public List<HabitExec> findHabitExecByDateRange(String startDate, String endDate) {
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_DATE + " >= ? AND " + HABIT_EXECS_DATE + " <= ?", new String[]{startDate, endDate}, null, null, null);
+        return cursorToHabitExecList(cursor);
     }
 
     public boolean isHabitDoneToday(int habitId) {
