@@ -123,6 +123,8 @@
             android:id="@+id/monthly_report_id_date"
             android:gravity="center_vertical"
             android:text="@string/monthly_report_id_date"
+            android:textSize="10sp"
+            android:textColor="@color/black"
             android:layout_marginTop="545dp"
             android:layout_marginLeft="67dp"/>
 
@@ -139,7 +141,7 @@
             android:layout_marginLeft="90dp"/>
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="95dp"
             android:layout_height="42dp"
             android:id="@+id/monthly_report_habit_two_name"
             android:textColor="@color/light_blue"
@@ -148,7 +150,7 @@
             android:text="@string/monthly_report_habit_two_name"
             android:maxLines="3"
             android:layout_marginTop="171dp"
-            android:layout_marginLeft="175dp"/>
+            android:layout_marginLeft="180dp"/>
 
         <TextView
             android:layout_width="60dp"
@@ -170,7 +172,7 @@
             android:gravity="center_vertical|right"
             android:textSize="10sp"
             android:textColor="@color/black"
-            android:maxLines="4"
+            android:maxLines="5"
             android:layout_marginTop="555dp"
             android:layout_marginLeft="245dp"/>
 
@@ -180,28 +182,32 @@
             android:layout_height="@dimen/monthly_report_habit_icon_side_length"
             android:id="@+id/monthly_report_habit_one"
             android:layout_marginTop="163dp"
-            android:layout_marginLeft="45dp"/>
+            android:layout_marginLeft="45dp"
+            android:background="@drawable/hs_sport"/>
 
         <ImageView
             android:layout_width="@dimen/monthly_report_habit_icon_side_length"
             android:layout_height="@dimen/monthly_report_habit_icon_side_length"
             android:id="@+id/monthly_report_habit_two"
             android:layout_marginTop="192dp"
-            android:layout_marginLeft="131dp"/>
+            android:layout_marginLeft="131dp"
+            android:background="@drawable/hs_book"/>
 
         <ImageView
             android:layout_width="@dimen/monthly_report_habit_icon_side_length"
             android:layout_height="@dimen/monthly_report_habit_icon_side_length"
             android:id="@+id/monthly_report_habit_three"
             android:layout_marginTop="251dp"
-            android:layout_marginLeft="173dp"/>
+            android:layout_marginLeft="173dp"
+            android:background="@drawable/hs_gift1"/>
 
         <ImageView
             android:layout_width="@dimen/monthly_report_habit_icon_side_length"
             android:layout_height="@dimen/monthly_report_habit_icon_side_length"
             android:id="@+id/monthly_report_avatar"
             android:layout_marginTop="551dp"
-            android:layout_marginLeft="22dp"/>
+            android:layout_marginLeft="22dp"
+            android:background="@drawable/moon"/>
 
         <ImageView
             android:layout_width="@dimen/monthly_report_QR_code"
