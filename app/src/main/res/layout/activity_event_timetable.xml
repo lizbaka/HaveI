@@ -45,7 +45,7 @@
                     app:tabIndicatorColor="@color/amber_500"
                     app:tabIndicatorGravity="bottom"
                     app:tabMode="scrollable"
-                    app:tabSelectedTextColor="@color/white"
+                    app:tabSelectedTextColor="@color/grey_500"
                     app:tabTextColor="@color/white"
                     app:tabUnboundedRipple="true" />
 
