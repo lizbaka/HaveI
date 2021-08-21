@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/habit_main_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
@@ -18,7 +19,22 @@
             android:fitsSystemWindows="true"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetEndWithActions="0dp">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/habit_main_tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:tabGravity="center"
+                app:tabMode="auto"
+                app:tabPadding="8dp"
+                app:tabIndicatorFullWidth="false"
+                app:tabUnboundedRipple="true"
+                android:visibility="gone"/>
 
         </androidx.appcompat.widget.Toolbar>
 
