@@ -5,13 +5,14 @@
       <map>
         <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_bookkeep.xml" value="0.2857789855072464" />
         <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_bookkeep_add_detail.xml" value="0.33" />
-        <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_bookkeep_annual_account_detail.xml" value="0.33" />
+        <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_bookkeep_annual_account_detail.xml" value="0.22" />
         <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_bookkeep_property_view.xml" value="0.2857789855072464" />
         <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_bookkeep_statistics_view.xml" value="0.2857789855072464" />
         <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_habit_detail.xml" value="0.2046875" />
         <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_habit_list.xml" value="0.1911231884057971" />
         <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_main.xml" value="0.25815217391304346" />
         <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/activity_test.xml" value="0.22010869565217392" />
+        <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/dialog_date_picker.xml" value="0.1897644927536232" />
         <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/dynamic_bookkeep_annual_income_and_expenses.xml" value="0.2509057971014493" />
         <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/dynamic_bookkeep_bottom_bar.xml" value="0.22826086956521738" />
         <entry key="..\:/HAVinew/HaveI2.0/app/src/main/res/layout/dynamic_bookkeep_property_window.xml" value="0.22826086956521738" />

@@ -2,8 +2,8 @@ package org.teamhavei.havei.Event;
 
 public class BookPlan {
     int id;
-    int num;
-    int need;
+    Double num;
+    Double need;
 
     public int getId() {
         return id;
@@ -13,19 +13,19 @@ public class BookPlan {
         this.id = id;
     }
 
-    public int getNum() {
+    public Double getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(Double num) {
         this.num = num;
     }
 
-    public int getNeed() {
+    public Double getNeed() {
         return need;
     }
 
-    public void setNeed(int need) {
+    public void setNeed(Double need) {
         this.need = need;
     }
 }

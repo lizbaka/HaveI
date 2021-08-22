@@ -50,6 +50,11 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
      * @param selectedID         调用时默认选中的item
      * @param onTagClickListener tag点击事件
      */
+    public TagListAdapter(List<HaveITag> tagList, Context context) {
+        this.mTagList = tagList;
+        this.mContext = context;
+        iconAdapter = new IconAdapter(context);
+    }
     public TagListAdapter(List<HaveITag> tagList, Context context, int selectedID, OnTagClickListener onTagClickListener) {
         this.mTagList = tagList;
         this.mContext = context;

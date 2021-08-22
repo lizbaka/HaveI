@@ -14,6 +14,8 @@ import org.teamhavei.havei.Event.BookPlan;
 import org.teamhavei.havei.Event.BookTag;
 import org.teamhavei.havei.Event.Bookkeep;
 import org.teamhavei.havei.Event.BookCou;
+import org.teamhavei.havei.Event.EventTag;
+import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.UniToolKit;
 
 
@@ -62,8 +64,8 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
             "create table "+TABLE_BOOK_COUS+"("+
                         BOOK_COUS_ID+" integer primary key autoincrement,"+
                         BOOK_COUS_TIME+" text," +
-                        BOOK_COUS_IN+"integer"+
-                        BOOK_COUS_OUT+"integer)";
+                        BOOK_COUS_IN+"double"+
+                        BOOK_COUS_OUT+"double)";
 
     private static final String TABLE_BOOK_PLAN = "BookPlan";
     private static final String BOOK_PLAN_ID = "id";
@@ -72,8 +74,8 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     private static final String CREATE_BOOK_PLAN =
             "create table "+TABLE_BOOK_PLAN+"("+
                     BOOK_PLAN_ID+" integer primary key autoincrement,"+
-                    BOOK_PLAN_NUM+"integer"+
-                    BOOK_PLAN_NEED+"integer)";
+                    BOOK_PLAN_NUM+"double"+
+                    BOOK_PLAN_NEED+"double)";
 
     private Context mContext;
     private SQLiteDatabase db = getReadableDatabase();
@@ -204,6 +206,36 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return mBookTag;
     }
 
+
+    private List<BookTag> cursorToBookTaglist(Cursor cursor) {
+        List<BookTag> tagList = new ArrayList<>();
+        if (cursor != null && cursor.getCount() > 0) {
+            try {
+                if (cursor.getCount() > 1) {
+                    Log.d(TAG, "more");
+                }
+                while (cursor.moveToNext()) {
+                    BookTag mBookTag= new BookTag();
+                    mBookTag.setId(cursor.getInt(cursor.getColumnIndex(BOOK_TAGS_ID)));
+                    mBookTag.setName(cursor.getString(cursor.getColumnIndex(BOOK_TAGS_NAME)));
+                    mBookTag.setIconId(cursor.getInt(cursor.getColumnIndex(BOOK_TAGS_ICON_ID)));
+                    mBookTag.setDel(cursor.getInt(cursor.getColumnIndex(BOOK_TAGS_DELETE)) == 1);
+                    tagList.add(mBookTag);
+                }
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.d(TAG, "No ");
+        }
+        return tagList;
+    }
+
+    public List<BookTag> findAllBoktag() {
+        Cursor cursor = db.query(TABLE_BOOK_TAGS, null, null, null, null, null, null);
+        return cursorToBookTaglist(cursor);
+    }
+
     public void updateBookTag(BookTag oldBookTag, BookTag newBookTag) {
         db.update(TABLE_BOOK_TAGS, bookTagToValues(newBookTag), BOOK_TAGS_ID + " = ?", new String[]{Integer.toString(oldBookTag.getId())});
     }
@@ -237,8 +269,8 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                 cursor.moveToFirst();
                 mBookCou.setId(cursor.getInt(cursor.getColumnIndex(BOOK_COUS_ID)));
                 mBookCou.setTime(cursor.getString(cursor.getColumnIndex(BOOK_COUS_TIME)));
-                mBookCou.setIn(cursor.getInt(cursor.getColumnIndex(BOOK_COUS_IN)));
-                mBookCou.setOut(cursor.getInt(cursor.getColumnIndex(BOOK_COUS_OUT)));
+                mBookCou.setIn(cursor.getDouble(cursor.getColumnIndex(BOOK_COUS_IN)));
+                mBookCou.setOut(cursor.getDouble(cursor.getColumnIndex(BOOK_COUS_OUT)));
 
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
@@ -292,8 +324,8 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                 cursor.moveToFirst();
                 mBookPlan.setId(cursor.getInt(cursor.getColumnIndex(BOOK_PLAN_ID)));
 
-                mBookPlan.setNum(cursor.getInt(cursor.getColumnIndex(BOOK_PLAN_NUM)));
-                mBookPlan.setNeed(cursor.getInt(cursor.getColumnIndex(BOOK_PLAN_NEED)));
+                mBookPlan.setNum(cursor.getDouble(cursor.getColumnIndex(BOOK_PLAN_NUM)));
+                mBookPlan.setNeed(cursor.getDouble(cursor.getColumnIndex(BOOK_PLAN_NEED)));
 
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();

@@ -3,8 +3,8 @@ package org.teamhavei.havei.Event;
 public class BookCou {
     private int id;
     private String time;
-    private int in;
-    private int out;
+    private Double in;
+    private Double out;
 
     public int getId() {
         return id;
@@ -22,19 +22,19 @@ public class BookCou {
         this.time = time;
     }
 
-    public int getIn() {
+    public Double getIn() {
         return in;
     }
 
-    public void setIn(int in) {
+    public void setIn(Double in) {
         this.in = in;
     }
 
-    public int getOut() {
+    public Double getOut() {
         return out;
     }
 
-    public void setOut(int out) {
+    public void setOut(Double out) {
         this.out = out;
     }
 }
