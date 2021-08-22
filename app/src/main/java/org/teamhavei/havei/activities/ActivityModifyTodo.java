@@ -45,7 +45,6 @@ public class ActivityModifyTodo extends BaseActivity {
     private static final boolean DEFAULT_REMIND_TIME_NULL = true;
 
     TextInputEditText todoNameET;
-    LinearLayout todoDatetimeContainer;
     TextView todoDateTV;
     TextView todoTimeTV;
     TextInputEditText remarkET;
@@ -112,7 +111,7 @@ public class ActivityModifyTodo extends BaseActivity {
         tagListRV.setLayoutManager(new GridLayoutManager(ActivityModifyTodo.this, 3, GridLayoutManager.HORIZONTAL, false));
         tagListRV.setAdapter(tagListAdapter);
 
-        todoDatetimeContainer.setOnClickListener(new View.OnClickListener() {
+        todoDateTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(ActivityModifyTodo.this, new DatePickerDialog.OnDateSetListener() {
@@ -122,23 +121,61 @@ public class ActivityModifyTodo extends BaseActivity {
                         todoDatetime.set(Calendar.MONTH, month);
                         todoDatetime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-                        new TimePickerDialog(ActivityModifyTodo.this, new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                todoDatetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                                todoDatetime.set(Calendar.MINUTE, minute);
-
-                                todoDateTV.setText(UniToolKit.eventDatetimeFormatter(todoDatetime.getTime()).substring(5, 10));
-                                todoTimeTV.setText(UniToolKit.eventTimeFormatter(todoDatetime.getTime()));
-                            }
-                        }, todoDatetime.get(Calendar.HOUR_OF_DAY), todoDatetime.get(Calendar.MINUTE), true).show();
+                        todoDateTV.setText(UniToolKit.eventDateFormatter(todoDatetime.getTime()).substring(5, 10));
                     }
 
                 }, todoDatetime.get(Calendar.YEAR), todoDatetime.get(Calendar.MONTH), todoDatetime.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+        todoTimeTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new TimePickerDialog(ActivityModifyTodo.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        todoDatetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        todoDatetime.set(Calendar.MINUTE, minute);
+
+                        todoTimeTV.setText(UniToolKit.eventTimeFormatter(todoDatetime.getTime()));
+                    }
+                }, todoDatetime.get(Calendar.HOUR_OF_DAY), todoDatetime.get(Calendar.MINUTE), true).show();
+            }
+        });
 
         reminderDatetimeContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isRemindTimeNull) {
+                    new DatePickerDialog(ActivityModifyTodo.this, new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                            remindDateTime.set(Calendar.YEAR, year);
+                            remindDateTime.set(Calendar.MONTH, month);
+                            remindDateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                            new TimePickerDialog(ActivityModifyTodo.this, new TimePickerDialog.OnTimeSetListener() {
+                                @Override
+                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                    remindDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                    remindDateTime.set(Calendar.MINUTE, minute);
+
+                                    isRemindTimeNull = false;
+                                    reminderDateTV.setVisibility(View.VISIBLE);
+                                    reminderDateTV.setText(UniToolKit.eventDatetimeFormatter(remindDateTime.getTime()).substring(5, 10));
+                                    reminderTimeTV.setVisibility(View.VISIBLE);
+                                    reminderTimeTV.setText(UniToolKit.eventDatetimeFormatter(remindDateTime.getTime()).substring(11, 16));
+                                    reminderEmptyHintTV.setVisibility(View.GONE);
+
+                                    Toast.makeText(ActivityModifyTodo.this,getString(R.string.modify_todo_clear_reminder_hint),Toast.LENGTH_SHORT).show();
+                                }
+                            }, remindDateTime.get(Calendar.HOUR_OF_DAY), remindDateTime.get(Calendar.MINUTE), true).show();
+                        }
+                    }, remindDateTime.get(Calendar.YEAR), remindDateTime.get(Calendar.MONTH), remindDateTime.get(Calendar.DAY_OF_MONTH)).show();
+                }
+            }
+        });
+
+        reminderDateTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(ActivityModifyTodo.this, new DatePickerDialog.OnDateSetListener() {
@@ -147,27 +184,51 @@ public class ActivityModifyTodo extends BaseActivity {
                         remindDateTime.set(Calendar.YEAR, year);
                         remindDateTime.set(Calendar.MONTH, month);
                         remindDateTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-                        new TimePickerDialog(ActivityModifyTodo.this, new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                remindDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                                remindDateTime.set(Calendar.MINUTE, minute);
-
-                                isRemindTimeNull = false;
-                                reminderDateTV.setVisibility(View.VISIBLE);
-                                reminderDateTV.setText(UniToolKit.eventDatetimeFormatter(remindDateTime.getTime()).substring(5, 10));
-                                reminderTimeTV.setVisibility(View.VISIBLE);
-                                reminderTimeTV.setText(UniToolKit.eventDatetimeFormatter(remindDateTime.getTime()).substring(11, 16));
-                                reminderEmptyHintTV.setVisibility(View.GONE);
-                            }
-                        }, remindDateTime.get(Calendar.HOUR_OF_DAY), remindDateTime.get(Calendar.MINUTE), true).show();
+                        reminderDateTV.setText(UniToolKit.eventDateFormatter(remindDateTime.getTime()).substring(5, 10));
                     }
                 }, remindDateTime.get(Calendar.YEAR), remindDateTime.get(Calendar.MONTH), remindDateTime.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
-        // TODO: 2021.08.17 设计提示长按清除的逻辑
+        reminderTimeTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new TimePickerDialog(ActivityModifyTodo.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        remindDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        remindDateTime.set(Calendar.MINUTE, minute);
+
+                        reminderTimeTV.setText(UniToolKit.eventTimeFormatter(remindDateTime.getTime()));
+                    }
+                }, remindDateTime.get(Calendar.HOUR_OF_DAY), remindDateTime.get(Calendar.MINUTE), true).show();
+            }
+        });
+
+        reminderDateTV.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                isRemindTimeNull = true;
+                reminderDateTV.setVisibility(View.GONE);
+                reminderTimeTV.setVisibility(View.GONE);
+                reminderEmptyHintTV.setVisibility(View.VISIBLE);
+                Toast.makeText(ActivityModifyTodo.this,getString(R.string.modify_todo_reminder_cleared),Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+        reminderTimeTV.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                isRemindTimeNull = true;
+                reminderDateTV.setVisibility(View.GONE);
+                reminderTimeTV.setVisibility(View.GONE);
+                reminderEmptyHintTV.setVisibility(View.VISIBLE);
+                Toast.makeText(ActivityModifyTodo.this,getString(R.string.modify_todo_reminder_cleared),Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
         reminderDatetimeContainer.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -175,6 +236,7 @@ public class ActivityModifyTodo extends BaseActivity {
                 reminderDateTV.setVisibility(View.GONE);
                 reminderTimeTV.setVisibility(View.GONE);
                 reminderEmptyHintTV.setVisibility(View.VISIBLE);
+                Toast.makeText(ActivityModifyTodo.this,getString(R.string.modify_todo_reminder_cleared),Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -218,7 +280,6 @@ public class ActivityModifyTodo extends BaseActivity {
 
     private void initView() {
         todoNameET = findViewById(R.id.modify_todo_name);
-        todoDatetimeContainer = findViewById(R.id.modify_todo_datetime_container);
         todoDateTV = findViewById(R.id.modify_todo_date);
         todoTimeTV = findViewById(R.id.modify_todo_time);
         remarkET = findViewById(R.id.modify_todo_remark);
@@ -261,7 +322,9 @@ public class ActivityModifyTodo extends BaseActivity {
         if (!isRemindTimeNull) {
             if (remindDateTime.after(todoDatetime)) {
                 Toast.makeText(ActivityModifyTodo.this, R.string.modify_todo_remind_after_todo, Toast.LENGTH_SHORT).show();
-                reminderDatetimeContainer.requestFocus();
+                remindDateTime.setTimeInMillis(todoDatetime.getTimeInMillis());
+                reminderDateTV.setText(UniToolKit.eventDatetimeFormatter(remindDateTime.getTime()).substring(5, 10));
+                reminderTimeTV.setText(UniToolKit.eventTimeFormatter(remindDateTime.getTime()));
                 status = false;
             }
         }
