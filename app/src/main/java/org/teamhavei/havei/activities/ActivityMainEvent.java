@@ -144,7 +144,7 @@ public class ActivityMainEvent extends BaseActivity {
         todoLibBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 2021.08.16 等待待办库后端完成后接入（界面9）
+                ActivityTodoTimetable.startAction(ActivityMainEvent.this);
             }
         });
         addTodoFab.setOnClickListener(new View.OnClickListener() {
