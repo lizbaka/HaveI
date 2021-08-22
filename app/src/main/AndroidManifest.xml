@@ -18,6 +18,7 @@
         <activity android:name=".activities.ActivityModifyTodo" />
         <activity android:name=".activities.ActivityMainEvent" />
         <activity android:name=".activities.ActivityProverbList" />
+        <activity android:name=".activities.ActivityTodoTimetable"/>
         <activity android:name=".activities.ZDActivityHabitList" />
 
         <service
