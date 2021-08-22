@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 
 import com.google.android.material.card.MaterialCardView;
 
@@ -28,12 +29,14 @@ public class FragmentTimeTable extends BaseFragment {
     private static final long MILLISECONDS_PER_DAY = 86400000;
     private static final int CARD_MARGIN = 5;
 
-    Calendar startOfWeek = Calendar.getInstance();
-
+    NestedScrollView scrollView;
     TextView monthTV;
     FrameLayout FL;
+
+    Calendar startOfWeek = Calendar.getInstance();
     List<TextView> dateTVList = new ArrayList<>();
     List<TimeTableEvent> eventList = new ArrayList<>();
+    List<MaterialCardView> cardList = new ArrayList<>();
 
     int dayWidth;
     int hourHeight;
@@ -41,10 +44,11 @@ public class FragmentTimeTable extends BaseFragment {
     int labelOffset;
     boolean showTimeLine;
 
-    private final TimetableSocket timetableSocket;
+    private TimetableSocket timetableSocket;
 
     public interface TimetableSocket {
         void onCardClick(HaveIEvent event);
+
         void updateEventList(Calendar startOfWeek, List<TimeTableEvent> eventList);
     }
 
@@ -54,6 +58,10 @@ public class FragmentTimeTable extends BaseFragment {
         this.startOfWeek.set(Calendar.DAY_OF_YEAR, startOfWeek.get(Calendar.DAY_OF_YEAR));
         this.timetableSocket = socket;
         this.showTimeLine = showTimeLine;
+    }
+
+    public Calendar getStartOfWeek() {
+        return startOfWeek;
     }
 
     public static class TimeTableEvent {
@@ -100,9 +108,13 @@ public class FragmentTimeTable extends BaseFragment {
 
         if (showTimeLine) {
             (view.findViewById(R.id.tt_timeline)).setVisibility(View.VISIBLE);
+
+            // TODO: 2021.08.22 尝试加入自动滚动到当前时间位置及当前时间指示线
+
         } else {
             (view.findViewById(R.id.tt_timeline)).setVisibility(View.GONE);
         }
+
         view.findViewById(R.id.tt_tv_day1).getViewTreeObserver().addOnPreDrawListener(
                 new ViewTreeObserver.OnPreDrawListener() {
                     @Override
@@ -111,7 +123,10 @@ public class FragmentTimeTable extends BaseFragment {
                         dayWidth = view.findViewById(R.id.tt_tv_day1).getWidth(); // 获取宽度
                         if (eventList != null) {
                             dayWidth = view.findViewById(R.id.tt_tv_day1).getWidth();
-                            FL.removeAllViews();
+                            for (MaterialCardView card : cardList) {
+                                FL.removeView(card);
+                            }
+                            cardList.clear();
                             for (TimeTableEvent event : eventList) {
                                 configCard(event);
                             }
@@ -125,10 +140,12 @@ public class FragmentTimeTable extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: ");
-        timetableSocket.updateEventList(startOfWeek,eventList);
+        timetableSocket.updateEventList(startOfWeek, eventList);
         if (eventList != null) {
-            FL.removeAllViews();
+            for (MaterialCardView card : cardList) {
+                FL.removeView(card);
+            }
+            cardList.clear();
             for (TimeTableEvent event : eventList) {
                 configCard(event);
             }
@@ -146,6 +163,7 @@ public class FragmentTimeTable extends BaseFragment {
         dateTVList.add(view.findViewById(R.id.tt_tv_day6));
         dateTVList.add(view.findViewById(R.id.tt_tv_day7));
         FL = view.findViewById(R.id.tt_FL);
+        scrollView = view.findViewById(R.id.tt_NSV);
     }
 
     private void configCard(TimeTableEvent event) {
@@ -171,6 +189,7 @@ public class FragmentTimeTable extends BaseFragment {
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(dayWidth - 2 * CARD_MARGIN, hourHeight - 2 * CARD_MARGIN);
         params.leftMargin = labelOffset + dayOfWeek * dayWidth + CARD_MARGIN;
         params.topMargin = (int) (1.0 * deltaMilli * dayHeight / MILLISECONDS_PER_DAY) + CARD_MARGIN;
+        cardList.add(card);
 
         FL.addView(card, params);
     }

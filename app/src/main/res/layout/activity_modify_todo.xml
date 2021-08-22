@@ -38,7 +38,8 @@
                 style="@style/Dynamic_card.border"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="0dp">
+                android:layout_marginHorizontal="0dp"
+                android:clickable="false">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -84,7 +85,6 @@
                             android:text="@string/modify_todo_hint_time" />
 
                         <LinearLayout
-                            android:id="@+id/modify_todo_datetime_container"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
@@ -209,7 +209,8 @@
                 style="@style/Dynamic_card.border"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="0dp">
+                android:layout_marginHorizontal="0dp"
+                android:clickable="false">
 
                 <LinearLayout
                     android:layout_width="match_parent"

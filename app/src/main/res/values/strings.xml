@@ -75,6 +75,8 @@
     <string name="modify_todo_hint_reminder_time">提醒时间：</string>
     <string name="modify_todo_hint_remark">待办备注：</string>
     <string name="modify_todo_hint_time">待办时间：</string>
+    <string name="modify_todo_clear_reminder_hint">已设置待办提醒，长按时间可清除</string>
+    <string name="modify_todo_reminder_cleared">已清除待办提醒</string>
     <string name="modify_todo_empty_name">待办名不能为空</string>
     <string name="modify_todo_reminder_time_null">未选择</string>
     <string name="modify_todo_remind_after_todo">提醒时间不能晚于待办时间</string>

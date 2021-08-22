@@ -54,7 +54,7 @@
                 android:singleLine="true"
                 android:text="@string/tt_monday"
                 android:textColor="@color/white"
-                android:textSize="10sp" />
+                android:textSize="@dimen/timetable_font_size" />
 
         </FrameLayout>
 
@@ -74,7 +74,7 @@
                 android:singleLine="true"
                 android:text="@string/tt_tuesday"
                 android:textColor="@color/white"
-                android:textSize="10sp" />
+                android:textSize="@dimen/timetable_font_size" />
         </FrameLayout>
 
         <FrameLayout
@@ -93,7 +93,7 @@
                 android:singleLine="true"
                 android:text="@string/tt_wednesday"
                 android:textColor="@color/white"
-                android:textSize="10sp" />
+                android:textSize="@dimen/timetable_font_size" />
         </FrameLayout>
 
         <FrameLayout
@@ -112,7 +112,7 @@
                 android:singleLine="true"
                 android:text="@string/tt_thursday"
                 android:textColor="@color/white"
-                android:textSize="10sp" />
+                android:textSize="@dimen/timetable_font_size" />
         </FrameLayout>
 
         <FrameLayout
@@ -131,7 +131,7 @@
                 android:singleLine="true"
                 android:text="@string/tt_friday"
                 android:textColor="@color/white"
-                android:textSize="10sp" />
+                android:textSize="@dimen/timetable_font_size" />
         </FrameLayout>
 
         <FrameLayout
@@ -150,7 +150,7 @@
                 android:singleLine="true"
                 android:text="@string/tt_saturday"
                 android:textColor="@color/white"
-                android:textSize="10sp" />
+                android:textSize="@dimen/timetable_font_size" />
         </FrameLayout>
 
     </LinearLayout>
@@ -258,6 +258,7 @@
 
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/tt_NSV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="4dp"

@@ -34,7 +34,6 @@ public class FragmentHabitDoneRecordTable extends BaseFragment {
     ActionBar mActionBar;
     TabLayout mTabLayout;
     List<FragmentTimeTable> fragmentList = new ArrayList<>();
-    int weekOffset = 0;
 
     public FragmentHabitDoneRecordTable(ActionBar actionBar, TabLayout tabLayout) {
         this.mActionBar = actionBar;
@@ -58,9 +57,6 @@ public class FragmentHabitDoneRecordTable extends BaseFragment {
         startOfYear.set(Calendar.DAY_OF_WEEK, 1);
         /* 同上 */
         startOfYear.getTime();
-
-        if (startOfYear.get(Calendar.YEAR) < curYear)
-            weekOffset = -1;
 
         fragmentList.clear();
         while (startOfYear.get(Calendar.YEAR) <= curYear) {
@@ -99,9 +95,10 @@ public class FragmentHabitDoneRecordTable extends BaseFragment {
         mTabLayout.setupWithViewPager(doneRecordVP);
         for (int i = 0; i < mTabLayout.getTabCount(); i++) {
             mTabLayout.getTabAt(i).setText("第" + Integer.toString(i + 1) + "周");
+            if(fragmentList.get(i).getStartOfWeek().get(Calendar.WEEK_OF_YEAR) == Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)){
+                mTabLayout.selectTab(mTabLayout.getTabAt(i));
+            }
         }
-
-        mTabLayout.selectTab(mTabLayout.getTabAt(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) + weekOffset));
 
         return view;
     }
