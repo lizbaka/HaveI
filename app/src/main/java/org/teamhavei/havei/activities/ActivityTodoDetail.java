@@ -98,7 +98,7 @@ public class ActivityTodoDetail extends AppCompatActivity {
             case R.id.event_detail_toolbar_delete:
                 AlertDialog.Builder builder = new AlertDialog.Builder(ActivityTodoDetail.this);
                 builder.setTitle(R.string.todo_detail_delete_dialog_title);
-                builder.setMessage(R.string.todo_detail_delete_dialog_msg1 + mTodo.getName() + R.string.todo_detail_delete_dialog_msg2);
+                builder.setMessage(getString(R.string.todo_detail_delete_dialog_msg1) + mTodo.getName() + getString(R.string.todo_detail_delete_dialog_msg2));
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
