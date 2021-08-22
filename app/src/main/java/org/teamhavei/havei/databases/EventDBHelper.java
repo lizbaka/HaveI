@@ -525,6 +525,11 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return cursorToTodoList(cursor);
     }
 
+    public List<Todo> findTodoByDateRange(String startTime,String endTime){
+        Cursor cursor = db.query(TABLE_TODO,null,TODO_DATETIME + " >= ? AND " + TODO_DATETIME + " <= ?",new String[]{startTime,endTime},null,null,null);
+        return cursorToTodoList(cursor);
+    }
+
     public boolean switchTodoDone(int todoId) {
         Todo newTodo = findTodoById(todoId);
         if (newTodo.isDone()) {
