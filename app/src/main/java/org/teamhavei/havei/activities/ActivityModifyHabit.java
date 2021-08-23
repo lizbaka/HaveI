@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -118,17 +119,18 @@ public class ActivityModifyHabit extends BaseActivity {
                         calendar.set(Calendar.HOUR_OF_DAY, remindHour);
                         calendar.set(Calendar.MINUTE, remindMin);
                         remindTimeBtn.setText(UniToolKit.eventTimeFormatter(calendar.getTime()));
+                        Toast.makeText(ActivityModifyHabit.this, R.string.modify_habit_clear_remind_hint, Toast.LENGTH_SHORT).show();
                     }
                 }, remindHour == NULL_REMIND_TIME ? 0 : remindHour, remindMin == NULL_REMIND_TIME ? 0 : remindMin, true).show();
             }
         });
-        // TODO: 2021.08.17 设计提示长按清除的逻辑
         remindTimeBtn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 remindHour = NULL_REMIND_TIME;
                 remindMin = NULL_REMIND_TIME;
                 remindTimeBtn.setText(getString(R.string.modify_habit_reminder_time_null));
+                Toast.makeText(ActivityModifyHabit.this, R.string.modify_habit_remind_cleared, Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
