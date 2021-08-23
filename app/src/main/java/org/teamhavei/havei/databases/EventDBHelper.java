@@ -18,7 +18,10 @@ import org.teamhavei.havei.UniToolKit;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class EventDBHelper extends SQLiteOpenHelper {
@@ -205,22 +208,47 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return cursorToHabitList(cursor);
     }
 
-    public int getHabitRank(int habitId) {
-        /* SELECT Habit.id, COUNT(Habit.id) FROM Habit JOIN Habit_execs ON Habit.id = Habit_execs.habit_id GROUP BY Habit.id ORDER BY COUNT(Habit.id) DESC*/
-        final String QUERY_ORDER_BY_RANK =
-                "SELECT " + TABLE_HABIT + "." + HABIT_ID + ", COUNT(" + TABLE_HABIT + "." + HABIT_ID + ") " +
-                        "FROM " + TABLE_HABIT + " JOIN " + TABLE_HABIT_EXECS + " ON " + TABLE_HABIT + "." + HABIT_ID + " = " + TABLE_HABIT_EXECS + "." + HABIT_EXECS_HABIT_ID +
-                        " GROUP BY " + TABLE_HABIT + "." + HABIT_ID +
-                        " ORDER BY COUNT(" + TABLE_HABIT + "." + HABIT_ID + ") DESC";
-        Log.d(TAG, "getHabitRank: " + QUERY_ORDER_BY_RANK);
-        Cursor cursor = db.rawQuery(QUERY_ORDER_BY_RANK, null);
-        while (cursor.moveToNext()) {
-            if (cursor.getInt(cursor.getColumnIndex(HABIT_ID)) == habitId) {
-                return cursor.getPosition() + 1;
+    /**
+     * 效率较低，不要频繁调用！
+     * @return 按排名从高到低顺序返回一个habit的list
+     */
+    public List<Habit> findAllHabitOrderByRank(){
+        Calendar todayDate = Calendar.getInstance();
+        todayDate.set(Calendar.HOUR_OF_DAY, 0);
+        todayDate.set(Calendar.MINUTE, 0);
+        todayDate.set(Calendar.SECOND, 0);
+        Calendar firstExecDate;
+        final int dayMilli = 24 * 60 * 60 * 1000;
+        Habit habit;
+        List<HabitExec> thisExecList;
+
+        List<Habit> habitList = findAllHabit();
+        HashMap<Habit, Integer> planTimeHM = new HashMap<>();
+        HashMap<Habit, Integer> actualTimeHM = new HashMap<>();
+
+        for (int i = 0; i < habitList.size(); i++) {
+            habit = habitList.get(i);
+            thisExecList = findHabitExecByHabitId(habit.getId());
+            if (thisExecList.size() <= 0) {
+                actualTimeHM.put(habit, 0);
+                planTimeHM.put(habit,1);
+            } else {
+                actualTimeHM.put(habit, thisExecList.size());
+                firstExecDate = Calendar.getInstance();
+                firstExecDate.setTime(UniToolKit.eventDateParser(thisExecList.get(0).getDate()));
+                int planTimes = (int) ((todayDate.getTimeInMillis() - firstExecDate.getTimeInMillis()) / dayMilli + 1);
+                planTimes = (int) Math.ceil(1.0 * planTimes / habit.getRepeatUnit()) * habit.getRepeatTimes();
+                planTimeHM.put(habit, planTimes);
             }
         }
-        Log.d(TAG, "getHabitRank: no such habit with id of " + habitId);
-        return 0;
+        Collections.sort(habitList, new Comparator<Habit>() {
+            @Override
+            public int compare(Habit o1, Habit o2) {
+                /* Descending */
+                return -1 * Double.compare((1.0 * actualTimeHM.get(o1) / planTimeHM.get(o1)), (1.0 * actualTimeHM.get(o2) / planTimeHM.get(o2)));
+            }
+        });
+        return habitList;
     }
 
     public Boolean checkHabitFinishBetween(int habitID, Date startDate, Date endDate) {
@@ -337,6 +365,12 @@ public class EventDBHelper extends SQLiteOpenHelper {
         String sStartDate = UniToolKit.eventDateFormatter(startDate);
         String sEndDate = UniToolKit.eventDateFormatter(endDate);
         return findHabitExecByDateRange(sStartDate, sEndDate);
+    }
+
+    public List<HabitExec> findHabitExecByHabitIdWithYearMonth(int HabitId, Date yearMonth){
+        String sYearMonth = UniToolKit.eventDateFormatter(yearMonth).substring(0,7);
+        Cursor cursor = db.query(TABLE_HABIT_EXECS,null,HABIT_EXECS_HABIT_ID + " = ? AND " + HABIT_EXECS_DATE + " LIKE ?",new String[]{Integer.toString(HabitId), sYearMonth + "%"},null,null,null);
+        return cursorToHabitExecList(cursor);
     }
 
     public List<HabitExec> findHabitExecByDateRange(String startDate, String endDate) {
