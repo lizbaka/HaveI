@@ -8,11 +8,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
     <color name="ic_launcher_background">#FF3DDC84</color>
 
     <color name="DIECHILAN_200">#FF95B5D0</color>
     <color name="DIECHILAN_500">#FF4E7CA1</color>
     <color name="DIECHILAN_700">#FF194569</color>
+
+    <color name="light_blue">#71BBD8</color>
 
     <color name="amber_200">#FFFFE082</color>
     <color name="amber_500">#FFFFC107</color>
@@ -20,8 +23,15 @@
 
     <color name="red_500">#FFF44336</color>
 
+    <color name="light_green_200">#FFC5E1A5</color>
+
     <color name="green_500">#FF4CAF50</color>
 
     <color name="grey_200">#FFEEEEEE</color>
+    <color name="grey_500">#807F7F</color>
+
+
+    <color name="monthly_report_color">#FF000000</color>
+
 
 </resources>

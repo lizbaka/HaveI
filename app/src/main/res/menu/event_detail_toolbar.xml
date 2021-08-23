@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/habit_detail_toolbar_modify"
+        android:id="@+id/event_detail_toolbar_modify"
         android:title="@string/habit_detail_toolbar_modify"
         android:icon="@drawable/ic_baseline_edit_24"
         android:iconTint="@color/white"
@@ -11,7 +11,7 @@
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/habit_detail_toolbar_delete"
+        android:id="@+id/event_detail_toolbar_delete"
         android:title="@string/habit_detail_toolbar_delete"
         android:icon="@drawable/ic_baseline_delete_24"
         android:iconTint="@color/white"

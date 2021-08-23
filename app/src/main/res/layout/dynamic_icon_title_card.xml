@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/widget_inview_margin"
+    android:backgroundTint="#00000000"
+    android:clickable="true"
+    app:cardElevation="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/icon_title_icon_container"
+            android:layout_width="@dimen/round_icon_background_size"
+            android:layout_height="@dimen/round_icon_background_size"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/widget_inview_margin"
+            android:background="@drawable/bg_round_icon">
+
+            <ImageView
+                android:id="@+id/icon_title_icon"
+                android:layout_width="@dimen/round_icon_size"
+                android:layout_height="@dimen/round_icon_size"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/icon_title_title"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="@dimen/round_icon_background_size"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/icon_title_icon_container"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/widget_inview_margin"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="@dimen/widget_inview_margin"
+            android:layout_marginBottom="@dimen/widget_inview_margin"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="[icon_title_title]" />
+
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

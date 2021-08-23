@@ -1,14 +1,12 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/modify_habit_toolbar"
@@ -25,66 +23,182 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingHorizontal="20dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:paddingHorizontal="20dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/modify_habit_name"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp">
+            android:layout_marginVertical="@dimen/card_margin">
+
+            <TextView
+                android:id="@+id/modify_habit_name_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_centerVertical="true"
+                android:text="@string/modify_habit_name" />
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/modify_habit_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:hint="@string/modify_habit_hint_name"
+                android:layout_toRightOf="@id/modify_habit_name_hint"
+                android:hint="@string/modify_habit_name_hint"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:drawableStart="@drawable/ic_baseline_note_add_24"/>
+                android:textSize="@dimen/font_size_enlarged" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/modify_habit_tag"
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Dynamic_card.border"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp">
+            android:layout_marginHorizontal="0dp"
+            android:clickable="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/modify_habit_icon_container"
+                        android:layout_width="@dimen/round_icon_background_size"
+                        android:layout_height="@dimen/round_icon_background_size"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/widget_inview_margin"
+                        android:layout_marginTop="@dimen/widget_inview_margin"
+                        android:layout_marginEnd="@dimen/widget_inview_margin"
+                        android:layout_marginBottom="@dimen/widget_inview_margin"
+                        android:background="@drawable/bg_round_icon">
+
+                        <ImageView
+                            android:id="@+id/modify_habit_icon"
+                            android:layout_width="@dimen/round_icon_size"
+                            android:layout_height="@dimen/round_icon_size"
+                            android:layout_centerInParent="true" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/modify_habit_tag"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/widget_inview_margin"
+                        android:layout_marginTop="@dimen/widget_inview_margin"
+                        android:layout_marginEnd="@dimen/widget_inview_margin"
+                        android:layout_marginBottom="@dimen/widget_inview_margin"
+                        android:layout_toRightOf="@id/modify_habit_icon_container"
+                        android:text="@string/select_tag"
+                        android:textColor="@color/grey_500" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/modify_habit_tag_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/widget_inview_margin" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/modify_habit_frequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/widget_inview_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/modify_habit_text_frequency" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+                android:id="@+id/modify_habit_times"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:inputType="numberDecimal"
+                android:gravity="center"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/times" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/modify_habit_unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:inputType="numberDecimal"
+                android:gravity="center"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
-                android:hint="@string/modify_habit_hint_tag"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:drawableStart="@drawable/ic_baseline_label_24"/>
+                android:gravity="center_vertical"
+                android:text="@string/day" />
 
-        </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/modify_habit_done_button"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/modify_habit_time"
             android:layout_width="match_parent"
-            android:layout_gravity="bottom"
-            style="?attr/borderlessButtonStyle"
-            app:cornerRadius="0dp"
-            app:backgroundTint="#00000000"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:textColor="?attr/colorPrimary"
-            android:text="@string/modify_habit_done"/>
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/widget_inview_margin"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/modify_habit_text_time" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/modify_habit_remind_time_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/amber_500"
+                android:text="@string/modify_habit_reminder_time_null"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_enlarged"
+                app:cornerRadius="@dimen/card_corner_radius" />
+
+        </LinearLayout>
+
+
     </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+

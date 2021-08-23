@@ -1,6 +1,7 @@
 package org.teamhavei.havei.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import org.teamhavei.havei.R;
 import java.util.List;
 
 public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHolder> {
+
+    private static final String TAG = "DEBUG";
 
     List<HaveITag> mTagList;
     Context mContext;
@@ -54,10 +57,22 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
     public TagListAdapter(List<HaveITag> tagList, Context context, int selectedID, OnTagClickListener onTagClickListener) {
         this.mTagList = tagList;
         this.mContext = context;
+        Boolean found = false;
         for (int i = 0; i < tagList.size(); i++) {
             if (tagList.get(i).getId() == selectedID) {
                 selectedItem = i;
+                found = true;
                 break;
+            }
+        }
+        if(!found && tagList.size()>0){
+            selectedID = tagList.get(0).getId();
+            for (int i = 0; i < tagList.size(); i++) {
+                if (tagList.get(i).getId() == selectedID) {
+                    selectedItem = i;
+                    break;
+                }
+                Log.d(TAG, "TagListAdapter: Initial tag ID not found or deleted");
             }
         }
         this.onTagClickListener = onTagClickListener;
@@ -84,12 +99,12 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull TagListAdapter.ViewHolder holder, int position) {
-        holder.mTag=mTagList.get(position);
+        holder.mTag = mTagList.get(position);
         holder.tagIconView.setImageDrawable(iconAdapter.getIcon(holder.mTag.getIconId()));
         holder.tagNameView.setText(holder.mTag.getName());
-        if(position == selectedItem){
+        if (position == selectedItem) {
             holder.itemView.setBackgroundResource(R.color.amber_500);
-        }else{
+        } else {
             holder.itemView.setBackgroundResource(R.color.white);
         }
     }

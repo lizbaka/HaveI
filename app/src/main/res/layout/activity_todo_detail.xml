@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/todo_detail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:gravity="center"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/icon_container"
+                    android:layout_width="@dimen/round_icon_background_size"
+                    android:layout_height="@dimen/round_icon_background_size"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:background="@drawable/bg_round_icon">
+
+                    <ImageView
+                        android:id="@+id/todo_detail_icon"
+                        android:layout_width="@dimen/round_icon_size"
+                        android:layout_height="@dimen/round_icon_size"
+                        android:layout_centerInParent="true" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@id/icon_container"
+                    android:layout_toLeftOf="@id/todo_detail_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/widget_inview_margin">
+
+                    <TextView
+                        android:id="@+id/todo_detail_name"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="[todo_name]" />
+
+                    <TextView
+                        android:id="@+id/todo_detail_tag"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/todo_detail_name"
+                        android:singleLine="true"
+                        android:text="[todo_tag]" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/todo_detail_status"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/red_500"
+                    android:text="@string/unfinished" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dividing_line_view_height"
+                android:layout_marginVertical="@dimen/card_margin_vertical"
+                android:background="@color/grey_200"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/card_margin_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/ui_icon_size_small"
+                    android:layout_height="@dimen/ui_icon_size_small"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/calendar" />
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_weight="0.3"
+                    android:text="@string/todo_detail_time"
+                    android:textColor="@color/grey_500" />
+
+                <TextView
+                    android:id="@+id/todo_detail_datetime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_weight="0.7"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:text="YYYY-MM-DD HH:MM" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/card_margin_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/ui_icon_size_small"
+                    android:layout_height="@dimen/ui_icon_size_small"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/alarm_clock" />
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_weight="0.3"
+                    android:text="@string/todo_detail_remind_time" />
+
+                <TextView
+                    android:id="@+id/todo_detail_remind_datetime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_weight="0.7"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:text="YYYY-MM-DD HH:MM" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/card_margin_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/ui_icon_size_small"
+                    android:layout_height="@dimen/ui_icon_size_small"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:src="@drawable/detail1"/>
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_weight="0.3"
+                    android:text="@string/todo_detail_remark" />
+
+                <TextView
+                    android:id="@+id/todo_detail_remark"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/widget_inview_margin"
+                    android:layout_weight="0.7"
+                    style="@style/TextAppearance.AppCompat.Medium"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/todo_detail_switch_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="bottom|right"
+        android:backgroundTint="?attr/colorPrimary"
+        app:tint="@color/white"
+        android:src="@drawable/ic_baseline_check_24_white"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

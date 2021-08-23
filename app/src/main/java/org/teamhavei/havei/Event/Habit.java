@@ -1,39 +1,10 @@
 package org.teamhavei.havei.Event;
 
-import android.util.Log;
+public class Habit extends HaveIEvent{
 
-public class Habit {
-
-    private int id;
-    private String name;//名称
-    private int tagId;//标签id
     private int repeatUnit;//目标计数周期，天为单位
     private int repeatTimes;//目标周期内计数次数
     private String reminderTime;//提醒时间 格式HH:MM
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getTagId() {
-        return tagId;
-    }
-
-    public void setTagId(int tagId) {
-        this.tagId = tagId;
-    }
 
     public int getRepeatUnit() {
         return repeatUnit;
@@ -57,14 +28,5 @@ public class Habit {
 
     public void setReminderTime(String reminderTime) {
         this.reminderTime = reminderTime;
-    }
-
-    public void showHabitInformation(){
-        Log.d("EventInformation", "id=" + id +
-                " name=" + name +
-                " tag=" + tagId +
-                " repeatunit=" + repeatUnit +
-                " repeatTimes=" + repeatTimes +
-                " reminderTime=" + reminderTime);
     }
 }
