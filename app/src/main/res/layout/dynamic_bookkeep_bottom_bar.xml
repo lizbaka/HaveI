@@ -24,7 +24,8 @@
         android:layout_marginBottom="@dimen/bookkeep_bottom_bar_button_vertical_margin"
         android:background="?attr/actionBarItemBackground"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_add4" />
+        android:src="@drawable/ic_add4"
+        android:onClick="onClickAddBookkeep"/>
 
     <Button
         android:id="@+id/bookeep_bottom_bar_property"

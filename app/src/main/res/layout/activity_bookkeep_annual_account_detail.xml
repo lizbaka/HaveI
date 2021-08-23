@@ -29,7 +29,7 @@
         android:layout_alignTop="@+id/tv_select_date"
         android:gravity="center"
 
-        android:text="open date"/>
+        android:text="選擇月份"/>
 
     <include
         android:id="@+id/bookkeep_annual_income_and_expenses"

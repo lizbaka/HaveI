@@ -20,7 +20,6 @@ import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
 import org.teamhavei.havei.databases.EventDBHelper;
-
 import java.util.List;
 
 public class BookkeepCardAdapter extends RecyclerView.Adapter<BookkeepCardAdapter.ViewHolder> {
@@ -61,13 +60,11 @@ public class BookkeepCardAdapter extends RecyclerView.Adapter<BookkeepCardAdapte
         holder.mBookkeep = mBookList.get(position);
         BookTag tag = dbHelper.findBookTagById(holder.mBookkeep.gettag());
         holder.titleView.setText(holder.mBookkeep.getname());
-        holder.titleView.setText(holder.mBookkeep.getPM().toString());
+//        holder.titleView.setText(holder.mBookkeep.getPM().toString());
+        holder.titleView.setText(String.format("%.2f",holder.mBookkeep.getPM() ));
         holder.tagView.setText(tag.getName());
         holder.iconView.setImageDrawable(iconAdapter.getIcon(tag.getIconId()));
-
-
     }
-
     @Override
     public int getItemCount() {
         return mBookList.size();

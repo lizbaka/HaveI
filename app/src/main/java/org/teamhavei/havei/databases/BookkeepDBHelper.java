@@ -16,6 +16,7 @@ import org.teamhavei.havei.Event.Bookkeep;
 import org.teamhavei.havei.Event.BookCou;
 import org.teamhavei.havei.Event.EventTag;
 import org.teamhavei.havei.Event.Habit;
+import org.teamhavei.havei.Event.Todo;
 import org.teamhavei.havei.UniToolKit;
 
 
@@ -154,6 +155,15 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_BOOKKEEP,null,BOOKKEEP_TIME + " = ?",new String[]{sTime},null,null,null);
         return cursorToBookkeepList(cursor);
     }
+
+
+    //search by month
+    public List<Bookkeep> findBookkeepByMonth(String sDate) {
+        Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TIME + " LIKE ?", new String[]{sDate + "%"}, null, null, null);
+        return cursorToBookkeepList(cursor);
+    }
+
+
     public void updateBookkeep(Bookkeep oldBookkeep, Bookkeep newBookkeep) {
         db.update(TABLE_BOOKKEEP, accountToValues(newBookkeep), BOOKKEEP_ID + " = ?", new String[]{Integer.toString(oldBookkeep.getid())});
     }
@@ -278,6 +288,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         }
         else{
             Log.d(TAG, "cursorToBookCou: No such BookCou");
+            return null;
         }
         return mBookCou;
     }
@@ -291,6 +302,11 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         BookCou mBookCou = cursorToBookCou(cursor);
         cursor.close();
         return mBookCou;
+    }
+
+    public BookCou findBookcouByMonth(String sDate) {
+        Cursor cursor = db.query(TABLE_BOOK_COUS, null, BOOK_COUS_TIME + " LIKE ?", new String[]{sDate + "%"}, null, null, null);
+        return cursorToBookCou(cursor);
     }
 
     public void updateBookCou(BookCou oldBookCou, BookCou newBookCou) {
