@@ -50,7 +50,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/habit_detail_frequent_info"
+                    android:id="@+id/habit_detail_frequency_info"
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -75,65 +75,6 @@
 
             </LinearLayout>
 
-            <!-- TODO: 2021.08.13 实现年度习惯统计（界面17），实现后解除此隐藏 -->
-            <RelativeLayout
-                android:id="@+id/chooser_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/widget_inview_margin"
-                android:visibility="gone">
-
-                <RelativeLayout
-                    android:id="@+id/button_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/button_margin_narrow"
-                    android:layout_toLeftOf="@id/habit_detail_fixed_point">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/widget_inview_margin"
-                        android:backgroundTint="@color/amber_500"
-                        android:text="@string/button_year"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/font_size_enlarged"
-                        app:cornerRadius="@dimen/card_corner_radius" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/habit_detail_fixed_point"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_centerVertical="true">
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/button_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/button_margin_narrow"
-                    android:layout_toRightOf="@id/habit_detail_fixed_point">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/widget_inview_margin"
-                        android:backgroundTint="@color/amber_500"
-                        android:text="@string/button_month"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/font_size_enlarged"
-                        app:cornerRadius="@dimen/card_corner_radius" />
-
-                </RelativeLayout>
-
-            </RelativeLayout>
-
             <com.google.android.material.card.MaterialCardView
                 style="@style/Dynamic_card.border"
                 android:layout_width="match_parent"
@@ -146,6 +87,18 @@
                     app:mcv_selectionColor="?attr/colorPrimary"
                     app:mcv_selectionMode="none"
                     app:mcv_showOtherDates="decorated_disabled" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Dynamic_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/habit_detail_yearly_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"/>
+
             </com.google.android.material.card.MaterialCardView>
 
 
