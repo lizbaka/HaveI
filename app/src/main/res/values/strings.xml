@@ -35,14 +35,29 @@
     <string name="Oct.">十</string>
     <string name="Nov.">十一</string>
     <string name="Dec.">十二</string>
+    <string name="slogan">记录你的生活！</string>
     <!--universal_UI:end-->
-
 
     <!--activity_main:Begin-->
     <string name="main_drawer_open">抽屉打开</string>
     <string name="main_drawer_close">抽屉关闭</string>
+    <string name="main_today_event">今天的待办和习惯</string>
+    <string name="main_all_event">查看所有待办和习惯……</string>
+    <string name="main_empty_todo">今天没有未完成待办事项</string>
+    <string name="main_empty_habit">今天没有要打卡的习惯</string>
+    <!--greeting_card:Begin-->
+    <string name="greeting_morning">上午好！</string>
+    <string name="greeting_morning_secondary">一日之计在于晨</string>
+    <string name="greeting_noon">中午好！</string>
+    <string name="greeting_noon_secondary">休息一下！</string>
+    <string name="greeting_afternoon">下午好！</string>
+    <string name="greeting_afternoon_secondary">干劲满满迎接下午！</string>
+    <string name="greeting_evening">晚上好！</string>
+    <string name="greeting_evening_secondary">享受生活</string>
+    <string name="greeting_midnight">夜深</string>
+    <string name="greeting_midnight_secondary">晚安！</string>
+    <!--greeting_card:end-->
     <!--activity_main:end-->
-
 
     <!--main_event:Begin-->
     <string name="habit_library">习惯库</string>
@@ -117,18 +132,6 @@
     <string name="habit_add_first">添加您的第一个习惯！</string>
     <!--habit:end-->
 
-
-    <!--greeting_card:Begin-->
-    <string-array name="greeting_card_time">
-        <item>早上好！</item>
-        <item>中午好！</item>
-        <item>下午好！</item>
-        <item>晚上好！</item>
-        <item>晚安！</item>
-    </string-array>
-    <string name="greeting_card_slogan">记录你的生活！</string>
-    <!--greeting_card:end-->
-
     <!--habit_detail:Begin-->
     <string name="habit_detail_toolbar_modify">修改</string>
     <string name="habit_detail_toolbar_delete">删除</string>
@@ -140,7 +143,7 @@
     <!--menu_main_toolbar:end-->
 
     <!--nav_menu:Begin-->
-    <string name="nav_menu_theme">主题</string>
+    <string name="nav_menu_report">分享报告</string>
     <string name="nav_menu_settings">设置</string>
     <string name="nav_menu_help">帮助</string>
     <!--nav_menu:end-->

@@ -1,36 +1,183 @@
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            app:elevation="0dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/main_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:gravity="center"
+                android:minHeight="?attr/actionBarSize">
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/app_name"
+                    android:textColor="?attr/colorPrimary" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Dynamic_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/greeting_card_time"
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/widget_inview_margin"
+                            android:text="[Greeting_Time]"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/greeting_card_secondary"
+                            style="@style/TextAppearance.AppCompat.Body1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/greeting_card_time"
+                            android:layout_alignParentRight="true"
+                            android:layout_margin="@dimen/widget_inview_margin"
+                            android:text="[Greeting_Secondary]"
+                            android:textColor="@color/white" />
+
+                        <ImageView
+                            android:id="@+id/greeting_card_icon"
+                            android:layout_width="@dimen/greeting_card_icon_size"
+                            android:layout_height="@dimen/greeting_card_icon_size"
+                            android:layout_below="@id/greeting_card_secondary"
+                            android:layout_centerHorizontal="true"
+                            android:layout_margin="@dimen/widget_inview_margin"
+                            android:src="@drawable/hs_sun3" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/main_manage_todo_card"
+                    style="@style/Dynamic_card.border"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contentPadding="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginVertical="@dimen/widget_inview_margin"
+                            android:gravity="center"
+                            android:text="最近的待办" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_line_view_height"
+                            android:background="@color/grey_200" />
+
+                        <TextView
+                            android:id="@+id/main_empty_todo"
+                            style="@style/TextAppearance.AppCompat.Body1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingVertical="@dimen/main_empty_hint_text_padding_vertical"
+                            android:text="@string/main_empty_todo"
+                            android:textColor="@color/grey_500"
+                            android:visibility="gone" />
+
+                        <include
+                            android:id="@+id/main_todo_card"
+                            layout="@layout/dynamic_todo_card_simple"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_line_view_height"
+                            android:background="@color/grey_200" />
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Body1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingVertical="@dimen/widget_inview_margin"
+                            android:text="@string/main_all_event"
+                            android:textColor="@color/grey_500" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/main_manage_habit_card"
+                    style="@style/Dynamic_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <GridLayout
+                        android:id="@+id/main_habitGL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:columnCount="4"
+                        android:rowCount="1" />
+
+                    <TextView
+                        android:id="@+id/main_empty_habit"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:gravity="center"
+                        android:paddingVertical="@dimen/main_empty_hint_text_padding_vertical"
+                        android:text="@string/main_empty_habit"
+                        android:textColor="@color/white"
+                        android:visibility="gone"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
                 <include
-                    layout="@layout/dynamic_greeting_card" />
-                <include
-                    layout="@layout/dynamic_proverb_card"/>
-                <include
-                    layout="@layout/dynamic_todo_card" />
-                <include
-                    layout="@layout/dynamic_bookkeep_record_card"/>
-                <include
-                    layout="@layout/dynamic_habit_card"/>
-                <include
-                    layout="@layout/dynamic_habit_card"/>
-                <include
-                    layout="@layout/dynamic_habit_card"/>
+                    android:id="@+id/main_proverb_card"
+                    layout="@layout/dynamic_proverb_card" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
@@ -42,10 +189,9 @@
         android:id="@+id/nav_view"
         android:layout_width="300dp"
         android:layout_height="match_parent"
-        app:menu="@menu/nav_menu"
+        android:layout_gravity="start"
         app:headerLayout="@layout/dynamic_nav_header"
-        android:layout_gravity="start"/>
-
+        app:menu="@menu/nav_menu" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -6,7 +6,6 @@
     <dimen name="card_margin_horizontal">10dp</dimen>
     <dimen name="card_padding">10dp</dimen>
     <dimen name="card_border_width">1dp</dimen>
-    <dimen name="card_content_padding">2dp</dimen>
     <dimen name="card_elevation">5dp</dimen>
 
 
@@ -29,7 +28,8 @@
 
     <dimen name="greeting_card_icon_size">80dp</dimen>
 
-    <dimen name="proverb_card_text_margin">10dp</dimen>
+    <dimen name="proverb_card_text_marginVertical">5dp</dimen>
+    <dimen name="proverb_card_text_marginHorizontal">50dp</dimen>
     <dimen name="proverb_card_favorite_size">30dp</dimen>
 
     <dimen name="dialog_padding">10dp</dimen>
@@ -50,6 +50,8 @@
     <dimen name="tt_time_spacing">70dp</dimen>
     <dimen name="dividing_view_container">2dp</dimen>
     <dimen name="tt_time_font_size">10sp</dimen>
+
+    <dimen name="main_empty_hint_text_padding_vertical">20dp</dimen>
 
     <dimen name="monthly_report_habit_icon_side_length">30dp</dimen>
     <dimen name="monthly_report_QR_code">40dp</dimen>
