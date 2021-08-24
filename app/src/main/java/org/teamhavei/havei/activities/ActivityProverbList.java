@@ -70,7 +70,6 @@ public class ActivityProverbList extends BaseActivity {
         if(mShownOnMain != null){
             int position = mProverbList.indexOf(mShownOnMain);
             proverbCardList.scrollToPosition(position-1>=0?position:0);
-            proverbCardList.getChildAt(position).requestFocus();
         }
 
         fab.setOnClickListener(new View.OnClickListener() {

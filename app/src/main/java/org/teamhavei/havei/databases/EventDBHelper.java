@@ -210,9 +210,10 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     /**
      * 效率较低，不要频繁调用！
+     *
      * @return 按排名从高到低顺序返回一个habit的list
      */
-    public List<Habit> findAllHabitOrderByRank(){
+    public List<Habit> findAllHabitOrderByRank() {
         Calendar todayDate = Calendar.getInstance();
         todayDate.set(Calendar.HOUR_OF_DAY, 0);
         todayDate.set(Calendar.MINUTE, 0);
@@ -231,7 +232,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
             thisExecList = findHabitExecByHabitId(habit.getId());
             if (thisExecList.size() <= 0) {
                 actualTimeHM.put(habit, 0);
-                planTimeHM.put(habit,1);
+                planTimeHM.put(habit, 1);
             } else {
                 actualTimeHM.put(habit, thisExecList.size());
                 firstExecDate = Calendar.getInstance();
@@ -271,7 +272,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
             endCalendar = (Calendar) centerCalendar.clone();
             startCalendar.add(Calendar.DAY_OF_YEAR, -1 * (mHabit.getRepeatUnit() - 1));
             endCalendar.add(Calendar.DAY_OF_YEAR, mHabit.getRepeatUnit() - 1);
-            if (!checkHabitFinishBetween(mHabit.getId(), startCalendar.getTime(), endCalendar.getTime())) {
+            if (!checkHabitFinishBetween(mHabit.getId(), startCalendar.getTime(), endCalendar.getTime()) || isHabitDone(mHabit.getId(),centerCalendar.getTime())) {
                 unfinishedHabit.add(mHabit);
             }
         }
@@ -367,14 +368,14 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return findHabitExecByDateRange(sStartDate, sEndDate);
     }
 
-    public List<HabitExec> findHabitExecByHabitIdWithYearMonth(int HabitId, Date yearMonth){
-        String sYearMonth = UniToolKit.eventDateFormatter(yearMonth).substring(0,7);
-        Cursor cursor = db.query(TABLE_HABIT_EXECS,null,HABIT_EXECS_HABIT_ID + " = ? AND " + HABIT_EXECS_DATE + " LIKE ?",new String[]{Integer.toString(HabitId), sYearMonth + "%"},null,null,null);
+    public List<HabitExec> findHabitExecByHabitIdWithYearMonth(int HabitId, Date yearMonth) {
+        String sYearMonth = UniToolKit.eventDateFormatter(yearMonth).substring(0, 7);
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ? AND " + HABIT_EXECS_DATE + " LIKE ?", new String[]{Integer.toString(HabitId), sYearMonth + "%"}, null, null, null);
         return cursorToHabitExecList(cursor);
     }
 
     public List<HabitExec> findHabitExecByDateRange(String startDate, String endDate) {
-        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_DATE + " >= ? AND " + HABIT_EXECS_DATE + " <= ?", new String[]{startDate, endDate}, null, null, null);
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_DATE + " >= ? AND " + HABIT_EXECS_DATE + " <= ?", new String[]{startDate, endDate}, null, null, HABIT_EXECS_HABIT_ID);
         return cursorToHabitExecList(cursor);
     }
 
@@ -543,7 +544,13 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     public List<Todo> findTodoByDate(Date date) {
         String sDate = UniToolKit.eventDateFormatter(date);
-        Cursor cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " LIKE ?", new String[]{sDate + "%"}, null, null, null);
+        Cursor cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " LIKE ?", new String[]{sDate + "%"}, null, null, TODO_DATETIME);
+        return cursorToTodoList(cursor);
+    }
+
+    public List<Todo> findUndoneTodoByDate(Date date) {
+        String sDate = UniToolKit.eventDateFormatter(date);
+        Cursor cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " LIKE ? AND " + TODO_DONE + " = ?", new String[]{sDate + "%","0"},null,null,TODO_DATETIME);
         return cursorToTodoList(cursor);
     }
 
@@ -559,8 +566,8 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return cursorToTodoList(cursor);
     }
 
-    public List<Todo> findTodoByDateRange(String startTime,String endTime){
-        Cursor cursor = db.query(TABLE_TODO,null,TODO_DATETIME + " >= ? AND " + TODO_DATETIME + " <= ?",new String[]{startTime,endTime},null,null,null);
+    public List<Todo> findTodoByDateRange(String startTime, String endTime) {
+        Cursor cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " >= ? AND " + TODO_DATETIME + " <= ?", new String[]{startTime, endTime}, null, null, null);
         return cursorToTodoList(cursor);
     }
 
