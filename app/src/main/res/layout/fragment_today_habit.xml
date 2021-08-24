@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 style="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/grey_500"
+                android:textColor="@color/white"
                 android:text="@string/main_event_no_habit"
                 android:visibility="gone"/>
 

@@ -71,8 +71,7 @@ public class ActivityTodoDetail extends AppCompatActivity {
                     statusTV.setTextColor(getResources().getColor(R.color.green_500));
                     switchFab.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_close_24_white));
                 }
-                mTodo.setDone(!mTodo.isDone());
-                dbHelper.updateTodo(mTodo.getId(),mTodo);
+                dbHelper.switchTodoDone(mTodo.getId());
             }
         });
     }

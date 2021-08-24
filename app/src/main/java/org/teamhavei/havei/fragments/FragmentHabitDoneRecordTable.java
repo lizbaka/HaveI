@@ -25,6 +25,7 @@ import org.teamhavei.havei.databases.EventDBHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class FragmentHabitDoneRecordTable extends BaseFragment {
@@ -70,15 +71,18 @@ public class FragmentHabitDoneRecordTable extends BaseFragment {
                     String sEndOfWeek = UniToolKit.eventDateFormatter(startOfWeek.getTime());
                     startOfWeek.add(Calendar.DAY_OF_YEAR, -6);
                     List<HabitExec> execList = dbHelper.findHabitExecByDateRange(sStartOfWeek, sEndOfWeek);
-                    int[] eventCount = new int[8];
-                    for (int i = 1; i <= 7; i++) {
-                        eventCount[i] = 0;
-                    }
+                    HashMap<Integer,Integer> HP = new HashMap<>();
+                    int used = -1;
                     for (HabitExec exec : execList) {
                         Habit habit = dbHelper.findHabitById(exec.getHabitId());
+                        Integer cur = HP.get(habit.getId());
+                        if(cur == null){
+                            cur = ++used;
+                            HP.put(habit.getId(),cur);
+                        }
                         Calendar startTime = Calendar.getInstance();
                         startTime.setTime(UniToolKit.eventDateParser(exec.getDate()));
-                        startTime.set(Calendar.HOUR_OF_DAY, eventCount[startTime.get(Calendar.DAY_OF_WEEK)]++);
+                        startTime.set(Calendar.HOUR_OF_DAY, cur);
                         eventList.add(new FragmentTimeTable.TimeTableEvent(startTime, habit.getName(), habit));
                     }
                 }

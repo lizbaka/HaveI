@@ -2,7 +2,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="@style/Dynamic_card">
+    style="@style/Dynamic_card"
+    app:cardElevation="1dp">
 
     <TextView
         android:id="@+id/proverb_card_title"
@@ -21,9 +22,10 @@
         android:layout_height="wrap_content"
         style="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/white"
-        android:layout_margin="@dimen/proverb_card_text_margin"
+        android:layout_marginVertical="@dimen/proverb_card_text_marginVertical"
+        android:layout_marginHorizontal="@dimen/proverb_card_text_marginHorizontal"
         android:gravity="center"
-        android:lineSpacingMultiplier="1.5"
+        android:lineSpacingMultiplier="1.2"
         android:text="[Daily\nProverb]"/>
 
     <ImageView

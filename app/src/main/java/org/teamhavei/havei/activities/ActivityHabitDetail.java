@@ -119,7 +119,7 @@ public class ActivityHabitDetail extends BaseActivity {
         rankView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rankView.setText(Integer.toString(calculateHabitRank()));
+                rankView.setText("No." + Integer.toString(calculateHabitRank()));
             }
         });
 
@@ -144,7 +144,7 @@ public class ActivityHabitDetail extends BaseActivity {
         yearCountVP.setCurrentItem(Calendar.getInstance().get(Calendar.YEAR) - 1970);
         showExecutionDate();
         showAnalyze();
-        rankView.setText(Integer.toString(calculateHabitRank()));
+        rankView.setText("No." + Integer.toString(calculateHabitRank()));
     }
 
     @Override
