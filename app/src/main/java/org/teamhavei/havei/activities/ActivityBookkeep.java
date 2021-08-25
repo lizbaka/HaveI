@@ -1,6 +1,7 @@
 package org.teamhavei.havei.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +26,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class ActivityBookkeep extends AppCompatActivity {
+
 
     private Button mShowDateBTN;
     private TextView mSelectDateTV;
@@ -56,7 +58,7 @@ public class ActivityBookkeep extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear,
                                           int startDayOfMonth) {
-                        String textString = String.format("选择年月：%d-%d\n", startYear,
+                        String textString = String.format("选择年月：%d-%02d\n", startYear,
                                 startMonthOfYear + 1);
                         mSelectDateTV.setText(textString);
                     }
@@ -149,9 +151,11 @@ public class ActivityBookkeep extends AppCompatActivity {
             updateRec(true);
         }
     }
-    public void onClickAddBookkeep(View view) {
-        Intent intent =new Intent(ActivityBookkeep.this,ActivityBookkeepAdd.class);
-        startActivity(intent);
 
-    }
+
+//    public void onClickAddBookkeep(View view) {
+//        Intent intent =new Intent(ActivityBookkeep.this,ActivityBookkeepAdd.class);
+//        startActivity(intent);
+//
+//    }
 }

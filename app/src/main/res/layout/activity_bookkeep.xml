@@ -4,32 +4,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/bookkeep_month_value"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/bookkeep_topbar_button_size"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/bookkeep_spinner_margin"
-        android:gravity="center" />
 
-    <Spinner
-        android:id="@+id/bookeep_month_spinner"
+    <TextView
+        android:id="@+id/tv_select_date"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bookkeep_bottom_bar_button_height"
+
+        android:layout_marginLeft="@dimen/bookkeep_spinner_margin"
+        android:layout_marginTop="@dimen/bookkeep_spinner_margin"
+        android:layout_toRightOf="@+id/btn_show_date"
+        android:layout_toLeftOf="@+id/bookkeep_annual_account"
+        android:gravity="center"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/btn_show_date"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/bookkeep_topbar_button_size"
-        android:layout_alignTop="@+id/bookkeep_month_value"
-        android:layout_toRightOf="@+id/bookkeep_month_value"/>
+        android:layout_height="@dimen/bookkeep_bottom_bar_button_height"
+        android:layout_alignTop="@+id/tv_select_date"
+        android:gravity="center"
+        android:layout_marginHorizontal="15dp"
+
+        android:text="選擇月份" />
+
+
 
     <ImageButton
         android:id="@+id/bookkeep_annual_account"
         android:layout_width="@dimen/bookkeep_topbar_button_size"
         android:layout_height="@dimen/bookkeep_topbar_button_size"
-        android:layout_alignTop="@+id/bookkeep_month_value"
+        android:layout_alignTop="@+id/tv_select_date"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/bookkeep_window_border"
         android:onClick="onClickFindAnnualAccountDetail"
         android:padding="0dp"
         android:scaleType="centerCrop"
         android:src="@drawable/calendar"
+
         android:contentDescription="@string/bookkeep_annual_account_button"/>
 
     <include
@@ -37,7 +48,7 @@
         layout="@layout/dynamic_bookkeep_window"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bookeep_month_spinner"
+        android:layout_below="@+id/tv_select_date"
         android:layout_marginLeft="@dimen/bookkeep_window_border"
         android:layout_marginTop="@dimen/bookkeep_window_border"
         android:layout_marginRight="@dimen/bookkeep_window_border" />

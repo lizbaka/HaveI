@@ -3,11 +3,14 @@ package org.teamhavei.havei.activities;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +38,18 @@ public class ActivityBookkeepAdd extends AppCompatActivity {
     RecyclerView mTagRecyc;
     RadioGroup io;
     BookkeepDBHelper bookDBHelper;
+    DatePicker datePicker;
+    Button datePik;
+    Button dateSure;
+
+
+
+
+
+
+
+
+
     List<org.teamhavei.havei.Event.HaveITag> mtaglist;
     TagListAdapter mTaglistAdapter;
     String Date;
@@ -50,21 +65,19 @@ public class ActivityBookkeepAdd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookkeep_add_detail);
         init();
-//        BookTag.setText(tag.toString());
-//        BookNum.setText(Num_text);
-       init_tag();
-        io.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                RadioButton radbtn = (RadioButton) findViewById(checkedId);
-
-                if(radbtn.getText().equals(R.string.bookkeep_expenditure))
-                    ioJud=0;
-                else
-                    ioJud=1;
-            }
-        });
+//        io.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//
+//                RadioButton radbtn = (RadioButton) findViewById(checkedId);
+//
+//                if(radbtn.getText().equals(R.string.bookkeep_expenditure))
+//                    ioJud=0;
+//                else
+//                    ioJud=1;
+//            }
+//        });
     }
     public void init()
     {
@@ -76,8 +89,16 @@ public class ActivityBookkeepAdd extends AppCompatActivity {
         BookNum = (EditText) findViewById(R.id.add_account_detail__money_value);
         mTagRecyc=(RecyclerView)findViewById(R.id.add_recyc_booklist);
         io = (RadioGroup) findViewById(R.id.add_account_detail_expenditure_or_income);
-        //        Num_text=now_Num.toString();
+        datePicker=findViewById(R.id.bookkeep_datepicker);
+        datePik=findViewById(R.id.buttom_date);
+        dateSure=findViewById(R.id.date_sure);
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat   sDateFormat   =   new SimpleDateFormat("yyyy-MM-dd");
+        Date=sDateFormat.format(new java.util.Date());
+        datePik.setText(Date);
+        init_tag();
+        initListen();
     }
+
     public void edit()
     {
         Num_text=BookTitle.getText().toString();
@@ -85,24 +106,12 @@ public class ActivityBookkeepAdd extends AppCompatActivity {
         if(ioJud==0) {
             now_Num=now_Num*(-1);
         }
-        Date=editGetDate();
         sDate=Date.substring(0,7);
         mBookkeep=setBookkeep();
         bookDBHelper.insertBookkeep(mBookkeep);
         setBookCou();
     }
-//    public  void init_tag() {
-//            List<BookTag> B = bookDBHelper.findAllBoktag();
-//            for(int i=0;i<B.size();i++)
-//            {
-//                mtaglist.add((HaveITag) B.get(i));
-//            }
-//            mTaglistAdapter= new TagListAdapter(mtaglist,this);
-//            mTagRecyc.setAdapter(mTaglistAdapter);
-//            RecyclerView.LayoutManager layoutManager= new GridLayoutManager (this,5);
-//            mTagRecyc.setLayoutManager(layoutManager);
-//
-//    }
+
     public void init_tag(){
         List<BookTag> List = bookDBHelper.findAllBoktag();
         mtaglist = new ArrayList<>();
@@ -116,11 +125,21 @@ public class ActivityBookkeepAdd extends AppCompatActivity {
         mTagRecyc.setLayoutManager(new GridLayoutManager(ActivityBookkeepAdd.this, 3, GridLayoutManager.HORIZONTAL, false));
         mTagRecyc.setAdapter(mTaglistAdapter);
     }
-    public String editGetDate()
+    public void editGetDate()
     {
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat   sDateFormat   =   new SimpleDateFormat("yyyy-MM-dd");
-//        String sdate  =;
-        return  sDateFormat.format(new java.util.Date());
+        datePicker.setVisibility(View.VISIBLE);
+        dateSure.setVisibility(View.VISIBLE);
+        String day=String.format("%d-%02d-%02d",datePicker.getYear(),datePicker.getMonth()+1,datePicker.getDayOfMonth());
+        dateSure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Date=day;
+                datePik.setText(Date);
+                datePicker.setVisibility(View.GONE);
+                dateSure.setVisibility(View.GONE);
+            }
+        });
     }
 
 
@@ -172,35 +191,40 @@ public class ActivityBookkeepAdd extends AppCompatActivity {
             bookDBHelper.updateBookCou(oldCou,mBookCou);
         }
     }
-    public void edit(View view) {
+    public  void initListen()
+    {
+        //RADIO
+        io.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+            RadioButton radbtn = (RadioButton) findViewById(checkedId);
+
+            if(radbtn.getText().equals(R.string.bookkeep_expenditure))
+                ioJud=0;
+            else
+                ioJud=1;
+        }
+    });
+        datePik.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editGetDate();
+            }
+        });
+
+    }
+
+
+    public void onClick_ADD(View view) {
         edit();
-    }
-
-
-//    public void onClick_One(View view) {
-//        if(dot==0)
-//        {
-//            now_Num=now_Num*10;
-//            now_Num=now_Num+1;
-//            Num_text=now_Num.toString();
-//            BookNum.setText(Num_text);
-//
-//        }
-//        else if(dot==1)
-//        {
-////            Num_text=now_Num.toString()+".";
-////            BookNum.setText(Num_text);
-//            dot=2;
-//        }
-//        else if(dot==2)
-//        {
-//            now_Num=now_Num+0.1f;
-//            Num_text=now_Num.toString();
-//            BookNum.setText(Num_text);
-//            dot=0;
-//        }
-
+        finish();
 
 
     }
+
+    public void onClick_BACK(View view) {
+        finish();
+    }
+}
 

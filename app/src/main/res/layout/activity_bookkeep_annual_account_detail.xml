@@ -11,32 +11,14 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
-    <TextView
-        android:id="@+id/tv_select_date"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/bookkeep_bottom_bar_button_height"
-        android:layout_below="@+id/toolbar_bookkeep_annual_account_detail"
-        android:layout_marginTop="@dimen/bookkeep_spinner_margin"
-        android:layout_marginLeft="@dimen/bookkeep_spinner_margin"
-        android:gravity="center"
-        android:layout_toRightOf="@+id/btn_show_date"
-        android:text="TextView" />
 
-    <Button
-        android:id="@+id/btn_show_date"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/bookkeep_bottom_bar_button_height"
-        android:layout_alignTop="@+id/tv_select_date"
-        android:gravity="center"
-
-        android:text="選擇月份"/>
 
     <include
         android:id="@+id/bookkeep_annual_income_and_expenses"
         layout="@layout/dynamic_bookkeep_annual_income_and_expenses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_show_date"
+        android:layout_below="@+id/toolbar_bookkeep_annual_account_detail"
         android:layout_marginLeft="@dimen/bookkeep_window_border"
         android:layout_marginTop="@dimen/bookkeep_window_border"
         android:layout_marginRight="@dimen/bookkeep_window_border" />
