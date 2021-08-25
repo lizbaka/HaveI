@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.teamhavei.havei">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +13,9 @@
         android:theme="@style/Theme.HaveI"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.ActivityTagsSetting"
+            android:exported="true" />
+        <activity
             android:name=".activities.ActivityHabitMain"
             android:exported="true" />
         <activity
@@ -21,8 +24,7 @@
         <activity android:name=".activities.ActivityModifyTodo" />
         <activity android:name=".activities.ActivityMainEvent" />
         <activity android:name=".activities.ActivityProverbList" />
-        <activity android:name=".activities.ActivityTodoTimetable"/>
-        <activity android:name=".activities.ZDActivityHabitList" />
+        <activity android:name=".activities.ActivityTodoTimetable" />
 
         <service
             android:name=".services.HaveITimeWatcher"

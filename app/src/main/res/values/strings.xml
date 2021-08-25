@@ -67,14 +67,6 @@
     <string name="main_event_no_todo">这一天没有待办</string>
     <!--main_event:end-->
 
-    <!--deprecated-->
-    <!--daily_habit:Begin-->
-    <string name="daily_habit_title">查看您的当日习惯</string>
-    <string name="daily_habit_library">习惯库</string>
-    <string name="daily_habit_today">today</string>
-    <string name="daily_habit_completion_record">完成记录</string>
-    <!--daily_habit:end-->
-
     <!--today_habit:Begin-->
     <string name="today_habit_title">查看您的当日习惯</string>
     <!--today_habit:end-->
