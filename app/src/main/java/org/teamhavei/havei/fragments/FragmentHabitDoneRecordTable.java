@@ -88,6 +88,11 @@ public class FragmentHabitDoneRecordTable extends BaseFragment {
                 }
 
                 @Override
+                public void onScrollBehavior(int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+
+                }
+
+                @Override
                 public void onCardClick(HaveIEvent event) {
                     ActivityHabitDetail.startAction(getActivity(), (Habit) event);
                 }

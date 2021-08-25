@@ -86,6 +86,15 @@ public class ActivityTodoTimetable extends BaseActivity{
                 }
 
                 @Override
+                public void onScrollBehavior(int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                    if(scrollY > oldScrollY) {
+                        fab.setVisibility(View.GONE);
+                    } else {
+                        fab.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
                 public void onCardClick(HaveIEvent event) {
                     ActivityTodoDetail.startAction(ActivityTodoTimetable.this, event.getId());
                 }

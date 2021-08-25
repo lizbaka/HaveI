@@ -256,14 +256,188 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/tt_count_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="@dimen/timetable_label_width"
+            android:layout_height="match_parent"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tt_count_text_1"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_round_icon_secondary"
+                android:backgroundTintMode="src_over"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="?attr/colorPrimary"
+                tools:ignore="HardcodedText" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tt_count_text_2"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_round_icon_secondary"
+                android:backgroundTintMode="src_over"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="?attr/colorPrimary"
+                tools:ignore="HardcodedText" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tt_count_text_3"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_round_icon_secondary"
+                android:backgroundTintMode="src_over"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="?attr/colorPrimary"
+                tools:ignore="HardcodedText" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tt_count_text_4"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_round_icon_secondary"
+                android:backgroundTintMode="src_over"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="?attr/colorPrimary"
+                tools:ignore="HardcodedText" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tt_count_text_5"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_round_icon_secondary"
+                android:backgroundTintMode="src_over"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="?attr/colorPrimary"
+                tools:ignore="HardcodedText" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tt_count_text_6"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_round_icon_secondary"
+                android:backgroundTintMode="src_over"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="?attr/colorPrimary"
+                tools:ignore="HardcodedText" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tt_count_text_7"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_round_icon_secondary"
+                android:backgroundTintMode="src_over"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="?attr/colorPrimary"
+                tools:ignore="HardcodedText" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dividing_line_view_height"
+        android:background="@color/grey_200"
+        android:layout_marginTop="@dimen/widget_inview_margin"/>
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/tt_NSV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="4dp"
-        android:overScrollMode="never"
-        android:paddingTop="10dp">
+        android:overScrollMode="never">
 
         <FrameLayout
             android:id="@+id/tt_FL"
