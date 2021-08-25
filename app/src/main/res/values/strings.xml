@@ -239,7 +239,7 @@
     <string name="monthly_report_habit_three_name">一个名字很长的习惯\n38次</string>
     <!--monthly_report:end-->
 
-</resources>    <!--activity_bookkeep:begin-->
+    <!--activity_bookkeep:begin-->
     <string name="bookkeep_expenditure">支出</string>
     <string name="bookkeep_income">收入</string>
     <string name="bookkeep_statistics">统计</string>
@@ -290,4 +290,15 @@
     <string name="bookkeep_annual_expenses">总支出</string>
     <string name="bookkeep_annual_surplus">总结余</string>
     <string name="bookkeep_month_in_year_income_and_expenses">月度收支</string>
-    <!--activity_bookkeep_annual_account_detail:end--></resources>
+    <!--activity_bookkeep_annual_account_detail:end-->
+
+    <!--activity_bookkeep_add_wallet:start-->
+    <string name="bookkeep_add_wallet_wallet_type">账户类型</string>
+    <string name="bookkeep_add_wallet_wallet_money">账户余额</string>
+    <string name="bookkeep_add_wallet_wallet_name">账户名称</string>
+    <string name="bookkeep_add_wallet_wallet_remark">账户备注</string>
+    <string name="bookkeep_add_wallet">添加账户</string>
+    <string name="bookkeep_add_wallet_complete">完成</string>
+    <!--activity_bookkeep_add_wallet:end-->
+
+</resources>

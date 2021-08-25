@@ -57,7 +57,7 @@
         android:id="@+id/add_account_detail_wallet"
         android:layout_width="@dimen/bookkeep_add_account_detail_record_height"
         android:layout_height="@dimen/bookkeep_add_account_detail_record_height"
-        android:layout_marginLeft="@dimen/bookkeep_add_account_detail_calculator_border_margin"
+        android:layout_marginStart="@dimen/bookkeep_add_account_detail_calculator_border_margin"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/add_account_detail_relativeLayout"
         app:layout_constraintStart_toStartOf="parent"

@@ -32,6 +32,10 @@
             android:label="@string/bookkeep_property_view"
             android:parentActivityName=".activities.ActivityBookkeep">
         </activity>
+        <activity android:name=".activities.ActivityBookkeepAddWallet"
+            android:label="@string/bookkeep_add_wallet"
+            android:parentActivityName=".activities.ActivityBookkeepPropertyView">
+        </activity>
         <activity android:name=".activities.ActivityBookkeepAnnualAccountDetail"
             android:label="@string/bookkeep_annual_account"
             android:parentActivityName=".activities.ActivityBookkeep">
