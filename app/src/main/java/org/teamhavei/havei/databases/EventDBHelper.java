@@ -571,6 +571,12 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return cursorToTodoList(cursor);
     }
 
+    public List<Todo> findTodoAfterToday(){
+        String sNow = UniToolKit.eventDateFormatter(new Date());
+        Cursor cursor = db.query(TABLE_TODO,null,TODO_DATETIME + " >= ?",new String[]{sNow},null,null,TODO_DATETIME);
+        return cursorToTodoList(cursor);
+    }
+
     public boolean switchTodoDone(int todoId) {
         Todo newTodo = findTodoById(todoId);
         if (newTodo.isDone()) {

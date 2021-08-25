@@ -54,9 +54,9 @@ public class UtilDBHelper extends SQLiteOpenHelper {
         initData();
     }
 
-    private void checkEmpty(){
-        Cursor cursor = db.query(TABLE_PROVERB,null,null,null,null,null,null);
-        if(cursor.getCount()==0){
+    private void checkEmpty() {
+        Cursor cursor = db.query(TABLE_PROVERB, null, null, null, null, null, null);
+        if (cursor.getCount() == 0) {
             insertProverb(context.getString(R.string.slogan));
         }
     }
@@ -75,20 +75,40 @@ public class UtilDBHelper extends SQLiteOpenHelper {
         return proverb;
     }
 
-    public void deleteProverbs(List<String> proverb) {
-        for (String s : proverb)
-            db.delete(TABLE_PROVERB, PROVERB_CONTENT + " = ?", new String[]{s});
+    public void deleteProverb(String proverb) {
+        db.delete(TABLE_PROVERB, PROVERB_CONTENT + " = ?", new String[]{proverb});
     }
 
-    public void insertProverb(String s) {
-        ContentValues value = new ContentValues();
-        value.put(PROVERB_CONTENT, s);
-        db.insert(TABLE_PROVERB, null, value);
+    public void deleteProverbs(List<String> proverb) {
+        db.delete(TABLE_PROVERB, PROVERB_CONTENT + " = ?", proverb.toArray(new String[0]));
+    }
+
+    public boolean isProverbStored(String proverb) {
+        Cursor cursor = db.query(TABLE_PROVERB, null, PROVERB_CONTENT + " = ?", new String[]{proverb}, null, null, null);
+        return cursor.getCount() > 0;
+    }
+
+    public void insertProverb(String proverb) {
+        if (!isProverbStored(proverb)) {
+            ContentValues value = new ContentValues();
+            value.put(PROVERB_CONTENT, proverb);
+            db.insert(TABLE_PROVERB, null, value);
+        }
+    }
+
+    public boolean switchProverb(String proverb) {
+        if (!isProverbStored(proverb)) {
+            insertProverb(proverb);
+            return true;
+        } else {
+            deleteProverb(proverb);
+            return false;
+        }
     }
 
     public String pickOneProverb() {
         List<String> proverb = getProverbs();
-        if(proverb == null || proverb.isEmpty()){
+        if (proverb == null || proverb.isEmpty()) {
             return context.getString(R.string.slogan);
         }
         return proverb.get((int) System.currentTimeMillis() % proverb.size());

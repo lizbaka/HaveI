@@ -14,6 +14,8 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +27,8 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.Todo;
 import org.teamhavei.havei.R;
@@ -34,9 +38,17 @@ import org.teamhavei.havei.databases.EventDBHelper;
 import org.teamhavei.havei.databases.UtilDBHelper;
 import org.teamhavei.havei.services.HaveITimeWatcher;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class ActivityMain extends BaseActivity {
 
@@ -204,7 +216,7 @@ public class ActivityMain extends BaseActivity {
     }
 
     private void configTodoCard() {
-        List<Todo> todoList = eventDBHelper.findUndoneTodoByDate(new Date());
+        List<Todo> todoList = eventDBHelper.findTodoAfterToday();
         if (todoList != null && !todoList.isEmpty()) {
             Todo todo = todoList.get(0);
             findViewById(R.id.main_todo_card).setVisibility(View.VISIBLE);
@@ -221,7 +233,7 @@ public class ActivityMain extends BaseActivity {
             findViewById(R.id.main_todo_card).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ActivityTodoDetail.startAction(ActivityMain.this,todo.getId());
+                    ActivityTodoDetail.startAction(ActivityMain.this, todo.getId());
                 }
             });
         } else {
@@ -236,7 +248,7 @@ public class ActivityMain extends BaseActivity {
         });
     }
 
-    private void configHabitCard(){
+    private void configHabitCard() {
         List<Habit> habitList = eventDBHelper.findUnfinishedHabit(Calendar.getInstance());
         GridLayout habitGL = findViewById(R.id.main_habitGL);
         habitGL.removeAllViews();
@@ -279,20 +291,162 @@ public class ActivityMain extends BaseActivity {
         });
     }
 
-    // TODO: 2021.08.24 实现网络功能后考虑更改逻辑
+    private void firstRun() {
+        // TODO: 2021.08.07 首次运行函数。待实现功能：教程、从自带的数据库中引入数据
+    }
+
     private void configProverb() {
+        ImageView favIcon = findViewById(R.id.proverb_card_favorite);
         TextView proverbTV = findViewById(R.id.proverb_card_proverb);
-        proverbTV.setText(utilDBHelper.pickOneProverb());
+        setProverb((int) (Math.random() * 3) % 3, proverbTV, favIcon);
+        favIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (utilDBHelper.switchProverb(proverbTV.getText().toString())) {
+                    favIcon.setImageResource(R.drawable.ic_baseline_favorite_24_red);
+                } else {
+                    favIcon.setImageResource(R.drawable.ic_baseline_favorite_24_white);
+                }
+            }
+        });
         findViewById(R.id.main_proverb_card).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityProverbList.startAction(ActivityMain.this, proverbTV.getText().toString());
+                if (utilDBHelper.isProverbStored(proverbTV.getText().toString())) {
+                    ActivityProverbList.startAction(ActivityMain.this, proverbTV.getText().toString());
+                } else {
+                    ActivityProverbList.startAction(ActivityMain.this);
+                }
             }
         });
-        findViewById(R.id.proverb_card_favorite).setVisibility(View.GONE);
+        findViewById(R.id.main_proverb_card).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setProverb((int) (Math.random() * 3) % 3, proverbTV, favIcon);
+                return true;
+            }
+        });
     }
 
-    private void firstRun() {
-        // TODO: 2021.08.07 首次运行函数。待实现功能：教程、从自带的数据库中引入数据
+    /**
+     * @param type 0:from database; 1:hitokoto 2:shanbay;
+     * @return
+     */
+    private void setProverb(int type, TextView proverbTV, ImageView favIcon) {
+        final int MSG_UPDATE_PROVERB = 1;
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                switch (msg.what) {
+                    case MSG_UPDATE_PROVERB:
+                        proverbTV.setText((String) msg.obj);
+                        if (utilDBHelper.isProverbStored((String) msg.obj)) {
+                            favIcon.setImageResource(R.drawable.ic_baseline_favorite_24_red);
+                        } else {
+                            favIcon.setImageResource(R.drawable.ic_baseline_favorite_24_white);
+                        }
+                        break;
+                }
+            }
+        };
+        switch (type) {
+            case 0:
+                Message message = new Message();
+                message.what = MSG_UPDATE_PROVERB;
+                message.obj = utilDBHelper.pickOneProverb();
+                handler.sendMessage(message);
+                break;
+            case 1:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            OkHttpClient client = new OkHttpClient();
+                            HttpUrl.Builder urlBuilder = HttpUrl.parse("https://v1.hitokoto.cn/").newBuilder();
+                            urlBuilder.addQueryParameter("c", "d");
+                            urlBuilder.addQueryParameter("c", "h");
+                            urlBuilder.addQueryParameter("c", "i");
+                            urlBuilder.addQueryParameter("c", "k");
+                            Request request = new Request.Builder()
+                                    .url(urlBuilder.build()).build();
+                            client.newCall(request).enqueue(new Callback() {
+                                @Override
+                                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                                    Message message = new Message();
+                                    message.what = MSG_UPDATE_PROVERB;
+                                    message.obj = utilDBHelper.pickOneProverb();
+                                    handler.sendMessage(message);
+                                    e.printStackTrace();
+                                }
+
+                                @Override
+                                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                                    String responseString = response.body().string();
+                                    JSONObject jsonObject = null;
+                                    Message message = new Message();
+                                    message.what = MSG_UPDATE_PROVERB;
+                                    try {
+                                        jsonObject = new JSONObject(responseString);
+                                        message.obj = jsonObject.getString("hitokoto") + "\n——" + jsonObject.getString("from");
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                        message.obj = utilDBHelper.pickOneProverb();
+                                    }
+                                    handler.sendMessage(message);
+                                }
+                            });
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                break;
+            case 2:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            final long START_DATE_MILLI = 1477756800000l;
+                            long delta = Calendar.getInstance().getTimeInMillis() - START_DATE_MILLI;
+                            Calendar goal = Calendar.getInstance();
+                            goal.setTimeInMillis((long) (Math.random() * delta) + START_DATE_MILLI);
+                            OkHttpClient client = new OkHttpClient();
+                            HttpUrl.Builder urlBuilder = HttpUrl.parse("https://apiv3.shanbay.com/weapps/dailyquote/quote/").newBuilder();
+                            urlBuilder.addQueryParameter("date",UniToolKit.eventDateFormatter(goal.getTime()));
+                            Request request = new Request.Builder()
+                                    .url(urlBuilder.build()).build();
+                            client.newCall(request).enqueue(new Callback() {
+                                @Override
+                                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                                    Message message = new Message();
+                                    message.what = MSG_UPDATE_PROVERB;
+                                    message.obj = utilDBHelper.pickOneProverb();
+                                    handler.sendMessage(message);
+                                    e.printStackTrace();
+                                }
+
+                                @Override
+                                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                                    String responseString = response.body().string();
+                                    JSONObject jsonObject = null;
+                                    Message message = new Message();
+                                    message.what = MSG_UPDATE_PROVERB;
+                                    try {
+                                        jsonObject = new JSONObject(responseString);
+                                        message.obj = jsonObject.getString("translation") + "\n——" + jsonObject.getString("author");
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                        message.obj = utilDBHelper.pickOneProverb();
+                                    }
+                                    handler.sendMessage(message);
+                                }
+                            });
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+                break;
+        }
     }
 }
