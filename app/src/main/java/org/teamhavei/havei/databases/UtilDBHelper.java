@@ -111,7 +111,7 @@ public class UtilDBHelper extends SQLiteOpenHelper {
         if (proverb == null || proverb.isEmpty()) {
             return context.getString(R.string.slogan);
         }
-        return proverb.get((int) System.currentTimeMillis() % proverb.size());
+        return proverb.get((int) (System.currentTimeMillis() % proverb.size()));
     }
 
     void initData() {
