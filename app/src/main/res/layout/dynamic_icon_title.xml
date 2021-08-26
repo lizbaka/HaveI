@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/widget_inview_margin">
+    android:layout_margin="@dimen/widget_inview_margin"
+    android:background="@color/white"
+    android:backgroundTint="@color/selectable_widget_state_list">
 
     <RelativeLayout
         android:id="@+id/icon_title_icon_container"
@@ -27,14 +29,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/icon_title_icon_container"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="@dimen/widget_inview_margin"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="@dimen/widget_inview_margin"
-        android:layout_marginBottom="@dimen/widget_inview_margin"
+        android:layout_margin="@dimen/widget_inview_margin"
         android:gravity="center"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
+        android:textColor="@color/selectable_widget_amber_text_state_list"
         android:text="[icon_title_title]" />
 
 </RelativeLayout>

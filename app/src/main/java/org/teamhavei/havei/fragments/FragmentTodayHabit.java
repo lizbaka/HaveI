@@ -20,7 +20,6 @@ import org.teamhavei.havei.R;
 import org.teamhavei.havei.activities.ActivityHabitDetail;
 import org.teamhavei.havei.adapters.IconAdapter;
 import org.teamhavei.havei.databases.EventDBHelper;
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.List;
@@ -79,7 +78,7 @@ public class FragmentTodayHabit extends BaseFragment {
             params.rowSpec = GridLayout.spec(i / 4);
             params.columnSpec = GridLayout.spec(i % 4, 1f);
             iconIV.setImageDrawable(iconAdapter.getIcon(dbHelper.findEventTagById(mHabit.getTagId()).getIconId()));
-            iconContainerV.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.habit_finish_icon_background_green));
+            iconContainerV.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.habit_icon_state_list));
             iconContainerV.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
             if (dbHelper.isHabitDone(mHabit.getId(), Calendar.getInstance().getTime())) {
                 iconContainerV.setSelected(true);

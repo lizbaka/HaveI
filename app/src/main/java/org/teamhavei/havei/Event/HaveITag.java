@@ -2,10 +2,10 @@ package org.teamhavei.havei.Event;
 
 public class HaveITag {
 
-    private int id;
-    private int iconId;
-    private String name;
-    private boolean del;
+    protected int id;
+    protected int iconId;
+    protected String name;
+    protected boolean del;
 
     public int getId() {
         return id;

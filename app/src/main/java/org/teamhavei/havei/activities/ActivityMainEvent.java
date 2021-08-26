@@ -211,7 +211,7 @@ public class ActivityMainEvent extends BaseActivity {
             params.rowSpec = GridLayout.spec(i / 4);
             params.columnSpec = GridLayout.spec(i % 4, 1f);
             iconIV.setImageDrawable(iconAdapter.getIcon(dbHelper.findEventTagById(mHabit.getTagId()).getIconId()));
-            iconContainerV.setBackgroundTintList(ContextCompat.getColorStateList(ActivityMainEvent.this, R.color.habit_finish_icon_background_green));
+            iconContainerV.setBackgroundTintList(ContextCompat.getColorStateList(ActivityMainEvent.this, R.color.habit_icon_state_list));
             iconContainerV.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
             if (dbHelper.isHabitDone(mHabit.getId(), Calendar.getInstance().getTime())) {
                 iconContainerV.setSelected(true);
