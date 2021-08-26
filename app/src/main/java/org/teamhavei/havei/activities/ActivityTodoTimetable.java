@@ -88,9 +88,9 @@ public class ActivityTodoTimetable extends BaseActivity{
                 @Override
                 public void onScrollBehavior(int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                     if(scrollY > oldScrollY) {
-                        fab.setVisibility(View.GONE);
+                        fab.hide();
                     } else {
-                        fab.setVisibility(View.VISIBLE);
+                        fab.show();
                     }
                 }
 

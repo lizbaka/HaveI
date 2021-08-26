@@ -47,6 +47,17 @@ public class FragmentHabitList extends BaseFragment{
                 ActivityModifyHabit.startAction(getContext());
             }
         });
+        habitCardListRV.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy>0){
+                    fab.hide();
+                }else{
+                    fab.show();
+                }
+            }
+        });
         return view;
     }
 
