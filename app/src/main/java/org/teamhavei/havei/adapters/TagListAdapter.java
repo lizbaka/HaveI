@@ -20,10 +20,15 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
 
     private static final String TAG = "DEBUG";
 
+    private static final int MODE_SELECT = 0;
+    private static final int MODE_CLICK = 1;
+
     List<HaveITag> mTagList;
     Context mContext;
     IconAdapter iconAdapter;
+
     int selectedItem;
+    int mode = MODE_SELECT;
 
     private final OnTagClickListener onTagClickListener;
 
@@ -54,6 +59,7 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
      * @param onTagClickListener tag点击事件
      */
     public TagListAdapter(List<HaveITag> tagList, Context context, int selectedID, OnTagClickListener onTagClickListener) {
+        mode = MODE_SELECT;
         this.mTagList = tagList;
         this.mContext = context;
         Boolean found = false;
@@ -64,7 +70,7 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
                 break;
             }
         }
-        if(!found && tagList.size()>0){
+        if (!found && tagList.size() > 0) {
             selectedID = tagList.get(0).getId();
             for (int i = 0; i < tagList.size(); i++) {
                 if (tagList.get(i).getId() == selectedID) {
@@ -74,6 +80,14 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
                 Log.d(TAG, "TagListAdapter: Initial tag ID not found or deleted");
             }
         }
+        this.onTagClickListener = onTagClickListener;
+        iconAdapter = new IconAdapter(context);
+    }
+
+    public TagListAdapter(List<HaveITag> tagList, Context context, OnTagClickListener onTagClickListener) {
+        mode = MODE_CLICK;
+        this.mTagList = tagList;
+        this.mContext = context;
         this.onTagClickListener = onTagClickListener;
         iconAdapter = new IconAdapter(context);
     }
@@ -90,7 +104,6 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
                 selectedItem = holder.getAdapterPosition();
                 notifyItemChanged(oldSelectedItem);
                 notifyItemChanged(selectedItem);
-                holder.tagNameView.requestFocus();
             }
         });
         return holder;
@@ -101,10 +114,8 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
         holder.mTag = mTagList.get(position);
         holder.tagIconView.setImageDrawable(iconAdapter.getIcon(holder.mTag.getIconId()));
         holder.tagNameView.setText(holder.mTag.getName());
-        if (position == selectedItem) {
-            holder.itemView.setBackgroundResource(R.color.amber_500);
-        } else {
-            holder.itemView.setBackgroundResource(R.color.white);
+        if (mode == MODE_SELECT) {
+            holder.itemView.setSelected(position == selectedItem);
         }
     }
 
