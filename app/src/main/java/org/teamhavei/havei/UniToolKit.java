@@ -13,6 +13,9 @@ public class UniToolKit {
     public static final String TODO_NOTIFICATION_CHANNEL_ID = "HaveI_Notification_todo";
     public static final String HABIT_NOTIFICATION_CHANNEL_ID = "HaveI_Notification_habit";
 
+    public static final String PREF_SETTINGS = "settings";
+    public static final String PREF_SETTINGS_USER_NAME = "user_name";
+
 
     public static final String EVENT_DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
     public static final String EVENT_DATE_FORMAT = "yyyy-MM-dd";
