@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -19,8 +20,6 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.teamhavei.havei.Event.EventTag;
-import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.HaveITag;
 import org.teamhavei.havei.Event.Todo;
 import org.teamhavei.havei.R;
@@ -41,7 +40,6 @@ public class ActivityModifyTodo extends BaseActivity {
 
     private static final int NULL_TODO_ID = -1;
     private static final int DEFAULT_EVENT_TAG_ID = 1;
-    private static final int NULL_REMIND_TIME = -1;
     private static final boolean DEFAULT_REMIND_TIME_NULL = true;
 
     TextInputEditText todoNameET;
@@ -54,6 +52,7 @@ public class ActivityModifyTodo extends BaseActivity {
     TextView reminderEmptyHintTV;
     RecyclerView tagListRV;
     TagListAdapter tagListAdapter;
+    ImageView tagMng;
 
     EventDBHelper dbHelper;
     IconAdapter iconAdapter = new IconAdapter(ActivityModifyTodo.this);
@@ -99,9 +98,8 @@ public class ActivityModifyTodo extends BaseActivity {
         }
         setOriginalInfo();
 
-        List<EventTag> eventTagList = dbHelper.findAllEventTag(true);
         tagList = new ArrayList<>();
-        tagList.addAll(eventTagList);
+        tagList.addAll(dbHelper.findAllEventTag(true));
         tagListAdapter = new TagListAdapter(tagList, ActivityModifyTodo.this, selectedEventTagID, new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
@@ -241,6 +239,15 @@ public class ActivityModifyTodo extends BaseActivity {
             }
         });
 
+        tagMng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivitySettingsTagMng.startAction(ActivityModifyTodo.this,ActivitySettingsTagMng.MODE_EVENT_TAG);
+                tagList.clear();
+                tagList.addAll(dbHelper.findAllEventTag(true));
+                tagListAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -288,6 +295,7 @@ public class ActivityModifyTodo extends BaseActivity {
         reminderTimeTV = findViewById(R.id.modify_todo_reminder_time);
         reminderEmptyHintTV = findViewById(R.id.modify_todo_reminder_empty_hint);
         tagListRV = findViewById(R.id.modify_todo_tag_list);
+        tagMng = findViewById(R.id.modify_todo_tag_mng);
     }
 
     private void setOriginalInfo() {

@@ -49,6 +49,7 @@ public class ActivityModifyHabit extends BaseActivity {
     MaterialButton remindTimeBtn;
     RecyclerView tagListRV;
     TagListAdapter tagListAdapter;
+    ImageView tagMng;
 
     EventDBHelper dbHelper;
     IconAdapter iconAdapter = new IconAdapter(ActivityModifyHabit.this);
@@ -91,9 +92,8 @@ public class ActivityModifyHabit extends BaseActivity {
             getSupportActionBar().setTitle(R.string.modify_habit_title_add);
         }
 
-        List<EventTag> eventTagList = dbHelper.findAllEventTag(true);
         tagList = new ArrayList<>();
-        tagList.addAll(eventTagList);
+        tagList.addAll(dbHelper.findAllEventTag(true));
         tagListAdapter = new TagListAdapter(tagList, ActivityModifyHabit.this, selectedEventTagID, new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
@@ -132,6 +132,15 @@ public class ActivityModifyHabit extends BaseActivity {
                 remindTimeBtn.setText(getString(R.string.modify_habit_reminder_time_null));
                 Toast.makeText(ActivityModifyHabit.this, R.string.modify_habit_remind_cleared, Toast.LENGTH_SHORT).show();
                 return true;
+            }
+        });
+        tagMng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivitySettingsTagMng.startAction(ActivityModifyHabit.this,ActivitySettingsTagMng.MODE_EVENT_TAG);
+                tagList.clear();
+                tagList.addAll(dbHelper.findAllEventTag(true));
+                tagListAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -244,5 +253,6 @@ public class ActivityModifyHabit extends BaseActivity {
         remindTimeBtn = findViewById(R.id.modify_habit_remind_time_button);
         iconView = findViewById(R.id.modify_habit_icon);
         tagListRV = findViewById(R.id.modify_habit_tag_list);
+        tagMng = findViewById(R.id.modify_habit_tag_mng);
     }
 }
