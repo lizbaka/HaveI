@@ -1,221 +1,387 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@mipmap/monthly_report_background_one">
+        android:background="#cc000000"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/user_name"
-          android:maxLines="1"
-          android:gravity="center"
-          android:text="@string/user_name"
-          android:layout_marginLeft="300dp"
-          android:layout_marginTop="59dp"
-          android:textSize="10sp"
-          android:textColor="@color/amber_200"/>
-
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:id="@+id/monthly_report_habit_times"
-            android:gravity="center"
-            android:text="@string/monthly_report_habit_times"
-            android:layout_marginTop="115dp"
-            android:layout_marginLeft="200dp"
-            android:textSize="30sp"
-            android:textColor="@color/monthly_report_color"/>
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:maxLines="1"
-          android:id="@+id/monthly_report_habit_number"
-          android:gravity="center"
-          android:text="@string/monthly_report_habit_number"
-          android:textColor="@color/monthly_report_color"
-          android:textSize="15sp"
-          android:layout_marginLeft="277dp"
-          android:layout_marginTop="280dp"/>
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/monthly_report_habit_finish_times"
-          android:maxLines="1"
-          android:gravity="center"
-          android:text="@string/monthly_report_habit_finish_times"
-          android:textColor="@color/monthly_report_color"
-          android:textSize="15sp"
-          android:layout_marginLeft="307dp"
-          android:layout_marginTop="280dp"/>
-
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/monthly_report_container"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/monthly_report_habit_day"
-            android:maxLines="1"
-            android:gravity="center"
-            android:text="@string/monthly_report_habit_day"
-            android:textColor="@color/monthly_report_color"
-            android:textSize="15sp"
-            android:layout_marginLeft="356dp"
-            android:layout_marginTop="280dp"/>
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/monthly_report_bookkeep_sum"
-            android:maxLines="1"
-            android:gravity="center"
-            android:text="@string/monthly_report_bookkeep_sum"
-            android:textColor="@color/monthly_report_color"
-            android:textSize="30sp"
-            android:layout_marginLeft="88dp"
-            android:layout_marginTop="430dp"/>
+            <ImageView
+                android:id="@+id/monthly_report_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/monthly_report_background_one"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/monthly_report_bookkeep_day"
-            android:maxLines="1"
-            android:gravity="center"
-            android:text="@string/monthly_report_bookkeep_day"
-            android:textColor="@color/monthly_report_color"
-            android:textSize="20sp"
-            android:layout_marginLeft="346dp"
-            android:layout_marginTop="425dp"/>
+            <TextView
+                android:id="@+id/monthly_report_user_name"
+                android:layout_width="70dp"
+                android:layout_height="15dp"
+                android:maxLines="1"
+                android:text="[user_name]"
+                android:textColor="@color/amber_200"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.02"
+                app:layout_constraintHorizontal_bias="0.93"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.09"
+                app:layout_constraintWidth_percent="0.2" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/monthly_report_bookkeep_sum_small"
-            android:maxLines="1"
-            android:gravity="center"
-            android:text="@string/monthly_report_bookkeep_sum"
-            android:textColor="@color/monthly_report_color"
-            android:textSize="20sp"
-            android:layout_marginLeft="335dp"
-            android:layout_marginTop="453dp"/>
+            <TextView
+                android:id="@+id/monthly_report_habit_times"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="[monthly_report_habit_times]"
+                android:textColor="@color/monthly_report_color"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.07"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.185"
+                app:layout_constraintWidth_percent="0.15" />
 
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="35dp"
-            android:id="@+id/monthly_report_bookkeep_most"
-            android:maxLines="2"
-            android:text="@string/monthly_report_bookkeep_most"
-            android:gravity="center"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="480dp"
-            android:textSize="10sp"
-            android:textColor="@color/light_blue"/>
+            <TextView
+                android:id="@+id/monthly_report_habit_number"
+                android:layout_width="35dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="[monthly_report_habit_number]"
+                android:textColor="@color/monthly_report_color"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintHorizontal_bias="0.705"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.445"
+                app:layout_constraintWidth_percent="0.08" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:id="@+id/monthly_report_id_date"
-            android:gravity="center_vertical"
-            android:text="@string/monthly_report_id_date"
-            android:textSize="10sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="545dp"
-            android:layout_marginLeft="67dp"/>
+            <TextView
+                android:id="@+id/monthly_report_habit_finish_times"
+                android:layout_width="35dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="[monthly_report_habit_finish_times]"
+                android:textColor="@color/monthly_report_color"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintHorizontal_bias="0.81"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.445"
+                app:layout_constraintWidth_percent="0.08" />
 
-        <TextView
-            android:layout_width="60dp"
-            android:layout_height="42dp"
-            android:id="@+id/monthly_report_habit_one_name"
-            android:textSize="10sp"
-            android:gravity="bottom"
-            android:text="@string/monthly_report_habit_one_name"
-            android:textColor="@color/light_blue"
-            android:maxLines="3"
-            android:layout_marginTop="144dp"
-            android:layout_marginLeft="90dp"/>
+            <TextView
+                android:id="@+id/monthly_report_habit_day"
+                android:layout_width="35dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="[monthly_report_habit_day]"
+                android:textColor="@color/monthly_report_color"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintHorizontal_bias="0.915"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.445"
+                app:layout_constraintWidth_percent="0.08" />
 
-        <TextView
-            android:layout_width="95dp"
-            android:layout_height="42dp"
-            android:id="@+id/monthly_report_habit_two_name"
-            android:textColor="@color/light_blue"
-            android:textSize="10sp"
-            android:gravity="bottom"
-            android:text="@string/monthly_report_habit_two_name"
-            android:maxLines="3"
-            android:layout_marginTop="171dp"
-            android:layout_marginLeft="180dp"/>
+            <TextView
+                android:id="@+id/monthly_report_bookkeep_sum"
+                android:layout_width="55dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="[monthly_report_bookkeep_sum]"
+                android:textColor="@color/monthly_report_color"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintHorizontal_bias="0.255"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.695"
+                app:layout_constraintWidth_percent="0.18" />
 
-        <TextView
-            android:layout_width="60dp"
-            android:layout_height="42dp"
-            android:id="@+id/monthly_report_habit_three_name"
-            android:textSize="10sp"
-            android:gravity="bottom"
-            android:text="@string/monthly_report_habit_three_name"
-            android:textColor="@color/light_blue"
-            android:maxLines="3"
-            android:layout_marginTop="230dp"
-            android:layout_marginLeft="215dp"/>
+            <TextView
+                android:id="@+id/monthly_report_bookkeep_day"
+                android:layout_width="40dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="[monthly_report_bookkeep_day]"
+                android:textColor="@color/monthly_report_color"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.675"
+                app:layout_constraintWidth_percent="0.1" />
 
-        <TextView
-            android:layout_width="160dp"
-            android:layout_height="95dp"
-            android:id="@+id/monthly_report_sentence"
-            android:text="@string/monthly_report_sentence"
-            android:gravity="center_vertical|right"
-            android:textSize="10sp"
-            android:textColor="@color/black"
-            android:maxLines="5"
-            android:layout_marginTop="555dp"
-            android:layout_marginLeft="245dp"/>
+            <TextView
+                android:id="@+id/monthly_report_bookkeep_sum_small"
+                android:layout_width="40dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="[monthly_report_bookkeep_sum]"
+                android:textColor="@color/monthly_report_color"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.72"
+                app:layout_constraintWidth_percent="0.1" />
+
+            <TextView
+                android:id="@+id/monthly_report_bookkeep_most"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="[monthly_report_bookkeep_most]"
+                android:textColor="@color/light_blue"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.772"
+                app:layout_constraintWidth_percent="0.15" />
+
+            <TextView
+                android:id="@+id/monthly_report_id"
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:gravity="center_vertical"
+                android:text="[monthly_report_id]"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.03"
+                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.854"
+                app:layout_constraintWidth_percent="0.3" />
+
+            <TextView
+                android:id="@+id/monthly_report_date"
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:gravity="center_vertical"
+                android:text="[monthly_report_date]"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.03"
+                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.886"
+                app:layout_constraintWidth_percent="0.3" />
+
+            <TextView
+                android:id="@+id/monthly_report_habit_one_name"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:text="[monthly_report_habit_one_name]"
+                android:textColor="@color/light_blue"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.255"
+                app:layout_constraintWidth_percent="0.1" />
+
+            <TextView
+                android:id="@+id/monthly_report_habit_two_name"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:text="[monthly_report_habit_two_name]"
+                android:textColor="@color/light_blue"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintHorizontal_bias="0.54"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.3"
+                app:layout_constraintWidth_percent="0.1" />
+
+            <TextView
+                android:id="@+id/monthly_report_habit_three_name"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:text="[monthly_report_habit_three_name]"
+                android:textColor="@color/light_blue"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintHorizontal_bias="0.63"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.39"
+                app:layout_constraintWidth_percent="0.1" />
+
+            <TextView
+                android:id="@+id/monthly_report_sentence"
+                android:layout_width="130dp"
+                android:layout_height="80dp"
+                android:gravity="center_vertical|right"
+                android:maxLines="5"
+                android:text="[monthly_report_sentence]"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.14"
+                app:layout_constraintHorizontal_bias="0.97"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.97"
+                app:layout_constraintWidth_percent="0.35" />
 
 
-        <ImageView
-            android:layout_width="@dimen/monthly_report_habit_icon_side_length"
-            android:layout_height="@dimen/monthly_report_habit_icon_side_length"
-            android:id="@+id/monthly_report_habit_one"
-            android:layout_marginTop="163dp"
-            android:layout_marginLeft="45dp"
-            android:background="@drawable/hs_sport"/>
+            <ImageView
+                android:id="@+id/monthly_report_habit_one"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/hs_sport"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHorizontal_bias="0.111"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.256" />
 
-        <ImageView
-            android:layout_width="@dimen/monthly_report_habit_icon_side_length"
-            android:layout_height="@dimen/monthly_report_habit_icon_side_length"
-            android:id="@+id/monthly_report_habit_two"
-            android:layout_marginTop="192dp"
-            android:layout_marginLeft="131dp"
-            android:background="@drawable/hs_book"/>
+            <ImageView
+                android:id="@+id/monthly_report_habit_two"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/hs_book"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintHorizontal_bias="0.34"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.305"
+                app:layout_constraintWidth_percent="0.09" />
 
-        <ImageView
-            android:layout_width="@dimen/monthly_report_habit_icon_side_length"
-            android:layout_height="@dimen/monthly_report_habit_icon_side_length"
-            android:id="@+id/monthly_report_habit_three"
-            android:layout_marginTop="251dp"
-            android:layout_marginLeft="173dp"
-            android:background="@drawable/hs_gift1"/>
+            <ImageView
+                android:id="@+id/monthly_report_habit_three"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/hs_gift1"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintHorizontal_bias="0.45"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.4"
+                app:layout_constraintWidth_percent="0.09" />
 
-        <ImageView
-            android:layout_width="@dimen/monthly_report_habit_icon_side_length"
-            android:layout_height="@dimen/monthly_report_habit_icon_side_length"
-            android:id="@+id/monthly_report_avatar"
-            android:layout_marginTop="551dp"
-            android:layout_marginLeft="22dp"
-            android:background="@drawable/moon"/>
+            <ImageView
+                android:id="@+id/monthly_report_avatar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/moon"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.05"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.88"
+                app:layout_constraintWidth_percent="0.09" />
 
-        <ImageView
-            android:layout_width="@dimen/monthly_report_QR_code"
-            android:layout_height="@dimen/monthly_report_QR_code"
-            android:id="@+id/monthly_report_QR_code"
-            android:layout_marginTop="603dp"
-            android:layout_marginLeft="17dp"/>
+            <ImageView
+                android:id="@+id/monthly_report_QR_code"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
+                app:layout_constraintHeight_percent="0.06"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
+                app:layout_constraintRight_toRightOf="@id/monthly_report_img"
+                app:layout_constraintTop_toTopOf="@id/monthly_report_img"
+                app:layout_constraintVertical_bias="0.975"
+                app:layout_constraintWidth_percent="0.1" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#cc000000"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/monthly_report_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            android:fitsSystemWindows="true"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

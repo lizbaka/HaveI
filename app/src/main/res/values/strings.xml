@@ -4,6 +4,7 @@
     <string name="todo_reminder_notification_channel_name">待办提醒</string>
     <string name="habit_reminder_notification_channel_name">习惯执行提醒</string>
     <string name="pref_first_run">first_run</string>
+    <string name="default_user_name">HaveI用户</string>
     <!--system:end-->
 
     <!--universal_UI:Begin-->
@@ -23,6 +24,7 @@
     <string name="unfinished">未完成</string>
     <string name="habit_done">打卡成功！</string>
     <string name="habit_undone">取消打卡</string>
+    <string name="share">分享</string>
     <string name="Jan.">一</string>
     <string name="Feb.">二</string>
     <string name="Mar.">三</string>
@@ -219,20 +221,19 @@
     <string name="todo_detail_delete_dialog_msg2"> 吗？</string>
     <!--todo_detail:end-->
 
+    <!--settings:begin-->
+    <string name="settings_title">HaveI设置</string>
+    <string name="settings_tag_mng_title">管理您的标签</string>
+    <string name="settings_proverb_src">管理每日一句来源</string>
+    <string name="settings_tag_type_bookkeep">记账标签</string>
+    <string name="settings_tag_type_event">事件标签</string>
+    <string name="modify_eventtag_title_modify">修改标签</string>
+    <string name="modify_eventtag_title_add">增加标签</string>
+    <!--settings:end-->
+
     <!--monthly_report:begin-->
-    <string name="user_name">喜欢月亮</string>
-    <string name="monthly_report_bookkeep_day">28</string>
-    <string name="monthly_report_bookkeep_sum">4321</string>
-    <string name="monthly_report_habit_times">1542</string>
-    <string name="monthly_report_habit_number">27</string>
-    <string name="monthly_report_habit_finish_times">1542</string>
-    <string name="monthly_report_habit_day">25</string>
-    <string name="monthly_report_sentence">也不过是想让这个世界知道，\n柔水终成雕刀。\n——《雕刀》</string>
-    <string name="monthly_report_bookkeep_most">日常干饭</string>
-    <string name="monthly_report_id_date">id:喜欢月亮\ndate:8月20日</string>
-    <string name="monthly_report_habit_one_name">跑步\n132次</string>
-    <string name="monthly_report_habit_two_name">自习\n28次</string>
-    <string name="monthly_report_habit_three_name">一个名字很长的习惯\n38次</string>
+    <string name="monthly_report_title">报告已生成~</string>
+    <string name="monthly_report_no_habit">还没有习惯哦</string>
     <!--monthly_report:end-->
 
 </resources>
