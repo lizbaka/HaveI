@@ -40,7 +40,6 @@ import org.teamhavei.havei.services.HaveITimeWatcher;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import okhttp3.Call;
@@ -155,7 +154,10 @@ public class ActivityMain extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_menu_settings:
-                        Toast.makeText(ActivityMain.this, "设置：敬请期待", Toast.LENGTH_SHORT).show();
+                        ActivitySettings.startAction(ActivityMain.this);
+                        return true;
+                    case R.id.nav_menu_report:
+                        ActivityReport.startAction(ActivityMain.this);
                         return true;
                     case R.id.nav_menu_help:
                         ActivityTest.startAction(ActivityMain.this);
@@ -178,7 +180,7 @@ public class ActivityMain extends BaseActivity {
         if (Build.VERSION.SDK_INT >= 26) {
             initNotificationChannel();
         }
-        pref = getSharedPreferences("settings", MODE_PRIVATE);
+        pref = getSharedPreferences(UniToolKit.PREF_SETTINGS, MODE_PRIVATE);
         if (pref.getBoolean(getString(R.string.pref_first_run), true)) {
             firstRun();
             SharedPreferences.Editor editor = pref.edit();
@@ -266,7 +268,7 @@ public class ActivityMain extends BaseActivity {
                 child = LayoutInflater.from(ActivityMain.this).inflate(R.layout.dynamic_icon_title_secondary, null);
                 ImageView iconIV = child.findViewById(R.id.icon_title_icon);
                 View iconContainerV = child.findViewById(R.id.icon_title_icon_container);
-                iconContainerV.setBackgroundTintList(ContextCompat.getColorStateList(ActivityMain.this, R.color.habit_finish_icon_background_green));
+                iconContainerV.setBackgroundTintList(ContextCompat.getColorStateList(ActivityMain.this, R.color.habit_icon_state_list));
                 iconContainerV.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
                 TextView titleTV = child.findViewById(R.id.icon_title_title);
 
