@@ -394,6 +394,16 @@ public class EventDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_HABIT_ID + " = ?" + " AND " + HABIT_EXECS_DATE + " = ?", new String[]{Integer.toString(habitId), sDate}, null, null, null);
         return cursor.getCount() > 0;
     }
+
+    public int getHabitExecCount(){
+        Cursor cursor = db.query(TABLE_HABIT_EXECS,null,null,null,null,null,null);
+        return cursor.getCount();
+    }
+
+    public int getHabitExecDayCount(){
+        Cursor cursor = db.query(TABLE_HABIT_EXECS,new String[]{HABIT_EXECS_DATE,"COUNT(" + HABIT_EXECS_DATE + ")"},null,null,HABIT_EXECS_DATE,null,null);
+        return cursor.getCount();
+    }
     //========Habit_Exec相关功能:end=========
 
 
