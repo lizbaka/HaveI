@@ -16,7 +16,7 @@
             android:name=".activities.ActivityReport"
             android:exported="true" />
         <activity
-            android:name=".activities.ActivityModifyEventTag"
+            android:name=".activities.ActivityModifyTag"
             android:exported="true" />
         <activity
             android:name=".activities.ActivitySettings"
