@@ -4,6 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
     <include
@@ -20,7 +29,8 @@
         android:id="@+id/add_account_detail_wallet"
         android:layout_width="@dimen/bookkeep_add_account_detail_record_height"
         android:layout_height="@dimen/bookkeep_add_account_detail_record_height"
-        android:layout_marginStart="12dp"
+
+        android:layout_marginStart="@dimen/bookkeep_add_account_detail_calculator_border_margin"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/add_account_detail_relativeLayout"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,15 +62,14 @@
     <Button
         android:id="@+id/buttom_date"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="15dp"
         android:layout_height="46dp"
+        android:layout_marginHorizontal="15dp"
         android:gravity="center"
-        app:layout_constraintStart_toBottomOf="@+id/add_account_detail_account_label"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="44dp"
         android:text="yyyy-MM-dd"
-        />
+        app:layout_constraintStart_toTopOf="@+id/add_account_detail_expenditure_or_income"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="44dp" />
 
     <RadioGroup
     android:id="@+id/add_account_detail_expenditure_or_income"
@@ -106,26 +115,27 @@
 
     <Button
         android:id="@+id/buttom_yes"
-        android:layout_width="205dp"
+        android:layout_width="190dp"
         android:layout_height="46dp"
         android:layout_marginHorizontal="30dp"
         android:gravity="bottom|center"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="610dp"
+        android:onClick="onClick_ADD"
         android:text="確定"
-        android:onClick="onClick_ADD"/>
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="612dp" />
 
     <Button
         android:id="@+id/buttom_back"
-        android:layout_width="205dp"
+        android:layout_width="190dp"
         android:layout_height="46dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="4dp"
+        android:onClick="onClick_BACK"
+        android:text="返回"
         app:layout_constraintLeft_toRightOf="@+id/buttom_yes"
         app:layout_constraintTop_toBottomOf="@+id/add_recyc_booklist"
-        android:text="返回"
-        android:onClick="onClick_BACK"
         tools:ignore="MissingConstraints" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

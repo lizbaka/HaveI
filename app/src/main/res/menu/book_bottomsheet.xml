@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/book_bank"
+        android:icon="@drawable/add"
+        android:title="銀行"
+        />
+    <item
+        android:id="@+id/book_wechat"
+        android:icon="@color/design_default_color_primary_dark"
+        android:title="微信"
+        />
+    <item
+        android:id="@+id/book_airpay"
+        android:title="支付寶"
+        android:icon="@color/material_on_surface_emphasis_medium"
+        />
+    <item
+        android:id="@+id/book_money"
+        android:title="現金"
+        android:icon="@drawable/star__2_"
+        />
+
+
+</menu>

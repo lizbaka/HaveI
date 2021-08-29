@@ -14,6 +14,7 @@ import org.teamhavei.havei.Event.BookPlan;
 import org.teamhavei.havei.Event.BookTag;
 import org.teamhavei.havei.Event.Bookkeep;
 import org.teamhavei.havei.Event.BookCou;
+import org.teamhavei.havei.Event.Bookran;
 import org.teamhavei.havei.Event.EventTag;
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.Todo;
@@ -21,10 +22,10 @@ import org.teamhavei.havei.UniToolKit;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-
-
 public class BookkeepDBHelper extends SQLiteOpenHelper {
     public static final String TAG = "DEBUG";
     public static final int DATABASE_VERSION = 2;
@@ -44,7 +45,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                     BOOKKEEP_TIME + "text,"+
                     BOOKKEEP_ICON_ID +"integer,"+
                     BOOKKEEP_PM + " double)";
-
     private static final String TABLE_BOOK_TAGS = "BookTags";
     private static final String BOOK_TAGS_ID = "id";
     private static final String BOOK_TAGS_ICON_ID = "icon_id";
@@ -77,7 +77,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                     BOOK_PLAN_ID+" integer primary key autoincrement,"+
                     BOOK_PLAN_NUM+"double"+
                     BOOK_PLAN_NEED+"double)";
-
     private Context mContext;
     private SQLiteDatabase db = getReadableDatabase();
     public BookkeepDBHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -90,8 +89,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_BOOK_TAGS);
         db.execSQL(CREATE_BOOK_COUS);
         db.execSQL(CREATE_BOOK_PLAN);
-
-
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion == 1) {
@@ -145,7 +142,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         db.insert(TABLE_BOOKKEEP, null, accountToValues(mBookkeep));
     }
     public Bookkeep findBookkeepById(int id) {
-        Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_ID + "= ?", new String[]{Integer.toString(id)}, null, null, null);
+        Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
         Bookkeep mBookkeep = (Bookkeep) cursorToBookkeepList(cursor).get(0);
         cursor.close();
         return mBookkeep;
@@ -161,6 +158,49 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     public List<Bookkeep> findBookkeepByMonth(String sDate) {
         Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TIME + " LIKE ?", new String[]{sDate + "%"}, null, null, null);
         return cursorToBookkeepList(cursor);
+    }
+    public List<Bookkeep> findBookkeepByTag(int tag,boolean is) {
+
+        Cursor cursor;
+        if(is) {
+
+            cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + "and" + BOOKKEEP_PM + " > 0", new String[]{Integer.toString(tag)}, null, null, null);
+        }
+        else
+        {
+            cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + "and" + BOOKKEEP_PM + " < 0", new String[]{Integer.toString(tag)}, null, null, null);
+
+        }
+            return cursorToBookkeepList(cursor);
+    }
+    public List<Bookran> text(boolean is)
+    {   List<Bookran> BookRanks=new ArrayList<>();
+        List<Bookran> mBookRanks=new ArrayList<>();
+        List<Bookkeep> mBookkeeps;
+        Bookran mRan;
+        int i=0;
+        for(i=0;i<150;i++)
+        {
+            mBookkeeps=findBookkeepByTag(i,is);
+            BookRanks.add(new Bookran(i,mBookkeeps.size()));
+        }
+        Collections.sort(BookRanks, new Comparator<Bookran>() {
+            @Override
+            public int compare(Bookran o1, Bookran o2) {
+                return o2.counts-o1.counts;
+            }
+        });
+        for(i=0;i<5;i++)
+        {
+
+            mRan = BookRanks.get(i);
+            if(mRan.counts>0)
+            {
+                mBookRanks.add(new Bookran(mRan.tag,mRan.counts));
+
+            }
+        }
+        return mBookRanks;
     }
 
 

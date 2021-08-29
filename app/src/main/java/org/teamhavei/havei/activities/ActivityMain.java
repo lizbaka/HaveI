@@ -54,8 +54,6 @@ public class ActivityMain extends BaseActivity{
         initDrawer();
         initToolbar();
         initNavigationView();
-
-
         startServices();
         if(Build.VERSION.SDK_INT >= 26) {
             initNotificationChannel();

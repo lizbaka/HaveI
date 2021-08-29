@@ -110,6 +110,73 @@
     <string name="proverb_remove_confirm_msg">您取消了一些句子的收藏，您确定吗？</string>
     <!--proverb:end-->
 
+
+    <!--time_table:begin-->
+    <string name="tt_monday">一</string>
+    <string name="tt_tuesday">二</string>
+    <string name="tt_wednesday">三</string>
+    <string name="tt_thursday">四</string>
+    <string name="tt_friday">五</string>
+    <string name="tt_saturday">六</string>
+    <string name="tt_sunday">日</string>
+    <string name="tt_wholeday">全天</string>
+    <!--time_table:end-->
+
+
+    <!--time_table_fragment:begin-->
+    <string name="tt_0">0:00</string>
+    <string name="tt_1">1:00</string>
+    <string name="tt_2">2:00</string>
+    <string name="tt_3">3:00</string>
+    <string name="tt_4">4:00</string>
+    <string name="tt_5">5:00</string>
+    <string name="tt_6">6:00</string>
+    <string name="tt_7">7:00</string>
+    <string name="tt_8">8:00</string>
+    <string name="tt_9">9:00</string>
+    <string name="tt_10">10:00</string>
+    <string name="tt_11">11:00</string>
+    <string name="tt_12">12:00</string>
+    <string name="tt_13">13:00</string>
+    <string name="tt_14">14:00</string>
+    <string name="tt_15">15:00</string>
+    <string name="tt_16">16:00</string>
+    <string name="tt_17">17:00</string>
+    <string name="tt_18">18:00</string>
+    <string name="tt_19">19:00</string>
+    <string name="tt_20">20:00</string>
+    <string name="tt_21">21:00</string>
+    <string name="tt_22">22:00</string>
+    <string name="tt_23">23:00</string>
+    <string name="tt_24">24:00</string>
+    <!--time_table_fragment:end-->
+
+    <!--todo_detail:begin-->
+    <string name="todo_detail_time">待办时间</string>
+    <string name="todo_detail_remind_time">提醒时间</string>
+    <string name="todo_detail_remark">备注信息</string>
+    <string name="todo_detail_delete_dialog_title">删除待办</string>
+    <string name="todo_detail_delete_dialog_msg1">待办将被永久删除，您确定要删除待办 </string>
+    <string name="todo_detail_delete_dialog_msg2"> 吗？</string>
+    <!--todo_detail:end-->
+
+    <!--monthly_report:begin-->
+    <string name="user_name">喜欢月亮</string>
+    <string name="monthly_report_bookkeep_day">28</string>
+    <string name="monthly_report_bookkeep_sum">4321</string>
+    <string name="monthly_report_habit_times">1542</string>
+    <string name="monthly_report_habit_number">27</string>
+    <string name="monthly_report_habit_finish_times">1542</string>
+    <string name="monthly_report_habit_day">25</string>
+    <string name="monthly_report_sentence">也不过是想让这个世界知道，\n柔水终成雕刀。\n——《雕刀》</string>
+    <string name="monthly_report_bookkeep_most">日常干饭</string>
+    <string name="monthly_report_id_date">id:喜欢月亮\ndate:8月20日</string>
+    <string name="monthly_report_habit_one_name">跑步\n132次</string>
+    <string name="monthly_report_habit_two_name">自习\n28次</string>
+    <string name="monthly_report_habit_three_name">一个名字很长的习惯\n38次</string>
+    <!--monthly_report:end-->
+
+
     <!--activity_bookkeep:begin-->
     <string name="bookkeep_expenditure">支出</string>
     <string name="bookkeep_income">收入</string>
@@ -168,4 +235,15 @@
     <string name="bookkeep_annual_expenses">总支出</string>
     <string name="bookkeep_annual_surplus">总结余</string>
     <string name="bookkeep_month_in_year_income_and_expenses">月度收支</string>
-    <!--activity_bookkeep_annual_account_detail:end--></resources>
+    <!--activity_bookkeep_annual_account_detail:end-->
+
+    <!--activity_bookkeep_add_wallet:start-->
+    <string name="bookkeep_add_wallet_wallet_type">账户类型</string>
+    <string name="bookkeep_add_wallet_wallet_money">账户余额</string>
+    <string name="bookkeep_add_wallet_wallet_name">账户名称</string>
+    <string name="bookkeep_add_wallet_wallet_remark">账户备注</string>
+    <string name="bookkeep_add_wallet">添加账户</string>
+    <string name="bookkeep_add_wallet_complete">完成</string>
+    <!--activity_bookkeep_add_wallet:end-->
+
+</resources>
