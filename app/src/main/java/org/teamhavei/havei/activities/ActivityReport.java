@@ -112,10 +112,10 @@ public class ActivityReport extends AppCompatActivity {
                 Uri uri = null;
                 try{
                     imagesFolder.mkdirs();
-                    File file = new File(imagesFolder, "shared_image.png");
+                    File file = new File(imagesFolder, "shared_image.jpg");
 
                     FileOutputStream stream = new FileOutputStream(file);
-                    bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
                     stream.flush();
                     stream.close();
                     uri = FileProvider.getUriForFile(this, "org.teamhavei.havei.FileProvider",file);
@@ -129,7 +129,7 @@ public class ActivityReport extends AppCompatActivity {
                 Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_STREAM, uri);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                intent.setType("image/png");
+                intent.setType("image/*");
                 startActivity(intent);
             case android.R.id.home:
                 finish();
