@@ -10,16 +10,12 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import org.teamhavei.havei.Event.BookCou;
 import org.teamhavei.havei.Event.BookPlan;
 import org.teamhavei.havei.Event.BookTag;
 import org.teamhavei.havei.Event.Bookkeep;
-import org.teamhavei.havei.Event.BookCou;
 import org.teamhavei.havei.Event.Bookran;
-import org.teamhavei.havei.Event.EventTag;
-import org.teamhavei.havei.Event.Habit;
-import org.teamhavei.havei.Event.Todo;
 import org.teamhavei.havei.UniToolKit;
-
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -112,7 +108,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return values;
     }
 
-    private List cursorToBookkeepList(Cursor cursor) {
+    private List<Bookkeep> cursorToBookkeepList(Cursor cursor) {
         List<Bookkeep> mBookkeepList = new ArrayList<>();
         if(cursor!=null && cursor.getCount()>0) {
             try {
@@ -159,30 +155,32 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TIME + " LIKE ?", new String[]{sDate + "%"}, null, null, null);
         return cursorToBookkeepList(cursor);
     }
-    public List<Bookkeep> findBookkeepByTag(int tag,boolean is) {
+    public List<Bookkeep> findBookkeepByTag(int tag,boolean is,String sDate) {
 
         Cursor cursor;
         if(is) {
 
-            cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + "and" + BOOKKEEP_PM + " > 0", new String[]{Integer.toString(tag)}, null, null, null);
+            cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + " and " + BOOKKEEP_PM + " > 0"+ " and " +BOOKKEEP_TIME + " LIKE ?", new String[]{Integer.toString(tag),sDate + "%"}, null, null, null);
         }
         else
         {
-            cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + "and" + BOOKKEEP_PM + " < 0", new String[]{Integer.toString(tag)}, null, null, null);
+            cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + " and " + BOOKKEEP_PM + " < 0"+ " and " +BOOKKEEP_TIME + " LIKE ?", new String[]{Integer.toString(tag),sDate + "%"}, null, null, null);
 
         }
             return cursorToBookkeepList(cursor);
     }
-    public List<Bookran> text(boolean is)
+    public ArrayList<Bookran> Getran(boolean is, String sDate)
     {   List<Bookran> BookRanks=new ArrayList<>();
-        List<Bookran> mBookRanks=new ArrayList<>();
+        ArrayList<Bookran> mBookRanks=new ArrayList<>();
         List<Bookkeep> mBookkeeps;
+        String name;
         Bookran mRan;
         int i=0;
         for(i=0;i<150;i++)
         {
-            mBookkeeps=findBookkeepByTag(i,is);
-            BookRanks.add(new Bookran(i,mBookkeeps.size()));
+            mBookkeeps=findBookkeepByTag(i,is,sDate);
+            name=findBookTagById(i).getName();
+            BookRanks.add(new Bookran(i,mBookkeeps.size(),name));
         }
         Collections.sort(BookRanks, new Comparator<Bookran>() {
             @Override
@@ -196,14 +194,11 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
             mRan = BookRanks.get(i);
             if(mRan.counts>0)
             {
-                mBookRanks.add(new Bookran(mRan.tag,mRan.counts));
-
+                mBookRanks.add(new Bookran(mRan.tag,mRan.counts,mRan.name));
             }
         }
         return mBookRanks;
     }
-
-
     public void updateBookkeep(Bookkeep oldBookkeep, Bookkeep newBookkeep) {
         db.update(TABLE_BOOKKEEP, accountToValues(newBookkeep), BOOKKEEP_ID + " = ?", new String[]{Integer.toString(oldBookkeep.getid())});
     }
@@ -286,6 +281,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return cursorToBookTaglist(cursor);
     }
 
+
     public void updateBookTag(BookTag oldBookTag, BookTag newBookTag) {
         db.update(TABLE_BOOK_TAGS, bookTagToValues(newBookTag), BOOK_TAGS_ID + " = ?", new String[]{Integer.toString(oldBookTag.getId())});
     }
@@ -333,6 +329,8 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return mBookCou;
     }
 
+
+
     public void insertBookCou(BookCou mBookCou) {
         db.insert(TABLE_BOOK_COUS, null, bookCousToValues(mBookCou));
     }
@@ -347,6 +345,37 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     public BookCou findBookcouByMonth(String sDate) {
         Cursor cursor = db.query(TABLE_BOOK_COUS, null, BOOK_COUS_TIME + " LIKE ?", new String[]{sDate + "%"}, null, null, null);
         return cursorToBookCou(cursor);
+    }
+
+    private ArrayList<BookCou> cursorToBookCouList(Cursor cursor) {
+        ArrayList<BookCou> mBookcouList = new ArrayList<>();
+        if(cursor!=null && cursor.getCount()>0) {
+            try {
+                if (cursor.getCount() > 1) {
+                    Log.d(TAG, "cursorToBookkeep: Found more than one");
+                }
+                while(cursor.moveToNext()){
+                    BookCou mBookcou = new BookCou();
+                    mBookcou.setId(cursor.getInt(cursor.getColumnIndex(BOOK_COUS_ID)));
+                    mBookcou.setOut(cursor.getDouble(cursor.getColumnIndex(BOOK_COUS_OUT)));
+                    mBookcou.setIn(cursor.getDouble(cursor.getColumnIndex(BOOK_COUS_IN)));
+                    mBookcou.setTime(cursor.getString(cursor.getColumnIndex(BOOK_COUS_TIME)));
+
+                    mBookcouList.add(mBookcou);
+                }
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            Log.d(TAG, "cursorToBookkeepList: No such keep");
+        }
+        return mBookcouList;
+    }
+    public ArrayList<BookCou> findBookCoubyYear(String ssDate)
+    {
+        Cursor cursor=db.query(TABLE_BOOK_COUS,null,BOOK_COUS_TIME + " LIKE ?", new String[]{ssDate + "%"}, null, null, null);
+        return cursorToBookCouList(cursor);
     }
 
     public void updateBookCou(BookCou oldBookCou, BookCou newBookCou) {

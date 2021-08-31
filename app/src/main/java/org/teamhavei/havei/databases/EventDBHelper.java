@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
+//import androidx.annotation.Nullable;
 
 import org.teamhavei.havei.Event.EventTag;
 import org.teamhavei.havei.Event.Habit;
@@ -98,7 +98,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     private SQLiteDatabase db = getReadableDatabase();
 
-    public EventDBHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public EventDBHelper( Context context, String name,  SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         mContext = context;
     }
