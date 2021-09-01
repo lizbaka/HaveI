@@ -147,8 +147,6 @@ public class IconAdapter {
     public static final int ID_HS_WATER = 128;
     public static final int ID_HS_WATER_DROP = 129;
     //只能加，不能改！
-
-
     Context mContext;
 
     public IconAdapter(Context context) {

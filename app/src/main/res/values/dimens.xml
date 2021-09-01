@@ -58,4 +58,34 @@
     <dimen name="monthly_report_QR_code">40dp</dimen>
 
 
+    <dimen name="bookkeep_spinner_margin">8dp</dimen>
+    <dimen name="bookkeep_spinner_height">30dp</dimen>
+    <dimen name="bookkeep_topbar_button_size">35dp</dimen>
+    <dimen name="bookkeep_window_record_border">8dp</dimen>
+    <dimen name="bookkeep_window_record_margin">10dp</dimen>
+    <dimen name="bookkeep_window_border">12dp</dimen>
+    <dimen name="bookkeep_recycler_border">12dp</dimen>
+    <dimen name="bookkeep_bottom_bar_button_vertical_margin">15dp</dimen>
+    <dimen name="bookkeep_bottom_bar_button_horizontal_margin">28dp</dimen>
+    <dimen name="bookkeep_bottom_bar_imageButton_size">95dp</dimen>
+    <dimen name="bookkeep_bottom_bar_button_width">88dp</dimen>
+    <dimen name="bookkeep_bottom_bar_button_height">48dp</dimen>
+    <dimen name="bookkeep_monthly_account_record_margin">81dp</dimen>
+    <dimen name="bookkeep_monthly_account_record_border">10dp</dimen>
+
+    <!--activity_add_account_detail:Begin-->
+    <dimen name="bookkeep_add_account_detail_record_height">44dp</dimen>
+    <dimen name="bookkeep_add_account_detail_calculator_margin">10dp</dimen>
+    <dimen name="bookkeep_add_account_detail_calculator_border_margin">14dp</dimen>
+    <dimen name="bookkeep_add_account_detail_button_width">88dp</dimen>
+    <dimen name="bookkeep_add_account_detail_button_height">48dp</dimen>
+    <!--activity_add_account_detail:End-->
+
+    <dimen name="bookkeep_add_wallet_text_height">50dp</dimen>
+    <dimen name="bookkeep_add_wallet_text_margin">15dp</dimen>
+    <dimen name="bookkeep_add_wallet_text_border">20dp</dimen>
+    <dimen name="bookkeep_add_wallet_money_width">265dp</dimen>
+    <dimen name="bookkeep_add_wallet_type_width">275dp</dimen>
+
+
 </resources>

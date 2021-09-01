@@ -4,7 +4,7 @@ public class Bookkeep {
     private int tagID;
     private String name;
     private String time;//格式HH:MM
-    private int PM;//计算参数
+    private Double PM;//计算参数
     private int iconId;
     public int getid(){return id;}
     public int gettag(){
@@ -13,7 +13,7 @@ public class Bookkeep {
     public String getname(){
         return name;
     }
-    public int getPM()
+    public Double getPM()
     {
         return PM;
     }
@@ -30,7 +30,7 @@ public class Bookkeep {
     {
         this.name=name;
     }
-    public void setPM(int pm)
+    public void setPM(double pm)
     {
         this.PM=pm;
     }

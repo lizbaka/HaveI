@@ -32,6 +32,18 @@
 
 
     <color name="monthly_report_color">#FF000000</color>
+    <!--首页item文字颜色-->
+    <color name="colorSubtitle">#999</color>
+
+    <!--列表文字颜色-->
+    <color name="colorTitle">#666</color>
+
+
+    <color name="colorWhite">#ffffffff</color>
+
+    <!--首页分割线-->
+
+    <color name="colorLine">#EBEBEB</color>
 
 
 </resources>

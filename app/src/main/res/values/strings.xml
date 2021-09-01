@@ -74,63 +74,41 @@
     <!--today_habit:end-->
 
     <!--habit_detail:Begin-->
-    <string name="button_year">年度统计</string>
-    <string name="button_month">月度统计</string>
-    <string name="actual_clock_in">实际打卡</string>
-    <string name="plan_clock_in">计划打卡</string>
-    <string name="habit_ranking">习惯排行</string>
     <string name="habit_detail_advanced">不能提前标记哦！</string>
+    <string name="habit_detail_marked">习惯执行记录成功！</string>
+    <string name="habit_detail_unmarked">习惯执行记录已删除</string>
     <string name="habit_detail_delete_dialog_title">删除习惯</string>
-    <string name="habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除习惯 </string>
-    <string name="habit_detail_delete_dialog_msg2"> 吗？</string>
-    <string name="habit_detail_empty_execution_hint">还没打过卡</string>
-    <string name="habit_detail_empty_reminder_hint">未设置提醒时间</string>
+    <string name="habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除</string>
+    <string name="habit_detail_delete_dialog_msg2">吗？</string>
     <!--habit_detail:end-->
-
-
-    <!--modify_todo:Begin-->
-    <string name="modify_todo_title_add">添加待办</string>
-    <string name="modify_todo_title_modify">修改待办</string>
-    <string name="modify_todo_hint_name">待办名称：</string>
-    <string name="modify_todo_remind_me_to">提醒我……</string>
-    <string name="modify_todo_hint_reminder_time">提醒时间：</string>
-    <string name="modify_todo_hint_remark">待办备注：</string>
-    <string name="modify_todo_hint_time">待办时间：</string>
-    <string name="modify_todo_clear_reminder_hint">已设置待办提醒，长按时间可清除</string>
-    <string name="modify_todo_reminder_cleared">已清除待办提醒</string>
-    <string name="modify_todo_empty_name">待办名不能为空</string>
-    <string name="modify_todo_reminder_time_null">未选择</string>
-    <string name="modify_todo_remind_after_todo">提醒时间不能晚于待办时间</string>
-    <!--modify_todo:end-->
-
 
     <!--modify_habit:Begin-->
     <string name="modify_habit_title_add">添加习惯</string>
     <string name="modify_habit_title_modify">修改习惯</string>
-    <string name="modify_habit_name_hint">习惯名称</string>
-    <string name="modify_habit_name">命名：</string>
-    <string name="modify_habit_text_frequency">习惯打卡频率</string>
-    <string name="modify_habit_reminder_time_null">未选择</string>
-    <string name="modify_habit_text_time">习惯提醒时间</string>
-    <string name="modify_habit_clear_remind_hint">已设置提醒，长按按钮可清除</string>
-    <string name="modify_habit_remind_cleared">提醒已清除</string>
+    <string name="modify_habit_hint_name">习惯名称</string>
+    <string name="modify_habit_hint_tag">习惯标签</string>
+    <string name="modify_habit_done">完成</string>
+    <string name="modify_habit_exist_dialog_title">习惯已存在</string>
+    <string name="modify_habit_exist_dialog_msg">是否更新到已有习惯？</string>
+    <string name="modify_habit_exist_error">习惯已存在</string>
     <string name="modify_habit_empty_name">习惯名不能为空</string>
-    <string name="modify_habit_empty_frequency">未指定频率</string>
-    <string name="modify_habit_null_event_tag">未选择标签</string>
-    <string name="modify_habit_too_many_times">每天最多只能打卡一次</string>
-    <string name="modify_habit_illegal_frequency">请输入正确的频率</string>
-    <string name="modify_habit_clear_reminder">关闭提醒</string>
     <!--modify_habit:end-->
+
 
     <!--habit:Begin-->
     <string name="habit_add_first">添加您的第一个习惯！</string>
     <!--habit:end-->
 
-    <!--habit_detail:Begin-->
+
+    <!--nav_header:Begin-->
+    <string name="nav_header_title">HaveI</string>
+    <!--nav_header:end-->
+
+
+    <!--habit_detail_toolbar:Begin-->
     <string name="habit_detail_toolbar_modify">修改</string>
     <string name="habit_detail_toolbar_delete">删除</string>
-    <string name="habit_detail_rank_changed">点击重载</string>
-    <!--habit_detail:end-->
+    <!--habit_detail_toolbar:end-->
 
     <!--main_toolbar_Begin-->
     <string name="main_toolbar_analyze">分析</string>
@@ -141,12 +119,6 @@
     <string name="nav_menu_settings">设置</string>
     <string name="nav_menu_help">帮助</string>
     <!--nav_menu:end-->
-
-    <!--habit_main_bottom_nav_menu:begin-->
-    <string name="habit_main_bottom_nav_today">Today</string>
-    <string name="habit_main_bottom_nav_lib">习惯库</string>
-    <string name="habit_main_bottom_nav_record">完成记录</string>
-    <!--habit_main_bottom_nav_menu:end-->
 
     <!--event_notification:Begin-->
     <string name="todo_notification_title">即将进行的待办</string>
@@ -162,7 +134,6 @@
     <string name="habit_list_title">查看您的习惯</string>
     <string name="habit_list_add">添加一个习惯！</string>
     <!--habit_list:end-->
-
     <!--proverb:Begin-->
     <string name="proverb_list_title">我收藏的句子</string>
     <string name="proverb_list_add">添加一个喜欢的句子！</string>
@@ -171,6 +142,7 @@
     <string name="proverb_remove_confirm_title">确认取消句子收藏</string>
     <string name="proverb_remove_confirm_msg">您取消了一些句子的收藏，您确定吗？</string>
     <!--proverb:end-->
+
 
     <!--time_table:begin-->
     <string name="tt_monday">一</string>
@@ -235,5 +207,75 @@
     <string name="monthly_report_title">报告已生成~</string>
     <string name="monthly_report_no_habit">还没有习惯哦</string>
     <!--monthly_report:end-->
+
+
+    <!--activity_bookkeep:begin-->
+    <string name="bookkeep_expenditure">支出</string>
+    <string name="bookkeep_income">收入</string>
+    <string name="bookkeep_statistics">统计</string>
+    <string name="bookkeep_property">资产</string>
+    <!--activity_bookkeep:end-->
+
+    <!--activity_bookkeep_add_detail:Begin-->
+    <string name="account_label">标签：</string>
+    <string name="money_value">$</string>
+    <string name="number_one">1</string>
+    <string name="number_two">2</string>
+    <string name="number_three">3</string>
+    <string name="number_four">4</string>
+    <string name="number_five">5</string>
+    <string name="number_six">6</string>
+    <string name="number_seven">7</string>
+    <string name="number_eight">8</string>
+    <string name="number_nine">9</string>
+    <string name="symbol_point">.</string>
+    <string name="number_zero">0</string>
+    <string name="symbol_equal">=</string>
+    <string name="symbol_add">+</string>
+    <string name="symbol_minus">-</string>
+    <string name="symbol_complete">OK</string>
+    <!--activity_bookkeep_add_detail:end-->
+
+    <!--activity_bookkeep:start-->
+    <string name="account_window_expenditure">支出</string>
+    <string name="account_window_remaining_budget">剩余预算</string>
+    <string name="account_window_income">收入</string>
+    <!--activity_bookkeep:end-->
+
+    <!--activity_bookkeep_property_view:start-->
+    <string name="bookkeep_property_view">我的资产</string>
+    <string name="bookkeep_property_view_toolbar_name">我的资产</string>
+    <string name="bookkeep_property_view_goal">目标</string>
+    <string name="bookkeep_annual_account_button">收支详情</string>
+    <string name="bookkeep_property_goal_hint">输入目标资产值</string>
+    <!--activity_bookkeep_property_view:end-->
+
+    <!--activity_bookkeep_statistics_view:start-->
+    <string name="bookkeep_statistics_surplus">结余</string>
+    <!--activity_bookkeep_statistics_view:end-->
+
+
+
+
+
+
+
+
+    <!--activity_bookkeep_annual_account_detail:start-->
+    <string name="bookkeep_annual_account">收支详情</string>
+    <string name="bookkeep_annual_income">总收入</string>
+    <string name="bookkeep_annual_expenses">总支出</string>
+    <string name="bookkeep_annual_surplus">总结余</string>
+    <string name="bookkeep_month_in_year_income_and_expenses">月度收支</string>
+    <!--activity_bookkeep_annual_account_detail:end-->
+
+    <!--activity_bookkeep_add_wallet:start-->
+    <string name="bookkeep_add_wallet_wallet_type">账户类型</string>
+    <string name="bookkeep_add_wallet_wallet_money">账户余额</string>
+    <string name="bookkeep_add_wallet_wallet_name">账户名称</string>
+    <string name="bookkeep_add_wallet_wallet_remark">账户备注</string>
+    <string name="bookkeep_add_wallet">添加账户</string>
+    <string name="bookkeep_add_wallet_complete">完成</string>
+    <!--activity_bookkeep_add_wallet:end-->
 
 </resources>

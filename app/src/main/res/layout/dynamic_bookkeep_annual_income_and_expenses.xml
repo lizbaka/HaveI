@@ -1,0 +1,68 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Dynamic_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/bookkeep_annual_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/bookkeep_window_record_border"
+            android:layout_marginTop="@dimen/bookkeep_window_record_border"
+            android:text="@string/bookkeep_annual_income" />
+
+        <TextView
+            android:id="@+id/bookkeep_annual_income_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/bookkeep_annual_income"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/bookkeep_window_record_border" />
+
+
+        <TextView
+            android:id="@+id/bookkeep_annual_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookkeep_annual_income"
+            android:layout_alignLeft="@+id/bookkeep_annual_income"
+            android:layout_marginTop="@dimen/bookkeep_window_record_margin"
+            android:text="@string/bookkeep_annual_expenses" />
+
+        <TextView
+            android:id="@+id/bookkeep_annual_expense_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookkeep_annual_income_value"
+            android:layout_alignTop="@+id/bookkeep_annual_expense"
+            android:layout_alignRight="@+id/bookkeep_annual_income_value"
+            android:layout_marginTop="@dimen/bookkeep_window_record_margin" />
+
+
+        <TextView
+            android:id="@+id/bookkeep_annual_surplus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookkeep_annual_expense"
+            android:layout_alignLeft="@+id/bookkeep_annual_income"
+            android:layout_marginTop="@dimen/bookkeep_window_record_margin"
+            android:layout_marginBottom="@dimen/bookkeep_window_record_border"
+            android:text="@string/bookkeep_annual_surplus" />
+
+        <TextView
+            android:id="@+id/bookkeep_annual_surplus_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookkeep_annual_expense_value"
+            android:layout_alignTop="@+id/bookkeep_annual_surplus"
+            android:layout_alignRight="@+id/bookkeep_annual_income_value"
+            android:layout_marginTop="@dimen/bookkeep_window_record_margin" />
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
