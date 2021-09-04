@@ -1,5 +1,6 @@
 package org.teamhavei.havei.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +29,7 @@ public class ActivityProverbList extends BaseActivity {
 
     private static final String START_PARAM_SHOWN_ON_MAIN = "shown_on_main";
 
-    RecyclerView proverbCardList;
+    RecyclerView proverbCardListRV;
     ProverbCardAdapter proverbCardAdapter;
     UtilDBHelper utilDBHelper;
     List<String> mProverbList;
@@ -57,20 +58,32 @@ public class ActivityProverbList extends BaseActivity {
         setSupportActionBar(findViewById(R.id.proverb_list_toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        proverbCardList = findViewById(R.id.proverb_list_card_list);
+        proverbCardListRV = findViewById(R.id.proverb_list_card_list);
         fab = findViewById(R.id.proverb_list_add);
 
         utilDBHelper = new UtilDBHelper(ActivityProverbList.this,UtilDBHelper.DB_NAME,null,UtilDBHelper.DB_VERSION);
 
         mProverbList = utilDBHelper.getProverbs();
         mRemoveList = new ArrayList<String>();
-        proverbCardList.setLayoutManager(new LinearLayoutManager(this));
+        proverbCardListRV.setLayoutManager(new LinearLayoutManager(this));
         proverbCardAdapter = new ProverbCardAdapter(mProverbList,mRemoveList,ActivityProverbList.this);
-        proverbCardList.setAdapter(proverbCardAdapter);
+        proverbCardListRV.setAdapter(proverbCardAdapter);
         if(mShownOnMain != null){
             int position = mProverbList.indexOf(mShownOnMain);
-            proverbCardList.scrollToPosition(position-1>=0?position:0);
+            proverbCardListRV.scrollToPosition(position-1>=0?position:0);
         }
+
+        proverbCardListRV.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy>0){
+                    fab.hide();
+                }else{
+                    fab.show();
+                }
+            }
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
