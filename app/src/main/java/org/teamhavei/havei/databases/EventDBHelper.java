@@ -14,7 +14,9 @@ import org.teamhavei.havei.Event.EventTag;
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.HabitExec;
 import org.teamhavei.havei.Event.Todo;
+import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
+import org.teamhavei.havei.adapters.IconAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -471,6 +473,15 @@ public class EventDBHelper extends SQLiteOpenHelper {
             cursor = db.query(TABLE_EVENT_TAGS, null, EVENT_TAGS_DELETE + " = ?", new String[]{"0"}, null, null, null);
         } else {
             cursor = db.query(TABLE_EVENT_TAGS, null, null, null, null, null, null);
+        }
+        if(cursor.getCount()<=0){
+            EventTag defaultEventTag = new EventTag();
+            defaultEventTag.setName(mContext.getString(R.string.default_tag));
+            defaultEventTag.setDel(false);
+            defaultEventTag.setIconId(IconAdapter.ID_HS_RECORD);
+            db.insert(TABLE_EVENT_TAGS,null,eventTagToValues(defaultEventTag));
+            cursor.close();
+            return findAllEventTag(excludeDeleted);
         }
         List<EventTag> tagList = cursorToEventTagList(cursor);
         cursor.close();
