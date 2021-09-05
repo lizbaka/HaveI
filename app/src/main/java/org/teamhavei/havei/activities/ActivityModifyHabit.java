@@ -137,7 +137,7 @@ public class ActivityModifyHabit extends BaseActivity {
         tagMng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivitySettingsTagMng.startAction(ActivityModifyHabit.this,ActivitySettingsTagMng.MODE_EVENT_TAG);
+                ActivitySettingsTagMng.startAction(ActivityModifyHabit.this, UniToolKit.TAG_TYPE_EVENT);
                 tagList.clear();
                 tagList.addAll(dbHelper.findAllEventTag(true));
                 tagListAdapter.notifyDataSetChanged();

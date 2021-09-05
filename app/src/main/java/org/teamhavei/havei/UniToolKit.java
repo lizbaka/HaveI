@@ -16,6 +16,8 @@ public class UniToolKit {
     public static final String PREF_SETTINGS = "settings";
     public static final String PREF_SETTINGS_USER_NAME = "user_name";
 
+    public static final int TAG_TYPE_EVENT = 0;
+    public static final int TAG_TYPE_BOOKKEEP = 1;
 
     public static final String EVENT_DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
     public static final String EVENT_DATE_FORMAT = "yyyy-MM-dd";
