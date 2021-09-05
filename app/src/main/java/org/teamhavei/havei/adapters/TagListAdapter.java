@@ -78,8 +78,8 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
                     selectedItem = i;
                     break;
                 }
-                Log.d(TAG, "TagListAdapter: Initial tag ID not found or deleted");
             }
+            Log.d(TAG, "TagListAdapter: Initial tag ID not found or deleted");
         }
         this.onTagClickListener = onTagClickListener;
         iconAdapter = new IconAdapter(context);
