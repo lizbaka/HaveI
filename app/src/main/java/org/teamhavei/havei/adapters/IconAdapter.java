@@ -8,11 +8,15 @@ import androidx.core.content.ContextCompat;
 
 import org.teamhavei.havei.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class IconAdapter {
 
     private static String TAG = "DEBUG";
 
     //只能加，不能改！
+    //当前已分配到编号 129
     public static final int ID_LOST = 0;
     public static final int ID_CS_ACCOMMODATION = 1;
     public static final int ID_CS_AIR_TICKETS = 2;
@@ -151,6 +155,145 @@ public class IconAdapter {
 
     public IconAdapter(Context context) {
         mContext = context;
+    }
+
+    public List<Integer> getBookkeepIconIDList() {
+        List<Integer> result = new ArrayList<>();
+        result.add(ID_CS_ACCOMMODATION);
+        result.add(ID_CS_AIR_TICKETS);
+        result.add(ID_CS_ASTRONOMY);
+        result.add(ID_CS_ATHLETE);
+        result.add(ID_CS_BONUS);
+        result.add(ID_CS_BORROW);
+        result.add(ID_CS_CAR_FARE);
+        result.add(ID_CS_CLOTHING);
+        result.add(ID_CS_DRINKS);
+        result.add(ID_CS_ELSE);
+        result.add(ID_CS_EXERCISE);
+        result.add(ID_CS_EXPENSE_MANAGEMENT);
+        result.add(ID_CS_FRUITS);
+        result.add(ID_CS_GAME);
+        result.add(ID_CS_GIFT1);
+        result.add(ID_CS_GIFT2);
+        result.add(ID_CS_GIFT3);
+        result.add(ID_CS_HOBBY);
+        result.add(ID_CS_HOSPITAL);
+        result.add(ID_CS_IN_SCHOOL);
+        result.add(ID_CS_JOURNEY);
+        result.add(ID_CS_LAUNDRY_DETERGENT);
+        result.add(ID_CS_LEND_OUT);
+        result.add(ID_CS_MAKE_UP);
+        result.add(ID_CS_MEDICINE);
+        result.add(ID_CS_OTHERS_REPAY_YOU1);
+        result.add(ID_CS_OTHERS_REPAY_YOU2);
+        result.add(ID_CS_TISSUE_PAPER_ROLL);
+        result.add(ID_CS_PARTY);
+        result.add(ID_CS_PETS);
+        result.add(ID_CS_PHOTOGRAPHING);
+        result.add(ID_CS_PLAYTHING);
+        result.add(ID_CS_READING);
+        result.add(ID_CS_RECEIPT);
+        result.add(ID_CS_RECREATION);
+        result.add(ID_CS_RED_PACKET);
+        result.add(ID_CS_REPAY_OTHERS);
+        result.add(ID_CS_SALARY);
+        result.add(ID_CS_SCENIC_SPOT);
+        result.add(ID_CS_SKIN_CARE);
+        result.add(ID_CS_SLIPPER);
+        result.add(ID_CS_SNACKS);
+        result.add(ID_CS_STAPLE_FOOD);
+        result.add(ID_CS_TEXTBOOK);
+        result.add(ID_CS_TRANSPORTATION);
+        result.add(ID_CS_UMBRELLA);
+        return result;
+    }
+
+    public List<Integer> getEventIconIDList() {
+        List<Integer> result = new ArrayList<>();
+        result.add(ID_HS_ALARM_CLOCK);
+        result.add(ID_HS_BACHELOR);
+        result.add(ID_HS_BASKETBALL);
+        result.add(ID_HS_BONUS);
+        result.add(ID_HS_BOOK);
+        result.add(ID_HS_BOOKKEEPING);
+        result.add(ID_HS_BOOKS);
+        result.add(ID_HS_CAR);
+        result.add(ID_HS_CLOCK1);
+        result.add(ID_HS_CLOCK2);
+        result.add(ID_HS_COUPLE);
+        result.add(ID_HS_CUP);
+        result.add(ID_HS_CUTLERY);
+        result.add(ID_HS_DELETE);
+        result.add(ID_HS_DESSERT);
+        result.add(ID_HS_DRESS_UP);
+        result.add(ID_HS_DRINK);
+        result.add(ID_HS_EAT);
+        result.add(ID_HS_ENTERTAINMENT);
+        result.add(ID_HS_EXERCISE);
+        result.add(ID_HS_FOOT);
+        result.add(ID_HS_FRUIT);
+        result.add(ID_HS_GAME_MACHINE);
+        result.add(ID_HS_GIFT1);
+        result.add(ID_HS_GIFT2);
+        result.add(ID_HS_GIFT3);
+        result.add(ID_HS_HEART);
+        result.add(ID_HS_HEART2);
+        result.add(ID_HS_HEART3);
+        result.add(ID_HS_BEATING);
+        result.add(ID_HS_BEATING2);
+        result.add(ID_HS_HOTEL);
+        result.add(ID_HS_JOURNEY1);
+        result.add(ID_HS_JOURNEY2);
+        result.add(ID_HS_LEND);
+        result.add(ID_HS_LOCATING);
+        result.add(ID_HS_MAKE_UP);
+        result.add(ID_HS_MEDIACARE);
+        result.add(ID_HS_MEDICINE);
+        result.add(ID_HS_MEDICINE3);
+        result.add(ID_HS_MEMORY);
+        result.add(ID_HS_MONEY);
+        result.add(ID_HS_MOON);
+        result.add(ID_HS_MOON3);
+        result.add(ID_HS_MOON4);
+        result.add(ID_HS_MOON5);
+        result.add(ID_HS_MUSIC);
+        result.add(ID_HS_PAPER);
+        result.add(ID_HS_PAPER_AIRPLANE);
+        result.add(ID_HS_PENCIL);
+        result.add(ID_HS_PETS);
+        result.add(ID_HS_PHOTOGRAPH);
+        result.add(ID_HS_PIG);
+        result.add(ID_HS_PLANE);
+        result.add(ID_HS_PRIZE);
+        result.add(ID_HS_READING);
+        result.add(ID_HS_RECORD);
+        result.add(ID_HS_RECORD2);
+        result.add(ID_HS_RECREATION);
+        result.add(ID_HS_RED_PACKET);
+        result.add(ID_HS_REPAIR);
+        result.add(ID_HS_SALARY);
+        result.add(ID_HS_SCISSORS);
+        result.add(ID_HS_SCISSORS2);
+        result.add(ID_HS_SKIN_CARE);
+        result.add(ID_HS_SPORT);
+        result.add(ID_HS_STAR1);
+        result.add(ID_HS_STAR2);
+        result.add(ID_HS_STAR3);
+        result.add(ID_HS_STAR_TRAILS);
+        result.add(ID_HS_STATISTICS);
+        result.add(ID_HS_STUDY);
+        result.add(ID_HS_SUN);
+        result.add(ID_HS_SUN3);
+        result.add(ID_HS_SUN4);
+        result.add(ID_HS_SUN_AND_MOON);
+        result.add(ID_HS_SUN_RISE);
+        result.add(ID_HS_SUN_RISE2);
+        result.add(ID_HS_TOY);
+        result.add(ID_HS_TRANSPORT);
+        result.add(ID_HS_UMBRELLA);
+        result.add(ID_HS_WATER);
+        result.add(ID_HS_WATER_DROP);
+        return result;
     }
 
     public Drawable getIcon(int iconID) {
@@ -418,7 +561,7 @@ public class IconAdapter {
                 return ContextCompat.getDrawable(mContext, R.drawable.hs_water_drop);
             default:
                 Log.d(TAG, "getIcon: not found, returning lost");
-                return ContextCompat.getDrawable(mContext,R.drawable.ic_baseline_help_24);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_help_24);
         }
     }
 }
