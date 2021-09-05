@@ -71,7 +71,7 @@ public class ActivityTodoDetail extends AppCompatActivity {
                     statusTV.setTextColor(getResources().getColor(R.color.green_500));
                     switchFab.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_close_24_white));
                 }
-                dbHelper.switchTodoDone(mTodo.getId());
+                mTodo.setDone(dbHelper.switchTodoDone(mTodo.getId()));
             }
         });
     }
@@ -84,7 +84,7 @@ public class ActivityTodoDetail extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.event_detail_toolbar, menu);
+        getMenuInflater().inflate(R.menu.modify_delete_toolbar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

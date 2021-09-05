@@ -168,7 +168,7 @@ public class ActivityHabitDetail extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.event_detail_toolbar, menu);
+        getMenuInflater().inflate(R.menu.modify_delete_toolbar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -210,7 +210,7 @@ public class ActivityHabitDetail extends BaseActivity {
 
     private void initView() {
         mToolbar = findViewById(R.id.habit_detail_toolbar);
-        mToolbar.inflateMenu(R.menu.event_detail_toolbar);
+        mToolbar.inflateMenu(R.menu.modify_delete_toolbar);
         actualTimesView = findViewById(R.id.actual_clock_in);
         planTimesView = findViewById(R.id.plan_clock_in);
         rankView = findViewById(R.id.habit_ranking);
