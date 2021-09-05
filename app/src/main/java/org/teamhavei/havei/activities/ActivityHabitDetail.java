@@ -38,7 +38,8 @@ import java.util.List;
 
 public class ActivityHabitDetail extends BaseActivity {
 
-    private static final String START_PARAM_HABIT_ID = "habit_id";
+    public static final String START_PARAM_HABIT_ID = "habit_id";
+
     private static final int NULL_HABIT_ID = -1;
 
     private Toolbar mToolbar;

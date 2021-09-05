@@ -1,11 +1,8 @@
-/**
- * @author lbc
- * @last_modifier lbc
- */
 package org.teamhavei.havei.services;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,8 +18,11 @@ import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.Todo;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
+import org.teamhavei.havei.activities.ActivityHabitDetail;
+import org.teamhavei.havei.activities.ActivityTodoDetail;
 import org.teamhavei.havei.databases.EventDBHelper;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -95,12 +95,16 @@ public class HaveITimeWatcher extends Service {
             if(i.isDone()){
                 continue;
             }
+            Intent intent = new Intent(HaveITimeWatcher.this, ActivityTodoDetail.class);
+            intent.putExtra(ActivityTodoDetail.START_PARAM_TODO_ID,i.getId());
+            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this,0,intent, 0);
             Notification notification = new NotificationCompat.Builder(this, UniToolKit.TODO_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.todo_advance_notification_title))
                     .setContentText(i.getName() + getResources().getString(R.string.todo_advance_notification_content1) + i.getDateTime() + getResources().getString(R.string.todo_advance_notification_content2))
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                    .setContentIntent(pi)
                     .build();
             manager.notify((int)new Date().getTime() + TODO_REMINDER_NOTIFICATION_SEED * i.getId(), notification);
         }
@@ -110,12 +114,19 @@ public class HaveITimeWatcher extends Service {
         List<Habit> habitList = eventDBHelper.findHabitByReminderTime(new Date());
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         for (Habit i : habitList) {
+            if(eventDBHelper.checkHabitFinishAt(i.getId(), Calendar.getInstance())){
+                continue;
+            }
+            Intent intent = new Intent(HaveITimeWatcher.this, ActivityHabitDetail.class);
+            intent.putExtra(ActivityHabitDetail.START_PARAM_HABIT_ID,i.getId());
+            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this,0,intent,0);
             Notification notification = new NotificationCompat.Builder(this, UniToolKit.HABIT_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.habit_notification_title))
                     .setContentText(getResources().getString(R.string.habit_notification_content) + i.getName())
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                    .setContentIntent(pi)
                     .build();
             manager.notify((int)new Date().getTime() + HABIT_NOTIFICATION_SEED * i.getId(), notification);
         }

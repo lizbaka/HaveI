@@ -211,9 +211,9 @@ public class EventDBHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * 效率较低，不要频繁调用！
+     * 按排名从高到低顺序返回一个habit的list(效率较低，不要频繁调用！)
      *
-     * @return 按排名从高到低顺序返回一个habit的list
+     * @return List<Habit>
      */
     public List<Habit> findAllHabitOrderByRank() {
         Calendar todayDate = Calendar.getInstance();
@@ -264,17 +264,20 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return findHabitExecByHabitIdWithDateRange(habitID, startDate, endDate).size() >= habit.getRepeatTimes();
     }
 
+    public Boolean checkHabitFinishAt(int habitID, Calendar centerCalendar){
+        Habit mHabit = findHabitById(habitID);
+        Calendar startCalendar = (Calendar) centerCalendar.clone();
+        Calendar endCalendar = (Calendar) centerCalendar.clone();
+        startCalendar.add(Calendar.DAY_OF_YEAR, -1 * (mHabit.getRepeatUnit() - 1));
+        endCalendar.add(Calendar.DAY_OF_YEAR, mHabit.getRepeatUnit() - 1);
+        return checkHabitFinishBetween(mHabit.getId(), startCalendar.getTime(), endCalendar.getTime());
+    }
+
     public List<Habit> findUnfinishedHabit(Calendar centerCalendar) {
         List<Habit> allHabit = findAllHabit();
         List<Habit> unfinishedHabit = new ArrayList<>();
-        Calendar startCalendar;
-        Calendar endCalendar;
         for (Habit mHabit : allHabit) {
-            startCalendar = (Calendar) centerCalendar.clone();
-            endCalendar = (Calendar) centerCalendar.clone();
-            startCalendar.add(Calendar.DAY_OF_YEAR, -1 * (mHabit.getRepeatUnit() - 1));
-            endCalendar.add(Calendar.DAY_OF_YEAR, mHabit.getRepeatUnit() - 1);
-            if (!checkHabitFinishBetween(mHabit.getId(), startCalendar.getTime(), endCalendar.getTime()) || isHabitDone(mHabit.getId(),centerCalendar.getTime())) {
+            if (!checkHabitFinishAt(mHabit.getId(),centerCalendar) || isHabitDone(mHabit.getId(),centerCalendar.getTime())) {
                 unfinishedHabit.add(mHabit);
             }
         }
