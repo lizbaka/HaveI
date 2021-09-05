@@ -5,6 +5,7 @@
     <string name="habit_reminder_notification_channel_name">习惯执行提醒</string>
     <string name="pref_first_run">first_run</string>
     <string name="default_user_name">HaveI用户</string>
+    <string name="default_tag">默认标签</string>
     <!--system:end-->
 
     <!--universal_UI:Begin-->
@@ -38,6 +39,9 @@
     <string name="Nov.">十一</string>
     <string name="Dec.">十二</string>
     <string name="slogan">记录你的生活！</string>
+    <string name="set_name">命名：</string>
+    <string name="modify">修改</string>
+    <string name="delete">删除</string>
     <!--universal_UI:end-->
 
     <!--activity_main:Begin-->
@@ -108,7 +112,6 @@
     <string name="modify_habit_title_add">添加习惯</string>
     <string name="modify_habit_title_modify">修改习惯</string>
     <string name="modify_habit_name_hint">习惯名称</string>
-    <string name="modify_habit_name">命名：</string>
     <string name="modify_habit_text_frequency">习惯打卡频率</string>
     <string name="modify_habit_reminder_time_null">未选择</string>
     <string name="modify_habit_text_time">习惯提醒时间</string>
@@ -127,8 +130,6 @@
     <!--habit:end-->
 
     <!--habit_detail:Begin-->
-    <string name="habit_detail_toolbar_modify">修改</string>
-    <string name="habit_detail_toolbar_delete">删除</string>
     <string name="habit_detail_rank_changed">点击重载</string>
     <!--habit_detail:end-->
 
@@ -227,8 +228,18 @@
     <string name="settings_proverb_src">管理每日一句来源</string>
     <string name="settings_tag_type_bookkeep">记账标签</string>
     <string name="settings_tag_type_event">事件标签</string>
-    <string name="modify_eventtag_title_modify">修改标签</string>
-    <string name="modify_eventtag_title_add">增加标签</string>
+    <!--tag_settings:begin-->
+    <string name="modify_event_tag_title_modify">修改事件标签</string>
+    <string name="modify_event_tag_title_add">增加事件标签</string>
+    <string name="modify_bookkeep_tag_title_modify">修改记账标签</string>
+    <string name="modify_bookkeep_tag_title_add">增加记账标签</string>
+    <string name="modify_tag_name_hint">标签名称</string>
+    <string name="modify_tag_select_icon">选择一个图标</string>
+    <string name="modify_tag_empty_name">标签名不能为空</string>
+    <string name="modify_tag_delete_dialog_title">删除标签</string>
+    <string name="modify_tag_delete_dialog_msg">此标签将被删除，在统计中会被保留，但您无法再将账目/事件分配到此标签（即便同名）。您确定要删除此标签吗？</string>
+    <string name="modify_tag_mode_add_hint">不能删除正在添加的标签</string>
+    <!--tag_settings:end-->
     <!--settings:end-->
 
     <!--monthly_report:begin-->

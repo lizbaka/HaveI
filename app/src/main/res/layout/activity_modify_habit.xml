@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/modify_habit_name" />
+                    android:text="@string/set_name" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/modify_habit_name"
