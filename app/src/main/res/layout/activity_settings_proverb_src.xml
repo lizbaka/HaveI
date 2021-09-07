@@ -1,0 +1,246 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/settings_proverb_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/amber_500"
+            android:fitsSystemWindows="true"
+            android:gravity="center"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/settings_proverb">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/settings_proverb_one">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/ic_category"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/settings_proverb_one_name"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:text="@string/proverb_source_one"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_enlarged"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_weight="0.2"
+                android:checked="false"
+                android:clickable="true"
+                app:thumbTint="@color/amber_500"
+                app:trackTint="@color/amber_200" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dividing_line_view_height"
+            android:background="@color/grey_200" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_proverb_one_category_one"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/subordinate_indentation">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_round_icon_category"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/settings_proverb_one_category_one_name"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:text="@string/proverb_source_catetory_one"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_enlarged"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_weight="0.2"
+                android:checked="false"
+                android:clickable="true"
+                app:thumbTint="@color/amber_500"
+                app:trackTint="@color/amber_200"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dividing_line_view_height"
+            android:background="@color/grey_200" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_proverb_two"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/ic_category"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/settings_proverb_two_name"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:text="@string/proverb_source_two"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_enlarged"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_weight="0.2"
+                android:checked="false"
+                android:clickable="true"
+                app:thumbTint="@color/amber_500"
+                app:trackTint="@color/amber_200"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dividing_line_view_height"
+            android:background="@color/grey_200" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/settings_proverb_two_category_one"
+            android:paddingLeft="@dimen/subordinate_indentation">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_round_icon_category"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/settings_proverb_two_category_one_name"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:text="@string/proverb_source_catetory_one"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_enlarged"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_weight="0.2"
+                android:checked="false"
+                android:clickable="true"
+                app:thumbTint="@color/amber_500"
+                app:trackTint="@color/amber_200"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dividing_line_view_height"
+            android:background="@color/grey_200" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_proverb_two_category_two"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/subordinate_indentation">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_round_icon_category"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/settings_proverb_two_category_two_name"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:text="@string/proverb_source_catetory_two"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_enlarged"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_weight="0.2"
+                android:checked="false"
+                android:clickable="true"
+                app:thumbTint="@color/amber_500"
+                app:trackTint="@color/amber_200"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dividing_line_view_height"
+            android:background="@color/grey_200" />
+
+    </LinearLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

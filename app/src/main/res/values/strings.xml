@@ -316,4 +316,13 @@
     <string name="bookkeep_add_wallet_complete">完成</string>
     <!--activity_bookkeep_add_wallet:end-->
 
+    <!--activity_settings_proverb:start-->
+    <string name="settings_proverb">句子来源</string>
+    <string name="proverb_source_one">扇贝</string>
+    <string name="proverb_source_two">一言</string>
+    <string name="proverb_source_catetory_one">诗词</string>
+    <string name="proverb_source_catetory_two">哲学</string>
+    <!--activity_settings_proverb:end-->
+
+
 </resources>

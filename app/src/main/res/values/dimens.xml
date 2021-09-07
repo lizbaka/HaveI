@@ -87,5 +87,8 @@
     <dimen name="bookkeep_add_wallet_money_width">265dp</dimen>
     <dimen name="bookkeep_add_wallet_type_width">275dp</dimen>
 
+    <dimen name="proverb_category">10dp</dimen>
+    <dimen name="subordinate_indentation">30dp</dimen>
+
 
 </resources>
