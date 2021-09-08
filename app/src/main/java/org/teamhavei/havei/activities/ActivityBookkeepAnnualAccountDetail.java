@@ -39,7 +39,7 @@ public class ActivityBookkeepAnnualAccountDetail extends AppCompatActivity {
     private Button mShowDateBTN;
     private TextView mSelectDateTV;
     private String sDate;
-    private BookkeepDBHelper dbHelper= new BookkeepDBHelper(ActivityBookkeepAnnualAccountDetail.this,BookkeepDBHelper.DB_NAME,null, BookkeepDBHelper.DATABASE_VERSION);
+    private BookkeepDBHelper dbHelper;
     private BookCou mBookCou;
     private List<Bookkeep> mBookList;
     private String initTime;
@@ -58,6 +58,7 @@ public class ActivityBookkeepAnnualAccountDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookkeep_annual_account_detail);
+        dbHelper= new BookkeepDBHelper(ActivityBookkeepAnnualAccountDetail.this,BookkeepDBHelper.DB_NAME,null, BookkeepDBHelper.DATABASE_VERSION);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_bookkeep_annual_account_detail);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
