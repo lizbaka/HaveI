@@ -83,6 +83,7 @@ public class ActivityMain extends BaseActivity {
         configGreetingCard();
         configProverb();
         configTodoCard();
+        configBookkeepCard();
         configHabitCard();
     }
 
@@ -291,6 +292,17 @@ public class ActivityMain extends BaseActivity {
                 ActivityHabitMain.startAction(ActivityMain.this);
             }
         });
+    }
+
+    private void configBookkeepCard(){
+        findViewById(R.id.main_bookkeep_card).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityMain.this,ActivityBookkeep.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void firstRun() {

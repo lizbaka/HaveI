@@ -147,6 +147,10 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+                <include
+                    android:id="@+id/main_bookkeep_card"
+                    layout="@layout/dynamic_bookkeep_window"/>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/main_manage_habit_card"
                     style="@style/Dynamic_card"
