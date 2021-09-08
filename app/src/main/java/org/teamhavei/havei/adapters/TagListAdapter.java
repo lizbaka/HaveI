@@ -18,6 +18,9 @@ import java.util.List;
 
 public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHolder> {
 
+    public static final int ORIENTATION_HORIZONTAL = 0;
+    public static final int ORIENTATION_VERTICAL = 1;
+
     private static final String TAG = "DEBUG";
 
     private static final int MODE_SELECT = 0;
@@ -29,6 +32,7 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
 
     int selectedItem;
     int mode = MODE_SELECT;
+    int orientation;
 
     private final OnTagClickListener onTagClickListener;
 
@@ -50,19 +54,20 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
 
     }
 
-    /**
-     * 构造tagListAdapter
-     *
-     * @param tagList            tag列表
-     * @param context            recyclerview上下文
-     * @param selectedID         调用时默认选中的item
-     * @param onTagClickListener tag点击事件
-     */
 
-    public TagListAdapter(List<HaveITag> tagList, Context context, int selectedID, OnTagClickListener onTagClickListener) {
+    /**
+     *
+     * @param tagList 包含HaveITag的List
+     * @param context 上下文
+     * @param selectedID 默认选取的Tag的ID
+     * @param orientation 滚动方向
+     * @param onTagClickListener 项目点击事件
+     */
+    public TagListAdapter(List<HaveITag> tagList, Context context, int selectedID, int orientation, OnTagClickListener onTagClickListener) {
         mode = MODE_SELECT;
         this.mTagList = tagList;
         this.mContext = context;
+        this.orientation = orientation;
         Boolean found = false;
         for (int i = 0; i < tagList.size(); i++) {
             if (tagList.get(i).getId() == selectedID) {
@@ -85,11 +90,19 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
         iconAdapter = new IconAdapter(context);
     }
 
-    public TagListAdapter(List<HaveITag> tagList, Context context, OnTagClickListener onTagClickListener) {
+    /**
+     *
+     * @param tagList 包含HaveITag的List
+     * @param context 上下文
+     * @param orientation 滚动方向
+     * @param onTagClickListener 项目点击事件
+     */
+    public TagListAdapter(List<HaveITag> tagList, Context context, int orientation, OnTagClickListener onTagClickListener) {
         mode = MODE_CLICK;
         this.mTagList = tagList;
         this.mContext = context;
         this.onTagClickListener = onTagClickListener;
+        this.orientation = orientation;
         iconAdapter = new IconAdapter(context);
     }
 
@@ -97,6 +110,13 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_icon_title, parent, false);
         ViewHolder holder = new ViewHolder(view);
+        ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
+        if(orientation==ORIENTATION_HORIZONTAL){
+            params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+        }else{
+            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        }
+        holder.itemView.setLayoutParams(params);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

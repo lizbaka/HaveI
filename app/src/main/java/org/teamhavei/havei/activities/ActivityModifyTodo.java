@@ -100,7 +100,7 @@ public class ActivityModifyTodo extends BaseActivity {
 
         tagList = new ArrayList<>();
         tagList.addAll(dbHelper.findAllEventTag(true));
-        tagListAdapter = new TagListAdapter(tagList, ActivityModifyTodo.this, selectedEventTagID, new TagListAdapter.OnTagClickListener() {
+        tagListAdapter = new TagListAdapter(tagList, ActivityModifyTodo.this, selectedEventTagID, TagListAdapter.ORIENTATION_HORIZONTAL,new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
                 selectedEventTagID = tag.getId();

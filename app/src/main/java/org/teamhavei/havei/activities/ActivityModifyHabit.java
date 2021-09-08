@@ -94,7 +94,7 @@ public class ActivityModifyHabit extends BaseActivity {
 
         tagList = new ArrayList<>();
         tagList.addAll(dbHelper.findAllEventTag(true));
-        tagListAdapter = new TagListAdapter(tagList, ActivityModifyHabit.this, selectedEventTagID, new TagListAdapter.OnTagClickListener() {
+        tagListAdapter = new TagListAdapter(tagList, ActivityModifyHabit.this, selectedEventTagID, TagListAdapter.ORIENTATION_HORIZONTAL,new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
                 selectedEventTagID = tag.getId();

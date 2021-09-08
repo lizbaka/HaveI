@@ -131,7 +131,7 @@ public class ActivityModifyTag extends BaseActivity {
         }
 
         iconListRV.setLayoutManager(new GridLayoutManager(ActivityModifyTag.this, 4, LinearLayoutManager.HORIZONTAL, false));
-        iconListRV.setAdapter(new TagListAdapter(iconList, ActivityModifyTag.this, selectedIconID, new TagListAdapter.OnTagClickListener() {
+        iconListRV.setAdapter(new TagListAdapter(iconList, ActivityModifyTag.this, selectedIconID, TagListAdapter.ORIENTATION_HORIZONTAL,new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
                 selectedIconID = tag.getId();

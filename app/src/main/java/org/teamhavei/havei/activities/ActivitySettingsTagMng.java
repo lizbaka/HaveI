@@ -60,7 +60,7 @@ public class ActivitySettingsTagMng extends BaseActivity {
         initView();
 
         tagListRV.setLayoutManager(new GridLayoutManager(ActivitySettingsTagMng.this, 4, LinearLayoutManager.VERTICAL, false));
-        tagListRV.setAdapter(new TagListAdapter(tagList, ActivitySettingsTagMng.this, new TagListAdapter.OnTagClickListener() {
+        tagListRV.setAdapter(new TagListAdapter(tagList, ActivitySettingsTagMng.this, TagListAdapter.ORIENTATION_VERTICAL, new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
                 ActivityModifyTag.startAction(ActivitySettingsTagMng.this, tagType, tag.getId());
