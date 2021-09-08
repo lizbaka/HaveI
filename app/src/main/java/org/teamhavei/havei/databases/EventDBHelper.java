@@ -111,7 +111,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_HABIT_EXECS);
         db.execSQL(CREATE_EVENT_TAGS);
         db.execSQL(CREATE_TODO);
-        initialize(db);
     }
 
     @Override
@@ -620,12 +619,25 @@ public class EventDBHelper extends SQLiteOpenHelper {
      * 向数据库预先输入数据
      */
     // TODO: 2021.08.18 整理完成所需类别后修改
-    private void initialize(SQLiteDatabase db) {
+    public void initializeTag() {
         EventTag tag = new EventTag();
-        for (int i = 1; i <= 25; i++) {
-            tag.setIconId(i);
-            tag.setName("tag" + i);
-            db.insert(TABLE_EVENT_TAGS, null, eventTagToValues(tag));
-        }
+        tag.setName("默认分类");
+        tag.setIconId(IconAdapter.DEFAULT_EVENT_TAG_ICON_ID);
+        insertEventTag(tag);
+        tag.setName("锻炼");
+        tag.setIconId(IconAdapter.ID_HS_EXERCISE);
+        insertEventTag(tag);
+        tag.setName("学习");
+        tag.setIconId(IconAdapter.ID_HS_BOOKS);
+        insertEventTag(tag);
+        tag.setName("饮食");
+        tag.setIconId(IconAdapter.ID_HS_EAT);
+        insertEventTag(tag);
+        tag.setName("娱乐");
+        tag.setIconId(IconAdapter.ID_HS_GAME_MACHINE);
+        insertEventTag(tag);
+        tag.setName("财富");
+        tag.setIconId(IconAdapter.ID_HS_MONEY);
+        insertEventTag(tag);
     }
 }

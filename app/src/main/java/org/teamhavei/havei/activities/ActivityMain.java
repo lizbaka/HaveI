@@ -295,6 +295,7 @@ public class ActivityMain extends BaseActivity {
 
     private void firstRun() {
         // TODO: 2021.08.07 首次运行函数。待实现功能：教程、从自带的数据库中引入数据
+        eventDBHelper.initializeTag();
     }
 
     private void configProverb() {

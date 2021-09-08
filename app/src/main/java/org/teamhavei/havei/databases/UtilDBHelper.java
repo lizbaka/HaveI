@@ -39,7 +39,7 @@ public class UtilDBHelper extends SQLiteOpenHelper {
     public UtilDBHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         this.context = context;
-        checkEmpty();
+        preventEmpty();
     }
 
     @Override
@@ -54,7 +54,7 @@ public class UtilDBHelper extends SQLiteOpenHelper {
         initData();
     }
 
-    private void checkEmpty() {
+    private void preventEmpty() {
         Cursor cursor = db.query(TABLE_PROVERB, null, null, null, null, null, null);
         if (cursor.getCount() == 0) {
             insertProverb(context.getString(R.string.slogan));
@@ -116,5 +116,6 @@ public class UtilDBHelper extends SQLiteOpenHelper {
 
     void initData() {
         insertProverb(context.getString(R.string.slogan));
+        insertProverb("长按我试试");
     }
 }

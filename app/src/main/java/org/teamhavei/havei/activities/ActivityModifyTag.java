@@ -35,8 +35,8 @@ public class ActivityModifyTag extends BaseActivity {
     public static final String START_PARAM_TAG_TYPE = "tag_type";
     public static final String START_PARAM_TAG_ID = "tagID";
 
-    private static final int EVENT_TAG_DEFAULT_ICON_ID = IconAdapter.ID_HS_RECORD;
-    private static final int BOOKKEEP_TAG_DEFAULT_ICON_ID = IconAdapter.ID_CS_EXPENSE_MANAGEMENT;//todo: modify this if necessary
+    private static final int EVENT_TAG_DEFAULT_ICON_ID = IconAdapter.DEFAULT_EVENT_TAG_ICON_ID;
+    private static final int BOOKKEEP_TAG_DEFAULT_ICON_ID = IconAdapter.DEFAULT_BOOKKEEP_TAG_ICON_ID;//todo: modify this if necessary
     private static final int NULL_TAG_ID = -1;
 
     public static final int MODE_ADD = 0;

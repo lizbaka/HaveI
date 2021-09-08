@@ -151,6 +151,10 @@ public class IconAdapter {
     public static final int ID_HS_WATER = 128;
     public static final int ID_HS_WATER_DROP = 129;
     //只能加，不能改！
+
+    public static final int DEFAULT_EVENT_TAG_ICON_ID = ID_HS_RECORD;
+    public static final int DEFAULT_BOOKKEEP_TAG_ICON_ID = ID_CS_EXPENSE_MANAGEMENT;
+
     Context mContext;
 
     public IconAdapter(Context context) {
@@ -345,8 +349,7 @@ public class IconAdapter {
             case ID_CS_LEND_OUT:
                 return ContextCompat.getDrawable(mContext, R.drawable.cs_lend_out);
             case ID_CS_MAKE_UP:
-                Log.d(TAG, "getIcon: MAKE_UP is currently down, returning lost");
-                return ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_help_24);
+                return ContextCompat.getDrawable(mContext, R.drawable.cs_make_up);
             case ID_CS_MEDICINE:
                 return ContextCompat.getDrawable(mContext, R.drawable.cs_medicine);
             case ID_CS_OTHERS_REPAY_YOU1:
@@ -356,8 +359,7 @@ public class IconAdapter {
             case ID_CS_TISSUE_PAPER_ROLL:
                 return ContextCompat.getDrawable(mContext, R.drawable.cs_paper);
             case ID_CS_PARTY:
-                Log.d(TAG, "getIcon: PARTY is currently down, returning first icon");
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_accommodation);
+                return ContextCompat.getDrawable(mContext, R.drawable.cs_party);
             case ID_CS_PETS:
                 return ContextCompat.getDrawable(mContext, R.drawable.cs_pets);
             case ID_CS_PHOTOGRAPHING:
@@ -465,8 +467,7 @@ public class IconAdapter {
             case ID_HS_LOCATING:
                 return ContextCompat.getDrawable(mContext, R.drawable.hs_locating);
             case ID_HS_MAKE_UP:
-                Log.d(TAG, "getIcon: MAKE_UP is currently down, returning lost");
-                return ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_help_24);
+                return ContextCompat.getDrawable(mContext, R.drawable.hs_make_up);
             case ID_HS_MEDIACARE:
                 return ContextCompat.getDrawable(mContext, R.drawable.hs_mediacare);
             case ID_HS_MEDICINE:
