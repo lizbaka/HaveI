@@ -13,6 +13,9 @@
         android:theme="@style/Theme.HaveI"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.ActivitySettingsProverbSrc"
+            android:exported="true" />
+        <activity
             android:name=".activities.ActivityReport"
             android:exported="true" />
         <activity
@@ -42,18 +45,18 @@
         <activity android:name=".activities.ActivityTest" />
         <activity android:name=".activities.ActivityHabitDetail" />
         <activity android:name=".activities.ActivityModifyHabit" />
-        <activity android:name=".activities.ActivityBookkeepPropertyView"
+        <activity
+            android:name=".activities.ActivityBookkeepPropertyView"
             android:label="@string/bookkeep_property_view"
-            android:parentActivityName=".activities.ActivityBookkeep">
-        </activity>
-        <activity android:name=".activities.ActivityBookkeepAddWallet"
+            android:parentActivityName=".activities.ActivityBookkeep"></activity>
+        <activity
+            android:name=".activities.ActivityBookkeepAddWallet"
             android:label="@string/bookkeep_add_wallet"
-            android:parentActivityName=".activities.ActivityBookkeepPropertyView">
-        </activity>
-        <activity android:name=".activities.ActivityBookkeepAnnualAccountDetail"
+            android:parentActivityName=".activities.ActivityBookkeepPropertyView"></activity>
+        <activity
+            android:name=".activities.ActivityBookkeepAnnualAccountDetail"
             android:label="@string/bookkeep_annual_account"
-            android:parentActivityName=".activities.ActivityBookkeep">
-        </activity>
+            android:parentActivityName=".activities.ActivityBookkeep"></activity>
         <activity android:name=".activities.ActivityMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,14 +64,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
-            android:authorities="org.teamhavei.havei.FileProvider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="org.teamhavei.havei.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

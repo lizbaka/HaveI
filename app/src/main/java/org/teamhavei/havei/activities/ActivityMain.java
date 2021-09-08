@@ -300,7 +300,7 @@ public class ActivityMain extends BaseActivity {
     private void configProverb() {
         ImageView favIcon = findViewById(R.id.proverb_card_favorite);
         TextView proverbTV = findViewById(R.id.proverb_card_proverb);
-        setProverb((int) (Math.random() * 3) % 3, proverbTV, favIcon);
+        getProverbSentence((int) (Math.random() * 3) % 3, proverbTV, favIcon);
         favIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -324,7 +324,7 @@ public class ActivityMain extends BaseActivity {
         findViewById(R.id.main_proverb_card).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                setProverb((int) (Math.random() * 3) % 3, proverbTV, favIcon);
+                getProverbSentence((int) (Math.random() * 3) % 3, proverbTV, favIcon);
                 return true;
             }
         });
@@ -334,7 +334,7 @@ public class ActivityMain extends BaseActivity {
      * @param type 0:from database; 1:hitokoto 2:shanbay;
      * @return
      */
-    private void setProverb(int type, TextView proverbTV, ImageView favIcon) {
+    private void getProverbSentence(int type, TextView proverbTV, ImageView favIcon) {
         final int MSG_UPDATE_PROVERB = 1;
         Handler handler = new Handler() {
             @Override

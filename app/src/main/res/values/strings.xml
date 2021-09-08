@@ -293,12 +293,6 @@
     <!--activity_bookkeep_statistics_view:end-->
 
 
-
-
-
-
-
-
     <!--activity_bookkeep_annual_account_detail:start-->
     <string name="bookkeep_annual_account">收支详情</string>
     <string name="bookkeep_annual_income">总收入</string>

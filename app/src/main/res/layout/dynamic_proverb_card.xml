@@ -6,6 +6,15 @@
     app:cardElevation="1dp">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        android:layout_margin="@dimen/widget_inview_margin"
+        android:textColor="@color/white"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:text="一言"/>
+
+    <TextView
         android:id="@+id/proverb_card_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

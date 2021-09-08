@@ -4,12 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/settings_proverb_toolbar"
@@ -21,33 +18,85 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="@string/settings_proverb">
+            app:title="@string/settings_proverb" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
+            android:id="@+id/settings_proverb_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/settings_proverb_one">
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_category"/>
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:background="@drawable/ic_category" />
 
             <TextView
+                android:id="@+id/settings_proverb_one_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/settings_proverb_one_name"
-                android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_weight="0.7"
                 android:text="@string/proverb_source_one"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_enlarged"/>
+                android:textSize="@dimen/font_size_enlarged" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_weight="0.2"
+                android:checked="false"
+                android:clickable="true"
+                app:thumbTint="@color/amber_500"
+                app:trackTint="@color/amber_200" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dividing_line_view_height"
+            android:background="@color/grey_200" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dividing_line_view_height"
+            android:background="@color/grey_200" />
+
+        <LinearLayout
+            android:id="@+id/settings_proverb_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:background="@drawable/ic_category" />
+
+            <TextView
+                android:id="@+id/settings_proverb_two_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_weight="0.7"
+                android:text="@string/proverb_source_two"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_enlarged" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:layout_width="wrap_content"
@@ -68,114 +117,29 @@
             android:background="@color/grey_200" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/settings_proverb_one_category_one"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/subordinate_indentation">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_round_icon_category"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/settings_proverb_one_category_one_name"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.7"
-                android:text="@string/proverb_source_catetory_one"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_enlarged"/>
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:layout_weight="0.2"
-                android:checked="false"
-                android:clickable="true"
-                app:thumbTint="@color/amber_500"
-                app:trackTint="@color/amber_200"/>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dividing_line_view_height"
-            android:background="@color/grey_200" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/settings_proverb_two"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_category"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/settings_proverb_two_name"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.7"
-                android:text="@string/proverb_source_two"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_enlarged"/>
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="@dimen/widget_inview_margin"
-                android:layout_weight="0.2"
-                android:checked="false"
-                android:clickable="true"
-                app:thumbTint="@color/amber_500"
-                app:trackTint="@color/amber_200"/>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dividing_line_view_height"
-            android:background="@color/grey_200" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:id="@+id/settings_proverb_two_category_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingLeft="@dimen/subordinate_indentation">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_round_icon_category"/>
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:background="@drawable/bg_round_icon_category" />
 
             <TextView
+                android:id="@+id/settings_proverb_two_category_one_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/settings_proverb_two_category_one_name"
-                android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_weight="0.7"
                 android:text="@string/proverb_source_catetory_one"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_enlarged"/>
+                android:textSize="@dimen/font_size_enlarged" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:layout_width="wrap_content"
@@ -186,7 +150,7 @@
                 android:checked="false"
                 android:clickable="true"
                 app:thumbTint="@color/amber_500"
-                app:trackTint="@color/amber_200"/>
+                app:trackTint="@color/amber_200" />
 
         </LinearLayout>
 
@@ -196,29 +160,29 @@
             android:background="@color/grey_200" />
 
         <LinearLayout
+            android:id="@+id/settings_proverb_two_category_two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/settings_proverb_two_category_two"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/subordinate_indentation">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_round_icon_category"/>
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:background="@drawable/bg_round_icon_category" />
 
             <TextView
+                android:id="@+id/settings_proverb_two_category_two_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/settings_proverb_two_category_two_name"
-                android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_weight="0.7"
                 android:text="@string/proverb_source_catetory_two"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_enlarged"/>
+                android:textSize="@dimen/font_size_enlarged" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:layout_width="wrap_content"
@@ -229,7 +193,7 @@
                 android:checked="false"
                 android:clickable="true"
                 app:thumbTint="@color/amber_500"
-                app:trackTint="@color/amber_200"/>
+                app:trackTint="@color/amber_200" />
 
         </LinearLayout>
 
@@ -238,8 +202,59 @@
             android:layout_height="@dimen/dividing_line_view_height"
             android:background="@color/grey_200" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/settings_proverb_one_category_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/subordinate_indentation">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:background="@drawable/bg_round_icon_category" />
+
+            <TextView
+                android:id="@+id/settings_proverb_one_category_one_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_weight="0.7"
+                android:text="@string/proverb_source_catetory_one"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_enlarged" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/widget_inview_margin"
+                android:layout_weight="0.2"
+                android:checked="false"
+                android:clickable="true"
+                app:thumbTint="@color/amber_500"
+                app:trackTint="@color/amber_200" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dividing_line_view_height"
+            android:background="@color/grey_200" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/grey_500"
+            android:text="你知道吗？长按首页的一言卡片，可以刷新句子哦"/>
+
+    </LinearLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -47,6 +47,12 @@ public class ActivitySettings extends BaseActivity {
                 ActivitySettingsTagMng.startAction(ActivitySettings.this);
             }
         });
+        proverbSrc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivitySettingsProverbSrc.startAction(ActivitySettings.this);
+            }
+        });
     }
 
     @Override
