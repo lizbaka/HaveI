@@ -87,10 +87,10 @@ public class ActivityBookkeep extends BaseActivity {
         startActivity(intent);
     }
 
-//    public void onClickFindStatisticsView(View view) {
+    public void onClickFindStatisticsView(View view) {
 //        Intent intent = new Intent(this, ActivityBookkeepStatisticsView.class);
 //        startActivity(intent);
-//    }
+    }
 
     public void onClickFindPropertyView(View view) {
         Intent intent = new Intent(this, ActivityBookkeepPropertyView.class);
