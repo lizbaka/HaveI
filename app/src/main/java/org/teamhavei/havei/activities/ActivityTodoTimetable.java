@@ -3,8 +3,10 @@ package org.teamhavei.havei.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -26,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ActivityTodoTimetable extends BaseActivity{
+public class ActivityTodoTimetable extends BaseActivity {
 
     ViewPager timetableVP;
     TabLayout tabLayout;
@@ -35,7 +37,7 @@ public class ActivityTodoTimetable extends BaseActivity{
     EventDBHelper dbHelper;
     List<FragmentTimeTable> fragmentList = new ArrayList<>();
 
-    public static void startAction(Context context){
+    public static void startAction(Context context) {
         Intent intent = new Intent(context, ActivityTodoTimetable.class);
         context.startActivity(intent);
     }
@@ -87,7 +89,7 @@ public class ActivityTodoTimetable extends BaseActivity{
 
                 @Override
                 public void onScrollBehavior(int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                    if(scrollY > oldScrollY) {
+                    if (scrollY > oldScrollY) {
                         fab.hide();
                     } else {
                         fab.show();
@@ -106,7 +108,7 @@ public class ActivityTodoTimetable extends BaseActivity{
         tabLayout.setupWithViewPager(timetableVP);
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             tabLayout.getTabAt(i).setText("第" + Integer.toString(i + 1) + "周");
-            if(fragmentList.get(i).getStartOfWeek().get(Calendar.WEEK_OF_YEAR) == Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)){
+            if (fragmentList.get(i).getStartOfWeek().get(Calendar.WEEK_OF_YEAR) == Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)) {
                 tabLayout.selectTab(tabLayout.getTabAt(i));
             }
         }
@@ -120,7 +122,17 @@ public class ActivityTodoTimetable extends BaseActivity{
 
     }
 
-    private void initView(){
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void initView() {
         timetableVP = findViewById(R.id.event_timetable_viewpager);
         tabLayout = findViewById(R.id.event_timetable_tabs);
         fab = findViewById(R.id.event_timetable_fab);
