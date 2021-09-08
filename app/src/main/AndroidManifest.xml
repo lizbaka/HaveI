@@ -42,7 +42,7 @@
             android:name=".services.HaveITimeWatcher"
             android:exported="false" />
 
-        <activity android:name=".activities.ActivityTest" />
+        <activity android:name=".activities.ActivityHelp" />
         <activity android:name=".activities.ActivityHabitDetail" />
         <activity android:name=".activities.ActivityModifyHabit" />
         <activity
