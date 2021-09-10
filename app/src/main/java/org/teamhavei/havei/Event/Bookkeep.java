@@ -5,7 +5,6 @@ public class Bookkeep {
     private String name;
     private String time;//格式HH:MM
     private Double PM;//计算参数
-    private int iconId;
     public int getid(){return id;}
     public int gettag(){
         return tagID;
@@ -37,13 +36,6 @@ public class Bookkeep {
     public void setTime(String time)
     {
         this.time=time;
-    }
-    public int getIconId() {
-        return iconId;
-    }
-
-    public void setIconId(int iconId) {
-        this.iconId = iconId;
     }
 
 }
