@@ -14,7 +14,7 @@ import org.teamhavei.havei.R;
 import java.lang.reflect.Field;
 
 
-public class DatePickerDialog extends AlertDialog implements OnClickListener, OnDateChangedListener {
+public class HaveIDatePickerDialog extends AlertDialog implements OnClickListener, OnDateChangedListener {
 
     private static final String START_YEAR = "start_year";
     private static final String START_MONTH = "start_month";
@@ -27,13 +27,13 @@ public class DatePickerDialog extends AlertDialog implements OnClickListener, On
         void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth);
     }
 
-    public DatePickerDialog(Context context, OnDateSetListener callBack, int year, int monthOfYear, int dayOfMonth) {
+    public HaveIDatePickerDialog(Context context, OnDateSetListener callBack, int year, int monthOfYear, int dayOfMonth) {
         this(context, 0, callBack, year, monthOfYear, dayOfMonth);
     }
 
 
-    public DatePickerDialog(Context context, int theme, OnDateSetListener callBack, int year, int monthOfYear,
-                            int dayOfMonth) {
+    public HaveIDatePickerDialog(Context context, int theme, OnDateSetListener callBack, int year, int monthOfYear,
+                                 int dayOfMonth) {
         super(context, theme);
 
         mCallBack = callBack;

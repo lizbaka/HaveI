@@ -34,6 +34,7 @@ import org.teamhavei.havei.Event.Todo;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;
+import org.teamhavei.havei.databases.BookkeepDBHelper;
 import org.teamhavei.havei.databases.EventDBHelper;
 import org.teamhavei.havei.databases.UtilDBHelper;
 import org.teamhavei.havei.services.HaveITimeWatcher;
@@ -55,6 +56,7 @@ public class ActivityMain extends BaseActivity {
     private String todoNotificationChannelName;
 
     EventDBHelper eventDBHelper;
+    BookkeepDBHelper bookkeepDBHelper;
     UtilDBHelper utilDBHelper;
     SharedPreferences pref;
     IconAdapter iconAdapter;
@@ -69,6 +71,7 @@ public class ActivityMain extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         eventDBHelper = new EventDBHelper(ActivityMain.this, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
+        bookkeepDBHelper = new BookkeepDBHelper(ActivityMain.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         utilDBHelper = new UtilDBHelper(ActivityMain.this, UtilDBHelper.DB_NAME, null, UtilDBHelper.DB_VERSION);
         iconAdapter = new IconAdapter(ActivityMain.this);
 
@@ -294,11 +297,11 @@ public class ActivityMain extends BaseActivity {
         });
     }
 
-    private void configBookkeepCard(){
+    private void configBookkeepCard() {
         findViewById(R.id.main_bookkeep_card).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityMain.this,ActivityBookkeep.class);
+                Intent intent = new Intent(ActivityMain.this, ActivityBookkeep.class);
                 startActivity(intent);
             }
         });
@@ -306,8 +309,9 @@ public class ActivityMain extends BaseActivity {
     }
 
     private void firstRun() {
-        // TODO: 2021.08.07 首次运行函数。待实现功能：教程、从自带的数据库中引入数据
+        // TODO: 2021.08.07 首次运行函数。待实现功能：教程
         eventDBHelper.initializeTag();
+        bookkeepDBHelper.initializeTag();
     }
 
     private void configProverb() {
@@ -427,7 +431,7 @@ public class ActivityMain extends BaseActivity {
                             goal.setTimeInMillis((long) (Math.random() * delta) + START_DATE_MILLI);
                             OkHttpClient client = new OkHttpClient();
                             HttpUrl.Builder urlBuilder = HttpUrl.parse("https://apiv3.shanbay.com/weapps/dailyquote/quote/").newBuilder();
-                            urlBuilder.addQueryParameter("date",UniToolKit.eventDateFormatter(goal.getTime()));
+                            urlBuilder.addQueryParameter("date", UniToolKit.eventDateFormatter(goal.getTime()));
                             Request request = new Request.Builder()
                                     .url(urlBuilder.build()).build();
                             client.newCall(request).enqueue(new Callback() {

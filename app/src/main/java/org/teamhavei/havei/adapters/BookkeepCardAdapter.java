@@ -3,7 +3,6 @@ package org.teamhavei.havei.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.teamhavei.havei.Event.BookTag;
 import org.teamhavei.havei.Event.Bookkeep;
-import org.teamhavei.havei.Event.EventTag;
-import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
-import org.teamhavei.havei.databases.EventDBHelper;
+
 import java.util.List;
 
 public class BookkeepCardAdapter extends RecyclerView.Adapter<BookkeepCardAdapter.ViewHolder> {
@@ -80,10 +77,10 @@ public class BookkeepCardAdapter extends RecyclerView.Adapter<BookkeepCardAdapte
 
         public ViewHolder(@NonNull View View) {
             super(View);
-            titleView=(TextView) View.findViewById(R.id.todo_card_title);
+            titleView=(TextView) View.findViewById(R.id.bookkeep_record_card_title);
             tagView=(TextView) View.findViewById(R.id.bookkeep_record_card_tag);
             bookView=(TextView) View.findViewById(R.id.bookkeep_record_card_io);
-            iconView=(ImageView) View.findViewById(R.id.bookkeep_note_card_icon);
+            iconView=(ImageView) View.findViewById(R.id.bookkeep_record_card_icon);
         }
     }
 }

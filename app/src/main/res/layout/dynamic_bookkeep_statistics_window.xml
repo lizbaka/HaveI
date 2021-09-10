@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/bookkeep_window_record_border"
             android:layout_marginTop="@dimen/bookkeep_window_record_border"
-            android:text="@string/account_window_income" />
+            android:text="@string/income" />
 
         <TextView
             android:id="@+id/bookkeep_statistics_window_income_value"
@@ -33,7 +33,7 @@
             android:layout_below="@+id/bookkeep_statistics_window_income"
             android:layout_alignLeft="@+id/bookkeep_statistics_window_income"
             android:layout_marginTop="@dimen/bookkeep_window_record_margin"
-            android:text="@string/account_window_expenditure" />
+            android:text="@string/expenditure" />
 
         <TextView
             android:id="@+id/bookkeep_statistics_window_expenditure_value"

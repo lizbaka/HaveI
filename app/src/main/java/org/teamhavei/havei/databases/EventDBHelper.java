@@ -618,7 +618,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
     /**
      * 向数据库预先输入数据
      */
-    // TODO: 2021.08.18 整理完成所需类别后修改
     public void initializeTag() {
         EventTag tag = new EventTag();
         tag.setName("默认分类");

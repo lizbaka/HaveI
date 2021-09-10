@@ -42,6 +42,8 @@
     <string name="set_name">命名：</string>
     <string name="modify">修改</string>
     <string name="delete">删除</string>
+    <string name="income">收入</string>
+    <string name="expenditure">支出</string>
     <!--universal_UI:end-->
 
     <!--activity_main:Begin-->
@@ -248,37 +250,19 @@
     <!--monthly_report:end-->
 
     <!--activity_bookkeep:begin-->
-    <string name="bookkeep_expenditure">支出</string>
-    <string name="bookkeep_income">收入</string>
     <string name="bookkeep_statistics">统计</string>
     <string name="bookkeep_property">资产</string>
     <!--activity_bookkeep:end-->
 
-    <!--activity_bookkeep_add_detail:Begin-->
-    <string name="account_label">标签：</string>
-    <string name="money_value">$</string>
-    <string name="number_one">1</string>
-    <string name="number_two">2</string>
-    <string name="number_three">3</string>
-    <string name="number_four">4</string>
-    <string name="number_five">5</string>
-    <string name="number_six">6</string>
-    <string name="number_seven">7</string>
-    <string name="number_eight">8</string>
-    <string name="number_nine">9</string>
-    <string name="symbol_point">.</string>
-    <string name="number_zero">0</string>
-    <string name="symbol_equal">=</string>
-    <string name="symbol_add">+</string>
-    <string name="symbol_minus">-</string>
-    <string name="symbol_complete">OK</string>
-    <!--activity_bookkeep_add_detail:end-->
+    <!--activity_bookkeep_add:Begin-->
+    <string name="bookkeep_add_note">备注</string>
+    <string name="bookkeep_add_input_hint">输入金额</string>
+    <string name="bookkeep_add_invalid_money">未添加记录</string>
+    <!--activity_bookkeep_add:end-->
 
-    <!--activity_bookkeep:start-->
-    <string name="account_window_expenditure">支出</string>
+    <!--account_window:start-->
     <string name="account_window_remaining_budget">剩余预算</string>
-    <string name="account_window_income">收入</string>
-    <!--activity_bookkeep:end-->
+    <!--account_window:end-->
 
     <!--activity_bookkeep_property_view:start-->
     <string name="bookkeep_property_view">我的资产</string>

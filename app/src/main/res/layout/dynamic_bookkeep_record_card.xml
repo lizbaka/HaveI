@@ -20,7 +20,7 @@
             android:background="@drawable/bg_round_icon">
 
             <ImageView
-                android:id="@+id/bookkeep_note_card_icon"
+                android:id="@+id/bookkeep_record_card_icon"
                 android:layout_width="@dimen/round_icon_size"
                 android:layout_height="@dimen/round_icon_size"
                 android:layout_centerInParent="true" />
@@ -47,7 +47,7 @@
                 android:text="[bookkeep_Record_Card_Tag]" />
 
             <TextView
-                android:id="@+id/todo_card_title"
+                android:id="@+id/bookkeep_record_card_title"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

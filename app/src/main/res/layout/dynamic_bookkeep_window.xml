@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/bookkeep_window_record_border"
             android:layout_marginTop="@dimen/bookkeep_window_record_border"
-            android:text="@string/account_window_expenditure"
+            android:text="@string/expenditure"
             android:textColor="@color/white" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_alignLeft="@+id/bookkeep_window_expenditure"
             android:layout_marginTop="@dimen/bookkeep_window_record_margin"
             android:layout_marginBottom="@dimen/bookkeep_window_record_border"
-            android:text="@string/account_window_income"
+            android:text="@string/income"
             android:textColor="@color/white" />
 
         <TextView
