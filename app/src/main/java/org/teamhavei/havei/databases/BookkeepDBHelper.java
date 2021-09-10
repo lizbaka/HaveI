@@ -15,7 +15,9 @@ import org.teamhavei.havei.Event.BookPlan;
 import org.teamhavei.havei.Event.BookTag;
 import org.teamhavei.havei.Event.Bookkeep;
 import org.teamhavei.havei.Event.Bookran;
+import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
+import org.teamhavei.havei.adapters.IconAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,15 +26,17 @@ import java.util.Date;
 import java.util.List;
 
 public class BookkeepDBHelper extends SQLiteOpenHelper {
+
     public static final String TAG = "DEBUG";
+
     public static final int DATABASE_VERSION = 4;
     public static final String DB_NAME = "Bookkeep.db";
+
     private static final String TABLE_BOOKKEEP = "Bookkeep";
     private static final String BOOKKEEP_ID = "id";
     private static final String BOOKKEEP_NAME = "name";
     private static final String BOOKKEEP_TAG_ID = "tagid";
     private static final String BOOKKEEP_TIME = "time";
-    private static final String BOOKKEEP_ICON_ID = "iconid";
     private static final String BOOKKEEP_PM = "pm";
     private static final String CREATE_BOOKKEEP =
             "create table " + TABLE_BOOKKEEP + "(" +
@@ -40,8 +44,8 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                     BOOKKEEP_NAME + " text," +
                     BOOKKEEP_TAG_ID + " integer," +
                     BOOKKEEP_TIME + " text," +
-                    BOOKKEEP_ICON_ID + " integer," +
                     BOOKKEEP_PM + " double)";
+
     private static final String TABLE_BOOK_TAGS = "BookTags";
     private static final String BOOK_TAGS_ID = "id";
     private static final String BOOK_TAGS_ICON_ID = "icon_id";
@@ -53,6 +57,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                     BOOK_TAGS_ICON_ID + " integer," +//图标id
                     BOOK_TAGS_NAME + " text," +//标签名称
                     BOOK_TAGS_DELETE + " integer)";
+
     private static final String TABLE_BOOK_COUS = "BookCous";
     private static final String BOOK_COUS_ID = "id";
     private static final String BOOK_COUS_TIME = "time";
@@ -104,12 +109,11 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     }
 
     //========Bookkeep相关功能:Begin========
-    private ContentValues accountToValues(Bookkeep mBookkeep) {
+    private ContentValues bookkeepToValues(Bookkeep mBookkeep) {
         ContentValues values = new ContentValues();
         values.put(BOOKKEEP_NAME, mBookkeep.getname());
         values.put(BOOKKEEP_TAG_ID, mBookkeep.gettag());
         values.put(BOOKKEEP_TIME, mBookkeep.gettime());
-        values.put(BOOKKEEP_ICON_ID, mBookkeep.getIconId());
         values.put(BOOKKEEP_PM, mBookkeep.getPM());
         return values;
     }
@@ -127,7 +131,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                     mBookkeep.setname(cursor.getString(cursor.getColumnIndex(BOOKKEEP_NAME)));
                     mBookkeep.settag(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_TAG_ID)));
                     mBookkeep.setTime(cursor.getString(cursor.getColumnIndex(BOOKKEEP_TIME)));
-                    mBookkeep.setIconId(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_ICON_ID)));
                     mBookkeep.setPM(cursor.getDouble(cursor.getColumnIndex(BOOKKEEP_PM)));
                     mBookkeepList.add(mBookkeep);
                 }
@@ -141,7 +144,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     }
 
     public void insertBookkeep(Bookkeep mBookkeep) {
-        db.insert(TABLE_BOOKKEEP, null, accountToValues(mBookkeep));
+        db.insert(TABLE_BOOKKEEP, null, bookkeepToValues(mBookkeep));
     }
 
     public Bookkeep findBookkeepById(int id) {
@@ -206,7 +209,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     }
 
     public void updateBookkeep(Bookkeep oldBookkeep, Bookkeep newBookkeep) {
-        db.update(TABLE_BOOKKEEP, accountToValues(newBookkeep), BOOKKEEP_ID + " = ?", new String[]{Integer.toString(oldBookkeep.getid())});
+        db.update(TABLE_BOOKKEEP, bookkeepToValues(newBookkeep), BOOKKEEP_ID + " = ?", new String[]{Integer.toString(oldBookkeep.getid())});
     }
 
     public void deleteBookkeep(Bookkeep mBookkeep) {
@@ -276,13 +279,22 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                 e.printStackTrace();
             }
         } else {
-            Log.d(TAG, "No ");
+            Log.d(TAG, "No suck BookTag");
         }
         return tagList;
     }
 
-    public List<BookTag> findAllBoktag() {
+    public List<BookTag> findAllBooktag(boolean excludeDeleted) {
         Cursor cursor = db.query(TABLE_BOOK_TAGS, null, null, null, null, null, null);
+        if(cursor.getCount()<=0){
+            BookTag defaultBookTag = new BookTag();
+            defaultBookTag.setName(mContext.getString(R.string.default_tag));
+            defaultBookTag.setDel(false);
+            defaultBookTag.setIconId(IconAdapter.ID_HS_RECORD);
+            db.insert(TABLE_BOOK_TAGS,null,bookTagToValues(defaultBookTag));
+            cursor.close();
+            return findAllBooktag(excludeDeleted);
+        }
         return cursorToBookTaglist(cursor);
     }
 
@@ -406,7 +418,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         if (cursor != null && cursor.getCount() > 0) {
             try {
                 if (cursor.getCount() > 1) {
-                    Log.d(TAG, "cursorToEventTag: Found more than one ");
+                    Log.d(TAG, "cursorToBookPlan: Found more than one ");
                 }
                 cursor.moveToFirst();
                 mBookPlan.setId(cursor.getInt(cursor.getColumnIndex(BOOK_PLAN_ID)));
@@ -440,6 +452,63 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
 
     public void deleteBookplan(BookPlan mBookplan) {
         db.delete(TABLE_BOOK_PLAN, BOOK_PLAN_ID + " = ? ", new String[]{Integer.toString(mBookplan.getId())});
+    }
+
+    public void initializeTag(){
+        BookTag tag = new BookTag();
+        tag.setName("默认分类");
+        tag.setIconId(IconAdapter.DEFAULT_BOOKKEEP_TAG_ICON_ID);
+        insertBookTag(tag);
+        tag.setName("饮食");
+        tag.setIconId(IconAdapter.ID_CS_STAPLE_FOOD);
+        insertBookTag(tag);
+        tag.setName("零食");
+        tag.setIconId(IconAdapter.ID_CS_SNACKS);
+        insertBookTag(tag);
+        tag.setName("交通");
+        tag.setIconId(IconAdapter.ID_CS_CAR_FARE);
+        insertBookTag(tag);
+        tag.setName("薪资");
+        tag.setIconId(IconAdapter.ID_CS_SALARY);
+        insertBookTag(tag);
+        tag.setName("奖金");
+        tag.setIconId(IconAdapter.ID_CS_BONUS);
+        insertBookTag(tag);
+        tag.setName("红包");
+        tag.setIconId(IconAdapter.ID_CS_RED_PACKET);
+        insertBookTag(tag);
+        tag.setName("收益");
+        tag.setIconId(IconAdapter.ID_CS_LEND_OUT);
+        insertBookTag(tag);
+        tag.setName("日用");
+        tag.setIconId(IconAdapter.ID_CS_LAUNDRY_DETERGENT);
+        insertBookTag(tag);
+        tag.setName("住宿");
+        tag.setIconId(IconAdapter.ID_CS_ACCOMMODATION);
+        tag.setName("差旅");
+        tag.setIconId(IconAdapter.ID_CS_AIR_TICKETS);
+        insertBookTag(tag);
+        tag.setName("衣物");
+        tag.setIconId(IconAdapter.ID_CS_CLOTHING);
+        insertBookTag(tag);
+        tag.setName("娱乐");
+        tag.setIconId(IconAdapter.ID_CS_GAME);
+        insertBookTag(tag);
+        tag.setName("锻炼");
+        tag.setIconId(IconAdapter.ID_CS_EXERCISE);
+        insertBookTag(tag);
+        tag.setName("爱好");
+        tag.setIconId(IconAdapter.ID_CS_HOBBY);
+        insertBookTag(tag);
+        tag.setName("医疗");
+        tag.setIconId(IconAdapter.ID_CS_MEDICINE);
+        insertBookTag(tag);
+        tag.setName("宠物");
+        tag.setIconId(IconAdapter.ID_CS_PETS);
+        insertBookTag(tag);
+        tag.setName("学习");
+        tag.setIconId(IconAdapter.ID_CS_TEXTBOOK);
+        insertBookTag(tag);
     }
 
 }
