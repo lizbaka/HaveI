@@ -82,6 +82,14 @@
 
         </RadioGroup>
 
+        <ImageView
+            android:id="@+id/bookkeep_add_tag_mng"
+            android:layout_width="@dimen/ui_icon_size_medium"
+            android:layout_height="@dimen/ui_icon_size_medium"
+            android:layout_margin="@dimen/widget_inview_margin"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/hs_repair" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bookkeep_add_tag_recyc"
             android:layout_width="match_parent"

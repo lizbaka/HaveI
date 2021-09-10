@@ -212,6 +212,10 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         db.update(TABLE_BOOKKEEP, bookkeepToValues(newBookkeep), BOOKKEEP_ID + " = ?", new String[]{Integer.toString(oldBookkeep.getid())});
     }
 
+    public void updateBookkeep(int bookkeepId, Bookkeep newBookkeep) {
+        db.update(TABLE_BOOKKEEP, bookkeepToValues(newBookkeep), BOOKKEEP_ID + " = ?", new String[]{Integer.toString(bookkeepId)});
+    }
+
     public void deleteBookkeep(Bookkeep mBookkeep) {
         db.delete(TABLE_BOOKKEEP, BOOKKEEP_ID + " = ? ", new String[]{Integer.toString(mBookkeep.getid())});
     }
@@ -284,16 +288,21 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return tagList;
     }
 
-    public List<BookTag> findAllBooktag(boolean excludeDeleted) {
-        Cursor cursor = db.query(TABLE_BOOK_TAGS, null, null, null, null, null, null);
-        if(cursor.getCount()<=0){
+    public List<BookTag> findAllBookTag(boolean excludeDeleted) {
+        Cursor cursor;
+        if (excludeDeleted) {
+            cursor = db.query(TABLE_BOOK_TAGS, null, BOOK_TAGS_DELETE + " = ?", new String[]{"0"}, null, null, null);
+        } else {
+            cursor = db.query(TABLE_BOOK_TAGS, null, null, null, null, null, null);
+        }
+        if (cursor.getCount() <= 0) {
             BookTag defaultBookTag = new BookTag();
             defaultBookTag.setName(mContext.getString(R.string.default_tag));
             defaultBookTag.setDel(false);
             defaultBookTag.setIconId(IconAdapter.ID_HS_RECORD);
-            db.insert(TABLE_BOOK_TAGS,null,bookTagToValues(defaultBookTag));
+            db.insert(TABLE_BOOK_TAGS, null, bookTagToValues(defaultBookTag));
             cursor.close();
-            return findAllBooktag(excludeDeleted);
+            return findAllBookTag(excludeDeleted);
         }
         return cursorToBookTaglist(cursor);
     }
@@ -301,6 +310,10 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
 
     public void updateBookTag(BookTag oldBookTag, BookTag newBookTag) {
         db.update(TABLE_BOOK_TAGS, bookTagToValues(newBookTag), BOOK_TAGS_ID + " = ?", new String[]{Integer.toString(oldBookTag.getId())});
+    }
+
+    public void updateBookTag(int tagId, BookTag newBookTag) {
+        db.update(TABLE_BOOK_TAGS, bookTagToValues(newBookTag), BOOK_TAGS_ID + " = ?", new String[]{Integer.toString(tagId)});
     }
 
     public void deleteBookTag(BookTag mBookTag) {
@@ -454,7 +467,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         db.delete(TABLE_BOOK_PLAN, BOOK_PLAN_ID + " = ? ", new String[]{Integer.toString(mBookplan.getId())});
     }
 
-    public void initializeTag(){
+    public void initializeTag() {
         BookTag tag = new BookTag();
         tag.setName("默认分类");
         tag.setIconId(IconAdapter.DEFAULT_BOOKKEEP_TAG_ICON_ID);

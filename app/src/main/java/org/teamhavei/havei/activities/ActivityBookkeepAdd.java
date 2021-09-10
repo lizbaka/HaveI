@@ -157,6 +157,12 @@ public class ActivityBookkeepAdd extends BaseActivity {
                 pickerDialog.show();
             }
         });
+        findViewById(R.id.bookkeep_add_tag_mng).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivitySettingsTagMng.startAction(ActivityBookkeepAdd.this,UniToolKit.TAG_TYPE_BOOKKEEP);
+            }
+        });
     }
 
 //    public void edit() {
@@ -173,7 +179,7 @@ public class ActivityBookkeepAdd extends BaseActivity {
 
     public void initTagList() {
         mtaglist = new ArrayList<>();
-        mtaglist.addAll(bookDBHelper.findAllBooktag(true));
+        mtaglist.addAll(bookDBHelper.findAllBookTag(true));
         mTaglistAdapter = new TagListAdapter(mtaglist, ActivityBookkeepAdd.this, 0, TagListAdapter.ORIENTATION_VERTICAL, new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
@@ -188,7 +194,7 @@ public class ActivityBookkeepAdd extends BaseActivity {
     protected void onResume() {
         super.onResume();
         mtaglist.clear();
-        mtaglist.addAll(bookDBHelper.findAllBooktag(true));
+        mtaglist.addAll(bookDBHelper.findAllBookTag(true));
         mTaglistAdapter.notifyDataSetChanged();
     }
 
@@ -202,7 +208,11 @@ public class ActivityBookkeepAdd extends BaseActivity {
         mBookkeep.setPM(numpadMnger.getNum() * io);
         mBookkeep.settag(selectedTagId);
         mBookkeep.setTime(UniToolKit.eventDateFormatter(calendar.getTime()));
-        bookDBHelper.insertBookkeep(mBookkeep);
+        if (mode == MODE_ADD) {
+            bookDBHelper.insertBookkeep(mBookkeep);
+        } else {
+            bookDBHelper.updateBookkeep(mBookkeep.getid(), mBookkeep);
+        }
     }
 
 //    public void setBookCou() {
