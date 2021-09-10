@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -25,6 +24,7 @@ import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;
 import org.teamhavei.havei.adapters.TagListAdapter;
+import org.teamhavei.havei.databases.BookkeepDBHelper;
 import org.teamhavei.havei.databases.EventDBHelper;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class ActivityModifyTag extends BaseActivity {
     int mode;
 
     EventDBHelper eventDBHelper;
-    // TODO: 2021.09.05 declare bookkeepDBHelper here
+    BookkeepDBHelper bookkeepDBHelper;
     IconAdapter iconAdapter;
     HaveITag mTag;
 
@@ -79,7 +79,7 @@ public class ActivityModifyTag extends BaseActivity {
         tagType = getIntent().getIntExtra(START_PARAM_TAG_TYPE, UniToolKit.TAG_TYPE_EVENT);
 
         eventDBHelper = new EventDBHelper(ActivityModifyTag.this, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
-        //todo: initialize bookkeepDBHelper here
+        bookkeepDBHelper = new BookkeepDBHelper(ActivityModifyTag.this, BookkeepDBHelper.DB_NAME,null,BookkeepDBHelper.DATABASE_VERSION);
         iconAdapter = new IconAdapter(ActivityModifyTag.this);
 
         initView();
@@ -112,7 +112,7 @@ public class ActivityModifyTag extends BaseActivity {
                     selectedIconID = BOOKKEEP_TAG_DEFAULT_ICON_ID;
                 } else {
                     getSupportActionBar().setTitle(R.string.modify_bookkeep_tag_title_modify);
-                    // TODO: 2021.09.05 modify this, get tag from bookkeepDBHelper
+                    mTag = bookkeepDBHelper.findBookTagById(tagId);
                     //mTag =
                     selectedIconID = mTag.getIconId();
                 }
@@ -163,11 +163,10 @@ public class ActivityModifyTag extends BaseActivity {
                             eventDBHelper.updateEventTag(mTag.getId(), (EventTag) mTag);
                         }
                     } else {
-                        // TODO: 2021.09.05 modify here
                         if (mode == MODE_ADD) {
-
+                            bookkeepDBHelper.insertBookTag((BookTag) mTag);
                         } else {
-
+                            bookkeepDBHelper.updateBookTag(mTag.getId(),(BookTag) mTag);
                         }
                     }
                     finish();
@@ -187,7 +186,7 @@ public class ActivityModifyTag extends BaseActivity {
                                 if (tagType == UniToolKit.TAG_TYPE_EVENT) {
                                     eventDBHelper.deleteEventTag((EventTag) mTag);
                                 } else {
-                                    // TODO: 2021.09.05 modify here
+                                    bookkeepDBHelper.deleteBookTag((BookTag) mTag);
                                 }
                                 finish();
                             }

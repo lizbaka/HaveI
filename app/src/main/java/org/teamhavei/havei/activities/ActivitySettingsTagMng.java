@@ -18,6 +18,7 @@ import org.teamhavei.havei.Event.HaveITag;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.TagListAdapter;
+import org.teamhavei.havei.databases.BookkeepDBHelper;
 import org.teamhavei.havei.databases.EventDBHelper;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class ActivitySettingsTagMng extends BaseActivity {
     int tagType;
     List<HaveITag> tagList = new ArrayList<>();
     EventDBHelper eventDBHelper;
+    BookkeepDBHelper bookkeepDBHelper;
 
     public static void startAction(Context context) {
         Intent intent = new Intent(context, ActivitySettingsTagMng.class);
@@ -55,7 +57,7 @@ public class ActivitySettingsTagMng extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         eventDBHelper = new EventDBHelper(ActivitySettingsTagMng.this, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
-        // TODO: 2021.08.29 initialize bookkeepDBHelper here
+        bookkeepDBHelper = new BookkeepDBHelper(ActivitySettingsTagMng.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
 
         initView();
 
@@ -70,9 +72,9 @@ public class ActivitySettingsTagMng extends BaseActivity {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if(dy>0) {
+                if (dy > 0) {
                     tagAddFab.hide();
-                }else{
+                } else {
                     tagAddFab.show();
                 }
             }
@@ -141,7 +143,7 @@ public class ActivitySettingsTagMng extends BaseActivity {
                 tagList.addAll(eventDBHelper.findAllEventTag(true));
                 break;
             case UniToolKit.TAG_TYPE_BOOKKEEP:
-                // TODO: 2021.09.05 modify here
+                tagList.addAll(bookkeepDBHelper.findAllBookTag(true));
                 break;
         }
         tagListRV.getAdapter().notifyDataSetChanged();

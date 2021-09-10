@@ -16,7 +16,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import org.teamhavei.havei.Event.BookCou;
 import org.teamhavei.havei.Event.Bookkeep;
-import org.teamhavei.havei.Event.DatePickerDialog;
+import org.teamhavei.havei.Event.HaveIDatePickerDialog;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.adapters.BookkeepCardAdapter;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
@@ -56,7 +56,7 @@ public class ActivityBookkeep extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(ActivityBookkeep.this, 0, new DatePickerDialog.OnDateSetListener() {
+                new HaveIDatePickerDialog(ActivityBookkeep.this, 0, new HaveIDatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear,
                                           int startDayOfMonth) {
@@ -162,8 +162,6 @@ public class ActivityBookkeep extends BaseActivity {
 
 
     public void onClickAddBookkeep(View view) {
-        Intent intent = new Intent(this, ActivityBookkeepAdd.class);
-        startActivity(intent);
-
+        ActivityBookkeepAdd.startAction(ActivityBookkeep.this);
     }
 }
