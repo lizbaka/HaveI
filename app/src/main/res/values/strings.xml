@@ -3,7 +3,6 @@
     <string name="app_name">HaveI</string>
     <string name="todo_reminder_notification_channel_name">待办提醒</string>
     <string name="habit_reminder_notification_channel_name">习惯执行提醒</string>
-    <string name="pref_first_run">first_run</string>
     <string name="default_user_name">HaveI用户</string>
     <string name="default_tag">默认标签</string>
     <!--system:end-->
@@ -44,6 +43,7 @@
     <string name="delete">删除</string>
     <string name="income">收入</string>
     <string name="expenditure">支出</string>
+    <string name="total">总计</string>
     <!--universal_UI:end-->
 
     <!--activity_main:Begin-->

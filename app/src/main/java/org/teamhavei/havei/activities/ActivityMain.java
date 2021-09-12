@@ -185,10 +185,10 @@ public class ActivityMain extends BaseActivity {
             initNotificationChannel();
         }
         pref = getSharedPreferences(UniToolKit.PREF_SETTINGS, MODE_PRIVATE);
-        if (pref.getBoolean(getString(R.string.pref_first_run), true)) {
+        if (pref.getBoolean(UniToolKit.PREF_FIRST_RUN, true)) {
             firstRun();
             SharedPreferences.Editor editor = pref.edit();
-            editor.putBoolean(getString(R.string.pref_first_run), false);
+            editor.putBoolean(UniToolKit.PREF_FIRST_RUN, false);
             editor.apply();
         }
     }
