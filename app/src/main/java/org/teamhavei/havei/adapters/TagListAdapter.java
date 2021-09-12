@@ -68,6 +68,8 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
         this.mTagList = tagList;
         this.mContext = context;
         this.orientation = orientation;
+        this.onTagClickListener = onTagClickListener;
+        iconAdapter = new IconAdapter(context);
         Boolean found = false;
         for (int i = 0; i < tagList.size(); i++) {
             if (tagList.get(i).getId() == selectedID) {
@@ -78,16 +80,10 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
         }
         if (!found && tagList.size() > 0) {
             selectedID = tagList.get(0).getId();
-            for (int i = 0; i < tagList.size(); i++) {
-                if (tagList.get(i).getId() == selectedID) {
-                    selectedItem = i;
-                    break;
-                }
-            }
+            selectedItem = 0;
             Log.d(TAG, "TagListAdapter: Initial tag ID not found or deleted");
+            onTagClickListener.onClick(mTagList.get(0));
         }
-        this.onTagClickListener = onTagClickListener;
-        iconAdapter = new IconAdapter(context);
     }
 
     /**

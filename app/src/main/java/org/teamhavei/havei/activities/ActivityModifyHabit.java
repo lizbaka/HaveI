@@ -86,11 +86,13 @@ public class ActivityModifyHabit extends BaseActivity {
             mHabit = dbHelper.findHabitById(getIntent().getIntExtra(START_PARAM_HABIT_ID, NULL_HABIT_ID));
             mode = MODE_MODIFY;
             getSupportActionBar().setTitle(R.string.modify_habit_title_modify);
-            setOriginalInfo();
         } else {
+            mHabit = new Habit();
+            mHabit.setTagId(dbHelper.findAllEventTag(true).get(0).getId());
             mode = MODE_ADD;
             getSupportActionBar().setTitle(R.string.modify_habit_title_add);
         }
+        setOriginalInfo();
 
         tagList = new ArrayList<>();
         tagList.addAll(dbHelper.findAllEventTag(true));
@@ -104,8 +106,6 @@ public class ActivityModifyHabit extends BaseActivity {
         });
         tagListRV.setLayoutManager(new GridLayoutManager(ActivityModifyHabit.this, 3, GridLayoutManager.HORIZONTAL, false));
         tagListRV.setAdapter(tagListAdapter);
-
-        iconView.setImageDrawable(iconAdapter.getIcon(selectedEventTagID));
 
         remindTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +145,13 @@ public class ActivityModifyHabit extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tagList.clear();
+        tagList.addAll(dbHelper.findAllEventTag(true));
+        tagListRV.getAdapter().notifyDataSetChanged();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

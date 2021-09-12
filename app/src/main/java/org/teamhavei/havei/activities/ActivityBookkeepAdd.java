@@ -97,7 +97,7 @@ public class ActivityBookkeepAdd extends BaseActivity {
             }
         } else {
             mBookkeep = new Bookkeep();
-            selectedTagId = 0;
+            selectedTagId = bookDBHelper.findAllBookTag(true).get(0).getId();
             IORG.check(R.id.bookkeep_add_radio_expenditure);
         }
 

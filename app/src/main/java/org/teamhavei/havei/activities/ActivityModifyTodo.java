@@ -94,6 +94,7 @@ public class ActivityModifyTodo extends BaseActivity {
             mode = MODE_ADD;
             getSupportActionBar().setTitle(R.string.modify_todo_title_add);
             mTodo = new Todo();
+            mTodo.setTagId(dbHelper.findAllEventTag(true).get(0).getId());
             mTodo.setDateTime(UniToolKit.eventDatetimeFormatter(Calendar.getInstance().getTime()));
         }
         setOriginalInfo();
@@ -243,11 +244,16 @@ public class ActivityModifyTodo extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ActivitySettingsTagMng.startAction(ActivityModifyTodo.this,UniToolKit.TAG_TYPE_EVENT);
-                tagList.clear();
-                tagList.addAll(dbHelper.findAllEventTag(true));
-                tagListAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tagList.clear();
+        tagList.addAll(dbHelper.findAllEventTag(true));
+        tagListRV.getAdapter().notifyDataSetChanged();
     }
 
     @Override
@@ -318,6 +324,7 @@ public class ActivityModifyTodo extends BaseActivity {
             reminderTimeTV.setVisibility(View.GONE);
             reminderEmptyHintTV.setVisibility(View.VISIBLE);
         }
+        selectedEventTagID = mTodo.getTagId();
     }
 
     private boolean checkTodoValidate() {
