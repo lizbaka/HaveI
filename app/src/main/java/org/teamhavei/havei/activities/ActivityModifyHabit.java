@@ -78,6 +78,7 @@ public class ActivityModifyHabit extends BaseActivity {
 
         setSupportActionBar(findViewById(R.id.modify_habit_toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        iconAdapter = new IconAdapter(this);
         dbHelper = new EventDBHelper(this, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
 
         initView();
@@ -96,7 +97,7 @@ public class ActivityModifyHabit extends BaseActivity {
 
         tagList = new ArrayList<>();
         tagList.addAll(dbHelper.findAllEventTag(true));
-        tagListAdapter = new TagListAdapter(tagList, ActivityModifyHabit.this, selectedEventTagID, TagListAdapter.ORIENTATION_HORIZONTAL,new TagListAdapter.OnTagClickListener() {
+        tagListAdapter = new TagListAdapter(tagList, ActivityModifyHabit.this, selectedEventTagID, TagListAdapter.ORIENTATION_HORIZONTAL, new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
                 selectedEventTagID = tag.getId();
@@ -192,9 +193,10 @@ public class ActivityModifyHabit extends BaseActivity {
 
     private void setOriginalInfo() {
         habitNameView.setText(mHabit.getName());
-        habitTimesView.setText(Integer.toString(mHabit.getRepeatTimes()));
-        habitUnitView.setText(Integer.toString(mHabit.getRepeatUnit()));
-        IconAdapter iconAdapter = new IconAdapter(this);
+        if (mode == MODE_MODIFY) {
+            habitTimesView.setText(Integer.toString(mHabit.getRepeatTimes()));
+            habitUnitView.setText(Integer.toString(mHabit.getRepeatUnit()));
+        }
         EventTag tag = dbHelper.findEventTagById(mHabit.getTagId());
         selectedEventTagID = tag.getId();
         iconView.setImageDrawable(iconAdapter.getIcon(tag.getIconId()));
@@ -242,8 +244,8 @@ public class ActivityModifyHabit extends BaseActivity {
                 habitTimesView.requestFocus();
                 status = false;
             }
-            /* 计划打卡次数大于天数 */
-            if (times < 0 || unit < 0) {
+            /* 计划打卡次数大于天数，或为0 */
+            if (times <= 0 || unit <= 0) {
                 habitTimesView.setError(getString(R.string.modify_habit_illegal_frequency));
                 habitTimesView.requestFocus();
                 status = false;
