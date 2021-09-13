@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +26,7 @@ import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.TagListAdapter;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
+import org.teamhavei.havei.fragments.FragmentNumPad;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,7 +47,6 @@ public class ActivityBookkeepAdd extends BaseActivity {
     private int mode = MODE_ADD;
 
     EditText bookTitleET;
-    EditText bookMoneyET;
     RecyclerView mTagRecycRV;
     RadioGroup IORG;
     TextView dateTV;
@@ -53,10 +54,11 @@ public class ActivityBookkeepAdd extends BaseActivity {
 
     Calendar calendar;
     BookkeepDBHelper bookDBHelper;
-    NumpadMnger numpadMnger;
     List<HaveITag> mtaglist;
     TagListAdapter mTaglistAdapter;
     Bookkeep mBookkeep;
+
+    FragmentNumPad numPad;
 
 //    int selectAccount;
 //    BookCou mBookCou;
@@ -81,31 +83,47 @@ public class ActivityBookkeepAdd extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
 
+        numPad = new FragmentNumPad(new FragmentNumPad.NumPadCallback() {
+            @Override
+            public void onConfirm(Double number) {
+                updateBookkeep(number);
+                finish();
+            }
+        });
+        getSupportFragmentManager().beginTransaction().replace(R.id.bookkeep_add_numpad, numPad).commit();
+
         bookDBHelper = new BookkeepDBHelper(ActivityBookkeepAdd.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         initView();
+        calendar = Calendar.getInstance();
+        dateTV.setText(UniToolKit.eventDateFormatter(calendar.getTime()));
+        initTagList();
+        initListener();
 
+        //与numpad相关的初始化操作放到onStart中，因为onCreate完成前fragment未完成创建
         if (getIntent().getIntExtra(START_PARAM_BOOKKEEP_ID, -1) != -1) {
             mode = MODE_MODIFY;
             mBookkeep = bookDBHelper.findBookkeepById(getIntent().getIntExtra(START_PARAM_BOOKKEEP_ID, -1));
             selectedTagId = mBookkeep.gettag();
             bookTitleET.setText(mBookkeep.getname());
-            bookMoneyET.setText(Double.toString(mBookkeep.getPM()));
+        } else {
+            mBookkeep = new Bookkeep();
+            selectedTagId = bookDBHelper.findAllBookTag(true).get(0).getId();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mode == MODE_MODIFY) {
+            numPad.getNumberET().setText(Double.toString(mBookkeep.getPM()));
             if (mBookkeep.getPM() > 0) {
                 IORG.check(R.id.bookkeep_add_radio_income);
             } else {
                 IORG.check(R.id.bookkeep_add_radio_expenditure);
             }
         } else {
-            mBookkeep = new Bookkeep();
-            selectedTagId = bookDBHelper.findAllBookTag(true).get(0).getId();
             IORG.check(R.id.bookkeep_add_radio_expenditure);
         }
-
-        calendar = Calendar.getInstance();
-        dateTV.setText(UniToolKit.eventDateFormatter(calendar.getTime()));
-        numpadMnger = new NumpadMnger();
-        initTagList();
-        initListener();
     }
 
     @Override
@@ -120,7 +138,6 @@ public class ActivityBookkeepAdd extends BaseActivity {
 
     public void initView() {
         bookTitleET = findViewById(R.id.bookkeep_add_title);
-        bookMoneyET = findViewById(R.id.bookkeep_add_money);
         mTagRecycRV = findViewById(R.id.bookkeep_add_tag_recyc);
         IORG = findViewById(R.id.bookkeep_add_io);
         dateTV = findViewById(R.id.tv_select_date);
@@ -128,16 +145,17 @@ public class ActivityBookkeepAdd extends BaseActivity {
     }
 
     public void initListener() {
-        //RADIO
         IORG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.bookkeep_add_radio_expenditure:
                         ioJudge = IO_TYPE_EXPENDITURE;
+                        numPad.getNumberET().setTextColor(ContextCompat.getColor(ActivityBookkeepAdd.this, R.color.red_500));
                         break;
                     case R.id.bookkeep_add_radio_income:
                         ioJudge = IO_TYPE_INCOME;
+                        numPad.getNumberET().setTextColor(ContextCompat.getColor(ActivityBookkeepAdd.this, R.color.green_500));
                         break;
                 }
             }
@@ -160,7 +178,7 @@ public class ActivityBookkeepAdd extends BaseActivity {
         findViewById(R.id.bookkeep_add_tag_mng).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivitySettingsTagMng.startAction(ActivityBookkeepAdd.this,UniToolKit.TAG_TYPE_BOOKKEEP);
+                ActivitySettingsTagMng.startAction(ActivityBookkeepAdd.this, UniToolKit.TAG_TYPE_BOOKKEEP);
             }
         });
     }
@@ -198,14 +216,14 @@ public class ActivityBookkeepAdd extends BaseActivity {
         mTaglistAdapter.notifyDataSetChanged();
     }
 
-    private void updateBookkeep() {
-        if (numpadMnger.getNum() == 0) {
+    private void updateBookkeep(Double value) {
+        if (value == 0) {
             Toast.makeText(ActivityBookkeepAdd.this, R.string.bookkeep_add_invalid_money, Toast.LENGTH_SHORT).show();
             return;
         }
         double io = (ioJudge == IO_TYPE_INCOME ? 1 : -1);
         mBookkeep.setname(bookTitleET.getText().toString());
-        mBookkeep.setPM(numpadMnger.getNum() * io);
+        mBookkeep.setPM(value * io);
         mBookkeep.settag(selectedTagId);
         mBookkeep.setTime(UniToolKit.eventDateFormatter(calendar.getTime()));
         if (mode == MODE_ADD) {
@@ -245,110 +263,6 @@ public class ActivityBookkeepAdd extends BaseActivity {
 //        }
 //    }
 
-    private class NumpadMnger {
-
-        EditText moneyET;
-        private View.OnClickListener numPadBehavior = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.numpad_0:
-                        tryAppend("0");
-                        break;
-                    case R.id.numpad_1:
-                        tryAppend("1");
-                        break;
-                    case R.id.numpad_2:
-                        tryAppend("2");
-                        break;
-                    case R.id.numpad_3:
-                        tryAppend("3");
-                        break;
-                    case R.id.numpad_4:
-                        tryAppend("4");
-                        break;
-                    case R.id.numpad_5:
-                        tryAppend("5");
-                        break;
-                    case R.id.numpad_6:
-                        tryAppend("6");
-                        break;
-                    case R.id.numpad_7:
-                        tryAppend("7");
-                        break;
-                    case R.id.numpad_8:
-                        tryAppend("8");
-                        break;
-                    case R.id.numpad_9:
-                        tryAppend("9");
-                        break;
-                    case R.id.numpad_dot:
-                        tryAppend(".");
-                        break;
-                    case R.id.numpad_back:
-                        back();
-                        break;
-                    case R.id.numpad_confirm:
-                        confirm();
-                        break;
-                }
-            }
-        };
-
-        private NumpadMnger() {
-            moneyET = findViewById(R.id.bookkeep_add_money);
-            findViewById(R.id.numpad_0).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_1).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_2).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_3).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_4).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_5).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_6).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_7).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_8).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_9).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_dot).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_back).setOnClickListener(numPadBehavior);
-            findViewById(R.id.numpad_confirm).setOnClickListener(numPadBehavior);
-        }
-
-        private void tryAppend(String s) {
-            String curNum = moneyET.getText().toString();
-            if (curNum.contains(".")) {
-                if (s.equals(".")) {
-                    return;
-                } else {
-                    int dotIndex = curNum.indexOf(".");
-                    if (curNum.length() - dotIndex - 1 >= 2) {
-                        return;
-                    }
-                }
-            }
-            if (curNum.equals("") && s.equals(".")) {
-                moneyET.append("0");
-            }
-            moneyET.append(s);
-        }
-
-        private void back() {
-            String curNum = moneyET.getText().toString();
-            if (!curNum.equals("")) {
-                moneyET.getText().delete(curNum.length() - 1, curNum.length());
-            }
-        }
-
-        private void confirm() {
-            updateBookkeep();
-            finish();
-        }
-
-        public double getNum() {
-            if (moneyET.getText().toString().equals("")) {
-                return 0;
-            }
-            return Double.parseDouble(moneyET.getText().toString());
-        }
-    }
 
 //    public void onClick_ADD(View view) {
 //
