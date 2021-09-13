@@ -44,6 +44,7 @@
     <string name="income">收入</string>
     <string name="expenditure">支出</string>
     <string name="total">总计</string>
+    <string name="unset">未设置</string>
     <!--universal_UI:end-->
 
     <!--activity_main:Begin-->

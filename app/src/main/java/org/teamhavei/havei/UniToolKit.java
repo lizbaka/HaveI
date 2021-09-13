@@ -1,7 +1,3 @@
-/**
- * @author lbc
- * @last_modifier lbc
- */
 package org.teamhavei.havei;
 
 import java.text.ParseException;
@@ -16,6 +12,7 @@ public class UniToolKit {
     public static final String PREF_SETTINGS = "settings";
     public static final String PREF_SETTINGS_USER_NAME = "user_name";
     public static final String PREF_FIRST_RUN = "first_run";
+    public static final String PREF_BUDGET = "budget";
 
     public static final int TAG_TYPE_EVENT = 0;
     public static final int TAG_TYPE_BOOKKEEP = 1;
@@ -23,10 +20,12 @@ public class UniToolKit {
     public static final String EVENT_DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
     public static final String EVENT_DATE_FORMAT = "yyyy-MM-dd";
     public static final String EVENT_TIME_FORMAT = "HH:mm";
+    public static final String EVENT_YEAR_MONTH_FORMAT = "yyyy-MM";
 
     public static final SimpleDateFormat datetimeSDF = new SimpleDateFormat(EVENT_DATETIME_FORMAT);
     public static final SimpleDateFormat timeSDF = new SimpleDateFormat(EVENT_TIME_FORMAT);
     public static final SimpleDateFormat dateSDF = new SimpleDateFormat(EVENT_DATE_FORMAT);
+    public static final SimpleDateFormat yearMonthSDF = new SimpleDateFormat(EVENT_YEAR_MONTH_FORMAT);
 
     public static String eventDatetimeFormatter(Date dateTime) {
         return datetimeSDF.format(dateTime);
@@ -38,6 +37,10 @@ public class UniToolKit {
 
     public static String eventDateFormatter(Date date) {
         return dateSDF.format(date);
+    }
+
+    public static String eventYearMonthFormatter(Date date) {
+        return yearMonthSDF.format(date);
     }
 
     public static Date eventDatetimeParser(String sDateTime) {
@@ -61,7 +64,6 @@ public class UniToolKit {
     }
 
     public static Date eventTimeParser(String sTime) {
-        SimpleDateFormat timeSDF = new SimpleDateFormat(EVENT_TIME_FORMAT);
         Date time = null;
         try {
             time = timeSDF.parse(sTime);
@@ -69,5 +71,22 @@ public class UniToolKit {
             e.printStackTrace();
         }
         return time;
+    }
+
+    public static Date eventYearMonthParser(String sYearMonth) {
+        Date yearMonth = null;
+        try {
+            yearMonth = yearMonthSDF.parse(sYearMonth);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return yearMonth;
+    }
+
+    public static Date unionDateTime(Date date, Date time) {
+        String sDate = eventDateFormatter(date);
+        String sTime = eventTimeFormatter(time);
+        String sDateTime = String.format("%s %s", sDate, sTime);
+        return eventDatetimeParser(sDateTime);
     }
 }

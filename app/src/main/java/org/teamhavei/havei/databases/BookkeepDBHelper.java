@@ -160,18 +160,29 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return cursorToBookkeepList(cursor);
     }
 
+    public double getIncomeByMonth(Date yearMonth) {
+        String sYearMonth = UniToolKit.eventYearMonthFormatter(yearMonth);
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " > 0" + " AND " + BOOKKEEP_TIME + " LIKE ?", new String[]{sYearMonth + "%"}, null, null, null);
+        cursor.moveToNext();
+        return cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+    }
+
+    public double getExpenditureByMonth(Date yearMonth) {
+        String sYearMonth = UniToolKit.eventYearMonthFormatter(yearMonth);
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " < 0" + " AND " + BOOKKEEP_TIME + " LIKE ?", new String[]{sYearMonth + "%"}, null, null, null);
+        cursor.moveToNext();
+        return cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+    }
 
     //search by month
     public List<Bookkeep> findBookkeepByMonth(String sDate) {
-        Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TIME + " LIKE ?", new String[]{sDate + "%"}, null, null, null);
+        Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TIME + " LIKE ?", new String[]{sDate + "%"}, null, null, BOOKKEEP_TIME + " DESC");
         return cursorToBookkeepList(cursor);
     }
 
     public List<Bookkeep> findBookkeepByTag(int tag, boolean is, String sDate) {
-
         Cursor cursor;
         if (is) {
-
             cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + " and " + BOOKKEEP_PM + " > 0" + " and " + BOOKKEEP_TIME + " LIKE ?", new String[]{Integer.toString(tag), sDate + "%"}, null, null, null);
         } else {
             cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + " and " + BOOKKEEP_PM + " < 0" + " and " + BOOKKEEP_TIME + " LIKE ?", new String[]{Integer.toString(tag), sDate + "%"}, null, null, null);

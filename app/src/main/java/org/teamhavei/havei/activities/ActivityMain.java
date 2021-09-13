@@ -41,6 +41,7 @@ import org.teamhavei.havei.services.HaveITimeWatcher;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.Call;
@@ -88,6 +89,7 @@ public class ActivityMain extends BaseActivity {
         configTodoCard();
         configBookkeepCard();
         configHabitCard();
+        configBookkeepCard();
     }
 
     @Override
@@ -305,7 +307,17 @@ public class ActivityMain extends BaseActivity {
                 startActivity(intent);
             }
         });
-
+        double budget = pref.getFloat(UniToolKit.PREF_BUDGET,0);
+        double MYIn = bookkeepDBHelper.getIncomeByMonth(new Date());
+        double MYOut = bookkeepDBHelper.getExpenditureByMonth(new Date());
+        double MYLeft = budget - MYOut;
+        ((TextView)findViewById(R.id.bookkeep_window_income_value)).setText(String.format("%.2f", MYIn));
+        ((TextView)findViewById(R.id.bookkeep_window_expenditure_value)).setText(String.format("%.2f", MYOut));
+        if (budget == 0) {
+            ((TextView)findViewById(R.id.bookkeep_window_remaining_budget_value)).setText(R.string.unset);
+        } else {
+            ((TextView)findViewById(R.id.bookkeep_window_remaining_budget_value)).setText(String.format("%.2f", MYLeft));
+        }
     }
 
     private void firstRun() {
