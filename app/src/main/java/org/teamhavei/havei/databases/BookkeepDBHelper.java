@@ -154,12 +154,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return mBookkeep;
     }
 
-    public List<Bookkeep> findBookkeepByTime(Date time) {
-        String sTime = UniToolKit.eventTimeFormatter(time);
-        Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TIME + " = ?", new String[]{sTime}, null, null, null);
-        return cursorToBookkeepList(cursor);
-    }
-
     public double getIncomeByMonth(Date yearMonth) {
         String sYearMonth = UniToolKit.eventYearMonthFormatter(yearMonth);
         Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " > 0" + " AND " + BOOKKEEP_TIME + " LIKE ?", new String[]{sYearMonth + "%"}, null, null, null);
@@ -180,9 +174,9 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return cursorToBookkeepList(cursor);
     }
 
-    public List<Bookkeep> findBookkeepByTag(int tag, boolean is, String sDate) {
+    public List<Bookkeep> findBookkeepByTag(int tag, boolean isIncome, String sDate) {
         Cursor cursor;
-        if (is) {
+        if (isIncome) {
             cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + " and " + BOOKKEEP_PM + " > 0" + " and " + BOOKKEEP_TIME + " LIKE ?", new String[]{Integer.toString(tag), sDate + "%"}, null, null, null);
         } else {
             cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + " and " + BOOKKEEP_PM + " < 0" + " and " + BOOKKEEP_TIME + " LIKE ?", new String[]{Integer.toString(tag), sDate + "%"}, null, null, null);
@@ -310,7 +304,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
             BookTag defaultBookTag = new BookTag();
             defaultBookTag.setName(mContext.getString(R.string.default_tag));
             defaultBookTag.setDel(false);
-            defaultBookTag.setIconId(IconAdapter.ID_HS_RECORD);
+            defaultBookTag.setIconId(IconAdapter.DEFAULT_BOOKKEEP_TAG_ICON_ID);
             db.insert(TABLE_BOOK_TAGS, null, bookTagToValues(defaultBookTag));
             cursor.close();
             return findAllBookTag(excludeDeleted);
