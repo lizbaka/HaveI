@@ -55,7 +55,7 @@
                     android:hint="@string/modify_habit_name_hint"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textSize="@dimen/font_size_enlarged" />
+                    android:textSize="@dimen/font_size_title" />
 
             </RelativeLayout>
 
@@ -201,7 +201,7 @@
                     android:backgroundTint="@color/amber_500"
                     android:text="@string/modify_habit_reminder_time_null"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/font_size_enlarged"
+                    android:textSize="@dimen/font_size_title"
                     app:cornerRadius="@dimen/card_corner_radius" />
 
             </LinearLayout>

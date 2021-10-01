@@ -97,7 +97,7 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/habit_detail_yearly_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"/>
+                    android:layout_height="150dp" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -121,7 +121,7 @@
                         android:layout_weight="0.6"
                         android:text="@string/actual_clock_in"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/font_size_enlarged" />
+                        style="@style/TextAppearance.AppCompat.Title"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/actual_clock_in"
@@ -131,7 +131,7 @@
                         android:layout_weight="0.4"
                         android:text="[actual_times]"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/font_size_enlarged" />
+                        style="@style/TextAppearance.AppCompat.Title"/>
 
                 </LinearLayout>
 
@@ -156,7 +156,7 @@
                         android:layout_weight="0.6"
                         android:text="@string/plan_clock_in"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/font_size_enlarged" />
+                        style="@style/TextAppearance.AppCompat.Title"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/plan_clock_in"
@@ -166,7 +166,7 @@
                         android:layout_weight="0.4"
                         android:text="[plan_times]"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/font_size_enlarged" />
+                        style="@style/TextAppearance.AppCompat.Title"/>
 
                 </LinearLayout>
 
@@ -192,7 +192,7 @@
                         android:layout_weight="0.6"
                         android:text="@string/habit_ranking"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/font_size_enlarged" />
+                        style="@style/TextAppearance.AppCompat.Title"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/habit_ranking"
@@ -202,7 +202,7 @@
                         android:layout_weight="0.4"
                         android:text="[habit_rank]"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/font_size_enlarged" />
+                        style="@style/TextAppearance.AppCompat.Title"/>
 
                 </LinearLayout>
 

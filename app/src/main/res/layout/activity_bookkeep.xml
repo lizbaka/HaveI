@@ -49,10 +49,10 @@
 
             <ImageView
                 android:id="@+id/bookkeep_annual_account"
-                android:layout_width="@dimen/bookkeep_topbar_button_size"
-                android:layout_height="@dimen/bookkeep_topbar_button_size"
+                android:layout_width="@dimen/ui_icon_size_medium"
+                android:layout_height="@dimen/ui_icon_size_medium"
+                android:layout_marginRight="@dimen/widget_inview_margin"
                 android:layout_gravity="right"
-                android:layout_marginRight="@dimen/bookkeep_window_border"
                 android:contentDescription="@string/bookkeep_annual_account_button"
                 android:onClick="onClickFindAnnualAccountDetail"
                 android:src="@drawable/calendar" />
@@ -69,20 +69,15 @@
 
         <include
             android:id="@+id/bookkeep_window"
-            layout="@layout/dynamic_bookkeep_window"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/bookkeep_window_border"
-            android:layout_marginTop="@dimen/bookkeep_window_border"
-            android:layout_marginRight="@dimen/bookkeep_window_border" />
+            layout="@layout/dynamic_bookkeep_three_card"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_today_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/bookkeep_window"
-            android:layout_marginHorizontal="@dimen/bookkeep_recycler_border"
-            android:layout_marginTop="@dimen/bookkeep_recycler_border" />
+            android:layout_marginHorizontal="@dimen/card_margin"
+            android:layout_marginTop="@dimen/card_margin" />
 
         <RelativeLayout
             android:id="@+id/bookkeep_bottom_bar"

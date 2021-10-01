@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="font_size_title">20sp</dimen>
+    <dimen name="dialog_padding">10dp</dimen>
+
+    <dimen name="ui_icon_size_small">20dp</dimen>
+    <dimen name="ui_icon_size_medium">38dp</dimen>
+    <dimen name="ui_icon_size_large">55dp</dimen>
+
     <dimen name="card_corner_radius">10dp</dimen>
     <dimen name="card_margin">10dp</dimen>
     <dimen name="card_margin_vertical">5dp</dimen>
@@ -8,21 +15,14 @@
     <dimen name="card_border_width">1dp</dimen>
     <dimen name="card_elevation">5dp</dimen>
 
-
-
     <dimen name="toolbar_border_width">2dp</dimen>
     <dimen name="toolbar_corner_radius">10dp</dimen>
     <dimen name="toolbar_padding">3dp</dimen>
     <dimen name="toolbar_margin">10dp</dimen>
 
-    <dimen name="ui_icon_size_small">20dp</dimen>
-    <dimen name="ui_icon_size_medium">38dp</dimen>
-    <dimen name="ui_icon_size_large">55dp</dimen>
-
     <dimen name="round_icon_background_size">50dp</dimen>
     <dimen name="round_icon_size">35dp</dimen>
 
-    <dimen name="round_icon_all_habit">40dp</dimen>
     <dimen name="habit_status_size">50dp</dimen>
 
     <dimen name="fab_margin">30dp</dimen>
@@ -33,18 +33,12 @@
     <dimen name="proverb_card_text_marginHorizontal">50dp</dimen>
     <dimen name="proverb_card_favorite_size">30dp</dimen>
 
-    <dimen name="dialog_padding">10dp</dimen>
-
     <dimen name="button_margin_wide">40dp</dimen>
     <dimen name="button_margin_narrow">30dp</dimen>
     <dimen name="round_button_margin">10dp</dimen>
 
-    <dimen name="font_size_enlarged">20sp</dimen>
-
     <dimen name="dividing_line_view_height">1dp</dimen>
     <dimen name="widget_inview_margin">5dp</dimen>
-
-    <dimen name="button_margin">30dp</dimen>
 
     <dimen name="timetable_label_width">30dp</dimen>
     <dimen name="timetable_font_size">10sp</dimen>
@@ -57,6 +51,13 @@
     <dimen name="monthly_report_habit_icon_side_length">30dp</dimen>
     <dimen name="monthly_report_QR_code">40dp</dimen>
 
+    <dimen name="bookkeep_bottom_bar_button_vertical_margin">15dp</dimen>
+    <dimen name="bookkeep_bottom_bar_button_horizontal_margin">28dp</dimen>
+    <dimen name="bookkeep_bottom_bar_imageButton_size">60dp</dimen>
+    <dimen name="bookkeep_bottom_bar_button_width">88dp</dimen>
+    <dimen name="bookkeep_bottom_bar_button_height">48dp</dimen>
+
+    <!--=====================================================-->
 
     <dimen name="bookkeep_spinner_margin">8dp</dimen>
     <dimen name="bookkeep_spinner_height">30dp</dimen>
@@ -65,13 +66,10 @@
     <dimen name="bookkeep_window_record_margin">10dp</dimen>
     <dimen name="bookkeep_window_border">12dp</dimen>
     <dimen name="bookkeep_recycler_border">12dp</dimen>
-    <dimen name="bookkeep_bottom_bar_button_vertical_margin">15dp</dimen>
-    <dimen name="bookkeep_bottom_bar_button_horizontal_margin">28dp</dimen>
-    <dimen name="bookkeep_bottom_bar_imageButton_size">60dp</dimen>
-    <dimen name="bookkeep_bottom_bar_button_width">88dp</dimen>
-    <dimen name="bookkeep_bottom_bar_button_height">48dp</dimen>
     <dimen name="bookkeep_monthly_account_record_margin">81dp</dimen>
     <dimen name="bookkeep_monthly_account_record_border">10dp</dimen>
+
+    <!--=====================================================-->
 
     <!--activity_add_account_detail:Begin-->
     <dimen name="bookkeep_add_record_height">44dp</dimen>
@@ -86,7 +84,7 @@
     <dimen name="bookkeep_add_wallet_type_width">275dp</dimen>
 
     <dimen name="proverb_category">10dp</dimen>
-    <dimen name="subordinate_indentation">30dp</dimen>
+    <dimen name="proverb_settings_subordinate_offset1">30dp</dimen>
 
 
 </resources>

@@ -202,7 +202,7 @@
             android:backgroundTint="@color/amber_500"
             android:text="@string/todo_library"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_size_enlarged"
+            style="@style/TextAppearance.AppCompat.Title"
             app:cornerRadius="@dimen/card_corner_radius" />
 
 
@@ -216,7 +216,7 @@
             android:backgroundTint="@color/amber_500"
             android:text="@string/habit_library"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_size_enlarged"
+            style="@style/TextAppearance.AppCompat.Title"
             app:cornerRadius="@dimen/card_corner_radius" />
 
     </RelativeLayout>
