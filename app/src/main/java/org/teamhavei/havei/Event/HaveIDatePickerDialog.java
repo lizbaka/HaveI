@@ -1,4 +1,5 @@
 package org.teamhavei.havei.Event;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
+
 import org.teamhavei.havei.R;
-import java.lang.reflect.Field;
+
+import java.util.Calendar;
 
 
 public class HaveIDatePickerDialog extends AlertDialog implements OnClickListener, OnDateChangedListener {
@@ -27,9 +30,9 @@ public class HaveIDatePickerDialog extends AlertDialog implements OnClickListene
         void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth);
     }
 
-    public HaveIDatePickerDialog(Context context, OnDateSetListener callBack, int year, int monthOfYear, int dayOfMonth) {
-        this(context, 0, callBack, year, monthOfYear, dayOfMonth);
-    }
+//    public HaveIDatePickerDialog(Context context, OnDateSetListener callBack, int year, int monthOfYear, int dayOfMonth) {
+//        this(context, 0, callBack, year, monthOfYear, dayOfMonth);
+//    }
 
 
     public HaveIDatePickerDialog(Context context, int theme, OnDateSetListener callBack, int year, int monthOfYear,
@@ -39,8 +42,8 @@ public class HaveIDatePickerDialog extends AlertDialog implements OnClickListene
         mCallBack = callBack;
 
         Context themeContext = getContext();
-        setButton(BUTTON_POSITIVE, "确 定", this);
-        setButton(BUTTON_NEGATIVE, "取 消", this);
+        setButton(BUTTON_POSITIVE, themeContext.getString(R.string.confirm), this);
+        setButton(BUTTON_NEGATIVE, themeContext.getString(R.string.cancel), this);
         setIcon(0);
 
         LayoutInflater inflater = (LayoutInflater) themeContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -54,35 +57,21 @@ public class HaveIDatePickerDialog extends AlertDialog implements OnClickListene
 
     private void hideDay(DatePicker mDatePicker) {
         try {
-            /* 处理android5.0以上的特殊情况 */
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                int daySpinnerId = Resources.getSystem().getIdentifier("day", "id", "android");
-                if (daySpinnerId != 0) {
-                    View daySpinner = mDatePicker.findViewById(daySpinnerId);
-                    if (daySpinner != null) {
-                        daySpinner.setVisibility(View.GONE);
-                    }
-                }
-            } else {
-                Field[] datePickerfFields = mDatePicker.getClass().getDeclaredFields();
-                for (Field datePickerField : datePickerfFields) {
-                    if ("mDaySpinner".equals(datePickerField.getName()) || ("mDayPicker").equals(datePickerField.getName())) {
-                        datePickerField.setAccessible(true);
-                        Object dayPicker = new Object();
-                        try {
-                            dayPicker = datePickerField.get(mDatePicker);
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        } catch (IllegalArgumentException e) {
-                            e.printStackTrace();
-                        }
-                        ((View) dayPicker).setVisibility(View.GONE);
-                    }
+            int daySpinnerId = Resources.getSystem().getIdentifier("day", "id", "android");
+            if (daySpinnerId != 0) {
+                View daySpinner = mDatePicker.findViewById(daySpinnerId);
+                if (daySpinner != null) {
+                    daySpinner.setVisibility(View.GONE);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public HaveIDatePickerDialog setMaxDate(Calendar calendar){
+        mDatePickerStart.setMaxDate(calendar.getTimeInMillis());
+        return this;
     }
 
     public void onClick(DialogInterface dialog, int which) {
