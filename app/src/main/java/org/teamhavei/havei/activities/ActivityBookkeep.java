@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -26,6 +28,11 @@ import java.util.Calendar;
 import java.util.List;
 
 public class ActivityBookkeep extends BaseActivity {
+
+    public static void startAction(Context context){
+        Intent intent = new Intent(context, ActivityBookkeep.class);
+        context.startActivity(intent);
+    }
 
     SharedPreferences pref;
     double budget;
@@ -53,8 +60,6 @@ public class ActivityBookkeep extends BaseActivity {
         init();
 
         mShowDateBTN.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 new HaveIDatePickerDialog(ActivityBookkeep.this, 0, new HaveIDatePickerDialog.OnDateSetListener() {
@@ -65,7 +70,9 @@ public class ActivityBookkeep extends BaseActivity {
                         mSelectDateTV.setText(UniToolKit.eventYearMonthFormatter(calendar.getTime()));
                         update();
                     }
-                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+                        .setMaxDate(Calendar.getInstance())
+                        .show();
             }
         });
 
@@ -95,9 +102,8 @@ public class ActivityBookkeep extends BaseActivity {
 //        startActivity(intent);
     }
 
-    public void onClickFindStatisticsView(View view) {
-//        Intent intent = new Intent(this, ActivityBookkeepStatisticsView.class);
-//        startActivity(intent);
+    public void onClickStatisticsMonthly(View view) {
+        ActivityBookkeepStatisticMonthly.startAction(ActivityBookkeep.this);
     }
 
     public void onClickFindPropertyView(View view) {
