@@ -1,9 +1,7 @@
 package org.teamhavei.havei.adapters;
-// TODO: 2021/8/10 做好适配
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,6 @@ import org.teamhavei.havei.Event.BookTag;
 import org.teamhavei.havei.Event.Bookkeep;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
-import org.teamhavei.havei.activities.ActivityBookkeepAdd;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
 
 import java.text.SimpleDateFormat;
@@ -37,10 +34,17 @@ public class BookkeepCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private IconAdapter iconAdapter;
     private Context mContext;
 
+    public interface BookkeepCardCallBack{
+        void OnLongClick(Bookkeep bookkeep);
+    }
 
-    public BookkeepCardAdapter(List<Bookkeep> bookList, Context context) {
+    BookkeepCardCallBack mCallback;
+
+
+    public BookkeepCardAdapter(List<Bookkeep> bookList, Context context, BookkeepCardCallBack callback) {
         mBookList = bookList;
         mContext = context;
+        mCallback = callback;
         dbHelper = new BookkeepDBHelper(mContext, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         iconAdapter = new IconAdapter(mContext);
         adjustListForGrouping();
@@ -52,10 +56,11 @@ public class BookkeepCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (viewType == VIEW_TYPE_BOOKKEEP) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_bookkeep_record_card, parent, false);
             holder = new BookkeepHolder(view);
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
-                public void onClick(View v) {
-
+                public boolean onLongClick(View v) {
+                    mCallback.OnLongClick(((BookkeepHolder)holder).getmBookkeep());
+                    return true;
                 }
             });
         } else {
@@ -124,6 +129,10 @@ public class BookkeepCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView ioTV;
         ImageView iconView;
         Bookkeep mBookkeep;
+
+        public Bookkeep getmBookkeep() {
+            return mBookkeep;
+        }
 
         public BookkeepHolder(@NonNull View view) {
             super(view);
