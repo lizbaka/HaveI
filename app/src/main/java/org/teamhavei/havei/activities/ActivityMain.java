@@ -84,12 +84,7 @@ public class ActivityMain extends BaseActivity {
         /* 处理基本组件 */
         initBasicPart();
 
-        configGreetingCard();
         configProverb();
-        configTodoCard();
-        configBookkeepCard();
-        configHabitCard();
-        configBookkeepCard();
     }
 
     @Override
@@ -98,6 +93,7 @@ public class ActivityMain extends BaseActivity {
         configGreetingCard();
         configTodoCard();
         configHabitCard();
+        configBookkeepCard();
     }
 
     @Override

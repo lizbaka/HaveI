@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,7 +31,7 @@ import java.util.List;
 
 public class ActivityBookkeep extends BaseActivity {
 
-    public static void startAction(Context context){
+    public static void startAction(Context context) {
         Intent intent = new Intent(context, ActivityBookkeep.class);
         context.startActivity(intent);
     }
@@ -41,7 +43,7 @@ public class ActivityBookkeep extends BaseActivity {
     private MaterialCardView mShowDateBTN;
     private TextView mSelectDateTV;
     private BookkeepDBHelper dbHelper;
-//    private BookCou mBookCou;
+    //    private BookCou mBookCou;
     private List<Bookkeep> mBookList;
     private TextView month_in;
     private TextView month_out;
@@ -57,6 +59,7 @@ public class ActivityBookkeep extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         dbHelper = new BookkeepDBHelper(ActivityBookkeep.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
+        pref = getSharedPreferences(UniToolKit.PREF_SETTINGS, MODE_PRIVATE);
         init();
 
         mShowDateBTN.setOnClickListener(new View.OnClickListener() {
@@ -75,9 +78,6 @@ public class ActivityBookkeep extends BaseActivity {
                         .show();
             }
         });
-
-        pref = getSharedPreferences(UniToolKit.PREF_SETTINGS, MODE_PRIVATE);
-        budget = pref.getFloat(UniToolKit.PREF_BUDGET, 0);
 
     }
 
@@ -126,13 +126,35 @@ public class ActivityBookkeep extends BaseActivity {
         calendar = Calendar.getInstance();
         mSelectDateTV.setText(UniToolKit.eventYearMonthFormatter(calendar.getTime()));
 
-        ((TextView)findViewById(R.id.bookkeep_three_title3)).setText(R.string.income);
-        ((TextView)findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure);
-        ((TextView)findViewById(R.id.bookkeep_three_title2)).setText(R.string.remaining_budget);
+        ((TextView) findViewById(R.id.bookkeep_three_title3)).setText(R.string.income);
+        ((TextView) findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure);
+        ((TextView) findViewById(R.id.bookkeep_three_title2)).setText(R.string.remaining_budget);
 
         mBookList = new ArrayList<>();
         recordRV.setLayoutManager(new LinearLayoutManager(ActivityBookkeep.this));
-        recordRV.setAdapter(new BookkeepCardAdapter(mBookList, ActivityBookkeep.this));
+        recordRV.setAdapter(new BookkeepCardAdapter(mBookList, ActivityBookkeep.this, new BookkeepCardAdapter.BookkeepCardCallBack() {
+            @Override
+            public void OnLongClick(Bookkeep bookkeep) {
+                new AlertDialog.Builder(ActivityBookkeep.this)
+                        .setCancelable(true)
+                        .setTitle(R.string.bookkeep_delete_dialog_title)
+                        .setMessage(R.string.bookkeep_delete_dialog_msg)
+                        .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dbHelper.deleteBookkeep(bookkeep);
+                                update();
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        }));
         recordRV.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -142,6 +164,13 @@ public class ActivityBookkeep extends BaseActivity {
                 } else {
                     findViewById(R.id.bookkeep_bottom_bar).setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        findViewById(R.id.bookkeep_overview).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityBudget.startAction(ActivityBookkeep.this);
             }
         });
 
@@ -191,6 +220,7 @@ public class ActivityBookkeep extends BaseActivity {
 //            updateCard(mBookCou.getIn(), mBookCou.getOut());
 //            updateRec(true);
 //        }
+        budget = pref.getFloat(UniToolKit.PREF_BUDGET, 0);
         updateRecord(true);
         updateCard(dbHelper.getIncomeByMonth(calendar.getTime()), dbHelper.getExpenditureByMonth(calendar.getTime()));
     }

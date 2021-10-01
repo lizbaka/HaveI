@@ -51,6 +51,7 @@
             android:name=".activities.ActivityBookkeepAdd"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activities.ActivityBookkeepStatisticMonthly"/>
+        <activity android:name=".activities.ActivityBudget"/>
         <activity
             android:name=".activities.ActivityBookkeepPropertyView"
             android:label="@string/bookkeep_property_view"
