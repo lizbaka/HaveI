@@ -133,7 +133,7 @@ public class ActivityProverbList extends BaseActivity {
     }
 
     private void showAddDialog(){
-        View view = LayoutInflater.from(this).inflate(R.layout.dynamic_dialog_edit_text,null);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit_text,null);
         EditText newProverbView = (EditText) view.findViewById(R.id.edittext_dialog_edittext);
         AlertDialog.Builder builder = new AlertDialog.Builder(ActivityProverbList.this)
                 .setTitle(getString(R.string.proverb_list_add))

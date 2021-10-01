@@ -68,14 +68,14 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <include
-            android:id="@+id/bookkeep_window"
-            layout="@layout/dynamic_bookkeep_three_card"/>
+            android:id="@+id/bookkeep_overview"
+            layout="@layout/dynamic_bookkeep_three_card" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_today_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/bookkeep_window"
+            android:layout_below="@+id/bookkeep_overview"
             android:layout_marginHorizontal="@dimen/card_margin"
             android:layout_marginTop="@dimen/card_margin" />
 

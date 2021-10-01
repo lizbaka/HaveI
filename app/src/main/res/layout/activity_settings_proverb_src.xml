@@ -47,7 +47,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_weight="0.7"
-                android:text="@string/proverb_source_one"
+                android:text="@string/proverb_source_shanbay"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_title" />
 
@@ -94,7 +94,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_weight="0.7"
-                android:text="@string/proverb_source_two"
+                android:text="@string/proverb_source_hitokoto"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_title" />
 
@@ -137,7 +137,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_weight="0.7"
-                android:text="@string/proverb_source_catetory_one"
+                android:text="@string/proverb_source_hitokoto_poems"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_title" />
 
@@ -180,7 +180,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_weight="0.7"
-                android:text="@string/proverb_source_catetory_two"
+                android:text="@string/proverb_source_hitokoto_philosophy"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_title" />
 
@@ -223,7 +223,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="@dimen/widget_inview_margin"
                 android:layout_weight="0.7"
-                android:text="@string/proverb_source_catetory_one"
+                android:text="@string/proverb_source_hitokoto_poems"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_title" />
 
