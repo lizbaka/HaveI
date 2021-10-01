@@ -12,6 +12,11 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.HaveI"
         android:usesCleartextTraffic="true">
+
+        <service
+            android:name=".services.HaveITimeWatcher"
+            android:exported="false" />
+
         <activity
             android:name=".activities.ActivitySettingsProverbSrc"
             android:exported="true" />
@@ -37,18 +42,15 @@
         <activity android:name=".activities.ActivityMainEvent" />
         <activity android:name=".activities.ActivityProverbList" />
         <activity android:name=".activities.ActivityTodoTimetable" />
-
-        <service
-            android:name=".services.HaveITimeWatcher"
-            android:exported="false" />
-
         <activity android:name=".activities.ActivityHelp" />
         <activity android:name=".activities.ActivityHabitDetail" />
         <activity android:name=".activities.ActivityModifyHabit" />
 
         <activity android:name=".activities.ActivityBookkeep" />
-        <activity android:name=".activities.ActivityBookkeepAdd"
+        <activity
+            android:name=".activities.ActivityBookkeepAdd"
             android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".activities.ActivityBookkeepStatisticMonthly"/>
         <activity
             android:name=".activities.ActivityBookkeepPropertyView"
             android:label="@string/bookkeep_property_view"

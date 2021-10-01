@@ -93,8 +93,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="@dimen/bookkeep_bottom_bar_button_horizontal_margin"
                 android:gravity="center"
-                android:onClick="onClickFindStatisticsView"
-                android:text="@string/bookkeep_statistics" />
+                android:onClick="onClickStatisticsMonthly"
+                android:text="@string/bookkeep_statistics_monthly" />
 
             <ImageButton
                 android:id="@+id/bookkeep_bottom_bar_add"
