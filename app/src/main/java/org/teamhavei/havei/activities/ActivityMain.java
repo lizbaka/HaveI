@@ -271,7 +271,7 @@ public class ActivityMain extends BaseActivity {
                 params.height = GridLayout.LayoutParams.WRAP_CONTENT;
                 params.width = 0;
                 params.columnSpec = GridLayout.spec(i, 1f);
-                child = LayoutInflater.from(ActivityMain.this).inflate(R.layout.dynamic_icon_title_secondary, null);
+                child = LayoutInflater.from(ActivityMain.this).inflate(R.layout.dynamic_icon_title, null);
                 ImageView iconIV = child.findViewById(R.id.icon_title_icon);
                 View iconContainerV = child.findViewById(R.id.icon_title_icon_container);
                 iconContainerV.setBackgroundTintList(ContextCompat.getColorStateList(ActivityMain.this, R.color.habit_icon_state_list));
@@ -311,12 +311,15 @@ public class ActivityMain extends BaseActivity {
         double MYIn = bookkeepDBHelper.getIncomeByMonth(new Date());
         double MYOut = bookkeepDBHelper.getExpenditureByMonth(new Date());
         double MYLeft = budget - MYOut;
-        ((TextView)findViewById(R.id.bookkeep_window_income_value)).setText(String.format("%.2f", MYIn));
-        ((TextView)findViewById(R.id.bookkeep_window_expenditure_value)).setText(String.format("%.2f", MYOut));
+        ((TextView)findViewById(R.id.bookkeep_three_title3)).setText(R.string.income);
+        ((TextView)findViewById(R.id.bookkeep_three_value3)).setText(String.format("%.2f", MYIn));
+        ((TextView)findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure);
+        ((TextView)findViewById(R.id.bookkeep_three_value1)).setText(String.format("%.2f", MYOut));
+        ((TextView)findViewById(R.id.bookkeep_three_title2)).setText(R.string.remaining_budget);
         if (budget == 0) {
-            ((TextView)findViewById(R.id.bookkeep_window_remaining_budget_value)).setText(R.string.unset);
+            ((TextView)findViewById(R.id.bookkeep_three_value2)).setText(R.string.unset);
         } else {
-            ((TextView)findViewById(R.id.bookkeep_window_remaining_budget_value)).setText(String.format("%.2f", MYLeft));
+            ((TextView)findViewById(R.id.bookkeep_three_value2)).setText(String.format("%.2f", MYLeft));
         }
     }
 

@@ -21,7 +21,6 @@ import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.BookkeepCardAdapter;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -37,9 +36,6 @@ public class ActivityBookkeep extends BaseActivity {
     private BookkeepDBHelper dbHelper;
 //    private BookCou mBookCou;
     private List<Bookkeep> mBookList;
-    private Double MYin = 0d;
-    private Double MYout = 0d;
-    private Double MYleft = 0d;
     private TextView month_in;
     private TextView month_out;
     private TextView month_left;
@@ -117,12 +113,16 @@ public class ActivityBookkeep extends BaseActivity {
     void init() {
         mShowDateBTN = findViewById(R.id.btn_show_date);
         mSelectDateTV = findViewById(R.id.tv_select_date);
-        month_in = findViewById(R.id.bookkeep_window_income_value);
-        month_out = findViewById(R.id.bookkeep_window_expenditure_value);
-        month_left = findViewById(R.id.bookkeep_window_remaining_budget_value);
+        month_in = findViewById(R.id.bookkeep_three_value3);
+        month_out = findViewById(R.id.bookkeep_three_value1);
+        month_left = findViewById(R.id.bookkeep_three_value2);
         recordRV = findViewById(R.id.recyclerView_today_detail);
         calendar = Calendar.getInstance();
         mSelectDateTV.setText(UniToolKit.eventYearMonthFormatter(calendar.getTime()));
+
+        ((TextView)findViewById(R.id.bookkeep_three_title3)).setText(R.string.income);
+        ((TextView)findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure);
+        ((TextView)findViewById(R.id.bookkeep_three_title2)).setText(R.string.remaining_budget);
 
         mBookList = new ArrayList<>();
         recordRV.setLayoutManager(new LinearLayoutManager(ActivityBookkeep.this));
@@ -153,12 +153,9 @@ public class ActivityBookkeep extends BaseActivity {
 
     @SuppressLint("SetTextI18n")
     void updateCard(double in, double out) {
-        MYin = in;
-        MYleft = budget - out;
-        MYout = out;
-//        month_in.setText(MYin.toString());
-//        month_out.setText(MYout.toString());
-//        month_left.setText(MYleft.toString());
+        Double MYin = in;
+        Double MYleft = budget - out;
+        Double MYout = out;
         month_in.setText(String.format("%.2f", MYin));
         month_out.setText(String.format("%.2f", MYout));
         if (budget == 0) {
