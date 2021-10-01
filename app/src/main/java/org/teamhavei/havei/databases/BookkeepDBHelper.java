@@ -165,7 +165,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         String sYearMonth = UniToolKit.eventYearMonthFormatter(yearMonth);
         Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " < 0" + " AND " + BOOKKEEP_TIME + " LIKE ?", new String[]{sYearMonth + "%"}, null, null, null);
         cursor.moveToNext();
-        return cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+        return -cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
     }
 
     //search by month
