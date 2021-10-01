@@ -100,7 +100,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     private SQLiteDatabase db = getReadableDatabase();
 
-    public EventDBHelper( Context context, String name,  SQLiteDatabase.CursorFactory factory, int version) {
+    public EventDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         mContext = context;
     }
@@ -263,7 +263,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return findHabitExecByHabitIdWithDateRange(habitID, startDate, endDate).size() >= habit.getRepeatTimes();
     }
 
-    public Boolean checkHabitFinishAt(int habitID, Calendar centerCalendar){
+    public Boolean checkHabitFinishAt(int habitID, Calendar centerCalendar) {
         Habit mHabit = findHabitById(habitID);
         Calendar startCalendar = (Calendar) centerCalendar.clone();
         Calendar endCalendar = (Calendar) centerCalendar.clone();
@@ -276,7 +276,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
         List<Habit> allHabit = findAllHabit();
         List<Habit> unfinishedHabit = new ArrayList<>();
         for (Habit mHabit : allHabit) {
-            if (!checkHabitFinishAt(mHabit.getId(),centerCalendar) || isHabitDone(mHabit.getId(),centerCalendar.getTime())) {
+            if (!checkHabitFinishAt(mHabit.getId(), centerCalendar) || isHabitDone(mHabit.getId(), centerCalendar.getTime())) {
                 unfinishedHabit.add(mHabit);
             }
         }
@@ -399,13 +399,13 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return cursor.getCount() > 0;
     }
 
-    public int getHabitExecCount(){
-        Cursor cursor = db.query(TABLE_HABIT_EXECS,null,null,null,null,null,null);
+    public int getHabitExecCount() {
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, null, null, null, null, null, null);
         return cursor.getCount();
     }
 
-    public int getHabitExecDayCount(){
-        Cursor cursor = db.query(TABLE_HABIT_EXECS,new String[]{HABIT_EXECS_DATE,"COUNT(" + HABIT_EXECS_DATE + ")"},null,null,HABIT_EXECS_DATE,null,null);
+    public int getHabitExecDayCount() {
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, new String[]{HABIT_EXECS_DATE, "COUNT(" + HABIT_EXECS_DATE + ")"}, null, null, HABIT_EXECS_DATE, null, null);
         return cursor.getCount();
     }
     //========Habit_Exec相关功能:end=========
@@ -476,12 +476,12 @@ public class EventDBHelper extends SQLiteOpenHelper {
         } else {
             cursor = db.query(TABLE_EVENT_TAGS, null, null, null, null, null, null);
         }
-        if(cursor.getCount()<=0){
+        if (cursor.getCount() <= 0) {
             EventTag defaultEventTag = new EventTag();
             defaultEventTag.setName(mContext.getString(R.string.default_tag));
             defaultEventTag.setDel(false);
             defaultEventTag.setIconId(IconAdapter.ID_HS_RECORD);
-            db.insert(TABLE_EVENT_TAGS,null,eventTagToValues(defaultEventTag));
+            db.insert(TABLE_EVENT_TAGS, null, eventTagToValues(defaultEventTag));
             cursor.close();
             return findAllEventTag(excludeDeleted);
         }
@@ -573,7 +573,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     public List<Todo> findUndoneTodoByDate(Date date) {
         String sDate = UniToolKit.eventDateFormatter(date);
-        Cursor cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " LIKE ? AND " + TODO_DONE + " = ?", new String[]{sDate + "%","0"},null,null,TODO_DATETIME);
+        Cursor cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " LIKE ? AND " + TODO_DONE + " = ?", new String[]{sDate + "%", "0"}, null, null, TODO_DATETIME);
         return cursorToTodoList(cursor);
     }
 
@@ -594,9 +594,14 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return cursorToTodoList(cursor);
     }
 
-    public List<Todo> findTodoAfterToday(){
+    public List<Todo> findTodoAfterToday(boolean excludeDone) {
         String sNow = UniToolKit.eventDateFormatter(new Date());
-        Cursor cursor = db.query(TABLE_TODO,null,TODO_DATETIME + " >= ?",new String[]{sNow},null,null,TODO_DATETIME);
+        Cursor cursor;
+        if (excludeDone) {
+            cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " >= ?" + " AND " + TODO_DONE + " = ?", new String[]{sNow,"0"}, null, null, TODO_DATETIME);
+        }else{
+            cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " >= ?", new String[]{sNow}, null, null, TODO_DATETIME);
+        }
         return cursorToTodoList(cursor);
     }
 

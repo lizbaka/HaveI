@@ -224,7 +224,7 @@ public class ActivityMain extends BaseActivity {
     }
 
     private void configTodoCard() {
-        List<Todo> todoList = eventDBHelper.findTodoAfterToday();
+        List<Todo> todoList = eventDBHelper.findTodoAfterToday(true);
         if (todoList != null && !todoList.isEmpty()) {
             Todo todo = todoList.get(0);
             findViewById(R.id.main_todo_card).setVisibility(View.VISIBLE);
@@ -303,8 +303,7 @@ public class ActivityMain extends BaseActivity {
         findViewById(R.id.main_bookkeep_card).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityMain.this, ActivityBookkeep.class);
-                startActivity(intent);
+                ActivityBookkeep.startAction(ActivityMain.this);
             }
         });
         double budget = pref.getFloat(UniToolKit.PREF_BUDGET,0);
