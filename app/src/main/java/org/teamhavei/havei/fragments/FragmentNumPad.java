@@ -1,5 +1,6 @@
 package org.teamhavei.havei.fragments;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,26 +10,47 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
 import org.teamhavei.havei.R;
 
-public class FragmentNumPad extends BaseFragment{
+public class FragmentNumPad extends BottomSheetDialogFragment {
+
+    public static final int MODE_NORMAL = 0;
+    public static final int MODE_BOTTOM_SHEET = 1;
 
     private View.OnClickListener numPadBehavior;
 
+    int mode = MODE_NORMAL;
+
     EditText numberET;
+    double originalValue;
 
     NumPadCallback callback;
 
-    public FragmentNumPad(NumPadCallback callBack) {
+    public FragmentNumPad(NumPadCallback callBack, int mode) {
         this.callback = callBack;
+        this.mode = mode;
+    }
+
+    public FragmentNumPad(NumPadCallback callBack, int mode, double curValue) {
+        this.callback = callBack;
+        this.mode = mode;
+        originalValue = curValue;
     }
 
     public EditText getNumberET() {
         return numberET;
     }
 
-    public interface NumPadCallback{
+    public interface NumPadCallback {
         void onConfirm(Double number);
+    }
+
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        return new BottomSheetDialog(this.getContext());
     }
 
     @Override
@@ -85,12 +107,15 @@ public class FragmentNumPad extends BaseFragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_numpad,container,false);
+        View view = inflater.inflate(R.layout.fragment_numpad, container, false);
         initView(view);
+        if (originalValue != 0) {
+            numberET.setText(Double.toString(originalValue));
+        }
         return view;
     }
 
-    void initView(View view){
+    void initView(View view) {
         numberET = view.findViewById(R.id.number);
         view.findViewById(R.id.numpad_0).setOnClickListener(numPadBehavior);
         view.findViewById(R.id.numpad_1).setOnClickListener(numPadBehavior);
@@ -144,6 +169,9 @@ public class FragmentNumPad extends BaseFragment{
 
     private void confirm() {
         callback.onConfirm(getNum());
+        if (mode == MODE_BOTTOM_SHEET) {
+            dismiss();
+        }
     }
 
     public double getNum() {

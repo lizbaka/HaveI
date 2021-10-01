@@ -89,7 +89,7 @@ public class ActivityBookkeepAdd extends BaseActivity {
                 updateBookkeep(number);
                 finish();
             }
-        });
+        },FragmentNumPad.MODE_NORMAL);
         getSupportFragmentManager().beginTransaction().replace(R.id.bookkeep_add_numpad, numPad).commit();
 
         bookDBHelper = new BookkeepDBHelper(ActivityBookkeepAdd.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
