@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class ActivityModifyTag extends BaseActivity {
     public static final String START_PARAM_TAG_ID = "tagID";
 
     private static final int EVENT_TAG_DEFAULT_ICON_ID = IconAdapter.DEFAULT_EVENT_TAG_ICON_ID;
-    private static final int BOOKKEEP_TAG_DEFAULT_ICON_ID = IconAdapter.DEFAULT_BOOKKEEP_TAG_ICON_ID;//todo: modify this if necessary
+    private static final int BOOKKEEP_TAG_DEFAULT_ICON_ID = IconAdapter.DEFAULT_BOOKKEEP_TAG_ICON_ID;
     private static final int NULL_TAG_ID = -1;
 
     public static final int MODE_ADD = 0;
@@ -45,6 +46,7 @@ public class ActivityModifyTag extends BaseActivity {
     int selectedIconID;
     int tagType;
     int mode;
+    int bookkeepType = UniToolKit.BOOKKEEP_TAG_EXPENDITURE;
 
     EventDBHelper eventDBHelper;
     BookkeepDBHelper bookkeepDBHelper;
@@ -54,7 +56,6 @@ public class ActivityModifyTag extends BaseActivity {
     EditText tagNameET;
     ImageView iconIV;
     RecyclerView iconListRV;
-    TagListAdapter iconListRVAdapter;
 
     public static void startAction(Context context, int tagType) {
         Intent intent = new Intent(context, ActivityModifyTag.class);
@@ -79,7 +80,7 @@ public class ActivityModifyTag extends BaseActivity {
         tagType = getIntent().getIntExtra(START_PARAM_TAG_TYPE, UniToolKit.TAG_TYPE_EVENT);
 
         eventDBHelper = new EventDBHelper(ActivityModifyTag.this, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
-        bookkeepDBHelper = new BookkeepDBHelper(ActivityModifyTag.this, BookkeepDBHelper.DB_NAME,null,BookkeepDBHelper.DATABASE_VERSION);
+        bookkeepDBHelper = new BookkeepDBHelper(ActivityModifyTag.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         iconAdapter = new IconAdapter(ActivityModifyTag.this);
 
         initView();
@@ -103,6 +104,7 @@ public class ActivityModifyTag extends BaseActivity {
                     mTag = eventDBHelper.findEventTagById(tagId);
                     selectedIconID = mTag.getIconId();
                 }
+                findViewById(R.id.modify_tag_bookkeep_type_container).setVisibility(View.GONE);
                 tagIDList = iconAdapter.getEventIconIDList();
                 break;
             case UniToolKit.TAG_TYPE_BOOKKEEP:
@@ -113,10 +115,16 @@ public class ActivityModifyTag extends BaseActivity {
                 } else {
                     getSupportActionBar().setTitle(R.string.modify_bookkeep_tag_title_modify);
                     mTag = bookkeepDBHelper.findBookTagById(tagId);
-                    //mTag =
+                    bookkeepType = bookkeepDBHelper.findBookTagById(tagId).getType();
                     selectedIconID = mTag.getIconId();
                 }
                 tagIDList = iconAdapter.getBookkeepIconIDList();
+                findViewById(R.id.modify_tag_bookkeep_type_container).setVisibility(View.VISIBLE);
+                if (bookkeepType == UniToolKit.BOOKKEEP_TAG_EXPENDITURE) {
+                    findViewById(R.id.modify_tag_bookkeep_expenditure).performClick();
+                } else {
+                    findViewById(R.id.modify_tag_bookkeep_income).performClick();
+                }
                 break;
         }
 
@@ -131,7 +139,7 @@ public class ActivityModifyTag extends BaseActivity {
         }
 
         iconListRV.setLayoutManager(new GridLayoutManager(ActivityModifyTag.this, 4, LinearLayoutManager.HORIZONTAL, false));
-        iconListRV.setAdapter(new TagListAdapter(iconList, ActivityModifyTag.this, selectedIconID, TagListAdapter.ORIENTATION_HORIZONTAL,new TagListAdapter.OnTagClickListener() {
+        iconListRV.setAdapter(new TagListAdapter(iconList, ActivityModifyTag.this, selectedIconID, TagListAdapter.ORIENTATION_HORIZONTAL, new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
                 selectedIconID = tag.getId();
@@ -163,10 +171,12 @@ public class ActivityModifyTag extends BaseActivity {
                             eventDBHelper.updateEventTag(mTag.getId(), (EventTag) mTag);
                         }
                     } else {
+                        BookTag sTag = (BookTag) mTag;
+                        sTag.setType(bookkeepType);
                         if (mode == MODE_ADD) {
-                            bookkeepDBHelper.insertBookTag((BookTag) mTag);
+                            bookkeepDBHelper.insertBookTag(sTag);
                         } else {
-                            bookkeepDBHelper.updateBookTag(mTag.getId(),(BookTag) mTag);
+                            bookkeepDBHelper.updateBookTag(sTag.getId(), sTag);
                         }
                     }
                     finish();
@@ -208,6 +218,23 @@ public class ActivityModifyTag extends BaseActivity {
         tagNameET = findViewById(R.id.modify_tag_name);
         iconIV = findViewById(R.id.modify_tag_icon);
         iconListRV = findViewById(R.id.modify_tag_icon_list);
+
+        findViewById(R.id.modify_tag_bookkeep_expenditure).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.modify_tag_bookkeep_expenditure).setSelected(true);
+                findViewById(R.id.modify_tag_bookkeep_income).setSelected(false);
+                bookkeepType = UniToolKit.BOOKKEEP_TAG_EXPENDITURE;
+            }
+        });
+        findViewById(R.id.modify_tag_bookkeep_income).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.modify_tag_bookkeep_expenditure).setSelected(false);
+                findViewById(R.id.modify_tag_bookkeep_income).setSelected(true);
+                bookkeepType = UniToolKit.BOOKKEEP_TAG_INCOME;
+            }
+        });
     }
 
     private boolean checkTagValidate() {

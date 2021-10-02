@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.teamhavei.havei.Event.HaveITag;
@@ -30,10 +31,14 @@ public class ActivitySettingsTagMng extends BaseActivity {
 
     TextView eventTagTV;
     TextView bookkeepTagTV;
+    MaterialCardView bookkeepTagTypeMCV;
+    TextView bookkeepTagExpenditureTV;
+    TextView bookkeepTagIncomeTV;
     RecyclerView tagListRV;
     FloatingActionButton tagAddFab;
 
     int tagType;
+    int bookkeepTagType;
     List<HaveITag> tagList = new ArrayList<>();
     EventDBHelper eventDBHelper;
     BookkeepDBHelper bookkeepDBHelper;
@@ -122,6 +127,7 @@ public class ActivitySettingsTagMng extends BaseActivity {
                 eventTagTV.setSelected(true);
                 bookkeepTagTV.setSelected(false);
                 tagType = UniToolKit.TAG_TYPE_EVENT;
+                bookkeepTagTypeMCV.setVisibility(View.GONE);
                 updateTagList();
             }
         });
@@ -131,6 +137,25 @@ public class ActivitySettingsTagMng extends BaseActivity {
                 eventTagTV.setSelected(false);
                 bookkeepTagTV.setSelected(true);
                 tagType = UniToolKit.TAG_TYPE_BOOKKEEP;
+                bookkeepTagTypeMCV.setVisibility(View.VISIBLE);
+                bookkeepTagExpenditureTV.performClick();
+            }
+        });
+        bookkeepTagExpenditureTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bookkeepTagExpenditureTV.setSelected(true);
+                bookkeepTagIncomeTV.setSelected(false);
+                bookkeepTagType = UniToolKit.BOOKKEEP_TAG_EXPENDITURE;
+                updateTagList();
+            }
+        });
+        bookkeepTagIncomeTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bookkeepTagExpenditureTV.setSelected(false);
+                bookkeepTagIncomeTV.setSelected(true);
+                bookkeepTagType = UniToolKit.BOOKKEEP_TAG_INCOME;
                 updateTagList();
             }
         });
@@ -143,7 +168,7 @@ public class ActivitySettingsTagMng extends BaseActivity {
                 tagList.addAll(eventDBHelper.findAllEventTag(true));
                 break;
             case UniToolKit.TAG_TYPE_BOOKKEEP:
-                tagList.addAll(bookkeepDBHelper.findAllBookTag(true));
+                tagList.addAll(bookkeepDBHelper.findAllBookTag(true, bookkeepTagType));
                 break;
         }
         tagListRV.getAdapter().notifyDataSetChanged();
@@ -154,5 +179,8 @@ public class ActivitySettingsTagMng extends BaseActivity {
         bookkeepTagTV = findViewById(R.id.settings_tag_type_bookkeep);
         tagListRV = findViewById(R.id.settings_tag_list);
         tagAddFab = findViewById(R.id.settings_tag_add);
+        bookkeepTagTypeMCV = findViewById(R.id.settings_tag_bookkeep_type_container);
+        bookkeepTagExpenditureTV = findViewById(R.id.settings_tag_bookkeep_expenditure);
+        bookkeepTagIncomeTV = findViewById(R.id.settings_tag_bookkeep_income);
     }
 }

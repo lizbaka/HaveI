@@ -17,6 +17,11 @@ public class UniToolKit {
     public static final int TAG_TYPE_EVENT = 0;
     public static final int TAG_TYPE_BOOKKEEP = 1;
 
+    public static final int BOOKKEEP_TAG_EXPENDITURE = 0;
+    public static final int BOOKKEEP_TAG_INCOME = 1;
+
+    public static final int DEFAULT_ACCOUNT_ID = 0;
+
     public static final String EVENT_DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
     public static final String EVENT_DATE_FORMAT = "yyyy-MM-dd";
     public static final String EVENT_TIME_FORMAT = "HH:mm";
