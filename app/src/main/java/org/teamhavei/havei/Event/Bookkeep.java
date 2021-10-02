@@ -5,6 +5,8 @@ public class Bookkeep {
     private String name;
     private String time;//格式HH:MM
     private Double PM;//计算参数
+    private int account;
+
     public int getid(){return id;}
     public int gettag(){
         return tagID;
@@ -37,5 +39,10 @@ public class Bookkeep {
     {
         this.time=time;
     }
-
+    public int getAccount() {
+        return account;
+    }
+    public void setAccount(int account) {
+        this.account = account;
+    }
 }

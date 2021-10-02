@@ -150,10 +150,13 @@ public class IconAdapter {
     public static final int ID_HS_UMBRELLA = 127;
     public static final int ID_HS_WATER = 128;
     public static final int ID_HS_WATER_DROP = 129;
+
+    public static final int ID_AC_DEFAULT = 130;
     //只能加，不能改！
 
     public static final int DEFAULT_EVENT_TAG_ICON_ID = ID_HS_RECORD;
     public static final int DEFAULT_BOOKKEEP_TAG_ICON_ID = ID_CS_EXPENSE_MANAGEMENT;
+    public static final int DEFAULT_ACCOUNT_ICON_ID = ID_AC_DEFAULT;
 
     Context mContext;
 
@@ -560,6 +563,8 @@ public class IconAdapter {
                 return ContextCompat.getDrawable(mContext, R.drawable.hs_water);
             case ID_HS_WATER_DROP:
                 return ContextCompat.getDrawable(mContext, R.drawable.hs_water_drop);
+            case ID_AC_DEFAULT:
+                return ContextCompat.getDrawable(mContext, R.drawable.account_book);
             default:
                 Log.d(TAG, "getIcon: not found, returning lost");
                 return ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_help_24);
