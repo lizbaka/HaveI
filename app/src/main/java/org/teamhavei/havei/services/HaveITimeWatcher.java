@@ -88,8 +88,8 @@ public class HaveITimeWatcher extends Service {
                     .setContentTitle(getResources().getString(R.string.todo_notification_title))
                     .setContentText(i.getName() + getResources().getString(R.string.todo_notification_content))
                     .setWhen(System.currentTimeMillis())
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                    .setSmallIcon(R.mipmap.havei_launcher_foreground)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher))
                     .build();
             manager.notify((int)new Date().getTime() + TODO_NOTIFICATION_SEED * i.getId(), notification);
         }
@@ -104,8 +104,8 @@ public class HaveITimeWatcher extends Service {
                     .setContentTitle(getResources().getString(R.string.todo_advance_notification_title))
                     .setContentText(i.getName() + getResources().getString(R.string.todo_advance_notification_content1) + i.getDateTime() + getResources().getString(R.string.todo_advance_notification_content2))
                     .setWhen(System.currentTimeMillis())
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                    .setSmallIcon(R.mipmap.havei_launcher_foreground)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher))
                     .setContentIntent(pi)
                     .build();
             manager.notify((int)new Date().getTime() + TODO_REMINDER_NOTIFICATION_SEED * i.getId(), notification);
@@ -126,8 +126,8 @@ public class HaveITimeWatcher extends Service {
                     .setContentTitle(getResources().getString(R.string.habit_notification_title))
                     .setContentText(getResources().getString(R.string.habit_notification_content) + i.getName())
                     .setWhen(System.currentTimeMillis())
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                    .setSmallIcon(R.mipmap.havei_launcher_foreground)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher))
                     .setContentIntent(pi)
                     .build();
             manager.notify((int)new Date().getTime() + HABIT_NOTIFICATION_SEED * i.getId(), notification);
@@ -142,8 +142,8 @@ public class HaveITimeWatcher extends Service {
                 new NotificationCompat.Builder(this, UniToolKit.BASIC_NOTIFICATION_CHANNEL_ID)
                         .setContentTitle(getString(UniToolKit.getGreetingTimeId()))
                         .setContentText(getString(UniToolKit.getGreetingSecId()))
-                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
-                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher))
+                        .setSmallIcon(R.mipmap.havei_launcher_foreground)
                         .setContentIntent(pi)
                         .build();
         startForeground(FOREGROUND_SERVICE_ID,fgNotification);
