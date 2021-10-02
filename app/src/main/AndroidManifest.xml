@@ -3,6 +3,7 @@
     package="org.teamhavei.havei">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:allowBackup="true"
@@ -17,27 +18,31 @@
             android:name=".services.HaveITimeWatcher"
             android:exported="false" />
 
+        <activity android:name=".activities.ActivityMain"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
-            android:name=".activities.ActivitySettingsProverbSrc"
-            android:exported="true" />
+            android:name=".activities.ActivityHabitMain" />
+
         <activity
-            android:name=".activities.ActivityReport"
-            android:exported="true" />
+            android:name=".activities.ActivitySettingsProverbSrc"/>
         <activity
-            android:name=".activities.ActivityModifyTag"
-            android:exported="true" />
+            android:name=".activities.ActivityReport"/>
         <activity
-            android:name=".activities.ActivitySettings"
-            android:exported="true" />
+            android:name=".activities.ActivityModifyTag"/>
         <activity
-            android:name=".activities.ActivitySettingsTagMng"
-            android:exported="true" />
+            android:name=".activities.ActivitySettings"/>
         <activity
-            android:name=".activities.ActivityHabitMain"
-            android:exported="true" />
+            android:name=".activities.ActivitySettingsTagMng"/>
+
         <activity
-            android:name=".activities.ActivityTodoDetail"
-            android:exported="true" />
+            android:name=".activities.ActivityTodoDetail"/>
         <activity android:name=".activities.ActivityModifyTodo" />
         <activity android:name=".activities.ActivityMainEvent" />
         <activity android:name=".activities.ActivityProverbList" />
@@ -64,13 +69,6 @@
             android:name=".activities.ActivityBookkeepStatisticAnnually"
             android:label="@string/bookkeep_annual_statistic"
             android:parentActivityName=".activities.ActivityBookkeep" />
-        <activity android:name=".activities.ActivityMain">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

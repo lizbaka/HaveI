@@ -1,6 +1,7 @@
 <resources>
     <!--system:Begin-->
     <string name="app_name">HaveI</string>
+    <string name="basic_notification_channel_name">基本通知通道</string>
     <string name="todo_reminder_notification_channel_name">待办提醒</string>
     <string name="habit_reminder_notification_channel_name">习惯执行提醒</string>
     <string name="default_user_name">HaveI用户</string>

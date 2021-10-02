@@ -2,10 +2,12 @@ package org.teamhavei.havei;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class UniToolKit {
 
+    public static final String BASIC_NOTIFICATION_CHANNEL_ID = "Basic_Notification_habit";
     public static final String TODO_NOTIFICATION_CHANNEL_ID = "HaveI_Notification_todo";
     public static final String HABIT_NOTIFICATION_CHANNEL_ID = "HaveI_Notification_habit";
 
@@ -94,4 +96,50 @@ public class UniToolKit {
         String sDateTime = String.format("%s %s", sDate, sTime);
         return eventDatetimeParser(sDateTime);
     }
+
+    public static int getGreetingTimeId() {
+        Calendar calendar = Calendar.getInstance();
+        if (calendar.get(Calendar.HOUR_OF_DAY) >= 5 && calendar.get(Calendar.HOUR_OF_DAY) < 12) {
+            return R.string.greeting_morning;
+        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 12 && calendar.get(Calendar.HOUR_OF_DAY) < 14) {
+            return R.string.greeting_noon;
+        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 14 && calendar.get(Calendar.HOUR_OF_DAY) < 18) {
+            return R.string.greeting_afternoon;
+        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 18 && calendar.get(Calendar.HOUR_OF_DAY) < 22) {
+            return R.string.greeting_evening;
+        } else {
+            return R.string.greeting_midnight;
+        }
+    }
+
+    public static int getGreetingSecId() {
+        Calendar calendar = Calendar.getInstance();
+        if (calendar.get(Calendar.HOUR_OF_DAY) >= 5 && calendar.get(Calendar.HOUR_OF_DAY) < 12) {
+            return R.string.greeting_morning_secondary;
+        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 12 && calendar.get(Calendar.HOUR_OF_DAY) < 14) {
+            return R.string.greeting_noon_secondary;
+        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 14 && calendar.get(Calendar.HOUR_OF_DAY) < 18) {
+            return R.string.greeting_afternoon_secondary;
+        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 18 && calendar.get(Calendar.HOUR_OF_DAY) < 22) {
+            return R.string.greeting_evening_secondary;
+        } else {
+            return R.string.greeting_midnight_secondary;
+        }
+    }
+
+    public static int getGreetingIconId() {
+        Calendar calendar = Calendar.getInstance();
+        if (calendar.get(Calendar.HOUR_OF_DAY) >= 5 && calendar.get(Calendar.HOUR_OF_DAY) < 12) {
+            return R.drawable.star;
+        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 12 && calendar.get(Calendar.HOUR_OF_DAY) < 14) {
+            return R.drawable.hs_sun3;
+        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 14 && calendar.get(Calendar.HOUR_OF_DAY) < 18) {
+            return R.drawable.hs_paper_airplane;
+        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 18 && calendar.get(Calendar.HOUR_OF_DAY) < 22) {
+            return R.drawable.cs_astronomy;
+        } else {
+            return R.drawable.hs_moon3;
+        }
+    }
+
 }

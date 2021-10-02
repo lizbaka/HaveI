@@ -53,9 +53,6 @@ import okhttp3.Response;
 
 public class ActivityMain extends BaseActivity {
 
-    private String habitNotificationChannelName;
-    private String todoNotificationChannelName;
-
     EventDBHelper eventDBHelper;
     BookkeepDBHelper bookkeepDBHelper;
     UtilDBHelper utilDBHelper;
@@ -124,11 +121,11 @@ public class ActivityMain extends BaseActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initNotificationChannel() {
-        todoNotificationChannelName = getResources().getString(R.string.todo_reminder_notification_channel_name);
-        habitNotificationChannelName = getResources().getString(R.string.habit_reminder_notification_channel_name);
-        NotificationChannel todoChannel = new NotificationChannel(UniToolKit.TODO_NOTIFICATION_CHANNEL_ID, todoNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
-        NotificationChannel habitChannel = new NotificationChannel(UniToolKit.HABIT_NOTIFICATION_CHANNEL_ID, habitNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel basicChannel = new NotificationChannel(UniToolKit.BASIC_NOTIFICATION_CHANNEL_ID, getString(R.string.basic_notification_channel_name), NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel todoChannel = new NotificationChannel(UniToolKit.TODO_NOTIFICATION_CHANNEL_ID, getString(R.string.todo_reminder_notification_channel_name), NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel habitChannel = new NotificationChannel(UniToolKit.HABIT_NOTIFICATION_CHANNEL_ID, getString(R.string.habit_reminder_notification_channel_name), NotificationManager.IMPORTANCE_DEFAULT);
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        manager.createNotificationChannel(basicChannel);
         manager.createNotificationChannel(todoChannel);
         manager.createNotificationChannel(habitChannel);
 
@@ -196,27 +193,9 @@ public class ActivityMain extends BaseActivity {
         TextView greetingSecTV = findViewById(R.id.greeting_card_secondary);
         ImageView greetingIconIV = findViewById(R.id.greeting_card_icon);
         Calendar calendar = Calendar.getInstance();
-        if (calendar.get(Calendar.HOUR_OF_DAY) >= 5 && calendar.get(Calendar.HOUR_OF_DAY) < 12) {
-            greetingTimeTV.setText(R.string.greeting_morning);
-            greetingSecTV.setText(R.string.greeting_morning_secondary);
-            greetingIconIV.setImageResource(R.drawable.star);
-        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 12 && calendar.get(Calendar.HOUR_OF_DAY) < 14) {
-            greetingTimeTV.setText(R.string.greeting_noon);
-            greetingSecTV.setText(R.string.greeting_noon_secondary);
-            greetingIconIV.setImageResource(R.drawable.hs_sun3);
-        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 14 && calendar.get(Calendar.HOUR_OF_DAY) < 18) {
-            greetingTimeTV.setText(R.string.greeting_afternoon);
-            greetingSecTV.setText(R.string.greeting_afternoon_secondary);
-            greetingIconIV.setImageResource(R.drawable.hs_paper_airplane);
-        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 18 && calendar.get(Calendar.HOUR_OF_DAY) < 22) {
-            greetingTimeTV.setText(R.string.greeting_evening);
-            greetingSecTV.setText(R.string.greeting_evening_secondary);
-            greetingIconIV.setImageResource(R.drawable.cs_astronomy);
-        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 22 || calendar.get(Calendar.HOUR_OF_DAY) < 5) {
-            greetingTimeTV.setText(R.string.greeting_midnight);
-            greetingSecTV.setText(R.string.greeting_midnight_secondary);
-            greetingIconIV.setImageResource(R.drawable.hs_moon3);
-        }
+        greetingTimeTV.setText(UniToolKit.getGreetingTimeId());
+        greetingSecTV.setText(UniToolKit.getGreetingSecId());
+        greetingIconIV.setImageResource(UniToolKit.getGreetingIconId());
     }
 
     private void configTodoCard() {
@@ -302,19 +281,19 @@ public class ActivityMain extends BaseActivity {
                 ActivityBookkeep.startAction(ActivityMain.this);
             }
         });
-        double budget = pref.getFloat(UniToolKit.PREF_BUDGET,0);
+        double budget = pref.getFloat(UniToolKit.PREF_BUDGET, 0);
         double MYIn = bookkeepDBHelper.getIncomeByMonth(new Date());
         double MYOut = bookkeepDBHelper.getExpenditureByMonth(new Date());
         double MYLeft = budget - MYOut;
-        ((TextView)findViewById(R.id.bookkeep_three_title3)).setText(R.string.income);
-        ((TextView)findViewById(R.id.bookkeep_three_value3)).setText(String.format("%.2f", MYIn));
-        ((TextView)findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure);
-        ((TextView)findViewById(R.id.bookkeep_three_value1)).setText(String.format("%.2f", MYOut));
-        ((TextView)findViewById(R.id.bookkeep_three_title2)).setText(R.string.remaining_budget);
+        ((TextView) findViewById(R.id.bookkeep_three_title3)).setText(R.string.income);
+        ((TextView) findViewById(R.id.bookkeep_three_value3)).setText(String.format("%.2f", MYIn));
+        ((TextView) findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure);
+        ((TextView) findViewById(R.id.bookkeep_three_value1)).setText(String.format("%.2f", MYOut));
+        ((TextView) findViewById(R.id.bookkeep_three_title2)).setText(R.string.remaining_budget);
         if (budget == 0) {
-            ((TextView)findViewById(R.id.bookkeep_three_value2)).setText(R.string.unset);
+            ((TextView) findViewById(R.id.bookkeep_three_value2)).setText(R.string.unset);
         } else {
-            ((TextView)findViewById(R.id.bookkeep_three_value2)).setText(String.format("%.2f", MYLeft));
+            ((TextView) findViewById(R.id.bookkeep_three_value2)).setText(String.format("%.2f", MYLeft));
         }
     }
 
