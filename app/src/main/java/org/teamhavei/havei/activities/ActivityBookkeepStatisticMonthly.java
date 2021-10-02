@@ -2,6 +2,7 @@ package org.teamhavei.havei.activities;
 
 import androidx.annotation.NonNull;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,12 +39,12 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookkeep_statistics_monthly);
+        setContentView(R.layout.activity_bookkeep_statistic_monthly);
 
         dbHelper = new BookkeepDBHelper(ActivityBookkeepStatisticMonthly.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         calendar = Calendar.getInstance();
 
-        setSupportActionBar(findViewById(R.id.bookkeep_statistics_monthly_toolbar));
+        setSupportActionBar(findViewById(R.id.bookkeep_statistic_monthly_toolbar));
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -83,8 +84,8 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
     }
 
     private void initView(){
-        dateSelectorMCV = findViewById(R.id.bookkeep_statistics_monthly_month_selector);
-        dateTV = findViewById(R.id.bookkeep_statistics_monthly_month_date);
+        dateSelectorMCV = findViewById(R.id.bookkeep_statistic_monthly_month_selector);
+        dateTV = findViewById(R.id.bookkeep_statistic_monthly_month_date);
         expenditureTV = findViewById(R.id.bookkeep_three_value1);
         incomeTV = findViewById(R.id.bookkeep_three_value2);
         surplusTV = findViewById(R.id.bookkeep_three_value3);
@@ -94,13 +95,13 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         ((TextView)findViewById(R.id.bookkeep_three_title3)).setText(R.string.surplus);
     }
 
+    @SuppressLint({"DefaultLocale"})
     private void updateData(){
         double income = dbHelper.getIncomeByMonth(calendar.getTime());
-        //expenditure < 0
         double expenditure = dbHelper.getExpenditureByMonth(calendar.getTime());
-        double surplus = income + expenditure;
-        incomeTV.setText(Double.toString(income));
-        expenditureTV.setText(Double.toString(expenditure));
-        surplusTV.setText(Double.toString(surplus));
+        double surplus = income - expenditure;
+        incomeTV.setText(String.format("%.2f",income));
+        expenditureTV.setText(String.format("%.2f",expenditure));
+        surplusTV.setText(String.format("%.2f",surplus));
     }
 }
