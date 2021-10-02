@@ -115,15 +115,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion == 1) {
-            db.execSQL("drop table if exists Habit");
-            db.execSQL("drop table if exists HabitExecs");
-        }
-        db.execSQL("drop table if exists " + TABLE_EVENT_TAGS);
-        db.execSQL("drop table if exists " + TABLE_HABIT);
-        db.execSQL("drop table if exists " + TABLE_HABIT_EXECS);
-        db.execSQL("drop table if exists " + TABLE_TODO);
-        onCreate(db);
+        //使用alter语句修改字段
     }
 
 

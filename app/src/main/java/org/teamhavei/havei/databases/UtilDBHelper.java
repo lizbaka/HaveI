@@ -18,7 +18,7 @@ public class UtilDBHelper extends SQLiteOpenHelper {
 
     private final static String TAG = "DEBUG";
 
-    public final static String DB_NAME = "UtilDBHelper";
+    public final static String DB_NAME = "Util.db";
     public final static int DB_VERSION = 1;
 
     Context context;
@@ -49,9 +49,7 @@ public class UtilDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop table if exists " + TABLE_PROVERB);
-        onCreate(db);
-        initData();
+        //使用alter语句修改字段
     }
 
     private void preventEmpty() {
