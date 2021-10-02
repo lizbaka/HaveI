@@ -279,11 +279,11 @@
     <!--activity_bookkeep_property_view:end-->
 
     <!--activity_bookkeep_annual_account_detail:start-->
-    <string name="bookkeep_annual_account">收支详情</string>
+    <string name="bookkeep_annual_statistic">年度统计</string>
     <string name="bookkeep_annual_income">总收入</string>
-    <string name="bookkeep_annual_expenses">总支出</string>
+    <string name="bookkeep_annual_expenditure">总支出</string>
     <string name="bookkeep_annual_surplus">总结余</string>
-    <string name="bookkeep_month_in_year_income_and_expenses">月度收支</string>
+    <string name="bookkeep_annual_monthly_io">月度收支</string>
     <!--activity_bookkeep_annual_account_detail:end-->
 
     <!--activity_bookkeep_add_wallet:start-->

@@ -61,8 +61,8 @@
             android:label="@string/bookkeep_add_wallet"
             android:parentActivityName=".activities.ActivityBookkeepPropertyView" />
         <activity
-            android:name=".activities.ActivityBookkeepAnnualAccountDetail"
-            android:label="@string/bookkeep_annual_account"
+            android:name=".activities.ActivityBookkeepStatisticAnnually"
+            android:label="@string/bookkeep_annual_statistic"
             android:parentActivityName=".activities.ActivityBookkeep" />
         <activity android:name=".activities.ActivityMain">
             <intent-filter>

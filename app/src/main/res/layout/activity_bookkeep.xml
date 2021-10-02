@@ -54,7 +54,7 @@
                 android:layout_marginRight="@dimen/widget_inview_margin"
                 android:layout_gravity="right"
                 android:contentDescription="@string/bookkeep_annual_account_button"
-                android:onClick="onClickFindAnnualAccountDetail"
+                android:onClick="onClickStatisticsAnnually"
                 android:src="@drawable/calendar" />
 
         </androidx.appcompat.widget.Toolbar>
