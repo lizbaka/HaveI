@@ -30,11 +30,6 @@ public class HaveIDatePickerDialog extends AlertDialog implements OnClickListene
         void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear, int startDayOfMonth);
     }
 
-//    public HaveIDatePickerDialog(Context context, OnDateSetListener callBack, int year, int monthOfYear, int dayOfMonth) {
-//        this(context, 0, callBack, year, monthOfYear, dayOfMonth);
-//    }
-
-
     public HaveIDatePickerDialog(Context context, int theme, OnDateSetListener callBack, int year, int monthOfYear,
                                  int dayOfMonth) {
         super(context, theme);
@@ -51,22 +46,44 @@ public class HaveIDatePickerDialog extends AlertDialog implements OnClickListene
         setView(view);
         mDatePickerStart = (DatePicker) view.findViewById(R.id.datePickerStart);
         mDatePickerStart.init(year, monthOfYear, dayOfMonth, this);
-
-        hideDay(mDatePickerStart);
     }
 
-    private void hideDay(DatePicker mDatePicker) {
+    public HaveIDatePickerDialog hideDay(boolean hide) {
         try {
             int daySpinnerId = Resources.getSystem().getIdentifier("day", "id", "android");
             if (daySpinnerId != 0) {
-                View daySpinner = mDatePicker.findViewById(daySpinnerId);
+                View daySpinner = mDatePickerStart.findViewById(daySpinnerId);
                 if (daySpinner != null) {
-                    daySpinner.setVisibility(View.GONE);
+                    if(hide) {
+                        daySpinner.setVisibility(View.GONE);
+                    }else{
+                        daySpinner.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return this;
+    }
+
+   public HaveIDatePickerDialog hideMonth(boolean hide) {
+        try {
+            int monthSpinnerId = Resources.getSystem().getIdentifier("month", "id", "android");
+            if (monthSpinnerId != 0) {
+                View monthSpinner = mDatePickerStart.findViewById(monthSpinnerId);
+                if (monthSpinner != null) {
+                    if(hide) {
+                        monthSpinner.setVisibility(View.GONE);
+                    }else{
+                        monthSpinner.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 
     public HaveIDatePickerDialog setMaxDate(Calendar calendar){
