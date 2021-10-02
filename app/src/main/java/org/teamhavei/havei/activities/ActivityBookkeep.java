@@ -43,7 +43,6 @@ public class ActivityBookkeep extends BaseActivity {
     private MaterialCardView mShowDateBTN;
     private TextView mSelectDateTV;
     private BookkeepDBHelper dbHelper;
-    //    private BookCou mBookCou;
     private List<Bookkeep> mBookList;
     private TextView month_in;
     private TextView month_out;
@@ -75,6 +74,7 @@ public class ActivityBookkeep extends BaseActivity {
                     }
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
                         .setMaxDate(Calendar.getInstance())
+                        .hideDay(true)
                         .show();
             }
         });
@@ -97,9 +97,8 @@ public class ActivityBookkeep extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClickFindAnnualAccountDetail(View view) {
-//        Intent intent = new Intent(this, ActivityBookkeepAnnualAccountDetail.class);
-//        startActivity(intent);
+    public void onClickStatisticsAnnually(View view) {
+        ActivityBookkeepStatisticAnnually.startAction(ActivityBookkeep.this);
     }
 
     public void onClickStatisticsMonthly(View view) {
@@ -174,19 +173,10 @@ public class ActivityBookkeep extends BaseActivity {
             }
         });
 
-//        mBookCou = dbHelper.findBookcouByMonth(sDate);
-//        if (mBookCou == null) {
-//            updateCard(0, 0);
-//            updateRec(false);
-//        } else {
-//            updateCard(mBookCou.getIn(), mBookCou.getOut());
-//            updateRec(true);
-//        }
-
 
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"DefaultLocale"})
     void updateCard(double in, double out) {
         Double MYin = in;
         Double MYleft = budget - out;
@@ -200,12 +190,7 @@ public class ActivityBookkeep extends BaseActivity {
         }
     }
 
-    private void updateRecord(boolean is) {
-//        if (is) {
-//            mBookList = dbHelper.findBookkeepByMonth(sDate);
-//        } else {
-//            mBookList = new ArrayList<>();
-//        }
+    private void updateRecord() {
         mBookList.clear();
         mBookList.addAll(dbHelper.findBookkeepByMonth(UniToolKit.eventYearMonthFormatter(calendar.getTime())));
         ((BookkeepCardAdapter) recordRV.getAdapter()).notifyBookListChanged();
@@ -221,7 +206,7 @@ public class ActivityBookkeep extends BaseActivity {
 //            updateRec(true);
 //        }
         budget = pref.getFloat(UniToolKit.PREF_BUDGET, 0);
-        updateRecord(true);
+        updateRecord();
         updateCard(dbHelper.getIncomeByMonth(calendar.getTime()), dbHelper.getExpenditureByMonth(calendar.getTime()));
     }
 
