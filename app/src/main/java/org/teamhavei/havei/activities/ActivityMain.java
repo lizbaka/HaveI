@@ -334,6 +334,7 @@ public class ActivityMain extends BaseActivity {
                 return true;
             }
         });
+        findViewById(R.id.main_proverb_card).performLongClick();
     }
 
     /**

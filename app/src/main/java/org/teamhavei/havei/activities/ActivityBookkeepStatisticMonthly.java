@@ -58,9 +58,11 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
                     public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear,
                                           int startDayOfMonth) {
                         calendar.set(startYear, startMonthOfYear, startDayOfMonth);
+                        updateData();
                     }
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
                         .setMaxDate(Calendar.getInstance())
+                        .hideDay(true)
                         .show();
             }
         });
@@ -69,7 +71,6 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        dateTV.setText(UniToolKit.eventYearMonthFormatter(calendar.getTime()));
         updateData();
     }
 
@@ -97,6 +98,7 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
 
     @SuppressLint({"DefaultLocale"})
     private void updateData(){
+        dateTV.setText(UniToolKit.eventYearMonthFormatter(calendar.getTime()));
         double income = dbHelper.getIncomeByMonth(calendar.getTime());
         double expenditure = dbHelper.getExpenditureByMonth(calendar.getTime());
         double surplus = income - expenditure;
