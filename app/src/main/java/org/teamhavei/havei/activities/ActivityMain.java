@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -274,6 +275,7 @@ public class ActivityMain extends BaseActivity {
         });
     }
 
+    @SuppressLint("DefaultLocale")
     private void configBookkeepCard() {
         findViewById(R.id.main_bookkeep_card).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,18 +284,18 @@ public class ActivityMain extends BaseActivity {
             }
         });
         double budget = pref.getFloat(UniToolKit.PREF_BUDGET, 0);
-        double MYIn = bookkeepDBHelper.getIncomeByMonth(new Date());
-        double MYOut = bookkeepDBHelper.getExpenditureByMonth(new Date());
-        double MYLeft = budget - MYOut;
-        ((TextView) findViewById(R.id.bookkeep_three_title3)).setText(R.string.income);
-        ((TextView) findViewById(R.id.bookkeep_three_value3)).setText(String.format("%.2f", MYIn));
-        ((TextView) findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure);
-        ((TextView) findViewById(R.id.bookkeep_three_value1)).setText(String.format("%.2f", MYOut));
-        ((TextView) findViewById(R.id.bookkeep_three_title2)).setText(R.string.remaining_budget);
+        double todayExpenditure = bookkeepDBHelper.getExpenditureByDay(new Date());
+        double monthExpenditure = bookkeepDBHelper.getExpenditureByMonth(new Date());
+        double remainingBudget = budget - monthExpenditure;
+        ((TextView) findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure_today);
+        ((TextView) findViewById(R.id.bookkeep_three_title2)).setText(R.string.expenditure_month);
+        ((TextView) findViewById(R.id.bookkeep_three_title3)).setText(R.string.remaining_budget);
+        ((TextView) findViewById(R.id.bookkeep_three_value1)).setText(String.format("%.2f", todayExpenditure));
+        ((TextView) findViewById(R.id.bookkeep_three_value2)).setText(String.format("%.2f", monthExpenditure));
         if (budget == 0) {
-            ((TextView) findViewById(R.id.bookkeep_three_value2)).setText(R.string.unset);
+            ((TextView) findViewById(R.id.bookkeep_three_value3)).setText(R.string.unset);
         } else {
-            ((TextView) findViewById(R.id.bookkeep_three_value2)).setText(String.format("%.2f", MYLeft));
+            ((TextView) findViewById(R.id.bookkeep_three_value3)).setText(String.format("%.2f", remainingBudget));
         }
     }
 

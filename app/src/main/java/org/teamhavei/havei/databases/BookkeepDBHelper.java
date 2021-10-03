@@ -151,6 +151,20 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return -cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
     }
 
+    public double getExpenditureByDay(Date date){
+        String sDate = UniToolKit.eventDateFormatter(date);
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " < 0" + " AND " + BOOKKEEP_TIME + " = ?", new String[]{sDate}, null, null, null);
+        cursor.moveToNext();
+        return -cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+    }
+
+    public double getIncomeByDay(Date date){
+        String sDate = UniToolKit.eventDateFormatter(date);
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " > 0" + " AND " + BOOKKEEP_TIME + " = ?", new String[]{sDate}, null, null, null);
+        cursor.moveToNext();
+        return -cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+    }
+
     //search by month
     public List<Bookkeep> findBookkeepByMonth(String sDate) {
         Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TIME + " LIKE ?", new String[]{sDate + "%"}, null, null, BOOKKEEP_TIME + " DESC");

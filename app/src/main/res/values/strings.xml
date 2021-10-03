@@ -53,6 +53,8 @@
     <string name="default_account">默认账户</string>
     <string name="default_expenditure_tag">默认支出</string>
     <string name="default_income_tag">默认收入</string>
+    <string name="expenditure_month">本月支出</string>
+    <string name="expenditure_today">今日支出</string>
     <!--universal_UI:end-->
 
     <!--activity_main:Begin-->
@@ -63,6 +65,7 @@
     <string name="main_empty_todo">今天没有未完成待办事项</string>
     <string name="main_empty_habit">今天没有要打卡的习惯</string>
     <!--greeting_card:Begin-->
+
     <string name="greeting_morning">上午好！</string>
     <string name="greeting_morning_secondary">一日之计在于晨</string>
     <string name="greeting_noon">中午好！</string>
@@ -136,10 +139,6 @@
     <string name="modify_habit_clear_reminder">关闭提醒</string>
     <!--modify_habit:end-->
 
-    <!--habit:Begin-->
-    <string name="habit_add_first">添加您的第一个习惯！</string>
-    <!--habit:end-->
-
     <!--habit_detail:Begin-->
     <string name="habit_detail_rank_changed">点击重载</string>
     <!--habit_detail:end-->
@@ -194,7 +193,6 @@
     <string name="tt_sunday">日</string>
     <string name="tt_wholeday">全天</string>
     <!--time_table:end-->
-
 
     <!--time_table_fragment:begin-->
     <string name="tt_0">0:00</string>
@@ -279,13 +277,18 @@
     <string name="bookkeep_property_goal_hint">输入目标资产值</string>
     <!--activity_bookkeep_property_view:end-->
 
-    <!--activity_bookkeep_annual_account_detail:start-->
+    <!--activity_bookkeep_bookkeep_statistic_monthly:start-->
+    <string name="bookkeep_monthly_expenditure_proportion">支出占比</string>
+    <string name="bookkeep_monthly_income_proportion">收入占比</string>
+    <!--activity_bookkeep_bookkeep_statistic_monthly:end-->
+
+    <!--activity_bookkeep_statistic_annually:start-->
     <string name="bookkeep_annual_statistic">年度统计</string>
     <string name="bookkeep_annual_income">总收入</string>
     <string name="bookkeep_annual_expenditure">总支出</string>
     <string name="bookkeep_annual_surplus">总结余</string>
     <string name="bookkeep_annual_monthly_io">月度收支</string>
-    <!--activity_bookkeep_annual_account_detail:end-->
+    <!--activity_bookkeep_statistic_annually:end-->
 
     <!--activity_bookkeep_add_wallet:start-->
     <string name="bookkeep_add_wallet_wallet_type">账户类型</string>
