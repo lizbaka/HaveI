@@ -133,7 +133,7 @@ public class ActivityBookkeep extends BaseActivity {
         recordRV.setLayoutManager(new LinearLayoutManager(ActivityBookkeep.this));
         recordRV.setAdapter(new BookkeepCardAdapter(mBookList, ActivityBookkeep.this, new BookkeepCardAdapter.BookkeepCardCallBack() {
             @Override
-            public void OnLongClick(Bookkeep bookkeep) {
+            public void onLongClick(Bookkeep bookkeep) {
                 new AlertDialog.Builder(ActivityBookkeep.this)
                         .setCancelable(true)
                         .setTitle(R.string.bookkeep_delete_dialog_title)
@@ -153,7 +153,13 @@ public class ActivityBookkeep extends BaseActivity {
                         })
                         .show();
             }
+
+            @Override
+            public void onClick(Bookkeep bookkeep) {
+                ActivityBookkeepAdd.startAction(ActivityBookkeep.this, bookkeep.getid());
+            }
         }));
+
         recordRV.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {

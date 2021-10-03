@@ -34,8 +34,8 @@ import java.util.List;
 
 public class ActivityBookkeepAdd extends BaseActivity {
 
-    private static final int IO_TYPE_EXPENDITURE = 0;
-    private static final int IO_TYPE_INCOME = 1;
+    private static final int IO_TYPE_EXPENDITURE = UniToolKit.BOOKKEEP_TAG_EXPENDITURE;
+    private static final int IO_TYPE_INCOME = UniToolKit.BOOKKEEP_TAG_INCOME;
 
     private static final int MODE_ADD = 0;
     private static final int MODE_MODIFY = 1;
@@ -85,39 +85,47 @@ public class ActivityBookkeepAdd extends BaseActivity {
                 updateBookkeep(number);
                 finish();
             }
-        },FragmentNumPad.MODE_NORMAL);
+        }, FragmentNumPad.MODE_NORMAL);
         getSupportFragmentManager().beginTransaction().replace(R.id.bookkeep_add_numpad, numPad).commit();
 
         bookDBHelper = new BookkeepDBHelper(ActivityBookkeepAdd.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
-        initView();
         calendar = Calendar.getInstance();
-        dateTV.setText(UniToolKit.eventDateFormatter(calendar.getTime()));
-        initTagList();
+
+        initView();
         initListener();
 
-        //与numpad相关的初始化操作放到onStart中，因为onCreate完成前fragment未完成创建
         if (getIntent().getIntExtra(START_PARAM_BOOKKEEP_ID, -1) != -1) {
             mode = MODE_MODIFY;
             mBookkeep = bookDBHelper.findBookkeepById(getIntent().getIntExtra(START_PARAM_BOOKKEEP_ID, -1));
             selectedTagId = mBookkeep.gettag();
             bookTitleET.setText(mBookkeep.getname());
+            calendar.setTime(UniToolKit.eventDateParser(mBookkeep.gettime()));
+            ioJudge = mBookkeep.getPM() > 0 ? IO_TYPE_INCOME : IO_TYPE_EXPENDITURE;
+            //与numpad相关的初始值操作放到onStart中，因为onCreate完成前fragment未完成创建
         } else {
             mBookkeep = new Bookkeep();
             selectedTagId = bookDBHelper.findAllBookTag(true).get(0).getId();
+            ioJudge = IO_TYPE_EXPENDITURE;
         }
+        mtaglist = new ArrayList<>();
+        dateTV.setText(UniToolKit.eventDateFormatter(calendar.getTime()));
+        mtaglist.addAll(bookDBHelper.findAllBookTag(true,ioJudge));
+
+        initTagList();
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         if (mode == MODE_MODIFY) {
-            numPad.getNumberET().setText(Double.toString(mBookkeep.getPM()));
+            numPad.getNumberET().setText(Double.toString(mBookkeep.getPM() < 0 ? -mBookkeep.getPM() : mBookkeep.getPM()));
             if (mBookkeep.getPM() > 0) {
                 IORG.check(R.id.bookkeep_add_radio_income);
             } else {
                 IORG.check(R.id.bookkeep_add_radio_expenditure);
             }
-        } else {
+        }else{
             IORG.check(R.id.bookkeep_add_radio_expenditure);
         }
     }
@@ -184,8 +192,7 @@ public class ActivityBookkeepAdd extends BaseActivity {
     }
 
     public void initTagList() {
-        mtaglist = new ArrayList<>();
-        mTaglistAdapter = new TagListAdapter(mtaglist, ActivityBookkeepAdd.this, 0, TagListAdapter.ORIENTATION_VERTICAL, new TagListAdapter.OnTagClickListener() {
+        mTaglistAdapter = new TagListAdapter(mtaglist, ActivityBookkeepAdd.this, selectedTagId, TagListAdapter.ORIENTATION_VERTICAL, new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
                 selectedTagId = tag.getId();
@@ -198,14 +205,9 @@ public class ActivityBookkeepAdd extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        switch(IORG.getCheckedRadioButtonId()){
-            case R.id.bookkeep_add_radio_expenditure:
-                IORG.check(R.id.bookkeep_add_radio_expenditure);
-                break;
-            case R.id.bookkeep_add_radio_income:
-                IORG.check(R.id.bookkeep_add_radio_income);
-                break;
-        }
+        mtaglist.clear();
+        mtaglist.addAll(bookDBHelper.findAllBookTag(true,ioJudge));
+        mTagRecycRV.getAdapter().notifyDataSetChanged();
     }
 
     private void updateBookkeep(Double value) {
