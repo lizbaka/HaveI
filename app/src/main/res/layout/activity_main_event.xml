@@ -148,7 +148,6 @@
                 android:layout_weight="0.3"
                 android:text="[weather]"
                 android:visibility="gone" />
-            <!--todo:暂时去除天气，待接入网络功能后考虑实现-->
         </LinearLayout>
 
         <View

@@ -313,8 +313,6 @@
     <string name="budget_title">月预算</string>
     <string name="budget_overall">总预算</string>
     <string name="budget_category">分类预算</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--activity_budget:end-->
 
 </resources>
