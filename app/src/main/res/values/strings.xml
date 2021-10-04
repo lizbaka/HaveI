@@ -181,6 +181,7 @@
     <string name="proverb_add_empty_alert">句子不能为空</string>
     <string name="proverb_remove_confirm_title">确认取消句子收藏</string>
     <string name="proverb_remove_confirm_msg">您取消了一些句子的收藏，您确定吗？</string>
+    <string name="proverb_long_click">试试长按我</string>
     <!--proverb:end-->
 
     <!--time_table:begin-->
