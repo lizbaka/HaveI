@@ -68,7 +68,53 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!--place charts here-->
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Dynamic_card.border"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/widget_inview_margin"
+                            android:text="@string/bookkeep_monthly_expenditure_proportion" />
+
+                        <!--                    todo: 在这里放支出饼图-->
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Dynamic_card.border"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/widget_inview_margin"
+                            android:text="@string/bookkeep_monthly_income_proportion" />
+
+                        <!--                    todo: 在这里放收入饼图-->
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
 

@@ -1,4 +1,5 @@
 package org.teamhavei.havei.activities;
+// TODO: 2021/10/3 完成图表构建
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -41,7 +42,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookkeep_statistics_annually);
+        setContentView(R.layout.activity_bookkeep_statistic_annually);
         setSupportActionBar(findViewById(R.id.bookkeep_statistics_annually_toolbar));
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -70,7 +71,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
             incomeByMonth[i] = dbHelper.getIncomeByMonth(calendar.getTime());
             totalIncome += incomeByMonth[i];
         }
-        expenditureTV.setText(String.format("%.2f", totalIncome));
+        expenditureTV.setText(String.format("%.2f", totalExpenditure));
         incomeTV.setText(String.format("%.2f", totalIncome));
         surplusTV.setText(String.format("%.2f", totalIncome - totalExpenditure));
     }

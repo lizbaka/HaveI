@@ -277,18 +277,20 @@
     <string name="bookkeep_property_goal_hint">输入目标资产值</string>
     <!--activity_bookkeep_property_view:end-->
 
-    <!--activity_bookkeep_bookkeep_statistic_monthly:start-->
+    <!--activity_bookkeep_monthly_statistic_monthly:start-->
     <string name="bookkeep_monthly_expenditure_proportion">支出占比</string>
     <string name="bookkeep_monthly_income_proportion">收入占比</string>
-    <!--activity_bookkeep_bookkeep_statistic_monthly:end-->
+    <!--activity_bookkeep_monthly_statistic_monthly:end-->
 
-    <!--activity_bookkeep_statistic_annually:start-->
+    <!--activity_bookkeep_annually_statistic_annually:start-->
     <string name="bookkeep_annual_statistic">年度统计</string>
     <string name="bookkeep_annual_income">总收入</string>
     <string name="bookkeep_annual_expenditure">总支出</string>
     <string name="bookkeep_annual_surplus">总结余</string>
-    <string name="bookkeep_annual_monthly_io">月度收支</string>
-    <!--activity_bookkeep_statistic_annually:end-->
+    <string name="bookkeep_annual_monthly_surplus">每月盈余</string>
+    <string name="bookkeep_annual_monthly_expenditure">每月支出</string>
+    <string name="bookkeep_annual_monthly_income">每月收入</string>
+    <!--activity_bookkeep_annually_statistic_annually:end-->
 
     <!--activity_bookkeep_add_wallet:start-->
     <string name="bookkeep_add_wallet_wallet_type">账户类型</string>
