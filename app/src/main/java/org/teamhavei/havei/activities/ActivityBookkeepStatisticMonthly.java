@@ -2,6 +2,7 @@ package org.teamhavei.havei.activities;
 // TODO: 2021/10/3 加入图表
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import org.teamhavei.havei.Event.HaveIDatePickerDialog;
 import org.teamhavei.havei.R;
@@ -29,6 +31,7 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
     TextView incomeTV;
     TextView expenditureTV;
     TextView surplusTV;
+    ExtendedFloatingActionButton switchFAB;
 
     Calendar calendar;
 
@@ -50,23 +53,6 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initView();
-
-        dateSelectorMCV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new HaveIDatePickerDialog(ActivityBookkeepStatisticMonthly.this, 0, new HaveIDatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear,
-                                          int startDayOfMonth) {
-                        calendar.set(startYear, startMonthOfYear, startDayOfMonth);
-                        updateData();
-                    }
-                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
-                        .setMaxDate(Calendar.getInstance())
-                        .hideDay(true)
-                        .show();
-            }
-        });
     }
 
     @Override
@@ -91,6 +77,43 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         expenditureTV = findViewById(R.id.bookkeep_three_value1);
         incomeTV = findViewById(R.id.bookkeep_three_value2);
         surplusTV = findViewById(R.id.bookkeep_three_value3);
+        switchFAB = findViewById(R.id.bookkeep_monthly_switch_fab);
+
+        dateSelectorMCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new HaveIDatePickerDialog(ActivityBookkeepStatisticMonthly.this, 0, new HaveIDatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear,
+                                          int startDayOfMonth) {
+                        calendar.set(startYear, startMonthOfYear, startDayOfMonth);
+                        updateData();
+                    }
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+                        .setMaxDate(Calendar.getInstance())
+                        .hideDay(true)
+                        .show();
+            }
+        });
+
+        switchFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityBookkeepStatisticAnnually.startAction(ActivityBookkeepStatisticMonthly.this);
+                finish();
+            }
+        });
+
+        ((NestedScrollView)findViewById(R.id.bookkeep_statistic_monthly_scroll_view)).setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if(scrollY>oldScrollY){
+                    switchFAB.hide();
+                }else{
+                    switchFAB.show();
+                }
+            }
+        });
 
         ((TextView)findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure);
         ((TextView)findViewById(R.id.bookkeep_three_title2)).setText(R.string.income);

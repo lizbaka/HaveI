@@ -13,6 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
+
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import org.teamhavei.havei.Event.HaveIDatePickerDialog;
 import org.teamhavei.havei.R;
@@ -35,6 +38,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
     TextView incomeTV;
     TextView expenditureTV;
     TextView surplusTV;
+    ExtendedFloatingActionButton switchFAB;
 
     double[] expenditureByMonth = new double[12];
     double[] incomeByMonth = new double[12];
@@ -91,6 +95,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         expenditureTV = findViewById(R.id.bookkeep_three_value1);
         incomeTV = findViewById(R.id.bookkeep_three_value2);
         surplusTV = findViewById(R.id.bookkeep_three_value3);
+        switchFAB = findViewById(R.id.bookkeep_annual_switch_fab);
 
         ((TextView) findViewById(R.id.bookkeep_three_title1)).setText(R.string.bookkeep_annual_expenditure);
         ((TextView) findViewById(R.id.bookkeep_three_title2)).setText(R.string.bookkeep_annual_income);
@@ -110,6 +115,25 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
                         .hideMonth(true)
                         .setMaxDate(Calendar.getInstance())
                         .show();
+            }
+        });
+
+        switchFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityBookkeepStatisticMonthly.startAction(ActivityBookkeepStatisticAnnually.this);
+                finish();
+            }
+        });
+
+        ((NestedScrollView)findViewById(R.id.bookkeep_statistic_annually_scroll_view)).setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if(scrollY>oldScrollY){
+                    switchFAB.hide();
+                }else{
+                    switchFAB.show();
+                }
             }
         });
     }

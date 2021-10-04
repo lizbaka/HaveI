@@ -277,6 +277,7 @@
     <!--activity_bookkeep_monthly_statistic_monthly:start-->
     <string name="bookkeep_monthly_expenditure_proportion">支出占比</string>
     <string name="bookkeep_monthly_income_proportion">收入占比</string>
+    <string name="bookkeep_monthly_switch">切换到年视图</string>
     <!--activity_bookkeep_monthly_statistic_monthly:end-->
 
     <!--activity_bookkeep_annually_statistic_annually:start-->
@@ -287,6 +288,7 @@
     <string name="bookkeep_annual_monthly_surplus">每月盈余</string>
     <string name="bookkeep_annual_monthly_expenditure">每月支出</string>
     <string name="bookkeep_annual_monthly_income">每月收入</string>
+    <string name="bookkeep_annual_switch">切换到月视图</string>
     <!--activity_bookkeep_annually_statistic_annually:end-->
 
     <!--activity_bookkeep_add_wallet:start-->

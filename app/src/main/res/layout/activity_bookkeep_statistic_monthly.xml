@@ -60,6 +60,7 @@
         <include layout="@layout/dynamic_bookkeep_three_card" />
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/bookkeep_statistic_monthly_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -123,5 +124,16 @@
 
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/bookkeep_monthly_switch_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/fab_margin"
+        android:text="@string/bookkeep_monthly_switch"
+        android:textColor="@color/white"
+        android:backgroundTint="?attr/colorPrimary"
+        app:icon="@drawable/ic_baseline_loop_24"
+        app:iconTint="@color/white" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
