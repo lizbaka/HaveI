@@ -58,16 +58,13 @@
         <activity android:name=".activities.ActivityBookkeepStatisticMonthly"/>
         <activity android:name=".activities.ActivityBudget"/>
         <activity
-            android:name=".activities.ActivityBookkeepPropertyView"
-            android:label="@string/bookkeep_property_view"
+            android:name=".activities.ActivityBookkeepProperty"
             android:parentActivityName=".activities.ActivityBookkeep" />
         <activity
             android:name=".activities.ActivityBookkeepAddWallet"
-            android:label="@string/bookkeep_add_wallet"
-            android:parentActivityName=".activities.ActivityBookkeepPropertyView" />
+            android:parentActivityName=".activities.ActivityBookkeepProperty" />
         <activity
             android:name=".activities.ActivityBookkeepStatisticAnnually"
-            android:label="@string/bookkeep_annual_statistic"
             android:parentActivityName=".activities.ActivityBookkeep" />
 
         <provider

@@ -53,7 +53,6 @@
                 android:layout_height="@dimen/ui_icon_size_medium"
                 android:layout_marginRight="@dimen/widget_inview_margin"
                 android:layout_gravity="right"
-                android:contentDescription="@string/bookkeep_annual_account_button"
                 android:onClick="onClickStatisticsAnnually"
                 android:src="@drawable/calendar" />
 
@@ -76,8 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/bookkeep_overview"
-            android:layout_marginHorizontal="@dimen/card_margin"
-            android:layout_marginTop="@dimen/card_margin" />
+            android:layout_marginTop="@dimen/card_margin"
+            android:layout_marginHorizontal="@dimen/card_margin_horizontal" />
 
         <RelativeLayout
             android:id="@+id/bookkeep_bottom_bar"

@@ -106,8 +106,7 @@ public class ActivityBookkeep extends BaseActivity {
     }
 
     public void onClickFindPropertyView(View view) {
-//        Intent intent = new Intent(this, ActivityBookkeepPropertyView.class);
-//        startActivity(intent);
+        ActivityBookkeepProperty.startAction(ActivityBookkeep.this);
     }
 
     public void onClickAddBookkeep(View view) {
@@ -203,14 +202,6 @@ public class ActivityBookkeep extends BaseActivity {
     }
 
     private void update() {
-//        mBookCou = dbHelper.findBookcouByMonth(sDate);
-//        if (mBookCou == null) {
-//            updateCard(0, 0);
-//            updateRec(false);
-//        } else {
-//            updateCard(mBookCou.getIn(), mBookCou.getOut());
-//            updateRec(true);
-//        }
         budget = pref.getFloat(UniToolKit.PREF_BUDGET, 0);
         updateRecord();
         updateCard(dbHelper.getIncomeByMonth(calendar.getTime()), dbHelper.getExpenditureByMonth(calendar.getTime()));
