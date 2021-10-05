@@ -147,7 +147,7 @@ public class FragmentNumPad extends BottomSheetDialogFragment {
 
     private void tryAppend(String s) {
         String curNum = numberET.getText().toString();
-        if (curNum.length() >= 9 && !curNum.contains(".") && !s.equals(".")) {
+        if (curNum.split("\\.")[0].length()>=6 && !curNum.contains(".") && !s.equals(".")) {
             return;
         }
         if (curNum.contains(".")) {

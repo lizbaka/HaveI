@@ -92,9 +92,9 @@ public class ActivityBudget extends BaseActivity {
             budgetOverallRemainTV.setText(R.string.unset);
             budgetOverallPB.setProgress(0);
         } else {
-            budgetOverallTV.setText(Double.toString(budgetOverall));
+            budgetOverallTV.setText(String.format("%.2f",budgetOverall));
             double remain = budgetOverall - expenditure;
-            budgetOverallRemainTV.setText(Double.toString(remain));
+            budgetOverallRemainTV.setText(String.format("%.2f",remain));
             if (expenditure < budgetOverall) {
                 budgetOverallPB.setProgress((int) (expenditure / budgetOverall * 100));
             } else {
