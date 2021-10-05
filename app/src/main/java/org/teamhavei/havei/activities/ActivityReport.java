@@ -2,42 +2,35 @@ package org.teamhavei.havei.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.media.ImageReader;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.teamhavei.havei.Event.BookTag;
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;
+import org.teamhavei.havei.databases.BookkeepDBHelper;
 import org.teamhavei.havei.databases.EventDBHelper;
 import org.teamhavei.havei.databases.UtilDBHelper;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Calendar;
 import java.util.List;
 
@@ -45,7 +38,7 @@ public class ActivityReport extends AppCompatActivity {
 
     SharedPreferences pref;
     EventDBHelper eventDBHelper;
-    //todo: put bookkeepDBHelper here
+    BookkeepDBHelper bookkeepDBHelper;
     UtilDBHelper utilDBHelper;
     IconAdapter iconAdapter;
 
@@ -85,7 +78,7 @@ public class ActivityReport extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.monthly_report_title);
 
         eventDBHelper = new EventDBHelper(ActivityReport.this, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
-        //todo: initialize bookkeepDBHelper here
+        bookkeepDBHelper = new BookkeepDBHelper(ActivityReport.this, BookkeepDBHelper.DB_NAME,null,BookkeepDBHelper.DATABASE_VERSION);
         utilDBHelper = new UtilDBHelper(ActivityReport.this, UtilDBHelper.DB_NAME, null, UtilDBHelper.DB_VERSION);
         pref = getSharedPreferences(UniToolKit.PREF_SETTINGS, MODE_PRIVATE);
         iconAdapter = new IconAdapter(ActivityReport.this);
@@ -204,7 +197,15 @@ public class ActivityReport extends AppCompatActivity {
     }
 
     private void showBookkeepPart() {
-        // TODO: 2021.08.27 接入记账
+        bookkeepSumTV.setText(Integer.toString(bookkeepDBHelper.findBookkeepByMonth(Calendar.getInstance().getTime()).size()));
+        bookkeepSumSmallTV.setText(Integer.toString(bookkeepDBHelper.findAllBookkeep().size()));
+        List<BookTag> bookTagList = bookkeepDBHelper.findAllBookTag(true,UniToolKit.BOOKKEEP_TAG_EXPENDITURE,true);
+        if(bookTagList.isEmpty()){
+            bookkeepMostTV.setText(R.string.no_data);
+        }else{
+            bookkeepMostTV.setText(bookTagList.get(0).getName());
+        }
+        bookkeepDayTV.setText(Integer.toString(bookkeepDBHelper.getBookkeepDay()));
     }
 
     public Bitmap createBitmap(View v) {

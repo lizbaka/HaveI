@@ -103,7 +103,7 @@ public class ActivityMain extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.main_toolbar_analyze:
+            case R.id.toolbar_analyze:
                 // TODO: 2021.08.24 数据分析功能完成后接入
                 Toast.makeText(this, "数据分析功能：敬请期待", Toast.LENGTH_SHORT).show();
                 return true;
