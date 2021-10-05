@@ -211,7 +211,7 @@ public class ActivityMain extends BaseActivity {
             ImageView todoIconIV = findViewById(R.id.todo_card_icon);
             todoTitleTV.setText(todo.getName());
             todoTagTV.setText(eventDBHelper.findEventTagById(todo.getTagId()).getName());
-            todoTimeTV.setText(todo.getDateTime().substring(11, 16));
+            todoTimeTV.setText(todo.getDateTime().substring(5, 16));
             todoIconIV.setImageDrawable(iconAdapter.getIcon(eventDBHelper.findEventTagById(todo.getTagId()).getIconId()));
 
             findViewById(R.id.main_todo_card).setOnClickListener(new View.OnClickListener() {
