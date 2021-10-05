@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +22,7 @@ import org.teamhavei.havei.databases.EventDBHelper;
 
 import java.util.List;
 
-public class FragmentHabitList extends BaseFragment{
+public class FragmentHabitList extends BaseFragment {
 
     EventDBHelper dbHelper;
     List<Habit> habitList;
@@ -28,18 +30,20 @@ public class FragmentHabitList extends BaseFragment{
     ExtendedFloatingActionButton fab;
     RecyclerView habitCardListRV;
     HabitCardAdapter habitCardAdapter;
+    NestedScrollView containerNSV;
+    TextView emptyTV;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dbHelper = new EventDBHelper(getContext(),EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
+        dbHelper = new EventDBHelper(getContext(), EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
         habitList = dbHelper.findAllHabit();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_habit_list,container,false);
+        View view = inflater.inflate(R.layout.fragment_habit_list, container, false);
         initView(view);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,31 +51,41 @@ public class FragmentHabitList extends BaseFragment{
                 ActivityModifyHabit.startAction(getContext());
             }
         });
-        habitCardListRV.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        containerNSV.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if(dy>0){
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (scrollY > oldScrollY) {
                     fab.hide();
-                }else{
+                } else {
                     fab.show();
                 }
             }
         });
         return view;
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        habitList= dbHelper.findAllHabit();
+        habitList = dbHelper.findAllHabit();
+        if (habitList.isEmpty()) {
+            containerNSV.setVisibility(View.INVISIBLE);
+            emptyTV.setVisibility(View.VISIBLE);
+        } else {
+            containerNSV.setVisibility(View.VISIBLE);
+            emptyTV.setVisibility(View.GONE);
+        }
         habitCardAdapter.setHabitList(dbHelper.findAllHabit());
         habitCardAdapter.notifyDataSetChanged();
     }
 
-    void initView(View view){
+    void initView(View view) {
         habitCardListRV = view.findViewById(R.id.habit_list_card_list);
         fab = view.findViewById(R.id.habit_list_add);
+        containerNSV = view.findViewById(R.id.habit_list_container);
+        emptyTV = view.findViewById(R.id.habit_list_empty);
+
         habitCardListRV.setLayoutManager(new LinearLayoutManager(getContext()));
         habitCardAdapter = new HabitCardAdapter(dbHelper.findAllHabit(), getContext());
         habitCardListRV.setAdapter(habitCardAdapter);

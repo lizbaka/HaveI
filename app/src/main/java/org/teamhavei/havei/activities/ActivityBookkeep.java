@@ -208,6 +208,11 @@ public class ActivityBookkeep extends BaseActivity {
     private void updateRecord() {
         mBookList.clear();
         mBookList.addAll(dbHelper.findBookkeepByMonth(UniToolKit.eventYearMonthFormatter(calendar.getTime())));
+        if(mBookList.isEmpty()){
+            findViewById(R.id.bookkeep_empty).setVisibility(View.VISIBLE);
+        }else{
+            findViewById(R.id.bookkeep_empty).setVisibility(View.GONE);
+        }
         ((BookkeepCardAdapter) recordRV.getAdapter()).notifyBookListChanged();
     }
 

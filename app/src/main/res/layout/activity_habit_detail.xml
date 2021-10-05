@@ -89,6 +89,12 @@
                     app:mcv_showOtherDates="decorated_disabled" />
             </com.google.android.material.card.MaterialCardView>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/habit_detail_hint"
+                android:layout_gravity="center_horizontal"/>
+
             <com.google.android.material.card.MaterialCardView
                 style="@style/Dynamic_card"
                 android:layout_width="match_parent"
@@ -100,7 +106,6 @@
                     android:layout_height="150dp" />
 
             </com.google.android.material.card.MaterialCardView>
-
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/Dynamic_card"
@@ -174,6 +179,7 @@
 
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/habit_detail_ranking_container"
                 style="@style/Dynamic_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

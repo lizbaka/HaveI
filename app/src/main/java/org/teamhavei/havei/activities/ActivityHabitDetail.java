@@ -18,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateLongClickListener;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
@@ -108,6 +110,19 @@ public class ActivityHabitDetail extends BaseActivity {
                 yearCountVP.getAdapter().notifyDataSetChanged();
             }
         });
+        mCalendar.state().edit()
+                .setMinimumDate(CalendarDay.from(1970,1,1))
+                .setMaximumDate(CalendarDay.today());
+        mCalendar.addDecorator(new DayViewDecorator() {
+            @Override
+            public boolean shouldDecorate(CalendarDay day) {
+                return day.isAfter(CalendarDay.today());
+            }
+            @Override
+            public void decorate(DayViewFacade view) {
+                view.setDaysDisabled(true);
+            }
+        });
         mCalendar.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
@@ -117,7 +132,7 @@ public class ActivityHabitDetail extends BaseActivity {
             }
         });
 
-        rankView.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.habit_detail_ranking_container).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rankView.setText("No." + Integer.toString(calculateHabitRank()));

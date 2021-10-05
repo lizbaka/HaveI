@@ -240,9 +240,9 @@ public class ActivityMain extends BaseActivity {
             habitGL.setVisibility(View.VISIBLE);
             findViewById(R.id.main_empty_habit).setVisibility(View.GONE);
 
-            habitGL.setColumnCount(habitList.size() <= 4 ? habitList.size() : 4);
+            habitGL.setColumnCount(Math.min(habitList.size(), 4));
             View child;
-            for (int i = 0; i < (habitList.size() <= 4 ? habitList.size() : 4); i++) {
+            for (int i = 0; i < (Math.min(habitList.size(), 4)); i++) {
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
                 params.height = GridLayout.LayoutParams.WRAP_CONTENT;
                 params.width = 0;

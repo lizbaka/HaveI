@@ -114,9 +114,11 @@ public class FragmentTimeTable extends BaseFragment {
 
         if (isTodoMode) {
             (view.findViewById(R.id.tt_timeline)).setVisibility(View.VISIBLE);
+            (view.findViewById(R.id.tt_bg)).setVisibility(View.GONE);
             new Handler().postDelayed(configCurrentTime, 200);
         } else {
             (view.findViewById(R.id.tt_timeline)).setVisibility(View.GONE);
+            (view.findViewById(R.id.tt_bg)).setVisibility(View.VISIBLE);
         }
 
         view.findViewById(R.id.tt_tv_day1).getViewTreeObserver().addOnPreDrawListener(

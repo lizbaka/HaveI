@@ -7,29 +7,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="false"
-            style="@style/Dynamic_card">
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Dynamic_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false">
+
+                <TextView
+                    android:id="@+id/today_habit_no_unfinished"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/main_event_no_habit"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+                <GridLayout
+                    android:id="@+id/today_habit_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="4" />
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                android:id="@+id/today_habit_no_unfinished"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/white"
-                android:text="@string/main_event_no_habit"
-                android:visibility="gone"/>
+                android:layout_gravity="center_horizontal"
+                android:text="@string/habit_hint"/>
 
-            <GridLayout
-                android:id="@+id/today_habit_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="4"/>
-
-        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
