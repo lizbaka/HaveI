@@ -157,6 +157,9 @@ public class FragmentNumPad extends BottomSheetDialogFragment {
         if (curNum.equals("") && s.equals(".")) {
             numberET.append("0");
         }
+        if(curNum.equals("0") && !s.equals(".")){
+            numberET.setText("");
+        }
         numberET.append(s);
     }
 
