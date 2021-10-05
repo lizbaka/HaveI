@@ -3,17 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/toolbar_property"
-        android:icon="@drawable/ic_baseline_timeline_24"
+        android:id="@+id/toolbar_2_0"
+        android:title="[toolbar_2_0]"
         android:iconTint="@color/white"
-        android:title="@string/property"
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/toolbar_timeline"
-        android:icon="@drawable/ic_baseline_leaderboard_24"
+        android:id="@+id/toolbar_2_1"
+        android:title="[toolbar_2_1]"
         android:iconTint="@color/white"
-        android:title="@string/analyze"
         app:showAsAction="always"/>
 
 </menu>

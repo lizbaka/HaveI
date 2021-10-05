@@ -11,12 +11,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import org.teamhavei.havei.Event.Bookkeep;
 import org.teamhavei.havei.Event.HaveIDatePickerDialog;
@@ -40,14 +42,16 @@ public class ActivityBookkeep extends BaseActivity {
     double budget;
     Calendar calendar;
 
-    private MaterialCardView mShowDateBTN;
-    private TextView mSelectDateTV;
-    private BookkeepDBHelper dbHelper;
-    private List<Bookkeep> mBookList;
-    private TextView month_in;
-    private TextView month_out;
-    private TextView month_left;
-    private RecyclerView recordRV;
+    MaterialCardView mShowDateBTN;
+    TextView mSelectDateTV;
+    BookkeepDBHelper dbHelper;
+    List<Bookkeep> mBookList;
+    TextView month_in;
+    TextView month_out;
+    TextView month_left;
+    RecyclerView recordRV;
+    ExtendedFloatingActionButton fab;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +94,12 @@ public class ActivityBookkeep extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.toolbar_2_0://property
+                ActivityBookkeepProperty.startAction(ActivityBookkeep.this);
+                return true;
+            case R.id.toolbar_2_1://statistic
+                ActivityBookkeepStatisticMonthly.startAction(ActivityBookkeep.this);
+                return true;
             case android.R.id.home:
                 finish();
                 return true;
@@ -97,32 +107,25 @@ public class ActivityBookkeep extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClickStatisticsAnnually(View view) {
-        ActivityBookkeepStatisticAnnually.startAction(ActivityBookkeep.this);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_2,menu);
+        menu.getItem(0).setTitle(R.string.property).setIcon(R.drawable.ic_baseline_timeline_24);
+        menu.getItem(1).setTitle(R.string.analyze).setIcon(R.drawable.ic_baseline_leaderboard_24);
+        return super.onCreateOptionsMenu(menu);
     }
-
-    public void onClickStatisticsMonthly(View view) {
-        ActivityBookkeepStatisticMonthly.startAction(ActivityBookkeep.this);
-    }
-
-    public void onClickFindPropertyView(View view) {
-        ActivityBookkeepProperty.startAction(ActivityBookkeep.this);
-    }
-
-    public void onClickAddBookkeep(View view) {
-        ActivityBookkeepAdd.startAction(ActivityBookkeep.this);
-    }
-
 
     void init() {
+        calendar = Calendar.getInstance();
+
         mShowDateBTN = findViewById(R.id.btn_show_date);
         mSelectDateTV = findViewById(R.id.tv_select_date);
         month_in = findViewById(R.id.bookkeep_three_value3);
         month_out = findViewById(R.id.bookkeep_three_value1);
         month_left = findViewById(R.id.bookkeep_three_value2);
         recordRV = findViewById(R.id.recyclerView_today_detail);
-        calendar = Calendar.getInstance();
         mSelectDateTV.setText(UniToolKit.eventYearMonthFormatter(calendar.getTime()));
+        fab = findViewById(R.id.bookkeep_add);
 
         ((TextView) findViewById(R.id.bookkeep_three_title3)).setText(R.string.income);
         ((TextView) findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure);
@@ -159,14 +162,21 @@ public class ActivityBookkeep extends BaseActivity {
             }
         }));
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityBookkeepAdd.startAction(ActivityBookkeep.this);
+            }
+        });
+
         recordRV.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (dy > 0) {
-                    findViewById(R.id.bookkeep_bottom_bar).setVisibility(View.GONE);
+                    fab.hide();
                 } else {
-                    findViewById(R.id.bookkeep_bottom_bar).setVisibility(View.VISIBLE);
+                    fab.show();
                 }
             }
         });
@@ -206,5 +216,4 @@ public class ActivityBookkeep extends BaseActivity {
         updateRecord();
         updateCard(dbHelper.getIncomeByMonth(calendar.getTime()), dbHelper.getExpenditureByMonth(calendar.getTime()));
     }
-
 }

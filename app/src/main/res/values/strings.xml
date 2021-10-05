@@ -256,9 +256,9 @@
     <!--monthly_report:end-->
 
     <!--activity_bookkeep:begin-->
-    <string name="bookkeep_statistics_monthly">月统计</string>
     <string name="bookkeep_delete_dialog_title">删除账目</string>
     <string name="bookkeep_delete_dialog_msg">您确定要删除这条账目吗？</string>
+    <string name="bookkeep_add">记一笔</string>
     <!--activity_bookkeep:end-->
 
     <!--activity_bookkeep_add:Begin-->

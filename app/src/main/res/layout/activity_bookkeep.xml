@@ -47,15 +47,6 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <ImageView
-                android:id="@+id/bookkeep_annual_account"
-                android:layout_width="@dimen/ui_icon_size_medium"
-                android:layout_height="@dimen/ui_icon_size_medium"
-                android:layout_marginRight="@dimen/widget_inview_margin"
-                android:layout_gravity="right"
-                android:onClick="onClickStatisticsAnnually"
-                android:src="@drawable/calendar" />
-
         </androidx.appcompat.widget.Toolbar>
 
 
@@ -78,46 +69,19 @@
             android:layout_marginTop="@dimen/card_margin"
             android:layout_marginHorizontal="@dimen/card_margin_horizontal" />
 
-        <RelativeLayout
-            android:id="@+id/bookkeep_bottom_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-
-            <Button
-                android:id="@+id/bookkeep_bottom_bar_statistics"
-                android:layout_width="@dimen/bookkeep_bottom_bar_button_width"
-                android:layout_height="@dimen/bookkeep_bottom_bar_button_height"
-                android:layout_alignBottom="@id/bookkeep_bottom_bar_add"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="@dimen/bookkeep_bottom_bar_button_horizontal_margin"
-                android:gravity="center"
-                android:onClick="onClickStatisticsMonthly"
-                android:text="@string/bookkeep_statistics_monthly" />
-
-            <ImageButton
-                android:id="@+id/bookkeep_bottom_bar_add"
-                android:layout_width="@dimen/bookkeep_bottom_bar_imageButton_size"
-                android:layout_height="@dimen/bookkeep_bottom_bar_imageButton_size"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/bookkeep_bottom_bar_button_vertical_margin"
-                android:background="?attr/actionBarItemBackground"
-                android:onClick="onClickAddBookkeep"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_add4" />
-
-            <Button
-                android:id="@+id/bookeep_bottom_bar_property"
-                android:layout_width="@dimen/bookkeep_bottom_bar_button_width"
-                android:layout_height="@dimen/bookkeep_bottom_bar_button_height"
-                android:layout_alignBottom="@id/bookkeep_bottom_bar_add"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/bookkeep_bottom_bar_button_horizontal_margin"
-                android:onClick="onClickFindPropertyView"
-                android:text="@string/property" />
-
-        </RelativeLayout>
-
 
     </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/bookkeep_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="@dimen/fab_margin"
+        android:text="@string/bookkeep_add"
+        android:textColor="@color/white"
+        android:backgroundTint="?attr/colorPrimary"
+        app:icon="@drawable/ic_baseline_add_24"
+        app:iconTint="@color/white" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
