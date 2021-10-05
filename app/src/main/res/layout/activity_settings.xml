@@ -62,7 +62,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/settings_proverb_src"
+                android:id="@+id/settings_account_mng"
                 style="@style/Dynamic_card.border"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -75,7 +75,7 @@
                         android:layout_width="@dimen/ui_icon_size_medium"
                         android:layout_height="@dimen/ui_icon_size_medium"
                         android:layout_margin="@dimen/widget_inview_margin"
-                        android:src="@drawable/hs_pencil" />
+                        android:src="@drawable/account_book" />
 
                     <TextView
                         style="@style/TextAppearance.AppCompat.Title"
@@ -85,7 +85,7 @@
                         android:layout_margin="@dimen/widget_inview_margin"
                         android:layout_weight="1"
                         android:maxLines="1"
-                        android:text="@string/settings_proverb_src" />
+                        android:text="@string/account_mng" />
 
                 </LinearLayout>
 

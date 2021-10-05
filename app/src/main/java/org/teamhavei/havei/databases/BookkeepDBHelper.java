@@ -165,6 +165,15 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return -cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
     }
 
+    public double getPMByAccount(int accountId){
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"},BOOKKEEP_ACCOUNT_BEL + " = ?",new String[]{Integer.toString(accountId)},BOOKKEEP_ACCOUNT_BEL,null,null);
+        if(cursor.getCount()<=0){
+            return 0;
+        }
+        cursor.moveToNext();
+        return cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+    }
+
     public int getBookkeepDay(){
         Cursor cursor = db.query(TABLE_BOOKKEEP,new String[]{"COUNT(" + BOOKKEEP_TIME + ")"},null,null,BOOKKEEP_TIME,null,null);
         return cursor.getCount();
@@ -402,7 +411,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     }
 
     public List<BookAccount> findAllBookAccount() {
-        List<BookAccount> bookAccountList = new ArrayList<>();
         Cursor cursor = db.query(TABLE_BOOK_ACCOUNT, null, null, null, null, null, null);
         return cursorToBookAccountList(cursor);
     }

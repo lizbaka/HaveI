@@ -50,13 +50,14 @@
     <string name="remain">剩余</string>
     <string name="remaining_budget">剩余预算</string>
     <string name="surplus">结余</string>
-    <string name="default_account">默认账户</string>
+    <string name="default_account">无账户</string>
     <string name="default_expenditure_tag">默认支出</string>
     <string name="default_income_tag">默认收入</string>
     <string name="expenditure_month">本月支出</string>
     <string name="expenditure_today">今日支出</string>
     <string name="analyze">分析</string>
     <string name="property">资产</string>
+    <string name="select_icon">选择一个图标</string>
     <!--universal_UI:end-->
 
     <!--activity_main:Begin-->
@@ -66,18 +67,18 @@
     <string name="main_all_event">查看所有待办和习惯……</string>
     <string name="main_empty_todo">最近没有未完成的待办</string>
     <string name="main_empty_habit">今天没有未达成目标的习惯</string>
-        <!--greeting_card:Begin-->
-        <string name="greeting_morning">上午好！</string>
-        <string name="greeting_morning_secondary">一日之计在于晨</string>
-        <string name="greeting_noon">中午好！</string>
-        <string name="greeting_noon_secondary">休息一下！</string>
-        <string name="greeting_afternoon">下午好！</string>
-        <string name="greeting_afternoon_secondary">干劲满满迎接下午！</string>
-        <string name="greeting_evening">晚上好！</string>
-        <string name="greeting_evening_secondary">享受生活</string>
-        <string name="greeting_midnight">夜深</string>
-        <string name="greeting_midnight_secondary">晚安！</string>
-        <!--greeting_card:end-->
+    <!--greeting_card:Begin-->
+    <string name="greeting_morning">上午好！</string>
+    <string name="greeting_morning_secondary">一日之计在于晨</string>
+    <string name="greeting_noon">中午好！</string>
+    <string name="greeting_noon_secondary">休息一下！</string>
+    <string name="greeting_afternoon">下午好！</string>
+    <string name="greeting_afternoon_secondary">干劲满满迎接下午！</string>
+    <string name="greeting_evening">晚上好！</string>
+    <string name="greeting_evening_secondary">享受生活</string>
+    <string name="greeting_midnight">夜深</string>
+    <string name="greeting_midnight_secondary">晚安！</string>
+    <!--greeting_card:end-->
     <!--activity_main:end-->
 
     <!--main_event:Begin-->
@@ -239,7 +240,6 @@
     <string name="modify_bookkeep_tag_title_modify">修改记账标签</string>
     <string name="modify_bookkeep_tag_title_add">增加记账标签</string>
     <string name="modify_tag_name_hint">标签名称</string>
-    <string name="modify_tag_select_icon">选择一个图标</string>
     <string name="modify_tag_empty_name">标签名不能为空</string>
     <string name="modify_tag_delete_dialog_title">删除标签</string>
     <string name="modify_tag_delete_dialog_msg">此标签将被删除，在统计中会被保留，但您无法再将账目/事件分配到此标签（即便同名）。您确定要删除此标签吗？</string>
@@ -308,5 +308,18 @@
     <string name="budget_overall">总预算</string>
     <string name="budget_category">分类预算</string>
     <!--activity_budget:end-->
+
+    <!--bookkeep_account:start-->
+    <string name="account_mng">管理账户</string>
+    <string name="account_add">添加账户</string>
+    <string name="account_modify">修改账户</string>
+    <string name="modify_account_set_init">初始：</string>
+    <string name="modify_account_init_hint">账户初始余额</string>
+    <string name="modify_account_name_hint">账户名称</string>
+    <string name="modify_account_empty_name">账户名称不能为空</string>
+    <string name="modify_account_cannot_modify_default">不能修改此账户</string>
+    <string name="modify_account_delete_dialog_title">删除账户</string>
+    <string name="modify_account_delete_dialog_content">此账户被删除后将无法恢复，属于此账户的账目将被设为无账户，您确定要删除此账户吗？</string>
+    <!--bookkeep_account:end-->
 
 </resources>

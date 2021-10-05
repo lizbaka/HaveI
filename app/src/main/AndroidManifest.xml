@@ -3,7 +3,7 @@
     package="org.teamhavei.havei">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -18,31 +18,23 @@
             android:name=".services.HaveITimeWatcher"
             android:exported="false" />
 
-        <activity android:name=".activities.ActivityMain"
+        <activity
+            android:name=".activities.ActivityMain"
             android:exported="true"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".activities.ActivityHabitMain" />
-
-        <activity
-            android:name=".activities.ActivitySettingsProverbSrc"/>
-        <activity
-            android:name=".activities.ActivityReport"/>
-        <activity
-            android:name=".activities.ActivityModifyTag"/>
-        <activity
-            android:name=".activities.ActivitySettings"/>
-        <activity
-            android:name=".activities.ActivitySettingsTagMng"/>
-
-        <activity
-            android:name=".activities.ActivityTodoDetail"/>
+        <activity android:name=".activities.ActivityHabitMain" />
+        <activity android:name=".activities.ActivitySettingsProverbSrc" />
+        <activity android:name=".activities.ActivityReport" />
+        <activity android:name=".activities.ActivityModifyTag" />
+        <activity android:name=".activities.ActivitySettings" />
+        <activity android:name=".activities.ActivitySettingsTagMng" />
+        <activity android:name=".activities.ActivityTodoDetail" />
         <activity android:name=".activities.ActivityModifyTodo" />
         <activity android:name=".activities.ActivityMainEvent" />
         <activity android:name=".activities.ActivityProverbList" />
@@ -50,22 +42,24 @@
         <activity android:name=".activities.ActivityHelp" />
         <activity android:name=".activities.ActivityHabitDetail" />
         <activity android:name=".activities.ActivityModifyHabit" />
-
         <activity android:name=".activities.ActivityBookkeep" />
         <activity
             android:name=".activities.ActivityBookkeepAdd"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".activities.ActivityBookkeepStatisticMonthly"/>
-        <activity android:name=".activities.ActivityBudget"/>
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".activities.ActivityBookkeepStatisticMonthly" />
+        <activity android:name=".activities.ActivityBudget" />
         <activity
             android:name=".activities.ActivityBookkeepProperty"
             android:parentActivityName=".activities.ActivityBookkeep" />
         <activity
-            android:name=".activities.ActivityBookkeepAddWallet"
-            android:parentActivityName=".activities.ActivityBookkeepProperty" />
-        <activity
             android:name=".activities.ActivityBookkeepStatisticAnnually"
             android:parentActivityName=".activities.ActivityBookkeep" />
+        <activity
+            android:name=".activities.ActivityModifyAccount"
+            android:exported="true" />
+        <activity
+            android:name=".activities.ActivitySettingsAccount"
+            android:exported="true" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

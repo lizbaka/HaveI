@@ -152,6 +152,10 @@ public class IconAdapter {
     public static final int ID_HS_WATER_DROP = 129;
 
     public static final int ID_AC_DEFAULT = 130;
+    public static final int ID_AC_CASH = 131;
+    public static final int ID_AC_WECHAT = 132;
+    public static final int ID_AC_ALIPAY = 133;
+    public static final int ID_AC_CARD = 134;
     //只能加，不能改！
 
     public static final int DEFAULT_EVENT_TAG_ICON_ID = ID_HS_RECORD;
@@ -300,6 +304,16 @@ public class IconAdapter {
         result.add(ID_HS_UMBRELLA);
         result.add(ID_HS_WATER);
         result.add(ID_HS_WATER_DROP);
+        return result;
+    }
+
+    public List<Integer> getAccountIconIDList(){
+        List<Integer> result = new ArrayList<>();
+        result.add(ID_AC_DEFAULT);
+        result.add(ID_AC_CASH);
+        result.add(ID_AC_WECHAT);
+        result.add(ID_AC_ALIPAY);
+        result.add(ID_AC_CARD);
         return result;
     }
 
@@ -564,6 +578,14 @@ public class IconAdapter {
             case ID_HS_WATER_DROP:
                 return ContextCompat.getDrawable(mContext, R.drawable.hs_water_drop);
             case ID_AC_DEFAULT:
+                return ContextCompat.getDrawable(mContext, R.drawable.account_book);
+            case ID_AC_CASH:
+                return ContextCompat.getDrawable(mContext, R.drawable.account_book);
+            case ID_AC_WECHAT:
+                return ContextCompat.getDrawable(mContext, R.drawable.account_book);
+            case ID_AC_ALIPAY:
+                return ContextCompat.getDrawable(mContext, R.drawable.account_book);
+            case ID_AC_CARD:
                 return ContextCompat.getDrawable(mContext, R.drawable.account_book);
             default:
                 Log.d(TAG, "getIcon: not found, returning lost");
