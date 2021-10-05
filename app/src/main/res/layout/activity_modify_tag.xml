@@ -38,7 +38,7 @@
                 android:layout_marginVertical="@dimen/card_margin">
 
                 <TextView
-                    android:id="@+id/modify_tag_name_hint"
+                    android:id="@+id/modify_account_name_hint"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                     android:id="@+id/modify_tag_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/modify_tag_name_hint"
+                    android:layout_toRightOf="@id/modify_account_name_hint"
                     android:hint="@string/modify_tag_name_hint"
                     android:maxLines="1"
                     android:singleLine="true"
@@ -144,7 +144,7 @@
                             android:layout_marginEnd="@dimen/widget_inview_margin"
                             android:layout_marginBottom="@dimen/widget_inview_margin"
                             android:layout_toRightOf="@id/modify_tag_icon_container"
-                            android:text="@string/modify_tag_select_icon"
+                            android:text="@string/select_icon"
                             android:textColor="@color/grey_500" />
 
                     </RelativeLayout>

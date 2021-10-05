@@ -73,7 +73,7 @@
     <!--=====================================================-->
 
     <!--activity_add_account_detail:Begin-->
-    <dimen name="bookkeep_add_record_height">44dp</dimen>
+    <dimen name="bookkeep_add_record_info_height">44dp</dimen>
     <dimen name="bookkeep_add_account_detail_calculator_border_margin">14dp</dimen>
     <dimen name="bookkeep_add_button_height">48dp</dimen>
     <!--activity_add_account_detail:End-->
