@@ -4,10 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/main_toolbar_analyze"
+        android:id="@+id/toolbar_analyze"
         android:icon="@drawable/ic_baseline_leaderboard_24"
         android:iconTint="@color/white"
-        android:title="@string/main_toolbar_analyze"
+        android:title="@string/analyze"
         app:showAsAction="always"/>
 
 </menu>

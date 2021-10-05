@@ -55,6 +55,8 @@
     <string name="default_income_tag">默认收入</string>
     <string name="expenditure_month">本月支出</string>
     <string name="expenditure_today">今日支出</string>
+    <string name="analyze">分析</string>
+    <string name="property">资产</string>
     <!--universal_UI:end-->
 
     <!--activity_main:Begin-->
@@ -142,10 +144,6 @@
     <!--habit_detail:Begin-->
     <string name="habit_detail_rank_changed">点击重载</string>
     <!--habit_detail:end-->
-
-    <!--main_toolbar_Begin-->
-    <string name="main_toolbar_analyze">分析</string>
-    <!--menu_main_toolbar:end-->
 
     <!--nav_menu:Begin-->
     <string name="nav_menu_report">分享报告</string>
@@ -259,7 +257,6 @@
 
     <!--activity_bookkeep:begin-->
     <string name="bookkeep_statistics_monthly">月统计</string>
-    <string name="bookkeep_property">资产</string>
     <string name="bookkeep_delete_dialog_title">删除账目</string>
     <string name="bookkeep_delete_dialog_msg">您确定要删除这条账目吗？</string>
     <!--activity_bookkeep:end-->

@@ -114,7 +114,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/bookkeep_bottom_bar_button_horizontal_margin"
                 android:onClick="onClickFindPropertyView"
-                android:text="@string/bookkeep_property" />
+                android:text="@string/property" />
 
         </RelativeLayout>
 
