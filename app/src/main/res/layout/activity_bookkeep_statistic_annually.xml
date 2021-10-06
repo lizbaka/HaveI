@@ -175,11 +175,11 @@
 <!--                    android:layout_width="match_parent"-->
 <!--                    android:layout_height="350dp" />-->
 
-<!--                <com.github.mikephil.charting.charts.LineChart-->
+                <com.github.mikephil.charting.charts.LineChart
 
-<!--                    android:id="@+id/chart_line1"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="350dp" />-->
+                    android:id="@+id/chart_line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
