@@ -111,11 +111,23 @@
                             android:layout_margin="@dimen/widget_inview_margin"
                             android:text="@string/bookkeep_monthly_income_proportion" />
 
+                                        <com.github.mikephil.charting.charts.PieChart
+                                            android:id="@+id/chart_in"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="350dp" />
+
+                                        <com.github.mikephil.charting.charts.PieChart
+                                            android:id="@+id/chart_out"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="350dp" />
+
                         <!--                    todo: 在这里放收入饼图-->
 
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
+
 
             </LinearLayout>
 

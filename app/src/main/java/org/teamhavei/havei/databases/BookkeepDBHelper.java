@@ -216,8 +216,8 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         db.delete(TABLE_BOOKKEEP, BOOKKEEP_ID + " = ? ", new String[]{Integer.toString(mBookkeep.getid())});
     }
 
-    public List<Double> getPMListByYear(int type, Date date) {
-        List<Double> data = new ArrayList<>();
+    public ArrayList<Double> getPMListByYear(int type, Date date) {
+        ArrayList<Double> data = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.set(Calendar.MONTH, Calendar.JANUARY);
@@ -235,9 +235,9 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public List<Double> getSurplusListByYear(Date date) {
-        List<Double> surplusData = getPMListByYear(UniToolKit.BOOKKEEP_TAG_INCOME, date);
-        List<Double> expenditureData = getPMListByYear(UniToolKit.BOOKKEEP_TAG_EXPENDITURE, date);
+    public ArrayList<Double> getSurplusListByYear(Date date) {
+        ArrayList<Double> surplusData = getPMListByYear(UniToolKit.BOOKKEEP_TAG_INCOME, date);
+        ArrayList<Double> expenditureData = getPMListByYear(UniToolKit.BOOKKEEP_TAG_EXPENDITURE, date);
         for (int i = 0; i < surplusData.size(); i++) {
             surplusData.set(i, surplusData.get(i) - expenditureData.get(i));
         }
