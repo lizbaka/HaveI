@@ -183,7 +183,7 @@ public class ActivityMainEvent extends BaseActivity {
 
     private void configHabitContainerGL() {
         habitContainerGL.removeAllViews();
-        if(todayHabitList.size()>8){
+        if(todayHabitList.size()>4){
             habitMoreIV.setVisibility(View.VISIBLE);
         }else{
             habitMoreIV.setVisibility(View.GONE);
@@ -198,7 +198,7 @@ public class ActivityMainEvent extends BaseActivity {
         View child;
         IconAdapter iconAdapter = new IconAdapter(ActivityMainEvent.this);
 
-        for (int i = 0; i < (todayHabitList.size() < 8 ? todayHabitList.size() : 8); i++) {
+        for (int i = 0; i < (Math.min(todayHabitList.size(), 4)); i++) {
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();
             params.width = GridLayout.LayoutParams.WRAP_CONTENT;
             params.height = GridLayout.LayoutParams.WRAP_CONTENT;
@@ -208,8 +208,8 @@ public class ActivityMainEvent extends BaseActivity {
             TextView titleTV = child.findViewById(R.id.icon_title_title);
 
             Habit mHabit = todayHabitList.get(i);
-            params.rowSpec = GridLayout.spec(i / 4);
-            params.columnSpec = GridLayout.spec(i % 4, 1f);
+            params.rowSpec = GridLayout.spec(0);
+            params.columnSpec = GridLayout.spec(i, 1f);
             iconIV.setImageDrawable(iconAdapter.getIcon(dbHelper.findEventTagById(mHabit.getTagId()).getIconId()));
             iconContainerV.setBackgroundTintList(ContextCompat.getColorStateList(ActivityMainEvent.this, R.color.habit_icon_state_list));
             iconContainerV.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);

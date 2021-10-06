@@ -1,7 +1,6 @@
 package org.teamhavei.havei.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +15,7 @@ import org.teamhavei.havei.R;
 public class ActivitySettings extends BaseActivity {
 
     MaterialCardView tagsMng;
-    MaterialCardView proverbSrc;
+    MaterialCardView accountMng;
 
     public static void startAction(Context context) {
         Intent intent = new Intent(context, ActivitySettings.class);
@@ -37,7 +36,7 @@ public class ActivitySettings extends BaseActivity {
 
     private void initView() {
         tagsMng = findViewById(R.id.settings_tags_mng);
-        proverbSrc = findViewById(R.id.settings_proverb_src);
+        accountMng = findViewById(R.id.settings_account_mng);
     }
 
     private void setSettingsEntrances() {
@@ -47,10 +46,10 @@ public class ActivitySettings extends BaseActivity {
                 ActivitySettingsTagMng.startAction(ActivitySettings.this);
             }
         });
-        proverbSrc.setOnClickListener(new View.OnClickListener() {
+        accountMng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivitySettingsProverbSrc.startAction(ActivitySettings.this);
+                ActivitySettingsAccount.startAction(ActivitySettings.this);
             }
         });
     }

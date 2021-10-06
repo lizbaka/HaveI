@@ -23,10 +23,6 @@ public class doubleLineManager {
     private static int count = 0;
 
     public static LineData initDoubleLineChart(Context context, ArrayList<Double> datas1,ArrayList<Double> datas2) {
-
-
-
-
         // y轴的数据
         ArrayList<Entry> yValues1 = new ArrayList<Entry>();
         for (int i = 0; i < count; i++) {

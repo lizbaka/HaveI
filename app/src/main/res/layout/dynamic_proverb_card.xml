@@ -35,7 +35,7 @@
         android:layout_marginHorizontal="@dimen/proverb_card_text_marginHorizontal"
         android:gravity="center"
         android:lineSpacingMultiplier="1.2"
-        android:text="[Daily\nProverb]"/>
+        android:text="@string/proverb_long_click"/>
 
     <ImageView
         android:id="@+id/proverb_card_favorite"

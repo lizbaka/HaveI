@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -53,9 +54,6 @@ import okhttp3.Response;
 
 public class ActivityMain extends BaseActivity {
 
-    private String habitNotificationChannelName;
-    private String todoNotificationChannelName;
-
     EventDBHelper eventDBHelper;
     BookkeepDBHelper bookkeepDBHelper;
     UtilDBHelper utilDBHelper;
@@ -98,14 +96,14 @@ public class ActivityMain extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_toolbar, menu);
+        getMenuInflater().inflate(R.menu.analyze_toolbar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.main_toolbar_analyze:
+            case R.id.toolbar_analyze:
                 // TODO: 2021.08.24 数据分析功能完成后接入
                 Toast.makeText(this, "数据分析功能：敬请期待", Toast.LENGTH_SHORT).show();
                 return true;
@@ -124,11 +122,11 @@ public class ActivityMain extends BaseActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initNotificationChannel() {
-        todoNotificationChannelName = getResources().getString(R.string.todo_reminder_notification_channel_name);
-        habitNotificationChannelName = getResources().getString(R.string.habit_reminder_notification_channel_name);
-        NotificationChannel todoChannel = new NotificationChannel(UniToolKit.TODO_NOTIFICATION_CHANNEL_ID, todoNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
-        NotificationChannel habitChannel = new NotificationChannel(UniToolKit.HABIT_NOTIFICATION_CHANNEL_ID, habitNotificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel basicChannel = new NotificationChannel(UniToolKit.BASIC_NOTIFICATION_CHANNEL_ID, getString(R.string.basic_notification_channel_name), NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel todoChannel = new NotificationChannel(UniToolKit.TODO_NOTIFICATION_CHANNEL_ID, getString(R.string.todo_reminder_notification_channel_name), NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel habitChannel = new NotificationChannel(UniToolKit.HABIT_NOTIFICATION_CHANNEL_ID, getString(R.string.habit_reminder_notification_channel_name), NotificationManager.IMPORTANCE_DEFAULT);
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        manager.createNotificationChannel(basicChannel);
         manager.createNotificationChannel(todoChannel);
         manager.createNotificationChannel(habitChannel);
 
@@ -196,27 +194,9 @@ public class ActivityMain extends BaseActivity {
         TextView greetingSecTV = findViewById(R.id.greeting_card_secondary);
         ImageView greetingIconIV = findViewById(R.id.greeting_card_icon);
         Calendar calendar = Calendar.getInstance();
-        if (calendar.get(Calendar.HOUR_OF_DAY) >= 5 && calendar.get(Calendar.HOUR_OF_DAY) < 12) {
-            greetingTimeTV.setText(R.string.greeting_morning);
-            greetingSecTV.setText(R.string.greeting_morning_secondary);
-            greetingIconIV.setImageResource(R.drawable.star);
-        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 12 && calendar.get(Calendar.HOUR_OF_DAY) < 14) {
-            greetingTimeTV.setText(R.string.greeting_noon);
-            greetingSecTV.setText(R.string.greeting_noon_secondary);
-            greetingIconIV.setImageResource(R.drawable.hs_sun3);
-        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 14 && calendar.get(Calendar.HOUR_OF_DAY) < 18) {
-            greetingTimeTV.setText(R.string.greeting_afternoon);
-            greetingSecTV.setText(R.string.greeting_afternoon_secondary);
-            greetingIconIV.setImageResource(R.drawable.hs_paper_airplane);
-        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 18 && calendar.get(Calendar.HOUR_OF_DAY) < 22) {
-            greetingTimeTV.setText(R.string.greeting_evening);
-            greetingSecTV.setText(R.string.greeting_evening_secondary);
-            greetingIconIV.setImageResource(R.drawable.cs_astronomy);
-        } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 22 || calendar.get(Calendar.HOUR_OF_DAY) < 5) {
-            greetingTimeTV.setText(R.string.greeting_midnight);
-            greetingSecTV.setText(R.string.greeting_midnight_secondary);
-            greetingIconIV.setImageResource(R.drawable.hs_moon3);
-        }
+        greetingTimeTV.setText(UniToolKit.getGreetingTimeId());
+        greetingSecTV.setText(UniToolKit.getGreetingSecId());
+        greetingIconIV.setImageResource(UniToolKit.getGreetingIconId());
     }
 
     private void configTodoCard() {
@@ -231,7 +211,7 @@ public class ActivityMain extends BaseActivity {
             ImageView todoIconIV = findViewById(R.id.todo_card_icon);
             todoTitleTV.setText(todo.getName());
             todoTagTV.setText(eventDBHelper.findEventTagById(todo.getTagId()).getName());
-            todoTimeTV.setText(todo.getDateTime().substring(11, 16));
+            todoTimeTV.setText(todo.getDateTime().substring(5, 16));
             todoIconIV.setImageDrawable(iconAdapter.getIcon(eventDBHelper.findEventTagById(todo.getTagId()).getIconId()));
 
             findViewById(R.id.main_todo_card).setOnClickListener(new View.OnClickListener() {
@@ -260,9 +240,9 @@ public class ActivityMain extends BaseActivity {
             habitGL.setVisibility(View.VISIBLE);
             findViewById(R.id.main_empty_habit).setVisibility(View.GONE);
 
-            habitGL.setColumnCount(habitList.size() <= 4 ? habitList.size() : 4);
+            habitGL.setColumnCount(Math.min(habitList.size(), 4));
             View child;
-            for (int i = 0; i < (habitList.size() <= 4 ? habitList.size() : 4); i++) {
+            for (int i = 0; i < (Math.min(habitList.size(), 4)); i++) {
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
                 params.height = GridLayout.LayoutParams.WRAP_CONTENT;
                 params.width = 0;
@@ -295,6 +275,7 @@ public class ActivityMain extends BaseActivity {
         });
     }
 
+    @SuppressLint("DefaultLocale")
     private void configBookkeepCard() {
         findViewById(R.id.main_bookkeep_card).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -302,19 +283,19 @@ public class ActivityMain extends BaseActivity {
                 ActivityBookkeep.startAction(ActivityMain.this);
             }
         });
-        double budget = pref.getFloat(UniToolKit.PREF_BUDGET,0);
-        double MYIn = bookkeepDBHelper.getIncomeByMonth(new Date());
-        double MYOut = bookkeepDBHelper.getExpenditureByMonth(new Date());
-        double MYLeft = budget - MYOut;
-        ((TextView)findViewById(R.id.bookkeep_three_title3)).setText(R.string.income);
-        ((TextView)findViewById(R.id.bookkeep_three_value3)).setText(String.format("%.2f", MYIn));
-        ((TextView)findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure);
-        ((TextView)findViewById(R.id.bookkeep_three_value1)).setText(String.format("%.2f", MYOut));
-        ((TextView)findViewById(R.id.bookkeep_three_title2)).setText(R.string.remaining_budget);
+        double budget = pref.getFloat(UniToolKit.PREF_BUDGET, 0);
+        double todayExpenditure = bookkeepDBHelper.getExpenditureByDay(new Date());
+        double monthExpenditure = bookkeepDBHelper.getExpenditureByMonth(new Date());
+        double remainingBudget = budget - monthExpenditure;
+        ((TextView) findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure_today);
+        ((TextView) findViewById(R.id.bookkeep_three_title2)).setText(R.string.expenditure_month);
+        ((TextView) findViewById(R.id.bookkeep_three_title3)).setText(R.string.remaining_budget);
+        ((TextView) findViewById(R.id.bookkeep_three_value1)).setText(String.format("%.2f", todayExpenditure));
+        ((TextView) findViewById(R.id.bookkeep_three_value2)).setText(String.format("%.2f", monthExpenditure));
         if (budget == 0) {
-            ((TextView)findViewById(R.id.bookkeep_three_value2)).setText(R.string.unset);
+            ((TextView) findViewById(R.id.bookkeep_three_value3)).setText(R.string.unset);
         } else {
-            ((TextView)findViewById(R.id.bookkeep_three_value2)).setText(String.format("%.2f", MYLeft));
+            ((TextView) findViewById(R.id.bookkeep_three_value3)).setText(String.format("%.2f", remainingBudget));
         }
     }
 
@@ -355,6 +336,7 @@ public class ActivityMain extends BaseActivity {
                 return true;
             }
         });
+        findViewById(R.id.main_proverb_card).performLongClick();
     }
 
     /**

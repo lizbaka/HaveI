@@ -6,6 +6,7 @@
     <dimen name="ui_icon_size_small">20dp</dimen>
     <dimen name="ui_icon_size_medium">38dp</dimen>
     <dimen name="ui_icon_size_large">55dp</dimen>
+    <dimen name="ui_icon_size_extreme">200dp</dimen>
 
     <dimen name="card_corner_radius">10dp</dimen>
     <dimen name="card_margin">10dp</dimen>
@@ -72,7 +73,7 @@
     <!--=====================================================-->
 
     <!--activity_add_account_detail:Begin-->
-    <dimen name="bookkeep_add_record_height">44dp</dimen>
+    <dimen name="bookkeep_add_record_info_height">44dp</dimen>
     <dimen name="bookkeep_add_account_detail_calculator_border_margin">14dp</dimen>
     <dimen name="bookkeep_add_button_height">48dp</dimen>
     <!--activity_add_account_detail:End-->

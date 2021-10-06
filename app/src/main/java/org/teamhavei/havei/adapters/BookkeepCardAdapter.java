@@ -35,7 +35,8 @@ public class BookkeepCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private Context mContext;
 
     public interface BookkeepCardCallBack{
-        void OnLongClick(Bookkeep bookkeep);
+        void onLongClick(Bookkeep bookkeep);
+        void onClick(Bookkeep bookkeep);
     }
 
     BookkeepCardCallBack mCallback;
@@ -56,10 +57,16 @@ public class BookkeepCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (viewType == VIEW_TYPE_BOOKKEEP) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_bookkeep_record_card, parent, false);
             holder = new BookkeepHolder(view);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mCallback.onClick(((BookkeepHolder)holder).getmBookkeep());
+                }
+            });
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    mCallback.OnLongClick(((BookkeepHolder)holder).getmBookkeep());
+                    mCallback.onLongClick(((BookkeepHolder)holder).getmBookkeep());
                     return true;
                 }
             });

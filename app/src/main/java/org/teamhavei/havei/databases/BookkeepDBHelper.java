@@ -151,25 +151,52 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return -cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
     }
 
+    public double getExpenditureByDay(Date date) {
+        String sDate = UniToolKit.eventDateFormatter(date);
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " < 0" + " AND " + BOOKKEEP_TIME + " = ?", new String[]{sDate}, null, null, null);
+        cursor.moveToNext();
+        return -cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+    }
+
+    public double getIncomeByDay(Date date) {
+        String sDate = UniToolKit.eventDateFormatter(date);
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " > 0" + " AND " + BOOKKEEP_TIME + " = ?", new String[]{sDate}, null, null, null);
+        cursor.moveToNext();
+        return -cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+    }
+
+    public double getPMByAccount(int accountId){
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"},BOOKKEEP_ACCOUNT_BEL + " = ?",new String[]{Integer.toString(accountId)},BOOKKEEP_ACCOUNT_BEL,null,null);
+        if(cursor.getCount()<=0){
+            return 0;
+        }
+        cursor.moveToNext();
+        return cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+    }
+
+    public int getBookkeepDay(){
+        Cursor cursor = db.query(TABLE_BOOKKEEP,new String[]{"COUNT(" + BOOKKEEP_TIME + ")"},null,null,BOOKKEEP_TIME,null,null);
+        return cursor.getCount();
+    }
+
+    public List<Bookkeep> findAllBookkeep() {
+        Cursor cursor = db.query(TABLE_BOOKKEEP, null, null, null, null, null, null);
+        return cursorToBookkeepList(cursor);
+    }
+
     //search by month
     public List<Bookkeep> findBookkeepByMonth(String sDate) {
         Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TIME + " LIKE ?", new String[]{sDate + "%"}, null, null, BOOKKEEP_TIME + " DESC");
         return cursorToBookkeepList(cursor);
     }
 
-    public List<Bookkeep> findBookkeepByAccount(int accountId) {
-        Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_ACCOUNT_BEL + " = ?", new String[]{Integer.toString(accountId)}, null, null, null);
-        return cursorToBookkeepList(cursor);
+    public List<Bookkeep> findBookkeepByMonth(Date date) {
+        String sDate = UniToolKit.eventYearMonthFormatter(date);
+        return findBookkeepByMonth(sDate);
     }
 
-    public List<Bookkeep> findBookkeepByTag(int tagId, boolean isIncome, String sDate) {
-        Cursor cursor;
-        if (isIncome) {
-            cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + " and " + BOOKKEEP_PM + " > 0" + " and " + BOOKKEEP_TIME + " LIKE ?", new String[]{Integer.toString(tagId), sDate + "%"}, null, null, null);
-        } else {
-            cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_TAG_ID + " = ?" + " and " + BOOKKEEP_PM + " < 0" + " and " + BOOKKEEP_TIME + " LIKE ?", new String[]{Integer.toString(tagId), sDate + "%"}, null, null, null);
-
-        }
+    public List<Bookkeep> findBookkeepByAccount(int accountId) {
+        Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_ACCOUNT_BEL + " = ?", new String[]{Integer.toString(accountId)}, null, null, null);
         return cursorToBookkeepList(cursor);
     }
 
@@ -302,6 +329,23 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return cursorToBookTagList(cursor);
     }
 
+    public List<BookTag> findAllBookTag(boolean excludeDeleted, int type, boolean sortByPM) {
+        if (!sortByPM) {
+            return findAllBookTag(excludeDeleted, type);
+        }
+        List<BookTag> bookTagList = new ArrayList<>();
+        Cursor cursor;
+        if (type == UniToolKit.BOOKKEEP_TAG_EXPENDITURE) {
+            cursor = db.query(TABLE_BOOKKEEP,new String[]{BOOKKEEP_TAG_ID,"SUM(" + BOOKKEEP_PM + ")"},BOOKKEEP_PM + " < 0",null,BOOKKEEP_TAG_ID,null,"SUM(" + BOOKKEEP_PM +")");
+        }else{
+            cursor = db.query(TABLE_BOOKKEEP,new String[]{BOOKKEEP_TAG_ID,"SUM(" + BOOKKEEP_PM + ")"},BOOKKEEP_PM + " > 0",null,BOOKKEEP_TAG_ID,null,"SUM(" + BOOKKEEP_PM +") DESC");
+        }
+        while(cursor.moveToNext()){
+            bookTagList.add(findBookTagById(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_TAG_ID))));
+        }
+        cursor.close();
+        return bookTagList;
+    }
 
     public void updateBookTag(BookTag oldBookTag, BookTag newBookTag) {
         db.update(TABLE_BOOK_TAGS, bookTagToValues(newBookTag), BOOK_TAGS_ID + " = ?", new String[]{Integer.toString(oldBookTag.getId())});
@@ -367,7 +411,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
     }
 
     public List<BookAccount> findAllBookAccount() {
-        List<BookAccount> bookAccountList = new ArrayList<>();
         Cursor cursor = db.query(TABLE_BOOK_ACCOUNT, null, null, null, null, null, null);
         return cursorToBookAccountList(cursor);
     }

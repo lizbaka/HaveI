@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -266,7 +267,7 @@
 
         <View
             android:layout_width="@dimen/timetable_label_width"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -428,559 +429,573 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dividing_line_view_height"
-        android:background="@color/grey_200"
-        android:layout_marginTop="@dimen/widget_inview_margin"/>
+        android:layout_marginTop="@dimen/widget_inview_margin"
+        android:background="@color/grey_200" />
 
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/tt_NSV"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="4dp"
-        android:overScrollMode="never">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/tt_FL"
+        <ImageView
+            android:id="@+id/tt_bg"
+            android:layout_width="@dimen/ui_icon_size_extreme"
+            android:layout_height="@dimen/ui_icon_size_extreme"
+            android:layout_centerInParent="true"
+            app:tint="?attr/colorPrimary"
+            android:alpha="0.3"
+            android:src="@drawable/ic_baseline_timeline_24" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/tt_NSV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:overScrollMode="never">
 
-            <LinearLayout
-                android:id="@+id/tt_timeline"
+            <FrameLayout
+                android:id="@+id/tt_FL"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:id="@+id/tt_timeline"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_0"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_0"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_1"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_2"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_3"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_4"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_5"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_6"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_7"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_8"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_9"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_10"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_11"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_12"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_13"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_14"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_15"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_16"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_17"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_18"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_19"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_20"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_21"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_22"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_23"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tt_time_spacing"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dividing_view_container"
+                            android:background="@drawable/dotted_line_stroke" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:text="@string/tt_24"
+                            android:textColor="@color/grey_500"
+                            android:textSize="@dimen/tt_time_font_size" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
+            </FrameLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_1"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_2"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_3"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_4"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_5"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_6"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_7"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_8"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_9"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_10"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_11"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_12"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_13"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_14"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_15"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_16"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_17"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_18"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_19"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_20"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_21"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_22"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_23"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tt_time_spacing"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dividing_view_container"
-                        android:background="@drawable/dotted_line_stroke" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:text="@string/tt_24"
-                        android:textColor="@color/grey_500"
-                        android:textSize="@dimen/tt_time_font_size" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-        </FrameLayout>
-
-
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
 
 </LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Dynamic_card.border"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:strokeWidth="0dp"
+    app:cardElevation="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/account_icon_container"
+            android:layout_width="@dimen/round_icon_background_size"
+            android:layout_height="@dimen/round_icon_background_size"
+            android:layout_margin="@dimen/widget_inview_margin"
+            android:background="@drawable/bg_round_icon">
+
+            <ImageView
+                android:id="@+id/account_icon"
+                android:layout_width="@dimen/round_icon_size"
+                android:layout_height="@dimen/round_icon_size"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/account_name"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/widget_inview_margin"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/account_icon_container"
+            android:layout_toLeftOf="@id/account_balance"
+            android:text="[Account_Name]" />
+
+        <TextView
+            android:id="@+id/account_balance"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/widget_inview_margin"
+            android:layout_marginTop="@dimen/widget_inview_margin"
+            android:layout_marginEnd="@dimen/widget_inview_margin"
+            android:layout_marginBottom="@dimen/widget_inview_margin"
+            android:maxLines="1"
+            android:gravity="right"
+            android:text="[1234567.89]"
+            android:textColor="?attr/colorPrimary" />
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

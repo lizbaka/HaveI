@@ -1,7 +1,10 @@
 package org.teamhavei.havei.activities;
+// TODO: 2021/10/3 加入图表
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import org.teamhavei.havei.Event.HaveIDatePickerDialog;
 import org.teamhavei.havei.R;
@@ -27,6 +31,7 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
     TextView incomeTV;
     TextView expenditureTV;
     TextView surplusTV;
+    ExtendedFloatingActionButton switchFAB;
 
     Calendar calendar;
 
@@ -38,37 +43,21 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookkeep_statistics_monthly);
+        setContentView(R.layout.activity_bookkeep_statistic_monthly);
 
         dbHelper = new BookkeepDBHelper(ActivityBookkeepStatisticMonthly.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         calendar = Calendar.getInstance();
 
-        setSupportActionBar(findViewById(R.id.bookkeep_statistics_monthly_toolbar));
+        setSupportActionBar(findViewById(R.id.bookkeep_statistic_monthly_toolbar));
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initView();
-
-        dateSelectorMCV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new HaveIDatePickerDialog(ActivityBookkeepStatisticMonthly.this, 0, new HaveIDatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear,
-                                          int startDayOfMonth) {
-                        calendar.set(startYear, startMonthOfYear, startDayOfMonth);
-                    }
-                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
-                        .setMaxDate(Calendar.getInstance())
-                        .show();
-            }
-        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        dateTV.setText(UniToolKit.eventYearMonthFormatter(calendar.getTime()));
         updateData();
     }
 
@@ -83,24 +72,62 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
     }
 
     private void initView(){
-        dateSelectorMCV = findViewById(R.id.bookkeep_statistics_monthly_month_selector);
-        dateTV = findViewById(R.id.bookkeep_statistics_monthly_month_date);
+        dateSelectorMCV = findViewById(R.id.bookkeep_statistic_monthly_month_selector);
+        dateTV = findViewById(R.id.bookkeep_statistic_monthly_month_date);
         expenditureTV = findViewById(R.id.bookkeep_three_value1);
         incomeTV = findViewById(R.id.bookkeep_three_value2);
         surplusTV = findViewById(R.id.bookkeep_three_value3);
+        switchFAB = findViewById(R.id.bookkeep_monthly_switch_fab);
+
+        dateSelectorMCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new HaveIDatePickerDialog(ActivityBookkeepStatisticMonthly.this, 0, new HaveIDatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker startDatePicker, int startYear, int startMonthOfYear,
+                                          int startDayOfMonth) {
+                        calendar.set(startYear, startMonthOfYear, startDayOfMonth);
+                        updateData();
+                    }
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+                        .setMaxDate(Calendar.getInstance())
+                        .hideDay(true)
+                        .show();
+            }
+        });
+
+        switchFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityBookkeepStatisticAnnually.startAction(ActivityBookkeepStatisticMonthly.this);
+                finish();
+            }
+        });
+
+        ((NestedScrollView)findViewById(R.id.bookkeep_statistic_monthly_scroll_view)).setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if(scrollY>oldScrollY){
+                    switchFAB.hide();
+                }else{
+                    switchFAB.show();
+                }
+            }
+        });
 
         ((TextView)findViewById(R.id.bookkeep_three_title1)).setText(R.string.expenditure);
         ((TextView)findViewById(R.id.bookkeep_three_title2)).setText(R.string.income);
         ((TextView)findViewById(R.id.bookkeep_three_title3)).setText(R.string.surplus);
     }
 
+    @SuppressLint({"DefaultLocale"})
     private void updateData(){
+        dateTV.setText(UniToolKit.eventYearMonthFormatter(calendar.getTime()));
         double income = dbHelper.getIncomeByMonth(calendar.getTime());
-        //expenditure < 0
         double expenditure = dbHelper.getExpenditureByMonth(calendar.getTime());
-        double surplus = income + expenditure;
-        incomeTV.setText(Double.toString(income));
-        expenditureTV.setText(Double.toString(expenditure));
-        surplusTV.setText(Double.toString(surplus));
+        double surplus = income - expenditure;
+        incomeTV.setText(String.format("%.2f",income));
+        expenditureTV.setText(String.format("%.2f",expenditure));
+        surplusTV.setText(String.format("%.2f",surplus));
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/toolbar_2_0"
+        android:title="[toolbar_2_0]"
+        android:iconTint="@color/white"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/toolbar_2_1"
+        android:title="[toolbar_2_1]"
+        android:iconTint="@color/white"
+        app:showAsAction="always"/>
+
+</menu>

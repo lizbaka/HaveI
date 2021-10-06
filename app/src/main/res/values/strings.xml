@@ -1,6 +1,7 @@
 <resources>
     <!--system:Begin-->
     <string name="app_name">HaveI</string>
+    <string name="basic_notification_channel_name">基本通知通道</string>
     <string name="todo_reminder_notification_channel_name">待办提醒</string>
     <string name="habit_reminder_notification_channel_name">习惯执行提醒</string>
     <string name="default_user_name">HaveI用户</string>
@@ -49,9 +50,14 @@
     <string name="remain">剩余</string>
     <string name="remaining_budget">剩余预算</string>
     <string name="surplus">结余</string>
-    <string name="default_account">默认账户</string>
+    <string name="default_account">无账户</string>
     <string name="default_expenditure_tag">默认支出</string>
     <string name="default_income_tag">默认收入</string>
+    <string name="expenditure_month">本月支出</string>
+    <string name="expenditure_today">今日支出</string>
+    <string name="analyze">分析</string>
+    <string name="property">资产</string>
+    <string name="select_icon">选择一个图标</string>
     <!--universal_UI:end-->
 
     <!--activity_main:Begin-->
@@ -59,8 +65,8 @@
     <string name="main_drawer_close">抽屉关闭</string>
     <string name="main_today_event">今天的待办和习惯</string>
     <string name="main_all_event">查看所有待办和习惯……</string>
-    <string name="main_empty_todo">今天没有未完成待办事项</string>
-    <string name="main_empty_habit">今天没有要打卡的习惯</string>
+    <string name="main_empty_todo">最近没有未完成的待办</string>
+    <string name="main_empty_habit">今天没有未达成目标的习惯</string>
     <!--greeting_card:Begin-->
     <string name="greeting_morning">上午好！</string>
     <string name="greeting_morning_secondary">一日之计在于晨</string>
@@ -79,12 +85,13 @@
     <string name="habit_library">习惯库</string>
     <string name="todo_library">日程库</string>
     <string name="main_event_unfinished_habits">今天的习惯</string>
-    <string name="main_event_no_habit">没有未完成的习惯</string>
+    <string name="main_event_no_habit">今天没有未达成目标的习惯</string>
     <string name="main_event_no_todo">这一天没有待办</string>
     <!--main_event:end-->
 
     <!--today_habit:Begin-->
     <string name="today_habit_title">查看您的当日习惯</string>
+    <string name="habit_hint">点击习惯查看详情，长按习惯进行今日打卡</string>
     <!--today_habit:end-->
 
     <!--habit_detail:Begin-->
@@ -93,14 +100,15 @@
     <string name="actual_clock_in">实际打卡</string>
     <string name="plan_clock_in">计划打卡</string>
     <string name="habit_ranking">习惯排行</string>
-    <string name="habit_detail_advanced">不能提前标记哦！</string>
+    <string name="habit_detail_advanced">不能提前打卡哦！</string>
     <string name="habit_detail_delete_dialog_title">删除习惯</string>
     <string name="habit_detail_delete_dialog_msg1">习惯将被永久删除，且对应执行记录也将被删除，您确定要删除习惯 </string>
     <string name="habit_detail_delete_dialog_msg2"> 吗？</string>
     <string name="habit_detail_empty_execution_hint">还没打过卡</string>
     <string name="habit_detail_empty_reminder_hint">未设置提醒时间</string>
+    <string name="habit_detail_rank_changed">点击重载</string>
+    <string name="habit_detail_hint">长按日期可补打卡</string>
     <!--habit_detail:end-->
-
 
     <!--modify_todo:Begin-->
     <string name="modify_todo_title_add">添加待办</string>
@@ -116,7 +124,6 @@
     <string name="modify_todo_reminder_time_null">未选择</string>
     <string name="modify_todo_remind_after_todo">提醒时间不能晚于待办时间</string>
     <!--modify_todo:end-->
-
 
     <!--modify_habit:Begin-->
     <string name="modify_habit_title_add">添加习惯</string>
@@ -134,18 +141,6 @@
     <string name="modify_habit_illegal_frequency">请输入正确的频率</string>
     <string name="modify_habit_clear_reminder">关闭提醒</string>
     <!--modify_habit:end-->
-
-    <!--habit:Begin-->
-    <string name="habit_add_first">添加您的第一个习惯！</string>
-    <!--habit:end-->
-
-    <!--habit_detail:Begin-->
-    <string name="habit_detail_rank_changed">点击重载</string>
-    <!--habit_detail:end-->
-
-    <!--main_toolbar_Begin-->
-    <string name="main_toolbar_analyze">分析</string>
-    <!--menu_main_toolbar:end-->
 
     <!--nav_menu:Begin-->
     <string name="nav_menu_report">分享报告</string>
@@ -172,6 +167,7 @@
     <!--habit_list:Begin-->
     <string name="habit_list_title">查看您的习惯</string>
     <string name="habit_list_add">添加一个习惯！</string>
+    <string name="habit_list_empty">还没有习惯！新建一个？</string>
     <!--habit_list:end-->
 
     <!--proverb:Begin-->
@@ -181,6 +177,7 @@
     <string name="proverb_add_empty_alert">句子不能为空</string>
     <string name="proverb_remove_confirm_title">确认取消句子收藏</string>
     <string name="proverb_remove_confirm_msg">您取消了一些句子的收藏，您确定吗？</string>
+    <string name="proverb_long_click">试试长按我</string>
     <!--proverb:end-->
 
     <!--time_table:begin-->
@@ -193,7 +190,6 @@
     <string name="tt_sunday">日</string>
     <string name="tt_wholeday">全天</string>
     <!--time_table:end-->
-
 
     <!--time_table_fragment:begin-->
     <string name="tt_0">0:00</string>
@@ -244,7 +240,6 @@
     <string name="modify_bookkeep_tag_title_modify">修改记账标签</string>
     <string name="modify_bookkeep_tag_title_add">增加记账标签</string>
     <string name="modify_tag_name_hint">标签名称</string>
-    <string name="modify_tag_select_icon">选择一个图标</string>
     <string name="modify_tag_empty_name">标签名不能为空</string>
     <string name="modify_tag_delete_dialog_title">删除标签</string>
     <string name="modify_tag_delete_dialog_msg">此标签将被删除，在统计中会被保留，但您无法再将账目/事件分配到此标签（即便同名）。您确定要删除此标签吗？</string>
@@ -258,10 +253,10 @@
     <!--monthly_report:end-->
 
     <!--activity_bookkeep:begin-->
-    <string name="bookkeep_statistics_monthly">月统计</string>
-    <string name="bookkeep_property">资产</string>
     <string name="bookkeep_delete_dialog_title">删除账目</string>
     <string name="bookkeep_delete_dialog_msg">您确定要删除这条账目吗？</string>
+    <string name="bookkeep_add">记一笔</string>
+    <string name="bookkeep_empty">这个月还未记账！记一笔？</string>
     <!--activity_bookkeep:end-->
 
     <!--activity_bookkeep_add:Begin-->
@@ -271,20 +266,26 @@
     <!--activity_bookkeep_add:end-->
 
     <!--activity_bookkeep_property_view:start-->
-    <string name="bookkeep_property_view">我的资产</string>
-    <string name="bookkeep_property_view_toolbar_name">我的资产</string>
-    <string name="bookkeep_property_view_goal">目标</string>
-    <string name="bookkeep_annual_account_button">收支详情</string>
-    <string name="bookkeep_property_goal_hint">输入目标资产值</string>
+    <string name="bookkeep_property_title">我的资产</string>
+    <string name="bookkeep_property_clear">清除选定</string>
     <!--activity_bookkeep_property_view:end-->
 
-    <!--activity_bookkeep_annual_account_detail:start-->
-    <string name="bookkeep_annual_account">收支详情</string>
+    <!--activity_bookkeep_monthly_statistic_monthly:start-->
+    <string name="bookkeep_monthly_expenditure_proportion">支出占比</string>
+    <string name="bookkeep_monthly_income_proportion">收入占比</string>
+    <string name="bookkeep_monthly_switch">切换到年视图</string>
+    <!--activity_bookkeep_monthly_statistic_monthly:end-->
+
+    <!--activity_bookkeep_annually_statistic_annually:start-->
+    <string name="bookkeep_annual_statistic">年度统计</string>
     <string name="bookkeep_annual_income">总收入</string>
-    <string name="bookkeep_annual_expenses">总支出</string>
+    <string name="bookkeep_annual_expenditure">总支出</string>
     <string name="bookkeep_annual_surplus">总结余</string>
-    <string name="bookkeep_month_in_year_income_and_expenses">月度收支</string>
-    <!--activity_bookkeep_annual_account_detail:end-->
+    <string name="bookkeep_annual_monthly_surplus">每月盈余</string>
+    <string name="bookkeep_annual_monthly_expenditure">每月支出</string>
+    <string name="bookkeep_annual_monthly_income">每月收入</string>
+    <string name="bookkeep_annual_switch">切换到月视图</string>
+    <!--activity_bookkeep_annually_statistic_annually:end-->
 
     <!--activity_bookkeep_add_wallet:start-->
     <string name="bookkeep_add_wallet_wallet_type">账户类型</string>
@@ -307,8 +308,19 @@
     <string name="budget_title">月预算</string>
     <string name="budget_overall">总预算</string>
     <string name="budget_category">分类预算</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--activity_budget:end-->
+
+    <!--bookkeep_account:start-->
+    <string name="account_mng">管理账户</string>
+    <string name="account_add">添加账户</string>
+    <string name="account_modify">修改账户</string>
+    <string name="modify_account_set_init">初始：</string>
+    <string name="modify_account_init_hint">账户初始余额</string>
+    <string name="modify_account_name_hint">账户名称</string>
+    <string name="modify_account_empty_name">账户名称不能为空</string>
+    <string name="modify_account_cannot_modify_default">不能修改此账户</string>
+    <string name="modify_account_delete_dialog_title">删除账户</string>
+    <string name="modify_account_delete_dialog_content">此账户被删除后将无法恢复，属于此账户的账目将被设为无账户，您确定要删除此账户吗？</string>
+    <!--bookkeep_account:end-->
 
 </resources>

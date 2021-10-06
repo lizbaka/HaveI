@@ -1,6 +1,6 @@
 package org.teamhavei.havei.activities;
-// TODO: 2021.09.10 账户功能待实现
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,12 +21,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 
+import org.teamhavei.havei.Event.BookAccount;
 import org.teamhavei.havei.Event.Bookkeep;
 import org.teamhavei.havei.Event.HaveITag;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
+import org.teamhavei.havei.adapters.IconAdapter;
 import org.teamhavei.havei.adapters.TagListAdapter;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
+import org.teamhavei.havei.fragments.FragmentBookkeepAccountList;
 import org.teamhavei.havei.fragments.FragmentNumPad;
 
 import java.util.ArrayList;
@@ -34,8 +38,8 @@ import java.util.List;
 
 public class ActivityBookkeepAdd extends BaseActivity {
 
-    private static final int IO_TYPE_EXPENDITURE = 0;
-    private static final int IO_TYPE_INCOME = 1;
+    private static final int IO_TYPE_EXPENDITURE = UniToolKit.BOOKKEEP_TAG_EXPENDITURE;
+    private static final int IO_TYPE_INCOME = UniToolKit.BOOKKEEP_TAG_INCOME;
 
     private static final int MODE_ADD = 0;
     private static final int MODE_MODIFY = 1;
@@ -45,12 +49,15 @@ public class ActivityBookkeepAdd extends BaseActivity {
     private int selectedTagId;
     private int ioJudge;
     private int mode = MODE_ADD;
+    private int accountId;
 
     EditText bookTitleET;
     RecyclerView mTagRecycRV;
     RadioGroup IORG;
     TextView dateTV;
     MaterialCardView datePikMC;
+    ImageView accountIcon;
+    TextView accountName;
 
     Calendar calendar;
     BookkeepDBHelper bookDBHelper;
@@ -59,6 +66,7 @@ public class ActivityBookkeepAdd extends BaseActivity {
     Bookkeep mBookkeep;
 
     FragmentNumPad numPad;
+    FragmentBookkeepAccountList accountList;
 
 
     public static void startAction(Context context) {
@@ -85,33 +93,62 @@ public class ActivityBookkeepAdd extends BaseActivity {
                 updateBookkeep(number);
                 finish();
             }
-        },FragmentNumPad.MODE_NORMAL);
+        }, FragmentNumPad.MODE_NORMAL);
         getSupportFragmentManager().beginTransaction().replace(R.id.bookkeep_add_numpad, numPad).commit();
 
+        accountList = new FragmentBookkeepAccountList(new FragmentBookkeepAccountList.Callback() {
+            @Override
+            public void onBookAccountSelected(BookAccount bookAccount) {
+                accountId = bookAccount.getId();
+                accountIcon.setImageDrawable(new IconAdapter(ActivityBookkeepAdd.this).getIcon(bookDBHelper.findBookAccountById(accountId).getIconId()));
+                accountName.setText(bookDBHelper.findBookAccountById(accountId).getName());
+                accountList.dismiss();
+            }
+
+            @Override
+            public void operate() {
+                ActivitySettingsAccount.startAction(ActivityBookkeepAdd.this);
+            }
+        },getString(R.string.account_mng));
+
         bookDBHelper = new BookkeepDBHelper(ActivityBookkeepAdd.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
-        initView();
         calendar = Calendar.getInstance();
-        dateTV.setText(UniToolKit.eventDateFormatter(calendar.getTime()));
-        initTagList();
+
+        initView();
         initListener();
 
-        //与numpad相关的初始化操作放到onStart中，因为onCreate完成前fragment未完成创建
         if (getIntent().getIntExtra(START_PARAM_BOOKKEEP_ID, -1) != -1) {
             mode = MODE_MODIFY;
             mBookkeep = bookDBHelper.findBookkeepById(getIntent().getIntExtra(START_PARAM_BOOKKEEP_ID, -1));
             selectedTagId = mBookkeep.gettag();
             bookTitleET.setText(mBookkeep.getname());
+            calendar.setTime(UniToolKit.eventDateParser(mBookkeep.gettime()));
+            ioJudge = mBookkeep.getPM() > 0 ? IO_TYPE_INCOME : IO_TYPE_EXPENDITURE;
+            accountId = mBookkeep.getAccount();
+            //与numpad相关的初始值操作放到onStart中，因为onCreate完成前fragment未完成创建
         } else {
+            mode = MODE_ADD;
             mBookkeep = new Bookkeep();
             selectedTagId = bookDBHelper.findAllBookTag(true).get(0).getId();
+            ioJudge = IO_TYPE_EXPENDITURE;
+            accountId = UniToolKit.DEFAULT_ACCOUNT_ID;
         }
+        mtaglist = new ArrayList<>();
+        dateTV.setText(UniToolKit.eventDateFormatter(calendar.getTime()));
+        mtaglist.addAll(bookDBHelper.findAllBookTag(true, ioJudge));
+        accountIcon.setImageDrawable(new IconAdapter(ActivityBookkeepAdd.this).getIcon(bookDBHelper.findBookAccountById(accountId).getIconId()));
+        accountName.setText(bookDBHelper.findBookAccountById(accountId).getName());
+
+        initTagList();
+
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onStart() {
         super.onStart();
         if (mode == MODE_MODIFY) {
-            numPad.getNumberET().setText(Double.toString(mBookkeep.getPM()));
+            numPad.getNumberET().setText(String.format("%.2f", Math.abs(mBookkeep.getPM())));
             if (mBookkeep.getPM() > 0) {
                 IORG.check(R.id.bookkeep_add_radio_income);
             } else {
@@ -138,6 +175,8 @@ public class ActivityBookkeepAdd extends BaseActivity {
         IORG = findViewById(R.id.bookkeep_add_io);
         dateTV = findViewById(R.id.tv_select_date);
         datePikMC = findViewById(R.id.date_picker);
+        accountIcon = findViewById(R.id.bookkeep_account_icon);
+        accountName = findViewById(R.id.bookkeep_account_name);
     }
 
     public void initListener() {
@@ -181,11 +220,17 @@ public class ActivityBookkeepAdd extends BaseActivity {
                 ActivitySettingsTagMng.startAction(ActivityBookkeepAdd.this, UniToolKit.TAG_TYPE_BOOKKEEP);
             }
         });
+
+        findViewById(R.id.bookkeep_select_account).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                accountList.show(getSupportFragmentManager(),"TAG");
+            }
+        });
     }
 
     public void initTagList() {
-        mtaglist = new ArrayList<>();
-        mTaglistAdapter = new TagListAdapter(mtaglist, ActivityBookkeepAdd.this, 0, TagListAdapter.ORIENTATION_VERTICAL, new TagListAdapter.OnTagClickListener() {
+        mTaglistAdapter = new TagListAdapter(mtaglist, ActivityBookkeepAdd.this, selectedTagId, TagListAdapter.ORIENTATION_VERTICAL, new TagListAdapter.OnTagClickListener() {
             @Override
             public void onClick(HaveITag tag) {
                 selectedTagId = tag.getId();
@@ -198,14 +243,9 @@ public class ActivityBookkeepAdd extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        switch(IORG.getCheckedRadioButtonId()){
-            case R.id.bookkeep_add_radio_expenditure:
-                IORG.check(R.id.bookkeep_add_radio_expenditure);
-                break;
-            case R.id.bookkeep_add_radio_income:
-                IORG.check(R.id.bookkeep_add_radio_income);
-                break;
-        }
+        mtaglist.clear();
+        mtaglist.addAll(bookDBHelper.findAllBookTag(true, ioJudge));
+        mTagRecycRV.getAdapter().notifyDataSetChanged();
     }
 
     private void updateBookkeep(Double value) {
@@ -218,6 +258,7 @@ public class ActivityBookkeepAdd extends BaseActivity {
         mBookkeep.setPM(value * io);
         mBookkeep.settag(selectedTagId);
         mBookkeep.setTime(UniToolKit.eventDateFormatter(calendar.getTime()));
+        mBookkeep.setAccount(accountId);
         if (mode == MODE_ADD) {
             bookDBHelper.insertBookkeep(mBookkeep);
         } else {

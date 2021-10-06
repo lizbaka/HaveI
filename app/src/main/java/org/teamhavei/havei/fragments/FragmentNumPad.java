@@ -1,5 +1,6 @@
 package org.teamhavei.havei.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -46,6 +47,10 @@ public class FragmentNumPad extends BottomSheetDialogFragment {
 
     public interface NumPadCallback {
         void onConfirm(Double number);
+    }
+
+    public void setOriginalValue(double originalValue) {
+        this.originalValue = originalValue;
     }
 
     @Override
@@ -104,13 +109,14 @@ public class FragmentNumPad extends BottomSheetDialogFragment {
         };
     }
 
+    @SuppressLint("DefaultLocale")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_numpad, container, false);
         initView(view);
         if (originalValue != 0) {
-            numberET.setText(Double.toString(originalValue));
+            numberET.setText(String.format("%.2f",originalValue));
         }
         return view;
     }
@@ -156,6 +162,9 @@ public class FragmentNumPad extends BottomSheetDialogFragment {
         }
         if (curNum.equals("") && s.equals(".")) {
             numberET.append("0");
+        }
+        if(curNum.equals("0") && !s.equals(".")){
+            numberET.setText("");
         }
         numberET.append(s);
     }
