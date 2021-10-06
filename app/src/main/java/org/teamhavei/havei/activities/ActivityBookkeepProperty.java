@@ -18,9 +18,10 @@ import org.teamhavei.havei.R;
 import org.teamhavei.havei.adapters.AccountCardAdapter;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityBookkeepProperty extends AppCompatActivity {
+public class ActivityBookkeepProperty extends BaseActivity {
 
     public static void startAction(Context context) {
         Intent intent = new Intent(context, ActivityBookkeepProperty.class);
@@ -31,6 +32,7 @@ public class ActivityBookkeepProperty extends AppCompatActivity {
 
     BookkeepDBHelper dbHelper;
     List<BookAccount> accountList;
+    ArrayList<Double> balanceData;
 
 
     @Override
@@ -42,8 +44,10 @@ public class ActivityBookkeepProperty extends AppCompatActivity {
 
         dbHelper = new BookkeepDBHelper(ActivityBookkeepProperty.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         accountList = dbHelper.findAllBookAccount();
+        balanceData = new ArrayList<>();
 
         initView();
+        update(null);
     }
 
     @Override
@@ -81,9 +85,11 @@ public class ActivityBookkeepProperty extends AppCompatActivity {
 
     private void update(BookAccount account) {
         if (account == null) {
-
+            balanceData.clear();
+            balanceData.addAll(dbHelper.getBalanceListFor12Months());
         } else {
-
+            balanceData.clear();
+            balanceData.addAll(dbHelper.getBalanceListFor12Months(account.getId()));
         }
     }
 }

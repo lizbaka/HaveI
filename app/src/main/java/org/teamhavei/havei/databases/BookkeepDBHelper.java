@@ -180,7 +180,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
 
     public double getPMBeforeYearMonthByAccount(int accountId, Date date) {
         String yearMonth = UniToolKit.eventYearMonthFormatter(date);
-        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_ACCOUNT_BEL + " = ?" + " AND " + BOOKKEEP_TIME + " <= ?", new String[]{Integer.toString(accountId), yearMonth}, BOOKKEEP_ACCOUNT_BEL, null, null);
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_ACCOUNT_BEL + " = ?" + " AND " + BOOKKEEP_TIME + " < ?", new String[]{Integer.toString(accountId), yearMonth}, BOOKKEEP_ACCOUNT_BEL, null, null);
         if (cursor.getCount() <= 0) {
             return 0;
         }
@@ -505,7 +505,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
 
     public ArrayList<Double> getBalanceListFor12Months(int accountId) {
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, -11);
+        calendar.add(Calendar.MONTH, -10);
         Double init = findBookAccountById(accountId).getInit();
         ArrayList<Double> data = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
