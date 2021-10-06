@@ -44,8 +44,13 @@ public class FragmentTodayHabit extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today_habit, container, false);
         initView(view);
-        updateTodayHabitContainer();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateTodayHabitContainer();
     }
 
     private void initView(View view) {
