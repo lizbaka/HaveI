@@ -18,8 +18,12 @@ import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import kotlin.Unit;
 
 public class BookkeepDBHelper extends SQLiteOpenHelper {
 
@@ -148,34 +152,44 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         String sYearMonth = UniToolKit.eventYearMonthFormatter(yearMonth);
         Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " < 0" + " AND " + BOOKKEEP_TIME + " LIKE ?", new String[]{sYearMonth + "%"}, null, null, null);
         cursor.moveToNext();
-        return -cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+        return Math.abs(cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")")));
     }
 
     public double getExpenditureByDay(Date date) {
         String sDate = UniToolKit.eventDateFormatter(date);
         Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " < 0" + " AND " + BOOKKEEP_TIME + " = ?", new String[]{sDate}, null, null, null);
         cursor.moveToNext();
-        return -cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+        return Math.abs(cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")")));
     }
 
     public double getIncomeByDay(Date date) {
         String sDate = UniToolKit.eventDateFormatter(date);
         Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " > 0" + " AND " + BOOKKEEP_TIME + " = ?", new String[]{sDate}, null, null, null);
         cursor.moveToNext();
-        return -cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+        return Math.abs(cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")")));
     }
 
-    public double getPMByAccount(int accountId){
-        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"},BOOKKEEP_ACCOUNT_BEL + " = ?",new String[]{Integer.toString(accountId)},BOOKKEEP_ACCOUNT_BEL,null,null);
-        if(cursor.getCount()<=0){
+    public double getPMByAccount(int accountId) {
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_ACCOUNT_BEL + " = ?", new String[]{Integer.toString(accountId)}, BOOKKEEP_ACCOUNT_BEL, null, null);
+        if (cursor.getCount() <= 0) {
             return 0;
         }
         cursor.moveToNext();
         return cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
     }
 
-    public int getBookkeepDay(){
-        Cursor cursor = db.query(TABLE_BOOKKEEP,new String[]{"COUNT(" + BOOKKEEP_TIME + ")"},null,null,BOOKKEEP_TIME,null,null);
+    public double getPMBeforeYearMonthByAccount(int accountId, Date date) {
+        String yearMonth = UniToolKit.eventYearMonthFormatter(date);
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_ACCOUNT_BEL + " = ?" + " AND " + BOOKKEEP_TIME + " < ?", new String[]{Integer.toString(accountId), yearMonth}, BOOKKEEP_ACCOUNT_BEL, null, null);
+        if (cursor.getCount() <= 0) {
+            return 0;
+        }
+        cursor.moveToNext();
+        return cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+    }
+
+    public int getBookkeepDay() {
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"COUNT(" + BOOKKEEP_TIME + ")"}, null, null, BOOKKEEP_TIME, null, null);
         return cursor.getCount();
     }
 
@@ -210,6 +224,34 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
 
     public void deleteBookkeep(Bookkeep mBookkeep) {
         db.delete(TABLE_BOOKKEEP, BOOKKEEP_ID + " = ? ", new String[]{Integer.toString(mBookkeep.getid())});
+    }
+
+    public ArrayList<Double> getPMListByYear(int type, Date date) {
+        ArrayList<Double> data = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.MONTH, Calendar.JANUARY);
+        if (type == UniToolKit.BOOKKEEP_TAG_EXPENDITURE) {
+            for (int i = 0; i < 12; i++) {
+                data.add(getExpenditureByMonth(calendar.getTime()));
+                calendar.add(Calendar.MONTH, 1);
+            }
+        } else {
+            for (int i = 0; i < 12; i++) {
+                data.add(getIncomeByMonth(calendar.getTime()));
+                calendar.add(Calendar.MONTH, 1);
+            }
+        }
+        return data;
+    }
+
+    public ArrayList<Double> getSurplusListByYear(Date date) {
+        ArrayList<Double> surplusData = getPMListByYear(UniToolKit.BOOKKEEP_TAG_INCOME, date);
+        ArrayList<Double> expenditureData = getPMListByYear(UniToolKit.BOOKKEEP_TAG_EXPENDITURE, date);
+        for (int i = 0; i < surplusData.size(); i++) {
+            surplusData.set(i, surplusData.get(i) - expenditureData.get(i));
+        }
+        return surplusData;
     }
     //========Bookkeep相关功能:end===============
 
@@ -336,11 +378,11 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         List<BookTag> bookTagList = new ArrayList<>();
         Cursor cursor;
         if (type == UniToolKit.BOOKKEEP_TAG_EXPENDITURE) {
-            cursor = db.query(TABLE_BOOKKEEP,new String[]{BOOKKEEP_TAG_ID,"SUM(" + BOOKKEEP_PM + ")"},BOOKKEEP_PM + " < 0",null,BOOKKEEP_TAG_ID,null,"SUM(" + BOOKKEEP_PM +")");
-        }else{
-            cursor = db.query(TABLE_BOOKKEEP,new String[]{BOOKKEEP_TAG_ID,"SUM(" + BOOKKEEP_PM + ")"},BOOKKEEP_PM + " > 0",null,BOOKKEEP_TAG_ID,null,"SUM(" + BOOKKEEP_PM +") DESC");
+            cursor = db.query(TABLE_BOOKKEEP, new String[]{BOOKKEEP_TAG_ID, "SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " < 0", null, BOOKKEEP_TAG_ID, null, "SUM(" + BOOKKEEP_PM + ")");
+        } else {
+            cursor = db.query(TABLE_BOOKKEEP, new String[]{BOOKKEEP_TAG_ID, "SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " > 0", null, BOOKKEEP_TAG_ID, null, "SUM(" + BOOKKEEP_PM + ") DESC");
         }
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             bookTagList.add(findBookTagById(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_TAG_ID))));
         }
         cursor.close();
@@ -359,6 +401,22 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         BookTag delBookTag = mBookTag;
         delBookTag.setDel(true);
         updateBookTag(mBookTag, delBookTag);
+    }
+
+    public HashMap<String, Double> getTagDataByMonth(int type, Date date) {
+        HashMap<String, Double> data = new HashMap<String, Double>();
+        String sDate = UniToolKit.eventYearMonthFormatter(date);
+        Cursor cursor;
+        if (type == UniToolKit.BOOKKEEP_TAG_EXPENDITURE) {
+            cursor = db.query(TABLE_BOOKKEEP, new String[]{BOOKKEEP_TAG_ID, "SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " < 0" + " AND " + BOOKKEEP_TIME + " LIKE ?", new String[]{sDate + "%"}, BOOKKEEP_TAG_ID, null, "SUM(" + BOOKKEEP_PM + ")");
+        } else {
+            cursor = db.query(TABLE_BOOKKEEP, new String[]{BOOKKEEP_TAG_ID, "SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_PM + " > 0" + " AND " + BOOKKEEP_TIME + " LIKE ?", new String[]{sDate + "%"}, BOOKKEEP_TAG_ID, null, "SUM(" + BOOKKEEP_PM + ") DESC");
+        }
+        while (cursor.moveToNext()) {
+            BookTag tag = findBookTagById(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_TAG_ID)));
+            data.put(tag.getName(), Math.abs(cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"))));
+        }
+        return data;
     }
     //========Book_Tag相关功能:end========
 
@@ -429,6 +487,35 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
             updateBookkeep(bookkeep.getid(), bookkeep);
         }
         db.delete(TABLE_BOOK_ACCOUNT, BOOK_ACCOUNT_ID + " = ?", new String[]{Integer.toString(accountId)});
+    }
+
+    public ArrayList<Double> getBalanceListFor12Months() {
+        ArrayList<Double> data = new ArrayList<>(12);
+        for(int i=0;i<12;i++)
+            data.add(0.0);
+        List<BookAccount> accountList = findAllBookAccount();
+        for (BookAccount account : accountList) {
+            ArrayList<Double> accountData = getBalanceListFor12Months(account.getId());
+            for (int i = 0; i < 12; i++) {
+                data.set(i, data.get(i) + accountData.get(i));
+            }
+        }
+        return data;
+    }
+
+    public ArrayList<Double> getBalanceListFor12Months(int accountId) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, -10);
+        Double init = findBookAccountById(accountId).getInit();
+        ArrayList<Double> data = new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            data.add(getPMBeforeYearMonthByAccount(accountId, calendar.getTime()));
+            calendar.add(Calendar.MONTH,1);
+        }
+        for (int i = 0; i < 12; i++) {
+            data.set(i, data.get(i) + init);
+        }
+        return data;
     }
 
 

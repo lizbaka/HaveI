@@ -15,13 +15,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.LineData;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import org.teamhavei.havei.Event.HaveIDatePickerDialog;
+import org.teamhavei.havei.Event.doubleLineManager;
 import org.teamhavei.havei.R;
+import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
@@ -39,9 +45,12 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
     TextView expenditureTV;
     TextView surplusTV;
     ExtendedFloatingActionButton switchFAB;
-
+    private LineChart Line_one;
+    private LineData linedata1;
     double[] expenditureByMonth = new double[12];
     double[] incomeByMonth = new double[12];
+
+    private Date nowDate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +64,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
 
         dbHelper = new BookkeepDBHelper(ActivityBookkeepStatisticAnnually.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         calendar = Calendar.getInstance();
+        setmyDOULINE(calendar.getTime(),Line_one);
     }
 
     @Override
@@ -96,6 +106,8 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         incomeTV = findViewById(R.id.bookkeep_three_value2);
         surplusTV = findViewById(R.id.bookkeep_three_value3);
         switchFAB = findViewById(R.id.bookkeep_annual_switch_fab);
+        Line_one=findViewById(R.id.chart_line1);
+
 
         ((TextView) findViewById(R.id.bookkeep_three_title1)).setText(R.string.bookkeep_annual_expenditure);
         ((TextView) findViewById(R.id.bookkeep_three_title2)).setText(R.string.bookkeep_annual_income);
@@ -146,8 +158,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
 //    private String initTime;
 //    private PieChart chart_in;
 //    private PieChart chart_out;
-//    private LineChart Line_one;
-//    private LineData linedata1;
+
 //
 //
 //    @Override
@@ -190,19 +201,31 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
 //        doubleLineManager.setCount(numOfcou);
 //        doubleLineManager.setLineName("收入");
 //        doubleLineManager.setLineName1("支出");
-//        linedata1= doubleLineManager.initDoubleLineChart(ActivityBookkeepAnnualAccountDetail.this,data1,data2);
+//        linedata1 = doubleLineManager.initDoubleLineChart(ActivityBookkeepAnnualAccountDetail.this,data1,data2);
 //        doubleLineManager.initDataStyle(Line_one,linedata1,ActivityBookkeepAnnualAccountDetail.this);
 //
 //
 //    }
-//    public void setchartPIE(ArrayList<Bookran> mran,PieChart mchart,String name)
+    public void setmyDOULINE(Date mDate,LineChart mLine)
+
+    {
+        ArrayList<Double> data1=dbHelper.getPMListByYear(UniToolKit.BOOKKEEP_TAG_INCOME,mDate);
+        ArrayList<Double> data2=dbHelper.getPMListByYear(UniToolKit.BOOKKEEP_TAG_EXPENDITURE,mDate);
+        doubleLineManager.setCount(data1.size());
+        doubleLineManager.setLineName("收入");
+        doubleLineManager.setLineName1("支出");
+        LineData linedata = doubleLineManager.initDoubleLineChart(ActivityBookkeepStatisticAnnually.this,data1,data2);
+        doubleLineManager.initDataStyle(mLine,linedata,ActivityBookkeepStatisticAnnually.this);
+    }
+
+//    public void setmyPIE(ArrayList<Bookkeep> mbooks, PieChart mchart, String name)
 //    {
 //        int i=0;
-//        numOfran =mran.size();
+//        int numOfran =mbooks.size();
 //        HashMap dataMap =new HashMap();
 //        for(i=0; i< numOfran; i++)
 //        {
-//            dataMap.put(mran.get(i).name,mran.get(i).counts);
+//            dataMap.put(mbooks.get(i). getname(),mbooks.get(i).getPM());
 //        }
 //
 //        setPieChart(mchart,dataMap,name,true);
@@ -216,7 +239,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
 //
 //
 //    //
-//    public void setPieChart(PieChart pieChart, Map<String, Float> pieValues, String title, boolean showLegend) {
+//    public void setPieChart(PieChart pieChart, Map<String, Double> pieValues, String title, boolean showLegend) {
 //        pieChart.setUsePercentValues(true);//设置使用百分比（后续有详细介绍）
 //        pieChart.getDescription().setEnabled(false);//设置描述
 //        pieChart.setExtraOffsets(25, 10, 25, 25); //设置边距
@@ -239,18 +262,17 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
 //
 //        //图例设置
 //        Legend legend = pieChart.getLegend();
-//        legend.setEnabled(false);
-////        if (showLegend) {
-////            legend.setEnabled(true);//是否显示图例
-////            legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);//图例相对于图表横向的位置
-////            legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);//图例相对于图表纵向的位置
-////            legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);//图例显示的方向
-////            legend.setDrawInside(false);
-////            legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
-////        } else {
-////            legend.setEnabled(false);
-////        }
-//
+//        legend.setEnabled(true);
+//        if (showLegend) {
+//            legend.setEnabled(true);//是否显示图例
+//            legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);//图例相对于图表横向的位置
+//            legend.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);//图例相对于图表纵向的位置
+//            legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);//图例显示的方向
+//            legend.setDrawInside(false);
+//            legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+//        } else {
+//            legend.setEnabled(false);
+//        }
 //        //设置饼图数据
 //        setPieChartData(pieChart, pieValues);
 //
@@ -259,7 +281,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
 //    }
 //
 //    //-->设置饼图数据
-//    private void setPieChartData(PieChart pieChart, Map<String, Float> pieValues) {
+//    private void setPieChartData(PieChart pieChart, Map<String, Double> pieValues) {
 //
 //        Set set = pieValues.entrySet();
 //        Iterator it = set.iterator();
@@ -268,12 +290,10 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
 //            Map.Entry entry = (Map.Entry) it.next();
 //            entries.add(new PieEntry(Float.valueOf(entry.getValue().toString()), entry.getKey().toString()));
 //        }
-//
 //        PieDataSet dataSet = new PieDataSet(entries, "");
 //        dataSet.setSliceSpace(3f);//设置饼块之间的间隔
 //        dataSet.setSelectionShift(5f);//设置饼块选中时偏离饼图中心的距离
 //        dataSet.setColors(PIE_COLORS);//设置饼块的颜色
-//
 //        //设置数据显示方式有见图
 //        dataSet.setValueLinePart1OffsetPercentage(80f);//数据连接线距图形片内部边界的距离，为百分数
 //        dataSet.setValueLinePart1Length(0.3f);
@@ -284,10 +304,9 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
 //        pieData.setValueFormatter(new PercentFormatter());
 //        pieData.setValueTextSize(11f);
 //        pieData.setValueTextColor(Color.DKGRAY);
-//
 //        pieChart.setData(pieData);
 //        pieChart.highlightValues(null);
 //        pieChart.invalidate();
 //    }
-//
+
 }

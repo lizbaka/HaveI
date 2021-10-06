@@ -87,7 +87,20 @@
                             android:layout_margin="@dimen/widget_inview_margin"
                             android:text="@string/bookkeep_monthly_expenditure_proportion" />
 
-                        <!--                    todo: 在这里放支出饼图-->
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/chart_out"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/piechart_height" />
+
+                        <TextView
+                            android:id="@+id/chart_out_no_data"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/piechart_height"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:textColor="@color/grey_500"
+                            android:text="@string/no_data"/>
 
                     </LinearLayout>
 
@@ -111,11 +124,25 @@
                             android:layout_margin="@dimen/widget_inview_margin"
                             android:text="@string/bookkeep_monthly_income_proportion" />
 
-                        <!--                    todo: 在这里放收入饼图-->
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/chart_in"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/piechart_height" />
+
+                        <TextView
+                            android:id="@+id/chart_in_no_data"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/piechart_height"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:textColor="@color/grey_500"
+                            android:text="@string/no_data"/>
 
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
 
             </LinearLayout>
 
@@ -130,9 +157,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/fab_margin"
+        android:backgroundTint="?attr/colorPrimary"
         android:text="@string/bookkeep_monthly_switch"
         android:textColor="@color/white"
-        android:backgroundTint="?attr/colorPrimary"
         app:icon="@drawable/ic_baseline_loop_24"
         app:iconTint="@color/white" />
 
