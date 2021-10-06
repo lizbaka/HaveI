@@ -24,7 +24,6 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -104,8 +103,7 @@ public class ActivityMain extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.toolbar_analyze:
-                // TODO: 2021.08.24 数据分析功能完成后接入
-                Toast.makeText(this, "数据分析功能：敬请期待", Toast.LENGTH_SHORT).show();
+                ActivityLongTermAnalyze.startAction(ActivityMain.this);
                 return true;
         }
         return false;
@@ -183,9 +181,12 @@ public class ActivityMain extends BaseActivity {
         pref = getSharedPreferences(UniToolKit.PREF_SETTINGS, MODE_PRIVATE);
         if (pref.getBoolean(UniToolKit.PREF_FIRST_RUN, true)) {
             firstRun();
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putBoolean(UniToolKit.PREF_FIRST_RUN, false);
-            editor.apply();
+            pref.edit().putBoolean(UniToolKit.PREF_FIRST_RUN, false)
+                    .apply();
+        }
+        if (pref.getLong(UniToolKit.PREF_FIRST_RUN_DATE, -1) == -1){
+            pref.edit().putLong(UniToolKit.PREF_FIRST_RUN_DATE, Calendar.getInstance().getTimeInMillis())
+                    .apply();
         }
     }
 
@@ -193,7 +194,6 @@ public class ActivityMain extends BaseActivity {
         TextView greetingTimeTV = findViewById(R.id.greeting_card_time);
         TextView greetingSecTV = findViewById(R.id.greeting_card_secondary);
         ImageView greetingIconIV = findViewById(R.id.greeting_card_icon);
-        Calendar calendar = Calendar.getInstance();
         greetingTimeTV.setText(UniToolKit.getGreetingTimeId());
         greetingSecTV.setText(UniToolKit.getGreetingSecId());
         greetingIconIV.setImageResource(UniToolKit.getGreetingIconId());

@@ -28,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.ActivityLongTermAnalyze" />
         <activity android:name=".activities.ActivityHabitMain" />
         <activity android:name=".activities.ActivitySettingsProverbSrc" />
         <activity android:name=".activities.ActivityReport" />

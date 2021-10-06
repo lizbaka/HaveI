@@ -14,14 +14,18 @@
         <entry key="..\:/Project/HaveI/app/src/main/res/layout/activity_bookkeep_statistic_monthly.xml" value="0.20018115942028986" />
         <entry key="..\:/Project/HaveI/app/src/main/res/layout/activity_bookkeep_statistics_annually.xml" value="0.17980072463768115" />
         <entry key="..\:/Project/HaveI/app/src/main/res/layout/activity_budget.xml" value="0.14766970618034447" />
+        <entry key="..\:/Project/HaveI/app/src/main/res/layout/activity_habit_detail.xml" value="0.12335359675785208" />
+        <entry key="..\:/Project/HaveI/app/src/main/res/layout/activity_long_term_analyze.xml" value="0.264" />
         <entry key="..\:/Project/HaveI/app/src/main/res/layout/activity_main_event.xml" value="0.11865942028985507" />
         <entry key="..\:/Project/HaveI/app/src/main/res/layout/activity_modify_account.xml" value="0.12335359675785208" />
         <entry key="..\:/Project/HaveI/app/src/main/res/layout/activity_modify_tag.xml" value="0.4" />
         <entry key="..\:/Project/HaveI/app/src/main/res/layout/activity_settings.xml" value="0.12335359675785208" />
+        <entry key="..\:/Project/HaveI/app/src/main/res/layout/activity_settings_account.xml" value="0.12335359675785208" />
         <entry key="..\:/Project/HaveI/app/src/main/res/layout/activity_settings_tags_mng.xml" value="0.16302083333333334" />
         <entry key="..\:/Project/HaveI/app/src/main/res/layout/dialog_date_picker.xml" value="0.264" />
         <entry key="..\:/Project/HaveI/app/src/main/res/layout/dynamic_bookkeep_annual_income_and_expenses.xml" value="0.14766970618034447" />
         <entry key="..\:/Project/HaveI/app/src/main/res/layout/dynamic_budget_card.xml" value="0.2078804347826087" />
+        <entry key="..\:/Project/HaveI/app/src/main/res/layout/dynamic_proverb_card.xml" value="0.1272644927536232" />
       </map>
     </option>
   </component>

@@ -39,8 +39,8 @@
 
     <ImageView
         android:id="@+id/proverb_card_favorite"
-        android:layout_width="@dimen/proverb_card_favorite_size"
-        android:layout_height="@dimen/proverb_card_favorite_size"
+        android:layout_width="@dimen/button_in_card_size"
+        android:layout_height="@dimen/button_in_card_size"
         android:layout_gravity="right|bottom"
         android:src="@drawable/ic_baseline_favorite_24_white"
         android:layout_margin="@dimen/widget_inview_margin"/>
