@@ -29,7 +29,6 @@ public class doubleLineManager {
             yValues1.add(new Entry(datas1.get(i).floatValue(),i));
 
         }
-
         // y轴的数据
         ArrayList<Entry> yValues2 = new ArrayList<Entry>();
         for (int i = 0; i < count; i++) {
@@ -93,7 +92,7 @@ public class doubleLineManager {
         ArrayList<String> xValues = new ArrayList<String>();
         for (int i = 0; i < count; i++) {
             // x轴显示的数据，这里默认使用数字下标显示
-            xValues.add(Integer.toString(i+1));
+            xValues.add((i + 1) + "");
         }
         lineChart.setData(lineData);
 
@@ -121,7 +120,7 @@ public class doubleLineManager {
         YAxis axisRight = lineChart.getAxisRight(); //y轴右边标示
         axisLeft.setTextColor(Color.GRAY); //字体颜色
         axisLeft.setTextSize(10f); //字体大小
-        //axisLeft.setAxisMaxValue(800f); //最大值
+        axisLeft.setAxisMaxValue(800f); //最大值
         axisLeft.setLabelCount(5, true); //显示格数
         axisLeft.setGridColor(Color.GRAY); //网格线颜色
 

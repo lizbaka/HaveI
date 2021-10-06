@@ -47,9 +47,8 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
     ExtendedFloatingActionButton switchFAB;
 
     Calendar calendar;
-    private PieChart chart_in;
-    private PieChart chart_out;
-    private Date nowDate;
+    PieChart chart_in;
+    PieChart chart_out;
 
     public static void startAction(Context context) {
         Intent intent = new Intent(context, ActivityBookkeepStatisticMonthly.class);
@@ -69,7 +68,7 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initView();
         //饼状图
-        nowDate=calendar.getTime();
+
         setmyPIE(chart_in,"收入",UniToolKit.BOOKKEEP_TAG_INCOME,calendar.getTime());
         setmyPIE(chart_out,"支出",UniToolKit.BOOKKEEP_TAG_EXPENDITURE,calendar.getTime());
     }
@@ -97,8 +96,8 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         incomeTV = findViewById(R.id.bookkeep_three_value2);
         surplusTV = findViewById(R.id.bookkeep_three_value3);
         switchFAB = findViewById(R.id.bookkeep_monthly_switch_fab);
-        PieChart chart_in= findViewById(R.id.chart_in);
-        PieChart chart_out=findViewById(R.id.chart_out);
+         chart_in= findViewById(R.id.chart_in);
+       chart_out=findViewById(R.id.chart_out);
 
         dateSelectorMCV.setOnClickListener(new View.OnClickListener() {
             @Override

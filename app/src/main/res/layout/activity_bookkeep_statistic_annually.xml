@@ -135,6 +135,12 @@
                             android:layout_margin="@dimen/widget_inview_margin"
                             android:text="@string/bookkeep_annual_monthly_income" />
 
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/chart_line1"
+                            android:layout_width="match_parent"
+                            android:layout_height="350dp" />
+
                         <!--                    todo: 在这里放月收入折线图-->
 
                     </LinearLayout>
@@ -175,11 +181,7 @@
 <!--                    android:layout_width="match_parent"-->
 <!--                    android:layout_height="350dp" />-->
 
-                <com.github.mikephil.charting.charts.LineChart
 
-                    android:id="@+id/chart_line1"
-                    android:layout_width="match_parent"
-                    android:layout_height="350dp" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
