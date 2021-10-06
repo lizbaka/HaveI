@@ -267,6 +267,7 @@
 
     <!--activity_bookkeep_property_view:start-->
     <string name="bookkeep_property_title">我的资产</string>
+    <string name="bookkeep_property_clear">清除选定</string>
     <!--activity_bookkeep_property_view:end-->
 
     <!--activity_bookkeep_monthly_statistic_monthly:start-->
