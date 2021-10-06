@@ -178,6 +178,16 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
     }
 
+    public double getPMBeforeYearMonthByAccount(int accountId, Date date) {
+        String yearMonth = UniToolKit.eventYearMonthFormatter(date);
+        Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"SUM(" + BOOKKEEP_PM + ")"}, BOOKKEEP_ACCOUNT_BEL + " = ?" + " AND " + BOOKKEEP_TIME + " < ?", new String[]{Integer.toString(accountId), yearMonth}, BOOKKEEP_ACCOUNT_BEL, null, null);
+        if (cursor.getCount() <= 0) {
+            return 0;
+        }
+        cursor.moveToNext();
+        return cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"));
+    }
+
     public int getBookkeepDay() {
         Cursor cursor = db.query(TABLE_BOOKKEEP, new String[]{"COUNT(" + BOOKKEEP_TIME + ")"}, null, null, BOOKKEEP_TIME, null, null);
         return cursor.getCount();
@@ -477,6 +487,35 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
             updateBookkeep(bookkeep.getid(), bookkeep);
         }
         db.delete(TABLE_BOOK_ACCOUNT, BOOK_ACCOUNT_ID + " = ?", new String[]{Integer.toString(accountId)});
+    }
+
+    public ArrayList<Double> getBalanceListFor12Months() {
+        ArrayList<Double> data = new ArrayList<>(12);
+        for(int i=0;i<12;i++)
+            data.add(0.0);
+        List<BookAccount> accountList = findAllBookAccount();
+        for (BookAccount account : accountList) {
+            ArrayList<Double> accountData = getBalanceListFor12Months(account.getId());
+            for (int i = 0; i < 12; i++) {
+                data.set(i, data.get(i) + accountData.get(i));
+            }
+        }
+        return data;
+    }
+
+    public ArrayList<Double> getBalanceListFor12Months(int accountId) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, -10);
+        Double init = findBookAccountById(accountId).getInit();
+        ArrayList<Double> data = new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            data.add(getPMBeforeYearMonthByAccount(accountId, calendar.getTime()));
+            calendar.add(Calendar.MONTH,1);
+        }
+        for (int i = 0; i < 12; i++) {
+            data.set(i, data.get(i) + init);
+        }
+        return data;
     }
 
 

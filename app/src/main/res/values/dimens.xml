@@ -86,6 +86,7 @@
 
     <dimen name="proverb_category">10dp</dimen>
     <dimen name="proverb_settings_subordinate_offset1">30dp</dimen>
+    <dimen name="piechart_height">250dp</dimen>
 
 
 </resources>
