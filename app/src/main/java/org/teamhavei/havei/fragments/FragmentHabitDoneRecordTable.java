@@ -67,9 +67,9 @@ public class FragmentHabitDoneRecordTable extends BaseFragment {
                 public void updateEventList(Calendar startOfWeek, List<FragmentTimeTable.TimeTableEvent> eventList) {
                     eventList.clear();
                     String sStartOfWeek = UniToolKit.eventDateFormatter(startOfWeek.getTime());
-                    startOfWeek.add(Calendar.DAY_OF_YEAR, 6);
+                    startOfWeek.add(Calendar.DAY_OF_YEAR, 7);
                     String sEndOfWeek = UniToolKit.eventDateFormatter(startOfWeek.getTime());
-                    startOfWeek.add(Calendar.DAY_OF_YEAR, -6);
+                    startOfWeek.add(Calendar.DAY_OF_YEAR, -7);
                     List<HabitExec> execList = dbHelper.findHabitExecByDateRange(sStartOfWeek, sEndOfWeek);
                     HashMap<Integer,Integer> HP = new HashMap<>();
                     int used = -1;

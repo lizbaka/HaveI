@@ -71,10 +71,11 @@ public class ActivityTodoTimetable extends BaseActivity {
                 @Override
                 public void updateEventList(Calendar startOfWeek, List<FragmentTimeTable.TimeTableEvent> eventList) {
                     eventList.clear();
+                    //左闭右开
                     String sStartOfWeek = UniToolKit.eventDateFormatter(startOfWeek.getTime());
-                    startOfWeek.add(Calendar.DAY_OF_YEAR, 6);
+                    startOfWeek.add(Calendar.DAY_OF_YEAR, 7);
                     String sEndOfWeek = UniToolKit.eventDateFormatter(startOfWeek.getTime());
-                    startOfWeek.add(Calendar.DAY_OF_YEAR, -6);
+                    startOfWeek.add(Calendar.DAY_OF_YEAR, -7);
                     List<Todo> todoList = dbHelper.findTodoByDateRange(sStartOfWeek, sEndOfWeek);
                     int[] eventCount = new int[8];
                     for (int i = 1; i <= 7; i++) {
