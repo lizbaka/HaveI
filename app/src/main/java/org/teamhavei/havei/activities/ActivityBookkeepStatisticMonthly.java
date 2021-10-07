@@ -196,7 +196,7 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
 
     //
     public void setPieChart(PieChart pieChart, HashMap<String, Double> pieValues, String title, boolean showLegend) {
-        pieChart.setUsePercentValues(true);//设置使用百分比（后续有详细介绍）
+        pieChart.setUsePercentValues(false);//设置使用百分比（后续有详细介绍）
         pieChart.getDescription().setEnabled(false);//设置描述
         pieChart.setExtraOffsets(25, 10, 25, 25); //设置边距
         pieChart.setDragDecelerationFrictionCoef(0.95f);//设置摩擦系数（值越小摩擦系数越大）
@@ -232,7 +232,7 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         //设置饼图数据
         setPieChartData(pieChart, pieValues);
 
-        pieChart.animateX(1500, Easing.EaseInOutQuad);//数据显示动画
+        pieChart.animateX(500, Easing.EaseInOutQuad);//数据显示动画
 
     }
 

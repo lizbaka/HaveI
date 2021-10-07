@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
@@ -63,7 +64,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
     BarChart bar_one;
     double[] expenditureByMonth = new double[12];
     double[] incomeByMonth = new double[12];
-    private static ArrayList<String> Month=new ArrayList<String>(Arrays.asList("1","一","二","三","四","五","六","七","八","九","十","十一","十二"));
+    private static ArrayList<String> Month=new ArrayList<String>(Arrays.asList("1","一","二","三","四","五","六","七","八","九","十","十一","十二",""));
 
     private Date nowDate;
 
@@ -74,9 +75,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         setSupportActionBar(findViewById(R.id.bookkeep_statistics_annually_toolbar));
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         initView();
-
         dbHelper = new BookkeepDBHelper(ActivityBookkeepStatisticAnnually.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         calendar = Calendar.getInstance();
         setmyDOULINE(calendar.getTime(),Line_one);
@@ -124,9 +123,6 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         switchFAB = findViewById(R.id.bookkeep_annual_switch_fab);
         Line_one=findViewById(R.id.chart_line1);
         bar_one=findViewById(R.id.barChart);
-
-
-
         ((TextView) findViewById(R.id.bookkeep_three_title1)).setText(R.string.bookkeep_annual_expenditure);
         ((TextView) findViewById(R.id.bookkeep_three_title2)).setText(R.string.bookkeep_annual_income);
         ((TextView) findViewById(R.id.bookkeep_three_title3)).setText(R.string.bookkeep_annual_surplus);
@@ -210,19 +206,23 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         mBar.setBackgroundColor(Color.WHITE);
         XAxis xAxis = mBar.getXAxis();  //x轴的标示
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x轴位置
+        xAxis.setLabelCount(12);
+        xAxis.setAxisMinimum(1);
+        xAxis.setAxisMaximum(12);
         xAxis.setTextColor(Color.BLACK);    //字体的颜色
-        xAxis.setTextSize(10f); //字体大小
+        xAxis.setTextSize(12f); //字体大小
         xAxis.setDrawGridLines(false); //不显示网格线
         xAxis.setValueFormatter(new IndexAxisValueFormatter()
         { @Override
         public String getFormattedValue(float value) {
             String lab;
             int index=(int)value;
+            Log.d("TAG", "getFormattedValue: "+index);
             lab=Month.get(index);
             return lab;
         }
         });
-        xAxis.setGranularity(0.9f);
+        xAxis.setGranularity(1f);
         YAxis axisLeft = mBar.getAxisLeft(); //y轴左边标示
         YAxis axisRight = mBar.getAxisRight(); //y轴右边标示
         axisLeft.setTextColor(Color.GRAY); //字体颜色
@@ -235,8 +235,8 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         axisRight.setDrawGridLines(false);
         axisRight.setDrawLabels(false);
         //设置动画效果
-        mBar.animateY(2000, Easing.Linear);
-        mBar.animateX(2000, Easing.Linear);
+        mBar.animateY(200, Easing.Linear);
+        mBar.animateX(200, Easing.Linear);
         mBar.invalidate();
 
     }

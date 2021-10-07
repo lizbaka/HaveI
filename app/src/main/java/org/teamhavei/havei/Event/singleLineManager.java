@@ -17,27 +17,22 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
-public class doubleLineManager {
+public class singleLineManager {
 
     private static String lineName = null;
-    private static String lineName1 = null;
     private static int count = 0;
     private static ArrayList<String> Month=new ArrayList<String>(Arrays.asList("1","一","二","三","四","五","六","七","八","九","十","十一","十二",""));
     private static double max=600;
-    public static LineData initDoubleLineChart(Context context, ArrayList<Double> datas1,ArrayList<Double> datas2) {
+    private static int month;
+    public static LineData initSingleLineChart(Context context, ArrayList<Double> datas1) {
         // y轴的数据
         ArrayList<Entry> yValues1 = new ArrayList<Entry>();
         for (int i = 0; i < count; i++) {
             yValues1.add(new Entry(i+1,datas1.get(i).floatValue()));
-
         }
         // y轴的数据
-        ArrayList<Entry> yValues2 = new ArrayList<Entry>();
-        for (int i = 0; i < count; i++) {
-            yValues2.add(new Entry(i+1,datas2.get(i).floatValue()));
-        }
-
         LineDataSet dataSet = new LineDataSet(yValues1, lineName);
 //        dataSet.enableDashedLine(10f, 10f, 0f);//将折线设置为曲线(即设置为虚线)
         //用y轴的集合来设置参数
@@ -52,28 +47,8 @@ public class doubleLineManager {
         dataSet.setValueTextSize(10f);     //数值显示的大小
         dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
         dataSet.setDrawValues(true);
-        LineDataSet dataSet1 = new LineDataSet(yValues2, lineName1);
-        //用y轴的集合来设置参数
-        dataSet1.setLineWidth(3.5f);
-        dataSet1.setCircleSize(2f);
-//        dataSet1.setColor(Color.rgb(252, 76, 122));
-        dataSet1.setColor(Color.GREEN);
-        dataSet1.setCircleColor(Color.BLACK);
-        dataSet1.setHighLightColor(Color.GREEN);
-        dataSet1.setHighlightEnabled(true);
-        dataSet1.setValueTextColor(Color.rgb(252, 76, 122));
-        dataSet1.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
-        dataSet1.setValueTextSize(10f);
-        dataSet1.setDrawValues(false);
-        //构建一个类型为LineDataSet的ArrayList 用来存放所有 y的LineDataSet   他是构建最终加入LineChart数据集所需要的参数
-//        ArrayList<LineDataSet> dataSets = new ArrayList<>();
-        //将数据加入dataSets
-//        dataSets.add(dataSet);
-//        dataSets.add(dataSet1);
-        //构建一个LineData  将dataSets放入
         LineData lineData = new LineData();
         lineData.addDataSet(dataSet);
-        lineData.addDataSet(dataSet1);
         return lineData;
     }
     /**
@@ -90,7 +65,6 @@ public class doubleLineManager {
         description.setTextSize(10);
         description.setPosition(200, 150);
 //        description.setTextColor(context.getResources().getColor(R.color.amber_700));
-
         lineChart.setDescription(description); //数据描述
         lineChart.setDrawGridBackground(false); //表格颜色
         lineChart.setGridBackgroundColor(Color.GRAY & 0x70FFFFFF); //表格的颜色，设置一个透明度
@@ -124,35 +98,40 @@ public class doubleLineManager {
 //            }
 //        });
         lineChart.setBackgroundColor(Color.WHITE); //设置背景颜色
-
         lineChart.setData(lineData);
         Legend mLegend = lineChart.getLegend(); //设置标示，就是那个一组y的value的
         mLegend.setForm(Legend.LegendForm.SQUARE); //样式
         mLegend.setFormSize(6f); //字体
         mLegend.setTextColor(Color.GRAY); //颜色
-        lineChart.setVisibleXRange(1, 12);   //x轴可显示的坐标范围
+        lineChart.setVisibleXRange(0, 12);   //x轴可显示的坐标范围
         XAxis xAxis = lineChart.getXAxis();  //x轴的标示
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x轴位置
-         xAxis.setGranularity(1f);
+        xAxis.setLabelCount(12);
+        xAxis.setAxisMinimum(1);
+        xAxis.setAxisMaximum(12);
         xAxis.setTextColor(Color.BLACK);    //字体的颜色
         xAxis.setTextSize(10f); //字体大小
         xAxis.setGridColor(Color.GRAY);//网格线颜色
         xAxis.setDrawGridLines(false); //不显示网格线
-        xAxis.setLabelCount(12);
-        xAxis.setAxisMinimum(1);
-        xAxis.setAxisMaximum(12);
-        xAxis.setDrawLabels( true);
+        xAxis.setDrawLabels(true);
         xAxis.setValueFormatter(new IndexAxisValueFormatter()
         { @Override
-            public String getFormattedValue(float value) {
-                String lab;
-                int index=(int)value;
-                lab=Month.get(index);
+        public String getFormattedValue(float value) {
+            String lab;
+            int index=(int)value;
+            if(index>=13)
+            {
+                return "";
+            }
+            else {
+                int indexF=(index+month)%12+1;
+                lab = Month.get(indexF);
                 return lab;
             }
+        }
+
         });
-
-
+        xAxis.setGranularity(1f);
         YAxis axisLeft = lineChart.getAxisLeft(); //y轴左边标示
         YAxis axisRight = lineChart.getAxisRight(); //y轴右边标示
         axisLeft.setTextColor(Color.GRAY); //字体颜色
@@ -172,7 +151,6 @@ public class doubleLineManager {
         lineChart.invalidate();
         //lineChart.animateX(2500);  //立即执行动画
     }
-
     /**
      * @param name
      * @Description:设置折线的名称
@@ -181,15 +159,12 @@ public class doubleLineManager {
         lineName = name;
     }
 
-    /**
-     * @param name
-     * @Description:设置另一条折线的名称
-     */
-    public static void setLineName1(String name) {
-        lineName1 = name;
-    }
+
     public static void setCount(int num){
         count=num;
+    }
+    public static void setMonth( Calendar cal){
+        month=cal.get(Calendar.MONTH);
     }
 
 }

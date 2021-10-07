@@ -20,6 +20,7 @@ import org.teamhavei.havei.adapters.AccountCardAdapter;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ActivityBookkeepProperty extends BaseActivity {
@@ -99,6 +100,7 @@ public class ActivityBookkeepProperty extends BaseActivity {
         ArrayList<Double> data1=balanceData;
         singleLineManager.setCount(data1.size());
         singleLineManager.setLineName("资产");
+        singleLineManager.setMonth(Calendar.getInstance());
         LineData linedata = singleLineManager.initSingleLineChart(ActivityBookkeepProperty.this,data1);
         singleLineManager.initDataStyle(mLine,linedata,ActivityBookkeepProperty.this);
     }
