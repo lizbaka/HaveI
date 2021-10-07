@@ -201,6 +201,11 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return cursorToHabitList(cursor);
     }
 
+    public int getHabit21Count() {
+        Cursor cursor = db.query(TABLE_HABIT_EXECS, new String[]{"COUNT(" + HABIT_EXECS_HABIT_ID + ")"}, null, null, HABIT_EXECS_HABIT_ID, "COUNT(" + HABIT_EXECS_HABIT_ID + ")" + " >= 21", null);
+        return cursor.getCount();
+    }
+
     /**
      * 按排名从高到低顺序返回一个habit的list(效率较低，不要频繁调用！)
      *
@@ -590,8 +595,8 @@ public class EventDBHelper extends SQLiteOpenHelper {
         String sNow = UniToolKit.eventDateFormatter(new Date());
         Cursor cursor;
         if (excludeDone) {
-            cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " >= ?" + " AND " + TODO_DONE + " = ?", new String[]{sNow,"0"}, null, null, TODO_DATETIME);
-        }else{
+            cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " >= ?" + " AND " + TODO_DONE + " = ?", new String[]{sNow, "0"}, null, null, TODO_DATETIME);
+        } else {
             cursor = db.query(TABLE_TODO, null, TODO_DATETIME + " >= ?", new String[]{sNow}, null, null, TODO_DATETIME);
         }
         return cursorToTodoList(cursor);

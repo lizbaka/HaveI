@@ -226,6 +226,14 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         db.delete(TABLE_BOOKKEEP, BOOKKEEP_ID + " = ? ", new String[]{Integer.toString(mBookkeep.getid())});
     }
 
+    public Bookkeep getMostSingleEx(){
+        Cursor cursor = db.query(TABLE_BOOKKEEP,null,BOOKKEEP_PM + "< 0",null,null,null,BOOKKEEP_PM);
+        if(cursor.getCount()<=0){
+            return null;
+        }
+        return cursorToBookkeepList(cursor).get(0);
+    }
+
     public ArrayList<Double> getPMListByYear(int type, Date date) {
         ArrayList<Double> data = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
@@ -371,10 +379,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return cursorToBookTagList(cursor);
     }
 
-    public List<BookTag> findAllBookTag(boolean excludeDeleted, int type, boolean sortByPM) {
-        if (!sortByPM) {
-            return findAllBookTag(excludeDeleted, type);
-        }
+    public List<BookTag> findAllBookTagSortByPM(int type) {
         List<BookTag> bookTagList = new ArrayList<>();
         Cursor cursor;
         if (type == UniToolKit.BOOKKEEP_TAG_EXPENDITURE) {

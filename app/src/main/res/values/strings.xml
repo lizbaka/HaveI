@@ -325,10 +325,12 @@
 
     <!--long_term_analyze:start-->
     <string name="long_term_analyze_title">我的HaveI印记</string>
-    <string name="long_term_first_run">，您首次运行了HaveI</string>
+    <string name="long_term_first_run">，你首次运行了HaveI</string>
     <string name="long_term_in_these">在这</string>
     <string name="long_term_days...">天里……</string>
     <string name="long_term_slogan">在HaveI，\n记录你的生活，遇见更好的自己❤</string>
+    <string name="long_term_done_monthly">每月习惯打卡情况</string>
+    <string name="long_term_surplus_monthly">每月记账结余</string>
     <string name="suggest_invest">您拥有一定量的积蓄，拿出一部分闲钱进行投资或许是个不错的选择</string>
     <string name="suggest_saving">您有时会过度消费，建议您认真考虑削减不必要的开支</string>
     <string name="suggest_overdone">您有一些常常超额完成目标的习惯，不妨考虑将目标再提高一些</string>
