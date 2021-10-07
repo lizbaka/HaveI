@@ -10,9 +10,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -184,7 +187,7 @@ public class ActivityMain extends BaseActivity {
             pref.edit().putBoolean(UniToolKit.PREF_FIRST_RUN, false)
                     .apply();
         }
-        if (pref.getLong(UniToolKit.PREF_FIRST_RUN_DATE, -1) == -1){
+        if (pref.getLong(UniToolKit.PREF_FIRST_RUN_DATE, -1) == -1) {
             pref.edit().putLong(UniToolKit.PREF_FIRST_RUN_DATE, Calendar.getInstance().getTimeInMillis())
                     .apply();
         }
@@ -308,7 +311,11 @@ public class ActivityMain extends BaseActivity {
     private void configProverb() {
         ImageView favIcon = findViewById(R.id.proverb_card_favorite);
         TextView proverbTV = findViewById(R.id.proverb_card_proverb);
-        getProverbSentence((int) (Math.random() * 3) % 3, proverbTV, favIcon);
+        if(isNetworkConnected()) {
+            getProverbSentence((int) (Math.random() * 3) % 3, proverbTV, favIcon);
+        }else{
+            getProverbSentence(0, proverbTV, favIcon);
+        }
         favIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -459,5 +466,17 @@ public class ActivityMain extends BaseActivity {
                 }).start();
                 break;
         }
+    }
+
+    private boolean isNetworkConnected() {
+        // 获取手机所有连接管理对象(包括对wi-fi,net等连接的管理)
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        // 获取NetworkInfo对象
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+        //判断NetworkInfo对象是否为空
+        if (networkInfo != null) {
+            return networkInfo.isAvailable();
+        }
+        return false;
     }
 }
