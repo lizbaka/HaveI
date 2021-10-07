@@ -261,6 +261,16 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         }
         return surplusData;
     }
+
+    public HashMap<Long,Double> getSurplusListMonthly(Date since){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(since);
+        HashMap<Long, Double> data = new HashMap<>();
+        for(Calendar today = Calendar.getInstance();calendar.before(today);calendar.add(Calendar.MONTH,1)){
+            data.put(calendar.getTimeInMillis(),getIncomeByMonth(calendar.getTime())-getExpenditureByMonth(calendar.getTime()));
+        }
+        return data;
+    }
     //========Bookkeep相关功能:end===============
 
 

@@ -405,6 +405,17 @@ public class EventDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_HABIT_EXECS, new String[]{HABIT_EXECS_DATE, "COUNT(" + HABIT_EXECS_DATE + ")"}, null, null, HABIT_EXECS_DATE, null, null);
         return cursor.getCount();
     }
+
+    public HashMap<Long, Integer> getHabitExecCountListMonthly(Date since) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(since);
+        HashMap<Long, Integer> data = new HashMap<>();
+        for (Calendar today = Calendar.getInstance(); calendar.before(today); calendar.add(Calendar.MONTH, 1)) {
+            Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_DATE + " LIKE ?", new String[]{UniToolKit.eventYearMonthFormatter(calendar.getTime()) + "%"}, null, null, null);
+            data.put(calendar.getTimeInMillis(), cursor.getCount());
+        }
+        return data;
+    }
     //========Habit_Exec相关功能:end=========
 
 
