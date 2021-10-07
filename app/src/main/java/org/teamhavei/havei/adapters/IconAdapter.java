@@ -157,6 +157,9 @@ public class IconAdapter {
     public static final int ID_AC_ALIPAY = 133;
     public static final int ID_AC_CARD = 134;
     public static final int ID_AC_NET_ACCOUNT = 135;
+    public static final int ID_AC_CARD_1 = 136;
+    public static final int ID_AC_SCHOOL_CARD = 137;
+    public static final int ID_AC_WALLET = 138;
     //只能加，不能改！
 
     public static final int DEFAULT_EVENT_TAG_ICON_ID = ID_HS_RECORD;
@@ -316,6 +319,9 @@ public class IconAdapter {
         result.add(ID_AC_ALIPAY);
         result.add(ID_AC_CARD);
         result.add(ID_AC_NET_ACCOUNT);
+        result.add(ID_AC_CARD_1);
+        result.add(ID_AC_SCHOOL_CARD);
+        result.add(ID_AC_WALLET);
         return result;
     }
 
@@ -591,6 +597,12 @@ public class IconAdapter {
                 return ContextCompat.getDrawable(mContext, R.drawable.ac_credit_card);
             case ID_AC_NET_ACCOUNT:
                 return ContextCompat.getDrawable(mContext, R.drawable.ac_net_account);
+            case ID_AC_CARD_1:
+                return ContextCompat.getDrawable(mContext, R.drawable.ac_credit_card_1);
+            case ID_AC_SCHOOL_CARD:
+                return ContextCompat.getDrawable(mContext, R.drawable.ac_school_card);
+            case ID_AC_WALLET:
+                return ContextCompat.getDrawable(mContext, R.drawable.ac_wallet);
             default:
                 Log.d(TAG, "getIcon: not found, returning lost");
                 return ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_help_24);
