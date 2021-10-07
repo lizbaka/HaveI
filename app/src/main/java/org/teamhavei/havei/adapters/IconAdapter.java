@@ -16,7 +16,7 @@ public class IconAdapter {
     private static String TAG = "DEBUG";
 
     //只能加，不能改！
-    //当前已分配到编号 129
+    //当前已分配到编号 135
     public static final int ID_LOST = 0;
     public static final int ID_CS_ACCOMMODATION = 1;
     public static final int ID_CS_AIR_TICKETS = 2;
@@ -156,6 +156,7 @@ public class IconAdapter {
     public static final int ID_AC_WECHAT = 132;
     public static final int ID_AC_ALIPAY = 133;
     public static final int ID_AC_CARD = 134;
+    public static final int ID_AC_NET_ACCOUNT = 135;
     //只能加，不能改！
 
     public static final int DEFAULT_EVENT_TAG_ICON_ID = ID_HS_RECORD;
@@ -314,6 +315,7 @@ public class IconAdapter {
         result.add(ID_AC_WECHAT);
         result.add(ID_AC_ALIPAY);
         result.add(ID_AC_CARD);
+        result.add(ID_AC_NET_ACCOUNT);
         return result;
     }
 
@@ -580,13 +582,15 @@ public class IconAdapter {
             case ID_AC_DEFAULT:
                 return ContextCompat.getDrawable(mContext, R.drawable.account_book);
             case ID_AC_CASH:
-                return ContextCompat.getDrawable(mContext, R.drawable.account_book);
+                return ContextCompat.getDrawable(mContext, R.drawable.ac_cash);
             case ID_AC_WECHAT:
-                return ContextCompat.getDrawable(mContext, R.drawable.account_book);
+                return ContextCompat.getDrawable(mContext, R.drawable.ac_wechat_pay);
             case ID_AC_ALIPAY:
-                return ContextCompat.getDrawable(mContext, R.drawable.account_book);
+                return ContextCompat.getDrawable(mContext, R.drawable.ac_alipay);
             case ID_AC_CARD:
-                return ContextCompat.getDrawable(mContext, R.drawable.account_book);
+                return ContextCompat.getDrawable(mContext, R.drawable.ac_credit_card);
+            case ID_AC_NET_ACCOUNT:
+                return ContextCompat.getDrawable(mContext, R.drawable.ac_net_account);
             default:
                 Log.d(TAG, "getIcon: not found, returning lost");
                 return ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_help_24);

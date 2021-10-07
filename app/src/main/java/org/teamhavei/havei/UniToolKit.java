@@ -15,6 +15,7 @@ public class UniToolKit {
     public static final String PREF_SETTINGS_USER_NAME = "user_name";
     public static final String PREF_FIRST_RUN = "first_run";
     public static final String PREF_BUDGET = "budget";
+    public static final String PREF_FIRST_RUN_DATE = "first_run_date";
 
     public static final int TAG_TYPE_EVENT = 0;
     public static final int TAG_TYPE_BOOKKEEP = 1;

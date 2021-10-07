@@ -58,6 +58,7 @@
     <string name="analyze">分析</string>
     <string name="property">资产</string>
     <string name="select_icon">选择一个图标</string>
+    <string name="suggest">建议</string>
     <!--universal_UI:end-->
 
     <!--activity_main:Begin-->
@@ -321,5 +322,19 @@
     <string name="modify_account_delete_dialog_title">删除账户</string>
     <string name="modify_account_delete_dialog_content">此账户被删除后将无法恢复，属于此账户的账目将被设为无账户，您确定要删除此账户吗？</string>
     <!--bookkeep_account:end-->
+
+    <!--long_term_analyze:start-->
+    <string name="long_term_analyze_title">我的HaveI印记</string>
+    <string name="long_term_first_run">，您首次运行了HaveI</string>
+    <string name="long_term_in_these">在这</string>
+    <string name="long_term_days...">天里……</string>
+    <string name="long_term_slogan">在HaveI，\n记录你的生活，遇见更好的自己❤</string>
+    <string name="suggest_invest">您拥有一定量的积蓄，拿出一部分闲钱进行投资或许是个不错的选择</string>
+    <string name="suggest_saving">您有时会过度消费，建议您认真考虑削减不必要的开支</string>
+    <string name="suggest_overdone">您有一些常常超额完成目标的习惯，不妨考虑将目标再提高一些</string>
+    <string name="suggest_understate">您有一些习惯常常不能达成目标，不妨考虑降低一些标准？</string>
+    <string name="suggest_never_done">您很久没有打卡了，行动起来！</string>
+    <!--long_term_analyze:end-->
+
 
 </resources>
