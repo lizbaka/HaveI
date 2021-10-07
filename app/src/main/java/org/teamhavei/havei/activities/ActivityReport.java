@@ -199,7 +199,7 @@ public class ActivityReport extends AppCompatActivity {
     private void showBookkeepPart() {
         bookkeepSumTV.setText(Integer.toString(bookkeepDBHelper.findBookkeepByMonth(Calendar.getInstance().getTime()).size()));
         bookkeepSumSmallTV.setText(Integer.toString(bookkeepDBHelper.findAllBookkeep().size()));
-        List<BookTag> bookTagList = bookkeepDBHelper.findAllBookTag(true,UniToolKit.BOOKKEEP_TAG_EXPENDITURE,true);
+        List<BookTag> bookTagList = bookkeepDBHelper.findAllBookTagSortByPM(UniToolKit.BOOKKEEP_TAG_EXPENDITURE);
         if(bookTagList.isEmpty()){
             bookkeepMostTV.setText(R.string.no_data);
         }else{

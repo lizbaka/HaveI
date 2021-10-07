@@ -77,9 +77,9 @@
         <include
             android:id="@+id/bookkeep_annual_overview"
             layout="@layout/dynamic_bookkeep_three_card"
-            android:layout_margin="@dimen/card_margin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/card_margin" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/bookkeep_statistic_annually_scroll_view"
@@ -139,26 +139,26 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/widget_inview_margin"
                             android:text="@string/bookkeep_annual_monthly_surplus" />
+
                         <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/barChart"
                             android:layout_width="match_parent"
-                            android:layout_height="350dp"/>
-                  <!--                    todo: 在这里放每月盈余柱状图-->
+                            android:layout_height="350dp" />
+                        <!--                    todo: 在这里放每月盈余柱状图-->
 
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 
-<!--                <com.github.mikephil.charting.charts.PieChart-->
-<!--                    android:id="@+id/chart_in"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="350dp" />-->
+                <!--                <com.github.mikephil.charting.charts.PieChart-->
+                <!--                    android:id="@+id/chart_in"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="350dp" />-->
 
-<!--                <com.github.mikephil.charting.charts.PieChart-->
-<!--                    android:id="@+id/chart_out"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="350dp" />-->
-
+                <!--                <com.github.mikephil.charting.charts.PieChart-->
+                <!--                    android:id="@+id/chart_out"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="350dp" />-->
 
 
             </LinearLayout>
@@ -171,9 +171,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/fab_margin"
+        android:backgroundTint="?attr/colorPrimary"
         android:text="@string/bookkeep_annual_switch"
         android:textColor="@color/white"
-        android:backgroundTint="?attr/colorPrimary"
         app:icon="@drawable/ic_baseline_loop_24"
         app:iconTint="@color/white" />
 

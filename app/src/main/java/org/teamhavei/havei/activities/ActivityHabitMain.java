@@ -97,8 +97,4 @@ public class ActivityHabitMain extends BaseActivity {
         transaction.replace(R.id.habit_main_fragment, fragment);
         transaction.commit();
     }
-
-    private void configDoneRecordTable(){
-
-    }
 }
