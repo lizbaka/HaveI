@@ -4,7 +4,6 @@
     style="@style/Dynamic_card.border"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:strokeWidth="0dp"
     app:cardElevation="0dp">
 
     <RelativeLayout
