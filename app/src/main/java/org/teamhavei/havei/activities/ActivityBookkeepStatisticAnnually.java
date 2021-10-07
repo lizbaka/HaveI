@@ -4,6 +4,8 @@ package org.teamhavei.havei.activities;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,8 +17,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import org.teamhavei.havei.Event.HaveIDatePickerDialog;
@@ -26,8 +37,10 @@ import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+
 
 
 public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
@@ -47,8 +60,10 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
     ExtendedFloatingActionButton switchFAB;
     private LineChart Line_one;
     private LineData linedata1;
+    BarChart bar_one;
     double[] expenditureByMonth = new double[12];
     double[] incomeByMonth = new double[12];
+    private static ArrayList<String> Month=new ArrayList<String>(Arrays.asList("1","一","二","三","四","五","六","七","八","九","十","十一","十二"));
 
     private Date nowDate;
 
@@ -65,6 +80,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         dbHelper = new BookkeepDBHelper(ActivityBookkeepStatisticAnnually.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         calendar = Calendar.getInstance();
         setmyDOULINE(calendar.getTime(),Line_one);
+        setmyBAR(calendar.getTime(),bar_one);
     }
 
     @Override
@@ -107,6 +123,8 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         surplusTV = findViewById(R.id.bookkeep_three_value3);
         switchFAB = findViewById(R.id.bookkeep_annual_switch_fab);
         Line_one=findViewById(R.id.chart_line1);
+        bar_one=findViewById(R.id.barChart);
+
 
 
         ((TextView) findViewById(R.id.bookkeep_three_title1)).setText(R.string.bookkeep_annual_expenditure);
@@ -149,63 +167,6 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
             }
         });
     }
-
-//    private Button mShowDateBTN;
-//    private TextView mSelectDateTV;
-//    private String sDate;
-//    private BookkeepDBHelper dbHelper;
-//    private List<Bookkeep> mBookList;
-//    private String initTime;
-//    private PieChart chart_in;
-//    private PieChart chart_out;
-
-//
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_bookkeep_annual_account_detail);
-//        dbHelper= new BookkeepDBHelper(ActivityBookkeepAnnualAccountDetail.this,BookkeepDBHelper.DB_NAME,null, BookkeepDBHelper.DATABASE_VERSION);
-//        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_bookkeep_annual_account_detail);
-//        setSupportActionBar(toolbar);
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        init();
-//
-//    }
-//
-//
-//    void init()
-//    {
-//        int i;
-//        chart_in=findViewById(R.id.chart_in);
-//        chart_out=findViewById(R.id.chart_out);
-//        Line_one=findViewById(R.id.chart_line1);
-//        SimpleDateFormat sDateFormat   =   new SimpleDateFormat("yyyy");
-//        sDate=sDateFormat.format(new java.util.Date());
-//        rans_in=dbHelper.Getran(true,sDate);
-//        rans_out=dbHelper.Getran(false,sDate);
-//        setchartPIE(rans_in,chart_in,"收入");
-//        setchartPIE(rans_out,chart_out,"支出");
-//
-//
-//
-//        cou_line=dbHelper.findBookCoubyYear(sDate);
-//        numOfcou=cou_line.size();
-//        ArrayList<Double> data1=new ArrayList<>();
-//        for(i=0;i<numOfcou;i++)
-//            data1.add(cou_line.get(i).getIn());
-//        ArrayList<Double> data2=new ArrayList<>();
-//        for(i=0;i<numOfcou;i++)
-//            data2.add(cou_line.get(i).getOut());
-//        doubleLineManager.setCount(numOfcou);
-//        doubleLineManager.setLineName("收入");
-//        doubleLineManager.setLineName1("支出");
-//        linedata1 = doubleLineManager.initDoubleLineChart(ActivityBookkeepAnnualAccountDetail.this,data1,data2);
-//        doubleLineManager.initDataStyle(Line_one,linedata1,ActivityBookkeepAnnualAccountDetail.this);
-//
-//
-//    }
     public void setmyDOULINE(Date mDate,LineChart mLine)
 
     {
@@ -216,97 +177,67 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         doubleLineManager.setLineName1("支出");
         LineData linedata = doubleLineManager.initDoubleLineChart(ActivityBookkeepStatisticAnnually.this,data1,data2);
         doubleLineManager.initDataStyle(mLine,linedata,ActivityBookkeepStatisticAnnually.this);
+
+
     }
+    public void setmyBAR(Date mdate, BarChart mBar)
+    {
+        ArrayList<BarEntry> yValues= new ArrayList<>();
+        ArrayList<Double> suplist= dbHelper.getSurplusListByYear(mdate);
+        for(int i =0;i<suplist.size();i++)
+        {
+            yValues.add(new BarEntry(i+1,suplist.get(i).floatValue()));
+        }
+        BarDataSet barDataSet=new BarDataSet(yValues,"盈余");
+        barDataSet.setDrawValues(true);
+        barDataSet.setColor(ActivityBookkeepStatisticAnnually.this.getResources().getColor(R.color.amber_700));
+        BarData mdata=new BarData(barDataSet);
+        barDataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
+        barDataSet.setValueTextSize(10f);     //数值显示的大小
+        mBar.setData(mdata);
+        Description description=new Description();
+        description.setText("快康康，还吃嗄");
+        description.setTextAlign(Paint.Align.CENTER);
+        description.setTextSize(10);
+        description.setPosition(200, 150);
+        mBar.setDescription(description);
+        mBar.setDrawBorders(false);
+        mBar.setGridBackgroundColor(Color.GRAY & 0x70FFFFFF);
+       mBar.setTouchEnabled(true); //可点击
+        mBar.setDragEnabled(false);  //可拖拽
+        mBar.setScaleEnabled(false);  //可缩放
+        mBar.setPinchZoom(false);
+        mBar.setBackgroundColor(Color.WHITE);
+        XAxis xAxis = mBar.getXAxis();  //x轴的标示
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x轴位置
+        xAxis.setTextColor(Color.BLACK);    //字体的颜色
+        xAxis.setTextSize(10f); //字体大小
+        xAxis.setDrawGridLines(false); //不显示网格线
+        xAxis.setValueFormatter(new IndexAxisValueFormatter()
+        { @Override
+        public String getFormattedValue(float value) {
+            String lab;
+            int index=(int)value;
+            lab=Month.get(index);
+            return lab;
+        }
+        });
+        xAxis.setGranularity(0.9f);
+        YAxis axisLeft = mBar.getAxisLeft(); //y轴左边标示
+        YAxis axisRight = mBar.getAxisRight(); //y轴右边标示
+        axisLeft.setTextColor(Color.GRAY); //字体颜色
+        axisLeft.setTextSize(10f); //字体大小
+//        axisLeft.setAxisMaxValue((float) max); //最大值
+//        axisLeft.setAxisMinimum(0f);
+//        axisLeft.setLabelCount(5, true); //显示格数
+        axisLeft.setGridColor(Color.GRAY); //网格线颜色
+        axisRight.setDrawAxisLine(false);
+        axisRight.setDrawGridLines(false);
+        axisRight.setDrawLabels(false);
+        //设置动画效果
+        mBar.animateY(2000, Easing.Linear);
+        mBar.animateX(2000, Easing.Linear);
+        mBar.invalidate();
 
-//    public void setmyPIE(ArrayList<Bookkeep> mbooks, PieChart mchart, String name)
-//    {
-//        int i=0;
-//        int numOfran =mbooks.size();
-//        HashMap dataMap =new HashMap();
-//        for(i=0; i< numOfran; i++)
-//        {
-//            dataMap.put(mbooks.get(i). getname(),mbooks.get(i).getPM());
-//        }
-//
-//        setPieChart(mchart,dataMap,name,true);
-//    }
-//    public static final int[] PIE_COLORS = {
-//            Color.rgb(	72,209,204),
-//            Color.rgb(	60,179,113),
-//            Color.rgb(135,206,250), Color.rgb(	135,206,235), Color.rgb(241, 214, 145),
-//            Color.rgb(0,0,205)
-//    };
-//
-//
-//    //
-//    public void setPieChart(PieChart pieChart, Map<String, Double> pieValues, String title, boolean showLegend) {
-//        pieChart.setUsePercentValues(true);//设置使用百分比（后续有详细介绍）
-//        pieChart.getDescription().setEnabled(false);//设置描述
-//        pieChart.setExtraOffsets(25, 10, 25, 25); //设置边距
-//        pieChart.setDragDecelerationFrictionCoef(0.95f);//设置摩擦系数（值越小摩擦系数越大）
-//        pieChart.setCenterText(title);//设置环中的文字
-//        pieChart.setRotationEnabled(true);//是否可以旋转
-//        pieChart.setHighlightPerTapEnabled(true);//点击是否放大
-//        pieChart.setCenterTextSize(22f);//设置环中文字的大小
-//        pieChart.setDrawCenterText(true);//设置绘制环中文字
-//        pieChart.setRotationAngle(120f);//设置旋转角度
-//        pieChart.setTransparentCircleRadius(61f);//设置半透明圆环的半径,看着就有一种立体的感觉
-//        //这个方法为true就是环形图，为false就是饼图
-//        pieChart.setDrawHoleEnabled(true);
-//        //设置环形中间空白颜色是白色
-//        pieChart.setHoleColor(Color.WHITE);
-//        //设置半透明圆环的颜色
-//        pieChart.setTransparentCircleColor(Color.WHITE);
-//        //设置半透明圆环的透明度
-//        pieChart.setTransparentCircleAlpha(110);
-//
-//        //图例设置
-//        Legend legend = pieChart.getLegend();
-//        legend.setEnabled(true);
-//        if (showLegend) {
-//            legend.setEnabled(true);//是否显示图例
-//            legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);//图例相对于图表横向的位置
-//            legend.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);//图例相对于图表纵向的位置
-//            legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);//图例显示的方向
-//            legend.setDrawInside(false);
-//            legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
-//        } else {
-//            legend.setEnabled(false);
-//        }
-//        //设置饼图数据
-//        setPieChartData(pieChart, pieValues);
-//
-//        pieChart.animateX(1500, Easing.EaseInOutQuad);//数据显示动画
-//
-//    }
-//
-//    //-->设置饼图数据
-//    private void setPieChartData(PieChart pieChart, Map<String, Double> pieValues) {
-//
-//        Set set = pieValues.entrySet();
-//        Iterator it = set.iterator();
-//        ArrayList<PieEntry> entries=new ArrayList<>();
-//        while (it.hasNext()) {
-//            Map.Entry entry = (Map.Entry) it.next();
-//            entries.add(new PieEntry(Float.valueOf(entry.getValue().toString()), entry.getKey().toString()));
-//        }
-//        PieDataSet dataSet = new PieDataSet(entries, "");
-//        dataSet.setSliceSpace(3f);//设置饼块之间的间隔
-//        dataSet.setSelectionShift(5f);//设置饼块选中时偏离饼图中心的距离
-//        dataSet.setColors(PIE_COLORS);//设置饼块的颜色
-//        //设置数据显示方式有见图
-//        dataSet.setValueLinePart1OffsetPercentage(80f);//数据连接线距图形片内部边界的距离，为百分数
-//        dataSet.setValueLinePart1Length(0.3f);
-//        dataSet.setValueLinePart2Length(0.4f);
-//        dataSet.setValueLineColor(Color.YELLOW);//设置连接线的颜色
-//        dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-//        PieData pieData = new PieData(dataSet);
-//        pieData.setValueFormatter(new PercentFormatter());
-//        pieData.setValueTextSize(11f);
-//        pieData.setValueTextColor(Color.DKGRAY);
-//        pieChart.setData(pieData);
-//        pieChart.highlightValues(null);
-//        pieChart.invalidate();
-//    }
-
+    }
 }

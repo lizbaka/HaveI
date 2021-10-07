@@ -187,6 +187,12 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
             Color.rgb(135, 206, 250), Color.rgb(135, 206, 235), Color.rgb(241, 214, 145),
             Color.rgb(0, 0, 205), Color.rgb(1, 2, 3), Color.rgb(4, 3, 4), Color.rgb(4, 5, 6)
     };
+    public static final int[] PIE_COLORS_two = {
+            Color.rgb(50, 29, 25),
+            Color.rgb(90, 139, 213),
+            Color.rgb(10, 26, 20), Color.rgb(245, 26, 249), Color.rgb(25, 214, 45),
+            Color.rgb(0, 0, 205), Color.rgb(1, 2, 3), Color.rgb(4, 3, 4), Color.rgb(4, 5, 6)
+    };
 
     //
     public void setPieChart(PieChart pieChart, HashMap<String, Double> pieValues, String title, boolean showLegend) {
@@ -243,7 +249,13 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setSliceSpace(3f);//设置饼块之间的间隔
         dataSet.setSelectionShift(5f);//设置饼块选中时偏离饼图中心的距离
-        dataSet.setColors(PIE_COLORS);//设置饼块的颜色
+        if(pieChart==chart_out)
+        {dataSet.setColors(PIE_COLORS);}
+        else
+        {
+            dataSet.setColors(PIE_COLORS_two);//设置饼块的颜色
+        }
+
         //设置数据显示方式有见图
         dataSet.setValueLinePart1OffsetPercentage(80f);//数据连接线距图形片内部边界的距离，为百分数
         dataSet.setValueLinePart1Length(0.3f);

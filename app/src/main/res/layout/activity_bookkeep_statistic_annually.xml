@@ -91,7 +91,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!--todo: 这里用2个折线图分别表示每月支出和收入，用1个柱状图表示每月结余-->
 
                 <com.google.android.material.card.MaterialCardView
                     style="@style/Dynamic_card.border"
@@ -109,31 +108,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/widget_inview_margin"
-                            android:text="@string/bookkeep_annual_monthly_expenditure" />
-
-                        <!--                    todo: 在这里放月支出折线图-->
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/Dynamic_card.border"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="false">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextAppearance.AppCompat.Title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/widget_inview_margin"
-                            android:text="@string/bookkeep_annual_monthly_income" />
+                            android:text="@string/bookkeep_annual_monthly_io" />
 
 
                         <com.github.mikephil.charting.charts.LineChart
@@ -164,8 +139,11 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/widget_inview_margin"
                             android:text="@string/bookkeep_annual_monthly_surplus" />
-
-                        <!--                    todo: 在这里放每月盈余柱状图-->
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/barChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="350dp"/>
+                  <!--                    todo: 在这里放每月盈余柱状图-->
 
                     </LinearLayout>
 

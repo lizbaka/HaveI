@@ -2,77 +2,80 @@ package org.teamhavei.havei.Event;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class doubleLineManager {
 
     private static String lineName = null;
     private static String lineName1 = null;
     private static int count = 0;
-
+    private static ArrayList<String> Month=new ArrayList<String>(Arrays.asList("1","一","二","三","四","五","六","七","八","九","十","十一","十二"));
+    private static double max=600;
     public static LineData initDoubleLineChart(Context context, ArrayList<Double> datas1,ArrayList<Double> datas2) {
         // y轴的数据
         ArrayList<Entry> yValues1 = new ArrayList<Entry>();
         for (int i = 0; i < count; i++) {
-            yValues1.add(new Entry(datas1.get(i).floatValue(),i));
+            yValues1.add(new Entry(i+1,datas1.get(i).floatValue()));
 
         }
         // y轴的数据
         ArrayList<Entry> yValues2 = new ArrayList<Entry>();
         for (int i = 0; i < count; i++) {
-            yValues2.add(new Entry(datas2.get(i).floatValue(), i));
+            yValues2.add(new Entry(i+1,datas2.get(i).floatValue()));
         }
 
         LineDataSet dataSet = new LineDataSet(yValues1, lineName);
-        //dataSet.enableDashedLine(10f, 10f, 0f);//将折线设置为曲线(即设置为虚线)
+//        dataSet.enableDashedLine(10f, 10f, 0f);//将折线设置为曲线(即设置为虚线)
         //用y轴的集合来设置参数
-        dataSet.setLineWidth(1.75f); // 线宽
+        dataSet.setLineWidth(3.5f); // 线宽
         dataSet.setCircleSize(2f);// 显示的圆形大小
         dataSet.setColor(Color.rgb(89, 194, 230));// 折线显示颜色
-        dataSet.setCircleColor(Color.rgb(89, 194, 230));// 圆形折点的颜色
+        dataSet.setCircleColor(Color.BLACK);// 圆形折点的颜色
         dataSet.setHighLightColor(Color.GREEN); // 高亮的线的颜色
         dataSet.setHighlightEnabled(true);
-        dataSet.setValueTextColor(Color.rgb(89, 194, 230)); //数值显示的颜色
-        dataSet.setValueTextSize(8f);     //数值显示的大小
-
+//        dataSet.setValueTextColor(Color.rgb(89, 194, 230)); //数值显示的颜色
+        dataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
+        dataSet.setValueTextSize(10f);     //数值显示的大小
+        dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
+        dataSet.setDrawValues(true);
         LineDataSet dataSet1 = new LineDataSet(yValues2, lineName1);
-
         //用y轴的集合来设置参数
-        dataSet1.setLineWidth(1.75f);
+        dataSet1.setLineWidth(3.5f);
         dataSet1.setCircleSize(2f);
-        dataSet1.setColor(Color.rgb(252, 76, 122));
-        dataSet1.setCircleColor(Color.rgb(252, 76, 122));
+//        dataSet1.setColor(Color.rgb(252, 76, 122));
+        dataSet1.setColor(Color.GREEN);
+        dataSet1.setCircleColor(Color.BLACK);
         dataSet1.setHighLightColor(Color.GREEN);
         dataSet1.setHighlightEnabled(true);
         dataSet1.setValueTextColor(Color.rgb(252, 76, 122));
-        dataSet1.setValueTextSize(8f);
-
+        dataSet1.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
+        dataSet1.setValueTextSize(10f);
+        dataSet1.setDrawValues(false);
         //构建一个类型为LineDataSet的ArrayList 用来存放所有 y的LineDataSet   他是构建最终加入LineChart数据集所需要的参数
 //        ArrayList<LineDataSet> dataSets = new ArrayList<>();
-
         //将数据加入dataSets
 //        dataSets.add(dataSet);
 //        dataSets.add(dataSet1);
-
         //构建一个LineData  将dataSets放入
         LineData lineData = new LineData();
         lineData.addDataSet(dataSet);
         lineData.addDataSet(dataSet1);
         return lineData;
     }
-
     /**
      * @Description:初始化图表的样式
      */
@@ -81,49 +84,85 @@ public class doubleLineManager {
 //        MyMakerView mv = new MyMakerView(context, R.layout.item_mark_layout);
 //        mLineChart.setMarkerView(mv);
         lineChart.setDrawBorders(false); //在折线图上添加边框
-        //lineChart.setDescription("时间/数据"); //数据描述
+        Description description=new Description();
+        description.setText("快康康，还吃嗄");
+        description.setTextAlign(Paint.Align.CENTER);
+        description.setTextSize(10);
+        description.setPosition(200, 150);
+//        description.setTextColor(context.getResources().getColor(R.color.amber_700));
+
+        lineChart.setDescription(description); //数据描述
         lineChart.setDrawGridBackground(false); //表格颜色
         lineChart.setGridBackgroundColor(Color.GRAY & 0x70FFFFFF); //表格的颜色，设置一个透明度
         lineChart.setTouchEnabled(true); //可点击
-        lineChart.setDragEnabled(true);  //可拖拽
-        lineChart.setScaleEnabled(true);  //可缩放
+        lineChart.setDragEnabled(false);  //可拖拽
+        lineChart.setScaleEnabled(false);  //可缩放
         lineChart.setPinchZoom(false);
+        lineChart.setDrawMarkers(true);
+//        lineChart.setMarker(new IMarker() {//设置imarker可以设置点击数据的时候出现的图形。
+//            @Override
+//            public MPPointF getOffset() {
+//                return null;
+//            }
+//
+//            @Override
+//            public MPPointF getOffsetForDrawingAtPoint(float posX, float posY) {
+//                return null;
+//            }
+//
+//            @Override
+//            public void refreshContent(Entry e, Highlight highlight) {
+//
+//            }
+//
+//            @Override
+//            public void draw(Canvas canvas, float posX, float posY) {
+//                Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+//                paint.setColor(Color.GREEN);
+//                paint.setTextSize(22f);
+//                canvas.drawText("here", posX, posY, paint);
+//            }
+//        });
         lineChart.setBackgroundColor(Color.WHITE); //设置背景颜色
-        ArrayList<String> xValues = new ArrayList<String>();
-        for (int i = 0; i < count; i++) {
-            // x轴显示的数据，这里默认使用数字下标显示
-            xValues.add((i + 1) + "");
-        }
+
         lineChart.setData(lineData);
 
         Legend mLegend = lineChart.getLegend(); //设置标示，就是那个一组y的value的
         mLegend.setForm(Legend.LegendForm.SQUARE); //样式
         mLegend.setFormSize(6f); //字体
         mLegend.setTextColor(Color.GRAY); //颜色
-        lineChart.setVisibleXRange(0, 15);   //x轴可显示的坐标范围
+        lineChart.setVisibleXRange(0, 12);   //x轴可显示的坐标范围
         XAxis xAxis = lineChart.getXAxis();  //x轴的标示
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x轴位置
-        xAxis.setTextColor(Color.GRAY);    //字体的颜色
+
+        xAxis.setTextColor(Color.BLACK);    //字体的颜色
         xAxis.setTextSize(10f); //字体大小
         xAxis.setGridColor(Color.GRAY);//网格线颜色
         xAxis.setDrawGridLines(false); //不显示网格线
 
-        //设置x轴
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value, AxisBase axis) {
-                return xValues.get((int)value);
+        xAxis.setDrawLabels(true);
+        xAxis.setValueFormatter(new IndexAxisValueFormatter()
+        { @Override
+            public String getFormattedValue(float value) {
+                String lab;
+                int index=(int)value;
+                lab=Month.get(index);
+                return lab;
             }
+
         });
 
+
+        xAxis.setGranularity(1f);
         YAxis axisLeft = lineChart.getAxisLeft(); //y轴左边标示
         YAxis axisRight = lineChart.getAxisRight(); //y轴右边标示
         axisLeft.setTextColor(Color.GRAY); //字体颜色
-        axisLeft.setTextSize(10f); //字体大小
-        axisLeft.setAxisMaxValue(800f); //最大值
-        axisLeft.setLabelCount(5, true); //显示格数
+        axisLeft.setTextSize(12f); //字体大小
+//        axisLeft.setAxisMaxValue((float) max); //最大值
+        axisLeft.setAxisMinimum(0f);
+        axisLeft.setLabelCount(5);
+//        axisLeft.setLabelCount(5, true); //显示格数
         axisLeft.setGridColor(Color.GRAY); //网格线颜色
-
         axisRight.setDrawAxisLine(false);
         axisRight.setDrawGridLines(false);
         axisRight.setDrawLabels(false);

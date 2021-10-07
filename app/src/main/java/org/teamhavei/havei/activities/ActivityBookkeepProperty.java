@@ -1,19 +1,20 @@
 package org.teamhavei.havei.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.LineData;
+
 import org.teamhavei.havei.Event.BookAccount;
+import org.teamhavei.havei.Event.singleLineManager;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.adapters.AccountCardAdapter;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
@@ -33,6 +34,7 @@ public class ActivityBookkeepProperty extends BaseActivity {
     BookkeepDBHelper dbHelper;
     List<BookAccount> accountList;
     ArrayList<Double> balanceData;
+    LineChart line_two;
 
 
     @Override
@@ -45,9 +47,9 @@ public class ActivityBookkeepProperty extends BaseActivity {
         dbHelper = new BookkeepDBHelper(ActivityBookkeepProperty.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         accountList = dbHelper.findAllBookAccount();
         balanceData = new ArrayList<>();
-
         initView();
         update(null);
+
     }
 
     @Override
@@ -73,7 +75,7 @@ public class ActivityBookkeepProperty extends BaseActivity {
 
     private void initView() {
         accountRV = findViewById(R.id.bookkeep_property_account_list);
-
+        line_two=findViewById(R.id.chart_line2);
         accountRV.setLayoutManager(new LinearLayoutManager(ActivityBookkeepProperty.this, LinearLayoutManager.VERTICAL, false));
         accountRV.setAdapter(new AccountCardAdapter(ActivityBookkeepProperty.this, accountList, new AccountCardAdapter.Callback() {
             @Override
@@ -82,7 +84,6 @@ public class ActivityBookkeepProperty extends BaseActivity {
             }
         }));
     }
-
     private void update(BookAccount account) {
         if (account == null) {
             balanceData.clear();
@@ -91,5 +92,17 @@ public class ActivityBookkeepProperty extends BaseActivity {
             balanceData.clear();
             balanceData.addAll(dbHelper.getBalanceListFor12Months(account.getId()));
         }
+        setmySINGLE(line_two);
+    }
+    public void setmySINGLE(LineChart mLine)
+    {
+        ArrayList<Double> data1=balanceData;
+        singleLineManager.setCount(data1.size());
+        singleLineManager.setLineName("资产");
+        LineData linedata = singleLineManager.initSingleLineChart(ActivityBookkeepProperty.this,data1);
+        singleLineManager.initDataStyle(mLine,linedata,ActivityBookkeepProperty.this);
     }
 }
+
+
+

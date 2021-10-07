@@ -282,8 +282,7 @@
     <string name="bookkeep_annual_expenditure">总支出</string>
     <string name="bookkeep_annual_surplus">总结余</string>
     <string name="bookkeep_annual_monthly_surplus">每月盈余</string>
-    <string name="bookkeep_annual_monthly_expenditure">每月支出</string>
-    <string name="bookkeep_annual_monthly_income">每月收入</string>
+    <string name="bookkeep_annual_monthly_io">每月收支</string>
     <string name="bookkeep_annual_switch">切换到月视图</string>
     <!--activity_bookkeep_annually_statistic_annually:end-->
 
