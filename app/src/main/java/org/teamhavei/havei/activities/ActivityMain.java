@@ -123,7 +123,7 @@ public class ActivityMain extends BaseActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void initNotificationChannel() {
-        NotificationChannel basicChannel = new NotificationChannel(UniToolKit.BASIC_NOTIFICATION_CHANNEL_ID, getString(R.string.basic_notification_channel_name), NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel basicChannel = new NotificationChannel(UniToolKit.BASIC_NOTIFICATION_CHANNEL_ID, getString(R.string.basic_notification_channel_name), NotificationManager.IMPORTANCE_MIN);
         NotificationChannel todoChannel = new NotificationChannel(UniToolKit.TODO_NOTIFICATION_CHANNEL_ID, getString(R.string.todo_reminder_notification_channel_name), NotificationManager.IMPORTANCE_DEFAULT);
         NotificationChannel habitChannel = new NotificationChannel(UniToolKit.HABIT_NOTIFICATION_CHANNEL_ID, getString(R.string.habit_reminder_notification_channel_name), NotificationManager.IMPORTANCE_DEFAULT);
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
