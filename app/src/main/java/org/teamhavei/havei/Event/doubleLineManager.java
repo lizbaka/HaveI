@@ -46,10 +46,10 @@ public class doubleLineManager {
         dataSet.setColor(Color.rgb(89, 194, 230));// 折线显示颜色
         dataSet.setCircleColor(Color.BLACK);// 圆形折点的颜色
         dataSet.setHighLightColor(Color.GREEN); // 高亮的线的颜色
-        dataSet.setHighlightEnabled(true);
+        dataSet.setHighlightEnabled(false);
 //        dataSet.setValueTextColor(Color.rgb(89, 194, 230)); //数值显示的颜色
         dataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
-        dataSet.setValueTextSize(10f);     //数值显示的大小
+        dataSet.setValueTextSize(12f);     //数值显示的大小
         dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
         dataSet.setDrawValues(true);
         LineDataSet dataSet1 = new LineDataSet(yValues2, lineName1);
@@ -60,11 +60,11 @@ public class doubleLineManager {
         dataSet1.setColor(Color.GREEN);
         dataSet1.setCircleColor(Color.BLACK);
         dataSet1.setHighLightColor(Color.GREEN);
-        dataSet1.setHighlightEnabled(true);
-        dataSet1.setValueTextColor(Color.rgb(252, 76, 122));
+        dataSet1.setHighlightEnabled(false);
+        dataSet1.setValueTextColor(Color.BLACK);
         dataSet1.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
-        dataSet1.setValueTextSize(10f);
-        dataSet1.setDrawValues(false);
+        dataSet1.setValueTextSize(12f);
+        dataSet1.setDrawValues(true);
         //构建一个类型为LineDataSet的ArrayList 用来存放所有 y的LineDataSet   他是构建最终加入LineChart数据集所需要的参数
 //        ArrayList<LineDataSet> dataSets = new ArrayList<>();
         //将数据加入dataSets
@@ -95,10 +95,11 @@ public class doubleLineManager {
         lineChart.setDrawGridBackground(false); //表格颜色
         lineChart.setGridBackgroundColor(Color.GRAY & 0x70FFFFFF); //表格的颜色，设置一个透明度
         lineChart.setTouchEnabled(true); //可点击
-        lineChart.setDragEnabled(false);  //可拖拽
+        lineChart.setDragEnabled(true);  //可拖拽
         lineChart.setScaleEnabled(false);  //可缩放
         lineChart.setPinchZoom(false);
-        lineChart.setDrawMarkers(true);
+        lineChart.setDrawMarkers(false);
+
 //        lineChart.setMarker(new IMarker() {//设置imarker可以设置点击数据的时候出现的图形。
 //            @Override
 //            public MPPointF getOffset() {
@@ -141,7 +142,7 @@ public class doubleLineManager {
         xAxis.setLabelCount(12);
         xAxis.setAxisMinimum(1);
         xAxis.setAxisMaximum(12);
-        xAxis.setDrawLabels( true);
+        xAxis.setDrawLabels(true);
         xAxis.setValueFormatter(new IndexAxisValueFormatter()
         { @Override
             public String getFormattedValue(float value) {
@@ -167,8 +168,8 @@ public class doubleLineManager {
         axisRight.setDrawLabels(false);
 
         //设置动画效果
-        lineChart.animateY(2000, Easing.Linear);
-        lineChart.animateX(2000, Easing.Linear);
+        lineChart.animateY(1000, Easing.Linear);
+        lineChart.animateX(1000, Easing.Linear);
         lineChart.invalidate();
         //lineChart.animateX(2500);  //立即执行动画
     }

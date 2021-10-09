@@ -188,6 +188,9 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         barDataSet.setDrawValues(true);
         barDataSet.setColor(ActivityBookkeepStatisticAnnually.this.getResources().getColor(R.color.amber_700));
         BarData mdata=new BarData(barDataSet);
+        barDataSet.setColor(Color.rgb(255,165,0));
+        barDataSet.setBarBorderColor(Color.WHITE);
+        barDataSet.setBarBorderWidth(4f);
         barDataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
         barDataSet.setValueTextSize(10f);     //数值显示的大小
         mBar.setData(mdata);
@@ -235,8 +238,8 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         axisRight.setDrawGridLines(false);
         axisRight.setDrawLabels(false);
         //设置动画效果
-        mBar.animateY(200, Easing.Linear);
-        mBar.animateX(200, Easing.Linear);
+        mBar.animateY(100, Easing.Linear);
+        mBar.animateX(100, Easing.Linear);
         mBar.invalidate();
 
     }

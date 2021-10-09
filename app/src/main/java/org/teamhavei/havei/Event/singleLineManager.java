@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -38,13 +37,13 @@ public class singleLineManager {
         //用y轴的集合来设置参数
         dataSet.setLineWidth(3.5f); // 线宽
         dataSet.setCircleSize(2f);// 显示的圆形大小
-        dataSet.setColor(Color.rgb(89, 194, 230));// 折线显示颜色
+        dataSet.setColor(Color.rgb(255,165,0));// 折线显示颜色
         dataSet.setCircleColor(Color.BLACK);// 圆形折点的颜色
         dataSet.setHighLightColor(Color.GREEN); // 高亮的线的颜色
-        dataSet.setHighlightEnabled(true);
+        dataSet.setHighlightEnabled(false);
 //        dataSet.setValueTextColor(Color.rgb(89, 194, 230)); //数值显示的颜色
         dataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
-        dataSet.setValueTextSize(10f);     //数值显示的大小
+        dataSet.setValueTextSize(12f);     //数值显示的大小
         dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
         dataSet.setDrawValues(true);
         LineData lineData = new LineData();
@@ -137,7 +136,7 @@ public class singleLineManager {
         axisLeft.setTextColor(Color.GRAY); //字体颜色
         axisLeft.setTextSize(12f); //字体大小
 //        axisLeft.setAxisMaxValue((float) max); //最大值
-        axisLeft.setAxisMinimum(0f);
+//        axisLeft.setAxisMinimum(0f);
         axisLeft.setLabelCount(5);
 //        axisLeft.setLabelCount(5, true); //显示格数
         axisLeft.setGridColor(Color.GRAY); //网格线颜色
@@ -146,8 +145,8 @@ public class singleLineManager {
         axisRight.setDrawLabels(false);
 
         //设置动画效果
-        lineChart.animateY(2000, Easing.Linear);
-        lineChart.animateX(2000, Easing.Linear);
+//        lineChart.animateY(1000, Easing.Linear);
+//        lineChart.animateX(1000, Easing.Linear);
         lineChart.invalidate();
         //lineChart.animateX(2500);  //立即执行动画
     }

@@ -136,7 +136,10 @@
                         android:text="@string/long_term_done_monthly" />
 
                     <!--                    todo: 在这里放每月习惯柱状图-->
-
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barChart_event"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -156,7 +159,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/long_term_surplus_monthly" />
-
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barChart_book"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp" />
                     <!--                    todo: 在这里放每月结余柱状图-->
 
                 </LinearLayout>

@@ -182,15 +182,15 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
     }
 
     public static final int[] PIE_COLORS = {
-            Color.rgb(72, 209, 204),
-            Color.rgb(60, 179, 113),
-            Color.rgb(135, 206, 250), Color.rgb(135, 206, 235), Color.rgb(241, 214, 145),
-            Color.rgb(0, 0, 205), Color.rgb(1, 2, 3), Color.rgb(4, 3, 4), Color.rgb(4, 5, 6)
+            Color.rgb(255, 215, 0),
+            Color.rgb(238, 221, 130), Color.rgb(255,165,0),
+            Color.rgb(205, 173, 0), Color.rgb(255,165,0),Color.rgb(255, 193, 37), Color.rgb(255, 130, 71),
+            Color.rgb(210, 105, 30), Color.rgb(1, 2, 3), Color.rgb(4, 3, 4), Color.rgb(4, 5, 6)
     };
     public static final int[] PIE_COLORS_two = {
-            Color.rgb(50, 29, 25),
-            Color.rgb(90, 139, 213),
-            Color.rgb(10, 26, 20), Color.rgb(245, 26, 249), Color.rgb(25, 214, 45),
+            Color.rgb(30, 144, 255),
+            Color.rgb(0, 191, 213),
+            Color.rgb(32, 178, 170), Color.rgb(224, 255, 255), Color.rgb(25, 214, 45),
             Color.rgb(0, 0, 205), Color.rgb(1, 2, 3), Color.rgb(4, 3, 4), Color.rgb(4, 5, 6)
     };
 
@@ -231,8 +231,7 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         }
         //设置饼图数据
         setPieChartData(pieChart, pieValues);
-
-        pieChart.animateX(500, Easing.EaseInOutQuad);//数据显示动画
+        pieChart.animateX(1000, Easing.EaseInOutQuad);//数据显示动画
 
     }
 
