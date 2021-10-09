@@ -21,7 +21,6 @@ import androidx.core.widget.NestedScrollView;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -191,12 +190,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         barDataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
         barDataSet.setValueTextSize(10f);     //数值显示的大小
         mBar.setData(mdata);
-        Description description = new Description();
-        description.setText("快康康，还吃嗄");
-        description.setTextAlign(Paint.Align.CENTER);
-        description.setTextSize(10);
-        description.setPosition(200, 150);
-        mBar.setDescription(description);
+        mBar.getDescription().setEnabled(false);
         mBar.setDrawBorders(false);
         mBar.setGridBackgroundColor(Color.GRAY & 0x70FFFFFF);
         mBar.setTouchEnabled(true); //可点击

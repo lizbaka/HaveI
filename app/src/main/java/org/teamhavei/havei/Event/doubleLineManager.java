@@ -84,14 +84,8 @@ public class doubleLineManager {
 //        MyMakerView mv = new MyMakerView(context, R.layout.item_mark_layout);
 //        mLineChart.setMarkerView(mv);
         lineChart.setDrawBorders(false); //在折线图上添加边框
-        Description description=new Description();
-        description.setText("快康康，还吃嗄");
-        description.setTextAlign(Paint.Align.CENTER);
-        description.setTextSize(10);
-        description.setPosition(200, 150);
-//        description.setTextColor(context.getResources().getColor(R.color.amber_700));
 
-        lineChart.setDescription(description); //数据描述
+        lineChart.getDescription().setEnabled(false);
         lineChart.setDrawGridBackground(false); //表格颜色
         lineChart.setGridBackgroundColor(Color.GRAY & 0x70FFFFFF); //表格的颜色，设置一个透明度
         lineChart.setTouchEnabled(true); //可点击

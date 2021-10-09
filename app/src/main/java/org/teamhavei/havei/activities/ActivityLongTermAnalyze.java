@@ -112,9 +112,9 @@ public class ActivityLongTermAnalyze extends BaseActivity {
             habit21LL.setVisibility(View.VISIBLE);
             habit212LL.setVisibility(View.VISIBLE);
             bestHabitTV.setText(eventDBHelper.findAllHabitOrderByRank().get(0).getName());
-            if(eventDBHelper.getHabit21Count()<=0){
+            if (eventDBHelper.getHabit21Count() <= 0) {
                 habit212LL.setVisibility(View.GONE);
-            }else{
+            } else {
                 habit212LL.setVisibility(View.VISIBLE);
             }
             habit21TV.setText(Integer.toString(eventDBHelper.getHabit21Count()));
@@ -157,8 +157,8 @@ public class ActivityLongTermAnalyze extends BaseActivity {
     }
 
     private void initView() {
-        Bar_event=findViewById(R.id.barChart_event);
-        Bar_book=findViewById(R.id.barChart_book);
+        Bar_event = findViewById(R.id.barChart_event);
+        Bar_book = findViewById(R.id.barChart_book);
         habitTimesLL = findViewById(R.id.long_term_habit_times_container);
         habitTimesTV = findViewById(R.id.long_term_habit_times);
         bestHabitLL = findViewById(R.id.long_term_best_habit_container);
@@ -178,10 +178,6 @@ public class ActivityLongTermAnalyze extends BaseActivity {
 
         ((TextView) findViewById(R.id.long_term_first_date)).setText(UniToolKit.eventDateFormatter(firstRun.getTime()));
         ((TextView) findViewById(R.id.long_term_days)).setText(Integer.toString(calcDayOffset(firstRun.getTime(), today.getTime())));
-
-    }
-
-    private void analyzeForSuggest() {
 
     }
 
@@ -211,25 +207,19 @@ public class ActivityLongTermAnalyze extends BaseActivity {
         }
     }
 
-    public void setBookkeepBAR(BarChart mBar)
-    {
-        ArrayList<BarEntry> yValues= new ArrayList<>();
-        ArrayList<String> xValues= new ArrayList<>();
-//        xValues.add("");
-        HashMap<Long,Double> mHash=bookkeepDBHelper.getSurplusListMonthly(firstRun.getTime());
-//        ArrayList<Double> suplist= dbHelper.getSurplusListByYear(mdate);
+    public void setBookkeepBAR(BarChart mBar) {
+        ArrayList<BarEntry> yValues = new ArrayList<>();
+        ArrayList<String> xValues = new ArrayList<>();
+        HashMap<Long, Double> mHash = bookkeepDBHelper.getSurplusListMonthly(firstRun.getTime());
 
-        String here;
-        for(Long datel :mHash.keySet())
-        {
+        for (Long datel : mHash.keySet()) {
             xValues.add(UniToolKit.eventYearMonthFormatter(new Date(datel)));
         }
-        int i =0;
-        for(Double mMoney: mHash.values())
-        {
-            yValues.add(new BarEntry(i,mMoney.floatValue()));
+        int i = 0;
+        for (Double mMoney : mHash.values()) {
+            yValues.add(new BarEntry(i, mMoney.floatValue()));
+            i+=1;
         }
-
 
 
         //拖动效果预览
@@ -244,22 +234,17 @@ public class ActivityLongTermAnalyze extends BaseActivity {
 //        }
 
 
-        BarDataSet barDataSet=new BarDataSet(yValues,"每月");
+        BarDataSet barDataSet = new BarDataSet(yValues, "每月");
         barDataSet.setDrawValues(true);
         barDataSet.setColor(ActivityLongTermAnalyze.this.getResources().getColor(R.color.amber_700));
-        BarData mdata=new BarData(barDataSet);
+        BarData mdata = new BarData(barDataSet);
         barDataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
         barDataSet.setValueTextSize(10f);//数值显示的大小
         barDataSet.setBarBorderWidth(10f);
-        barDataSet.setColor(Color.rgb(255,165,0));
+        barDataSet.setColor(Color.rgb(255, 165, 0));
         barDataSet.setBarBorderColor(Color.WHITE);
         mBar.setData(mdata);
-        Description description=new Description();
-        description.setText("快康康，还吃嗄");
-        description.setTextAlign(Paint.Align.CENTER);
-        description.setTextSize(10);
-        description.setPosition(200, 150);
-        mBar.setDescription(description);
+        mBar.getDescription().setEnabled(false);
         mBar.setDrawBorders(false);
         mBar.setGridBackgroundColor(Color.GRAY & 0x70FFFFFF);
         mBar.setTouchEnabled(true); //可点击
@@ -268,22 +253,24 @@ public class ActivityLongTermAnalyze extends BaseActivity {
         mBar.setPinchZoom(false);
         mBar.setBackgroundColor(Color.WHITE);
         XAxis xAxis = mBar.getXAxis();  //x轴的标示
+        xAxis.setValueFormatter(new IndexAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                String lab;
+                int index = (int) value;
+                Log.d(TAG, "getFormattedValue: " + value + "," + index);
+                lab = xValues.get(index);
+                return lab;
+            }
+        });
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x轴位置
         xAxis.setTextColor(Color.BLACK);    //字体的颜色
         xAxis.setTextSize(8f); //字体大小
         xAxis.setDrawGridLines(false); //不显示网格线
-        xAxis.setValueFormatter(new IndexAxisValueFormatter()
-        { @Override
-        public String getFormattedValue(float value) {
-            String lab;
-            int index=(int)value;
-            Log.d("TAG", "getFormattedValue: "+index);
-            lab=xValues.get(index);
-            return lab;
-        }
-        });
 //        xAxis.setGridLineWidth(10f);
         xAxis.setGranularity(1f);
+
+
         YAxis axisLeft = mBar.getAxisLeft(); //y轴左边标示
         YAxis axisRight = mBar.getAxisRight(); //y轴右边标示
         axisLeft.setTextColor(Color.GRAY); //字体颜色
@@ -295,47 +282,40 @@ public class ActivityLongTermAnalyze extends BaseActivity {
         axisRight.setDrawAxisLine(false);
         axisRight.setDrawGridLines(false);
         axisRight.setDrawLabels(false);
-        mBar.setVisibleXRange(1,6);
+
+//        mBar.setVisibleXRange(0, 6);
         //设置动画效果
         mBar.animateY(1000, Easing.Linear);
         mBar.animateX(1000, Easing.Linear);
         mBar.invalidate();
 
     }
-    public void setEventBAR(BarChart mBar)
-    {
-        ArrayList<BarEntry> yValues= new ArrayList<>();
-        ArrayList<String> xValues= new ArrayList<>();
-//        xValues.add("");
-        HashMap<Long,Integer> mHash=eventDBHelper.getHabitExecCountListMonthly(firstRun.getTime());
-//        ArrayList<Double> suplist= dbHelper.getSurplusListByYear(mdate);
 
-        for(Long datel :mHash.keySet())
-        {
+    public void setEventBAR(BarChart mBar) {
+        ArrayList<BarEntry> yValues = new ArrayList<>();
+        ArrayList<String> xValues = new ArrayList<>();
+        HashMap<Long, Integer> mHash = eventDBHelper.getHabitExecCountListMonthly(firstRun.getTime());
+
+        for (Long datel : mHash.keySet()) {
             xValues.add(UniToolKit.eventYearMonthFormatter(new Date(datel)));
         }
-        int i =0;
-        for(Integer mTimes: mHash.values())
-        {
-            yValues.add(new BarEntry(i,mTimes.floatValue()));
+        int i = 0;
+        for (Integer mTimes : mHash.values()) {
+            yValues.add(new BarEntry(i, mTimes.floatValue()));
+            i++;
         }
-        BarDataSet barDataSet=new BarDataSet(yValues,"每月");
+        BarDataSet barDataSet = new BarDataSet(yValues, "每月");
         barDataSet.setBarBorderWidth(10f);
         barDataSet.setDrawValues(true);
         barDataSet.setColor(ActivityLongTermAnalyze.this.getResources().getColor(R.color.amber_700));
-        BarData mdata=new BarData(barDataSet);
+        BarData mdata = new BarData(barDataSet);
         barDataSet.setBarBorderWidth(10f);
         barDataSet.setBarBorderColor(Color.WHITE);
-        barDataSet.setColor(Color.rgb(255,165,0));
+        barDataSet.setColor(Color.rgb(255, 165, 0));
         barDataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
         barDataSet.setValueTextSize(10f);     //数值显示的大小
         mBar.setData(mdata);
-        Description description=new Description();
-        description.setText("快康康，还吃嗄");
-        description.setTextAlign(Paint.Align.CENTER);
-        description.setTextSize(10);
-        description.setPosition(200, 150);
-        mBar.setDescription(description);
+        mBar.getDescription().setText("");
         mBar.setDrawBorders(false);
         mBar.setGridBackgroundColor(Color.GRAY & 0x70FFFFFF);
         mBar.setTouchEnabled(true); //可点击
@@ -347,17 +327,16 @@ public class ActivityLongTermAnalyze extends BaseActivity {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x轴位置
         xAxis.setTextColor(Color.BLACK);    //字体的颜色
         xAxis.setTextSize(8f); //字体大小
-        mBar.setVisibleXRange(1,6);
+//        mBar.setVisibleXRange(1, 6);
         xAxis.setDrawGridLines(false); //不显示网格线
-        xAxis.setValueFormatter(new IndexAxisValueFormatter()
-        { @Override
-        public String getFormattedValue(float value) {
-            String lab;
-            int index=(int)value;
-            Log.d("TAG", "getFormattedValue: "+index);
-            lab=xValues.get(index);
-            return lab;
-        }
+        xAxis.setValueFormatter(new IndexAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                String lab;
+                int index = (int) value;
+                lab = xValues.get(index);
+                return lab;
+            }
         });
         xAxis.setGranularity(1f);
         YAxis axisLeft = mBar.getAxisLeft(); //y轴左边标示
@@ -365,7 +344,7 @@ public class ActivityLongTermAnalyze extends BaseActivity {
         axisLeft.setTextColor(Color.GRAY); //字体颜色
         axisLeft.setTextSize(10f); //字体大小
 //        axisLeft.setAxisMaxValue((float) max); //最大值
-       axisLeft.setAxisMinimum(0f);
+        axisLeft.setAxisMinimum(0f);
 //        axisLeft.setLabelCount(5, true); //显示格数
         axisLeft.setGridColor(Color.GRAY); //网格线颜色
         axisRight.setDrawAxisLine(false);
