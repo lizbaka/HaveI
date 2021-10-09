@@ -230,7 +230,7 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         }
         //设置饼图数据
         setPieChartData(pieChart, pieValues);
-        pieChart.animateX(1000, Easing.EaseInOutQuad);//数据显示动画
+        pieChart.animateY(1000, Easing.EaseInOutQuad);//数据显示动画
 
     }
 
