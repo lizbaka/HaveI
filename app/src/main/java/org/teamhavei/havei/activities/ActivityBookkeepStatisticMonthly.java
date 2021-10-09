@@ -69,9 +69,6 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         initView();
         //饼状图
 
-        setmyPIE(chart_in,"收入",UniToolKit.BOOKKEEP_TAG_INCOME,calendar.getTime());
-        setmyPIE(chart_out,"支出",UniToolKit.BOOKKEEP_TAG_EXPENDITURE,calendar.getTime());
-
     }
 
     @Override
@@ -97,8 +94,8 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         incomeTV = findViewById(R.id.bookkeep_three_value2);
         surplusTV = findViewById(R.id.bookkeep_three_value3);
         switchFAB = findViewById(R.id.bookkeep_monthly_switch_fab);
-         chart_in= findViewById(R.id.chart_in);
-       chart_out=findViewById(R.id.chart_out);
+        chart_in = findViewById(R.id.chart_in);
+        chart_out = findViewById(R.id.chart_out);
 
 
         dateSelectorMCV.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +148,8 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         incomeTV.setText(String.format("%.2f", income));
         expenditureTV.setText(String.format("%.2f", expenditure));
         surplusTV.setText(String.format("%.2f", surplus));
+        setmyPIE(chart_in, "收入", UniToolKit.BOOKKEEP_TAG_INCOME, calendar.getTime());
+        setmyPIE(chart_out, "支出", UniToolKit.BOOKKEEP_TAG_EXPENDITURE, calendar.getTime());
     }
 
 
@@ -167,7 +166,7 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
                     break;
             }
             return;
-        }else{
+        } else {
             mchart.setVisibility(View.VISIBLE);
             switch (mchart.getId()) {
                 case R.id.chart_in:
@@ -183,8 +182,8 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
 
     public static final int[] PIE_COLORS = {
             Color.rgb(255, 215, 0),
-            Color.rgb(238, 221, 130), Color.rgb(255,165,0),
-            Color.rgb(205, 173, 0), Color.rgb(255,165,0),Color.rgb(255, 193, 37), Color.rgb(255, 130, 71),
+            Color.rgb(238, 221, 130), Color.rgb(255, 165, 0),
+            Color.rgb(205, 173, 0), Color.rgb(255, 165, 0), Color.rgb(255, 193, 37), Color.rgb(255, 130, 71),
             Color.rgb(210, 105, 30), Color.rgb(1, 2, 3), Color.rgb(4, 3, 4), Color.rgb(4, 5, 6)
     };
     public static final int[] PIE_COLORS_two = {
@@ -248,10 +247,9 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setSliceSpace(3f);//设置饼块之间的间隔
         dataSet.setSelectionShift(5f);//设置饼块选中时偏离饼图中心的距离
-        if(pieChart==chart_out)
-        {dataSet.setColors(PIE_COLORS);}
-        else
-        {
+        if (pieChart == chart_out) {
+            dataSet.setColors(PIE_COLORS);
+        } else {
             dataSet.setColors(PIE_COLORS_two);//设置饼块的颜色
         }
 

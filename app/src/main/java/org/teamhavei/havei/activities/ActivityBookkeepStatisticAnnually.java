@@ -43,7 +43,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-
 public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
 
     public static void startAction(Context context) {
@@ -64,7 +63,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
     BarChart bar_one;
     double[] expenditureByMonth = new double[12];
     double[] incomeByMonth = new double[12];
-    private static ArrayList<String> Month=new ArrayList<String>(Arrays.asList("1","一","二","三","四","五","六","七","八","九","十","十一","十二",""));
+    private static ArrayList<String> Month = new ArrayList<String>(Arrays.asList("1", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二", ""));
 
     private Date nowDate;
 
@@ -78,8 +77,6 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         initView();
         dbHelper = new BookkeepDBHelper(ActivityBookkeepStatisticAnnually.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         calendar = Calendar.getInstance();
-        setmyDOULINE(calendar.getTime(),Line_one);
-        setmyBAR(calendar.getTime(),bar_one);
     }
 
     @Override
@@ -103,6 +100,8 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         expenditureTV.setText(String.format("%.2f", totalExpenditure));
         incomeTV.setText(String.format("%.2f", totalIncome));
         surplusTV.setText(String.format("%.2f", totalIncome - totalExpenditure));
+        setmyDOULINE(calendar.getTime(), Line_one);
+        setmyBAR(calendar.getTime(), bar_one);
     }
 
     @Override
@@ -121,8 +120,8 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         incomeTV = findViewById(R.id.bookkeep_three_value2);
         surplusTV = findViewById(R.id.bookkeep_three_value3);
         switchFAB = findViewById(R.id.bookkeep_annual_switch_fab);
-        Line_one=findViewById(R.id.chart_line1);
-        bar_one=findViewById(R.id.barChart);
+        Line_one = findViewById(R.id.chart_line1);
+        bar_one = findViewById(R.id.barChart);
         ((TextView) findViewById(R.id.bookkeep_three_title1)).setText(R.string.bookkeep_annual_expenditure);
         ((TextView) findViewById(R.id.bookkeep_three_title2)).setText(R.string.bookkeep_annual_income);
         ((TextView) findViewById(R.id.bookkeep_three_title3)).setText(R.string.bookkeep_annual_surplus);
@@ -152,49 +151,47 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
             }
         });
 
-        ((NestedScrollView)findViewById(R.id.bookkeep_statistic_annually_scroll_view)).setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+        ((NestedScrollView) findViewById(R.id.bookkeep_statistic_annually_scroll_view)).setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if(scrollY>oldScrollY){
+                if (scrollY > oldScrollY) {
                     switchFAB.hide();
-                }else{
+                } else {
                     switchFAB.show();
                 }
             }
         });
     }
-    public void setmyDOULINE(Date mDate,LineChart mLine)
 
-    {
-        ArrayList<Double> data1=dbHelper.getPMListByYear(UniToolKit.BOOKKEEP_TAG_INCOME,mDate);
-        ArrayList<Double> data2=dbHelper.getPMListByYear(UniToolKit.BOOKKEEP_TAG_EXPENDITURE,mDate);
+    public void setmyDOULINE(Date mDate, LineChart mLine) {
+        ArrayList<Double> data1 = dbHelper.getPMListByYear(UniToolKit.BOOKKEEP_TAG_INCOME, mDate);
+        ArrayList<Double> data2 = dbHelper.getPMListByYear(UniToolKit.BOOKKEEP_TAG_EXPENDITURE, mDate);
         doubleLineManager.setCount(data1.size());
         doubleLineManager.setLineName("收入");
         doubleLineManager.setLineName1("支出");
-        LineData linedata = doubleLineManager.initDoubleLineChart(ActivityBookkeepStatisticAnnually.this,data1,data2);
-        doubleLineManager.initDataStyle(mLine,linedata,ActivityBookkeepStatisticAnnually.this);
+        LineData linedata = doubleLineManager.initDoubleLineChart(ActivityBookkeepStatisticAnnually.this, data1, data2);
+        doubleLineManager.initDataStyle(mLine, linedata, ActivityBookkeepStatisticAnnually.this);
 
 
     }
-    public void setmyBAR(Date mdate, BarChart mBar)
-    {
-        ArrayList<BarEntry> yValues= new ArrayList<>();
-        ArrayList<Double> suplist= dbHelper.getSurplusListByYear(mdate);
-        for(int i =0;i<suplist.size();i++)
-        {
-            yValues.add(new BarEntry(i+1,suplist.get(i).floatValue()));
+
+    public void setmyBAR(Date mdate, BarChart mBar) {
+        ArrayList<BarEntry> yValues = new ArrayList<>();
+        ArrayList<Double> suplist = dbHelper.getSurplusListByYear(mdate);
+        for (int i = 0; i < suplist.size(); i++) {
+            yValues.add(new BarEntry(i + 1, suplist.get(i).floatValue()));
         }
-        BarDataSet barDataSet=new BarDataSet(yValues,"盈余");
+        BarDataSet barDataSet = new BarDataSet(yValues, "盈余");
         barDataSet.setDrawValues(true);
         barDataSet.setColor(ActivityBookkeepStatisticAnnually.this.getResources().getColor(R.color.amber_700));
-        BarData mdata=new BarData(barDataSet);
-        barDataSet.setColor(Color.rgb(255,165,0));
+        BarData mdata = new BarData(barDataSet);
+        barDataSet.setColor(Color.rgb(255, 165, 0));
         barDataSet.setBarBorderColor(Color.WHITE);
         barDataSet.setBarBorderWidth(4f);
         barDataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
         barDataSet.setValueTextSize(10f);     //数值显示的大小
         mBar.setData(mdata);
-        Description description=new Description();
+        Description description = new Description();
         description.setText("快康康，还吃嗄");
         description.setTextAlign(Paint.Align.CENTER);
         description.setTextSize(10);
@@ -202,7 +199,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         mBar.setDescription(description);
         mBar.setDrawBorders(false);
         mBar.setGridBackgroundColor(Color.GRAY & 0x70FFFFFF);
-       mBar.setTouchEnabled(true); //可点击
+        mBar.setTouchEnabled(true); //可点击
         mBar.setDragEnabled(false);  //可拖拽
         mBar.setScaleEnabled(false);  //可缩放
         mBar.setPinchZoom(false);
@@ -215,15 +212,15 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         xAxis.setTextColor(Color.BLACK);    //字体的颜色
         xAxis.setTextSize(12f); //字体大小
         xAxis.setDrawGridLines(false); //不显示网格线
-        xAxis.setValueFormatter(new IndexAxisValueFormatter()
-        { @Override
-        public String getFormattedValue(float value) {
-            String lab;
-            int index=(int)value;
-            Log.d("TAG", "getFormattedValue: "+index);
-            lab=Month.get(index);
-            return lab;
-        }
+        xAxis.setValueFormatter(new IndexAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                String lab;
+                int index = (int) value;
+                Log.d("TAG", "getFormattedValue: " + index);
+                lab = Month.get(index);
+                return lab;
+            }
         });
         xAxis.setGranularity(1f);
         YAxis axisLeft = mBar.getAxisLeft(); //y轴左边标示
