@@ -254,7 +254,6 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         {
             dataSet.setColors(PIE_COLORS_two);//设置饼块的颜色
         }
-
         //设置数据显示方式有见图
         dataSet.setValueLinePart1OffsetPercentage(80f);//数据连接线距图形片内部边界的距离，为百分数
         dataSet.setValueLinePart1Length(0.3f);
