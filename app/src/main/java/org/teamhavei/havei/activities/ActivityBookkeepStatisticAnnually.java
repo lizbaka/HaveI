@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -188,7 +187,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         barDataSet.setBarBorderColor(Color.WHITE);
         barDataSet.setBarBorderWidth(4f);
         barDataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
-        barDataSet.setValueTextSize(10f);     //数值显示的大小
+        barDataSet.setValueTextSize(11f);     //数值显示的大小
         mBar.setData(mdata);
         mBar.getDescription().setEnabled(false);
         mBar.setDrawBorders(false);
@@ -204,7 +203,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
         xAxis.setAxisMinimum(1);
         xAxis.setAxisMaximum(12);
         xAxis.setTextColor(Color.BLACK);    //字体的颜色
-        xAxis.setTextSize(12f); //字体大小
+        xAxis.setTextSize(11f); //字体大小
         xAxis.setDrawGridLines(false); //不显示网格线
         xAxis.setValueFormatter(new IndexAxisValueFormatter() {
             @Override

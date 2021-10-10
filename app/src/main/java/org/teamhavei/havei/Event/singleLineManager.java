@@ -17,7 +17,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-
+//资产曲线
 public class singleLineManager {
 
     private static String lineName = null;
@@ -43,7 +43,7 @@ public class singleLineManager {
         dataSet.setHighlightEnabled(false);
 //        dataSet.setValueTextColor(Color.rgb(89, 194, 230)); //数值显示的颜色
         dataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
-        dataSet.setValueTextSize(12f);     //数值显示的大小
+        dataSet.setValueTextSize(11f);     //数值显示的大小
         dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
         dataSet.setDrawValues(true);
         LineData lineData = new LineData();
@@ -59,7 +59,7 @@ public class singleLineManager {
 //        mLineChart.setMarkerView(mv);
         lineChart.setDrawBorders(false); //在折线图上添加边框
         Description description=new Description();
-        description.setText("快康康，还吃嗄");
+        description.setText("");
         description.setTextAlign(Paint.Align.CENTER);
         description.setTextSize(10);
         description.setPosition(200, 150);
@@ -72,30 +72,6 @@ public class singleLineManager {
         lineChart.setScaleEnabled(false);  //可缩放
         lineChart.setPinchZoom(false);
         lineChart.setDrawMarkers(true);
-//        lineChart.setMarker(new IMarker() {//设置imarker可以设置点击数据的时候出现的图形。
-//            @Override
-//            public MPPointF getOffset() {
-//                return null;
-//            }
-//
-//            @Override
-//            public MPPointF getOffsetForDrawingAtPoint(float posX, float posY) {
-//                return null;
-//            }
-//
-//            @Override
-//            public void refreshContent(Entry e, Highlight highlight) {
-//
-//            }
-//
-//            @Override
-//            public void draw(Canvas canvas, float posX, float posY) {
-//                Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-//                paint.setColor(Color.GREEN);
-//                paint.setTextSize(22f);
-//                canvas.drawText("here", posX, posY, paint);
-//            }
-//        });
         lineChart.setBackgroundColor(Color.WHITE); //设置背景颜色
         lineChart.setData(lineData);
         Legend mLegend = lineChart.getLegend(); //设置标示，就是那个一组y的value的
@@ -109,7 +85,7 @@ public class singleLineManager {
         xAxis.setAxisMinimum(1);
         xAxis.setAxisMaximum(12);
         xAxis.setTextColor(Color.BLACK);    //字体的颜色
-        xAxis.setTextSize(10f); //字体大小
+        xAxis.setTextSize(12f); //字体大小
         xAxis.setGridColor(Color.GRAY);//网格线颜色
         xAxis.setDrawGridLines(false); //不显示网格线
         xAxis.setDrawLabels(true);
@@ -144,16 +120,11 @@ public class singleLineManager {
         axisRight.setDrawGridLines(false);
         axisRight.setDrawLabels(false);
 
-        //设置动画效果
 //        lineChart.animateY(1000, Easing.Linear);
 //        lineChart.animateX(1000, Easing.Linear);
         lineChart.invalidate();
         //lineChart.animateX(2500);  //立即执行动画
     }
-    /**
-     * @param name
-     * @Description:设置折线的名称
-     */
     public static void setLineName(String name) {
         lineName = name;
     }

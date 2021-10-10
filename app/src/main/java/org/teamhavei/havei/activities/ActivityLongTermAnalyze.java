@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,7 +15,6 @@ import androidx.annotation.NonNull;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -265,7 +263,7 @@ public class ActivityLongTermAnalyze extends BaseActivity {
         });
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x轴位置
         xAxis.setTextColor(Color.BLACK);    //字体的颜色
-        xAxis.setTextSize(8f); //字体大小
+        xAxis.setTextSize(12f); //字体大小
         xAxis.setDrawGridLines(false); //不显示网格线
 //        xAxis.setGridLineWidth(10f);
         xAxis.setGranularity(1f);
@@ -274,10 +272,10 @@ public class ActivityLongTermAnalyze extends BaseActivity {
         YAxis axisLeft = mBar.getAxisLeft(); //y轴左边标示
         YAxis axisRight = mBar.getAxisRight(); //y轴右边标示
         axisLeft.setTextColor(Color.GRAY); //字体颜色
-        axisLeft.setTextSize(10f); //字体大小
+        axisLeft.setTextSize(12f); //字体大小
 //        axisLeft.setAxisMaxValue((float) max); //最大值
 //        axisLeft.setAxisMinimum(0f);
-//        axisLeft.setLabelCount(5, true); //显示格数
+        axisLeft.setLabelCount(5, true); //显示格数
         axisLeft.setGridColor(Color.GRAY); //网格线颜色
         axisRight.setDrawAxisLine(false);
         axisRight.setDrawGridLines(false);
@@ -326,7 +324,7 @@ public class ActivityLongTermAnalyze extends BaseActivity {
         XAxis xAxis = mBar.getXAxis();  //x轴的标示
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x轴位置
         xAxis.setTextColor(Color.BLACK);    //字体的颜色
-        xAxis.setTextSize(8f); //字体大小
+        xAxis.setTextSize(12f); //字体大小
 //        mBar.setVisibleXRange(1, 6);
         xAxis.setDrawGridLines(false); //不显示网格线
         xAxis.setValueFormatter(new IndexAxisValueFormatter() {
@@ -342,7 +340,7 @@ public class ActivityLongTermAnalyze extends BaseActivity {
         YAxis axisLeft = mBar.getAxisLeft(); //y轴左边标示
         YAxis axisRight = mBar.getAxisRight(); //y轴右边标示
         axisLeft.setTextColor(Color.GRAY); //字体颜色
-        axisLeft.setTextSize(10f); //字体大小
+        axisLeft.setTextSize(12f); //字体大小
 //        axisLeft.setAxisMaxValue((float) max); //最大值
         axisLeft.setAxisMinimum(0f);
 //        axisLeft.setLabelCount(5, true); //显示格数

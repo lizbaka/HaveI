@@ -39,24 +39,19 @@ public class doubleLineManager {
         }
 
         LineDataSet dataSet = new LineDataSet(yValues1, lineName);
-//        dataSet.enableDashedLine(10f, 10f, 0f);//将折线设置为曲线(即设置为虚线)
-        //用y轴的集合来设置参数
         dataSet.setLineWidth(3.5f); // 线宽
         dataSet.setCircleSize(2f);// 显示的圆形大小
         dataSet.setColor(Color.rgb(89, 194, 230));// 折线显示颜色
         dataSet.setCircleColor(Color.BLACK);// 圆形折点的颜色
         dataSet.setHighLightColor(Color.GREEN); // 高亮的线的颜色
         dataSet.setHighlightEnabled(false);
-//        dataSet.setValueTextColor(Color.rgb(89, 194, 230)); //数值显示的颜色
         dataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
-        dataSet.setValueTextSize(12f);     //数值显示的大小
+        dataSet.setValueTextSize(11f);     //数值显示的大小
         dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
         dataSet.setDrawValues(true);
-        LineDataSet dataSet1 = new LineDataSet(yValues2, lineName1);
-        //用y轴的集合来设置参数
+        LineDataSet dataSet1 = new LineDataSet(yValues2, lineName1);//用y轴的集合来设置参数
         dataSet1.setLineWidth(3.5f);
         dataSet1.setCircleSize(2f);
-//        dataSet1.setColor(Color.rgb(252, 76, 122));
         dataSet1.setColor(Color.GREEN);
         dataSet1.setCircleColor(Color.BLACK);
         dataSet1.setHighLightColor(Color.GREEN);
@@ -65,12 +60,6 @@ public class doubleLineManager {
         dataSet1.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
         dataSet1.setValueTextSize(12f);
         dataSet1.setDrawValues(true);
-        //构建一个类型为LineDataSet的ArrayList 用来存放所有 y的LineDataSet   他是构建最终加入LineChart数据集所需要的参数
-//        ArrayList<LineDataSet> dataSets = new ArrayList<>();
-        //将数据加入dataSets
-//        dataSets.add(dataSet);
-//        dataSets.add(dataSet1);
-        //构建一个LineData  将dataSets放入
         LineData lineData = new LineData();
         lineData.addDataSet(dataSet);
         lineData.addDataSet(dataSet1);
@@ -84,7 +73,12 @@ public class doubleLineManager {
 //        MyMakerView mv = new MyMakerView(context, R.layout.item_mark_layout);
 //        mLineChart.setMarkerView(mv);
         lineChart.setDrawBorders(false); //在折线图上添加边框
-
+        Description description=new Description();
+        description.setText("");
+        description.setTextAlign(Paint.Align.CENTER);
+        description.setTextSize(10);
+        description.setPosition(200, 150);
+        lineChart.setDescription(description); //数据描述
         lineChart.getDescription().setEnabled(false);
         lineChart.setDrawGridBackground(false); //表格颜色
         lineChart.setGridBackgroundColor(Color.GRAY & 0x70FFFFFF); //表格的颜色，设置一个透明度
@@ -93,31 +87,6 @@ public class doubleLineManager {
         lineChart.setScaleEnabled(false);  //可缩放
         lineChart.setPinchZoom(false);
         lineChart.setDrawMarkers(false);
-
-//        lineChart.setMarker(new IMarker() {//设置imarker可以设置点击数据的时候出现的图形。
-//            @Override
-//            public MPPointF getOffset() {
-//                return null;
-//            }
-//
-//            @Override
-//            public MPPointF getOffsetForDrawingAtPoint(float posX, float posY) {
-//                return null;
-//            }
-//
-//            @Override
-//            public void refreshContent(Entry e, Highlight highlight) {
-//
-//            }
-//
-//            @Override
-//            public void draw(Canvas canvas, float posX, float posY) {
-//                Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-//                paint.setColor(Color.GREEN);
-//                paint.setTextSize(22f);
-//                canvas.drawText("here", posX, posY, paint);
-//            }
-//        });
         lineChart.setBackgroundColor(Color.WHITE); //设置背景颜色
 
         lineChart.setData(lineData);
@@ -130,7 +99,7 @@ public class doubleLineManager {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x轴位置
          xAxis.setGranularity(1f);
         xAxis.setTextColor(Color.BLACK);    //字体的颜色
-        xAxis.setTextSize(10f); //字体大小
+        xAxis.setTextSize(12f); //字体大小
         xAxis.setGridColor(Color.GRAY);//网格线颜色
         xAxis.setDrawGridLines(false); //不显示网格线
         xAxis.setLabelCount(12);
