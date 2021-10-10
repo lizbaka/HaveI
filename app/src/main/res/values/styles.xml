@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Dynamic_card" parent="Widget.MaterialComponents.CardView" >
+
+    <style name="Dynamic_card" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="android:layout_marginLeft">@dimen/card_margin_horizontal</item>
         <item name="android:layout_marginRight">@dimen/card_margin_horizontal</item>
@@ -12,21 +13,18 @@
         <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:backgroundTint">?attr/colorPrimary</item>
     </style>
+
     <style name="Dynamic_card.border">
         <item name="strokeWidth">@dimen/card_border_width</item>
         <item name="strokeColor">@color/grey_200</item>
         <item name="android:backgroundTint">@color/white</item>
     </style>
-    <style name="BottomSheet.StyleDialog" parent="BottomSheet.Dialog">
-    <item name="android:backgroundDimAmount">0.5</item>
-    <item name="android:windowAnimationStyle">@style/BottomSheet.Animation</item>
-    <item name="android:textColorPrimary">@color/colorTitle</item>
-    <item name="android:textColorSecondary">@color/colorSubtitle</item>
-    <item name="android:textSize">15sp</item>
-    <item name="android:textColorHint">#42ffffff</item>
-    <item name="bs_dialogBackground">@color/colorWhite</item>
-    <item name="bs_dividerColor">@color/colorLine</item>
-    <item name="bs_numColumns">5</item>
-    <item name="bs_listStyle">@style/BottomSheet.List</item>
+
+    <style name="Widget.HaveI.AppWidget.Container" parent="android:Widget">
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="Widget.HaveI.AppWidget.InnerView" parent="android:Widget">
+        <item name="android:background">@color/transparent</item>
     </style>
 </resources>

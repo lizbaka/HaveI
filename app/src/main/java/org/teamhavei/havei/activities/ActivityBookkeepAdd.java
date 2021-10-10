@@ -2,6 +2,7 @@ package org.teamhavei.havei.activities;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import org.teamhavei.havei.adapters.TagListAdapter;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
 import org.teamhavei.havei.fragments.FragmentBookkeepAccountList;
 import org.teamhavei.havei.fragments.FragmentNumPad;
+import org.teamhavei.havei.widgets.WidgetBookkeepOverview;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -91,6 +93,7 @@ public class ActivityBookkeepAdd extends BaseActivity {
             @Override
             public void onConfirm(Double number) {
                 updateBookkeep(number);
+                WidgetBookkeepOverview.updateWidgetAction(ActivityBookkeepAdd.this);
                 finish();
             }
         }, FragmentNumPad.MODE_NORMAL);
@@ -109,7 +112,7 @@ public class ActivityBookkeepAdd extends BaseActivity {
             public void operate() {
                 ActivitySettingsAccount.startAction(ActivityBookkeepAdd.this);
             }
-        },getString(R.string.account_mng));
+        }, getString(R.string.account_mng));
 
         bookDBHelper = new BookkeepDBHelper(ActivityBookkeepAdd.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         calendar = Calendar.getInstance();
@@ -224,7 +227,7 @@ public class ActivityBookkeepAdd extends BaseActivity {
         findViewById(R.id.bookkeep_select_account).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accountList.show(getSupportFragmentManager(),"TAG");
+                accountList.show(getSupportFragmentManager(), "TAG");
             }
         });
     }

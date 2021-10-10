@@ -14,6 +14,19 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.HaveI"
         android:usesCleartextTraffic="true">
+        <receiver
+            android:name=".widgets.WidgetBookkeepOverview"
+            android:exported="true"
+            android:label="@string/widget_bookkeep_overview_description">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="org.teamhavei.havei.action.WIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_bookkeep_overview_info" />
+        </receiver>
 
         <service
             android:name=".services.HaveITimeWatcher"

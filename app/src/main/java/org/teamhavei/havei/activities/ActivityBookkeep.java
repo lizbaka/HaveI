@@ -26,6 +26,7 @@ import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.BookkeepCardAdapter;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
+import org.teamhavei.havei.widgets.WidgetBookkeepOverview;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -217,6 +218,7 @@ public class ActivityBookkeep extends BaseActivity {
     }
 
     private void update() {
+        WidgetBookkeepOverview.updateWidgetAction(ActivityBookkeep.this);
         budget = pref.getFloat(UniToolKit.PREF_BUDGET, 0);
         updateRecord();
         updateCard(dbHelper.getIncomeByMonth(calendar.getTime()), dbHelper.getExpenditureByMonth(calendar.getTime()));

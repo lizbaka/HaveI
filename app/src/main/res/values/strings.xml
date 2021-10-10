@@ -339,5 +339,9 @@
     <string name="suggest_never_done">您很久没有打卡了，行动起来！</string>
     <!--long_term_analyze:end-->
 
+    <!--widget:start-->
+    <string name="widget_add_bookkeep_description">HaveI快捷记账</string>
+    <string name="widget_bookkeep_overview_description">HaveI月账单总览</string>
+    <!--widget:end-->
 
 </resources>
