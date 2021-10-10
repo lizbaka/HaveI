@@ -43,7 +43,7 @@ public class singleLineManager {
         dataSet.setHighlightEnabled(false);
 //        dataSet.setValueTextColor(Color.rgb(89, 194, 230)); //数值显示的颜色
         dataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
-        dataSet.setValueTextSize(12f);     //数值显示的大小
+        dataSet.setValueTextSize(11f);     //数值显示的大小
         dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
         dataSet.setDrawValues(true);
         LineData lineData = new LineData();

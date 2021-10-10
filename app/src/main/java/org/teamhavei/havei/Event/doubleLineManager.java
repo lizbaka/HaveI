@@ -46,7 +46,7 @@ public class doubleLineManager {
         dataSet.setHighLightColor(Color.GREEN); // 高亮的线的颜色
         dataSet.setHighlightEnabled(false);
         dataSet.setValueTextColor(Color.BLACK); //数值显示的颜色
-        dataSet.setValueTextSize(12f);     //数值显示的大小
+        dataSet.setValueTextSize(11f);     //数值显示的大小
         dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
         dataSet.setDrawValues(true);
         LineDataSet dataSet1 = new LineDataSet(yValues2, lineName1);//用y轴的集合来设置参数
@@ -79,6 +79,7 @@ public class doubleLineManager {
         description.setTextSize(10);
         description.setPosition(200, 150);
         lineChart.setDescription(description); //数据描述
+        lineChart.getDescription().setEnabled(false);
         lineChart.setDrawGridBackground(false); //表格颜色
         lineChart.setGridBackgroundColor(Color.GRAY & 0x70FFFFFF); //表格的颜色，设置一个透明度
         lineChart.setTouchEnabled(true); //可点击
