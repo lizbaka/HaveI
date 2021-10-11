@@ -93,7 +93,6 @@ public class ActivityBookkeepAdd extends BaseActivity {
             @Override
             public void onConfirm(Double number) {
                 updateBookkeep(number);
-                WidgetBookkeepOverview.updateWidgetAction(ActivityBookkeepAdd.this);
                 finish();
             }
         }, FragmentNumPad.MODE_NORMAL);
@@ -269,4 +268,9 @@ public class ActivityBookkeepAdd extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        WidgetBookkeepOverview.updateWidgetAction(ActivityBookkeepAdd.this);
+        super.onDestroy();
+    }
 }
