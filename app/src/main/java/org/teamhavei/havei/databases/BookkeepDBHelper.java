@@ -226,9 +226,9 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         db.delete(TABLE_BOOKKEEP, BOOKKEEP_ID + " = ? ", new String[]{Integer.toString(mBookkeep.getid())});
     }
 
-    public Bookkeep getMostSingleEx(){
-        Cursor cursor = db.query(TABLE_BOOKKEEP,null,BOOKKEEP_PM + "< 0",null,null,null,BOOKKEEP_PM);
-        if(cursor.getCount()<=0){
+    public Bookkeep getMostSingleEx() {
+        Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_PM + "< 0", null, null, null, BOOKKEEP_PM);
+        if (cursor.getCount() <= 0) {
             return null;
         }
         return cursorToBookkeepList(cursor).get(0);
@@ -262,12 +262,12 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return surplusData;
     }
 
-    public HashMap<Long,Double> getSurplusListMonthly(Date since){
+    public HashMap<Long, Double> getSurplusListMonthly(Date since) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(since);
         HashMap<Long, Double> data = new HashMap<>();
-        for(Calendar today = Calendar.getInstance();calendar.before(today);calendar.add(Calendar.MONTH,1)){
-            data.put(calendar.getTimeInMillis(),getIncomeByMonth(calendar.getTime())-getExpenditureByMonth(calendar.getTime()));
+        for (Calendar today = Calendar.getInstance(); calendar.before(today); calendar.add(Calendar.MONTH, 1)) {
+            data.put(calendar.getTimeInMillis(), getIncomeByMonth(calendar.getTime()) - getExpenditureByMonth(calendar.getTime()));
         }
         return data;
     }
@@ -429,7 +429,8 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         }
         while (cursor.moveToNext()) {
             BookTag tag = findBookTagById(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_TAG_ID)));
-            data.put(tag.getName(), Math.abs(cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")"))));
+            double value = Math.abs(cursor.getDouble(cursor.getColumnIndex("SUM(" + BOOKKEEP_PM + ")")));
+            data.put(tag.getName() + " " + String.format("%.2f", value), value);
         }
         return data;
     }
@@ -506,7 +507,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
 
     public ArrayList<Double> getBalanceListFor12Months() {
         ArrayList<Double> data = new ArrayList<>(12);
-        for(int i=0;i<12;i++)
+        for (int i = 0; i < 12; i++)
             data.add(0.0);
         List<BookAccount> accountList = findAllBookAccount();
         for (BookAccount account : accountList) {
@@ -525,7 +526,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         ArrayList<Double> data = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
             data.add(getPMBeforeYearMonthByAccount(accountId, calendar.getTime()));
-            calendar.add(Calendar.MONTH,1);
+            calendar.add(Calendar.MONTH, 1);
         }
         for (int i = 0; i < 12; i++) {
             data.set(i, data.get(i) + init);
