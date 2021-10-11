@@ -1,11 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Widget.HaveI.AppWidget.Container"
-    android:layout_width="400dp"
-    android:layout_height="100dp"
+    android:layout_width="300dp"
+    android:layout_height="80dp"
+    android:background="@drawable/widget_bookkeep_overview_background"
     android:paddingLeft="@dimen/card_padding"
     android:paddingTop="@dimen/card_padding"
     android:paddingBottom="@dimen/card_padding"
-    android:background="@drawable/widget_bookkeep_overview_background"
     android:theme="@style/Theme.HaveI.AppWidgetContainer">
 
     <LinearLayout
@@ -22,22 +22,20 @@
 
             <TextView
                 android:id="@+id/bookkeep_three_title1"
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/bookkeep_three_value1"
                 android:gravity="center"
-                android:paddingBottom="10dp"
                 android:text="@string/expenditure_today"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/bookkeep_three_value1"
-                style="@style/TextAppearance.AppCompat.Large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
                 android:gravity="center"
+                android:maxLines="1"
+                android:paddingVertical="10dp"
                 android:text="[1234.56]"
                 android:textColor="@color/amber_500" />
 
@@ -51,21 +49,19 @@
 
             <TextView
                 android:id="@+id/bookkeep_three_title2"
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/bookkeep_three_value2"
                 android:gravity="center"
-                android:paddingBottom="10dp"
                 android:text="@string/expenditure_month"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/bookkeep_three_value2"
-                style="@style/TextAppearance.AppCompat.Large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:maxLines="1"
                 android:paddingVertical="10dp"
                 android:text="[1234.56]"
                 android:textColor="@color/amber_500" />
@@ -80,22 +76,20 @@
 
             <TextView
                 android:id="@+id/bookkeep_three_title3"
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/bookkeep_three_value3"
-                android:paddingBottom="10dp"
                 android:gravity="center"
                 android:text="@string/remaining_budget"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/bookkeep_three_value3"
-                style="@style/TextAppearance.AppCompat.Large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
                 android:gravity="center"
+                android:maxLines="1"
+                android:paddingVertical="10dp"
                 android:text="[1234.56]"
                 android:textColor="@color/amber_500" />
 
@@ -106,7 +100,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/ic_baseline_add_24"/>
+            android:src="@drawable/ic_baseline_add_24" />
 
     </LinearLayout>
 

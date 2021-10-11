@@ -205,6 +205,7 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         pieChart.setCenterTextSize(22f);//设置环中文字的大小
         pieChart.setDrawCenterText(true);//设置绘制环中文字
         pieChart.setRotationAngle(120f);//设置旋转角度
+        pieChart.setDrawEntryLabels(false);
         pieChart.setTransparentCircleRadius(61f);//设置半透明圆环的半径,看着就有一种立体的感觉
         //这个方法为true就是环形图，为false就是饼图
         pieChart.setDrawHoleEnabled(true);
@@ -224,6 +225,7 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
             legend.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);//图例相对于图表纵向的位置
             legend.setOrientation(Legend.LegendOrientation.VERTICAL);//图例显示的方向
             legend.setDrawInside(false);
+            legend.setTextSize(12f);
             legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
         } else {
             legend.setEnabled(false);
@@ -247,11 +249,13 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setSliceSpace(3f);//设置饼块之间的间隔
         dataSet.setSelectionShift(5f);//设置饼块选中时偏离饼图中心的距离
+        dataSet.setDrawValues(false);
         if (pieChart == chart_out) {
             dataSet.setColors(OUT_PIE_COL);
         } else {
             dataSet.setColors(IN_PIE_COL);//设置饼块的颜色
         }
+
         //设置数据显示方式有见图
         dataSet.setValueLinePart1OffsetPercentage(80f);//数据连接线距图形片内部边界的距离，为百分数
         dataSet.setValueLinePart1Length(0.3f);
@@ -260,8 +264,9 @@ public class ActivityBookkeepStatisticMonthly extends BaseActivity {
         dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
         PieData pieData = new PieData(dataSet);
         pieData.setValueFormatter(new PercentFormatter());
-        pieData.setValueTextSize(12f);
-        pieData.setValueTextColor(Color.DKGRAY);
+//        pieData.setValueTextSize(12f);
+//        pieData.setValueTextColor(Color.DKGRAY);
+
         pieChart.setData(pieData);
         pieChart.highlightValues(null);
         pieChart.invalidate();
