@@ -3,9 +3,9 @@
     android:description="@string/widget_bookkeep_overview_description"
     android:initialKeyguardLayout="@layout/widget_bookkeep_overview"
     android:initialLayout="@layout/widget_bookkeep_overview"
-    android:minWidth="320dp"
+    android:minWidth="250dp"
     android:minHeight="40dp"
-    android:previewImage="@drawable/ic_baseline_add_24"
+    android:previewImage="@mipmap/widget_bookkeep_overview_preview"
 
     android:updatePeriodMillis="86400000"
     android:widgetCategory="home_screen" />
