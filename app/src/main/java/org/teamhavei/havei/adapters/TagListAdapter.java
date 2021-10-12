@@ -26,15 +26,24 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
     private static final int MODE_SELECT = 0;
     private static final int MODE_CLICK = 1;
 
-    List<HaveITag> mTagList;
+    List<HaveITag> tagList;
     Context mContext;
     IconAdapter iconAdapter;
 
+    HaveITag selectedTag;
     int selectedItem;
     int mode = MODE_SELECT;
     int orientation;
 
     private final OnTagClickListener onTagClickListener;
+
+    private final RecyclerView.AdapterDataObserver observer = new RecyclerView.AdapterDataObserver() {
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            setSelectedTag(selectedTag.getId());
+        }
+    };
 
     public interface OnTagClickListener {
         void onClick(HaveITag tag);
@@ -56,46 +65,31 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
 
 
     /**
-     *
-     * @param tagList 包含HaveITag的List
-     * @param context 上下文
-     * @param selectedID 默认选取的Tag的ID
-     * @param orientation 滚动方向
+     * @param tagList            包含HaveITag的List
+     * @param context            上下文
+     * @param selectedID         默认选取的Tag的ID
+     * @param orientation        滚动方向
      * @param onTagClickListener 项目点击事件
      */
     public TagListAdapter(List<HaveITag> tagList, Context context, int selectedID, int orientation, OnTagClickListener onTagClickListener) {
         mode = MODE_SELECT;
-        this.mTagList = tagList;
+        this.tagList = tagList;
         this.mContext = context;
         this.orientation = orientation;
         this.onTagClickListener = onTagClickListener;
         iconAdapter = new IconAdapter(context);
-        Boolean found = false;
-        for (int i = 0; i < tagList.size(); i++) {
-            if (tagList.get(i).getId() == selectedID) {
-                selectedItem = i;
-                found = true;
-                break;
-            }
-        }
-        if (!found && tagList.size() > 0) {
-            selectedID = tagList.get(0).getId();
-            selectedItem = 0;
-            Log.d(TAG, "TagListAdapter: Initial tag ID not found or deleted");
-            onTagClickListener.onClick(mTagList.get(0));
-        }
+        setSelectedTag(selectedID);
     }
 
     /**
-     *
-     * @param tagList 包含HaveITag的List
-     * @param context 上下文
-     * @param orientation 滚动方向
+     * @param tagList            包含HaveITag的List
+     * @param context            上下文
+     * @param orientation        滚动方向
      * @param onTagClickListener 项目点击事件
      */
     public TagListAdapter(List<HaveITag> tagList, Context context, int orientation, OnTagClickListener onTagClickListener) {
         mode = MODE_CLICK;
-        this.mTagList = tagList;
+        this.tagList = tagList;
         this.mContext = context;
         this.onTagClickListener = onTagClickListener;
         this.orientation = orientation;
@@ -107,16 +101,17 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_icon_title, parent, false);
         ViewHolder holder = new ViewHolder(view);
         ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
-        if(orientation==ORIENTATION_HORIZONTAL){
+        if (orientation == ORIENTATION_HORIZONTAL) {
             params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-        }else{
+        } else {
             params.width = ViewGroup.LayoutParams.MATCH_PARENT;
         }
         holder.itemView.setLayoutParams(params);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onTagClickListener.onClick(holder.mTag);
+                selectedTag = holder.mTag;
+                onTagClickListener.onClick(selectedTag);
                 int oldSelectedItem = selectedItem;
                 selectedItem = holder.getAdapterPosition();
                 notifyItemChanged(oldSelectedItem);
@@ -128,16 +123,46 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull TagListAdapter.ViewHolder holder, int position) {
-        holder.mTag = mTagList.get(position);
+        holder.mTag = tagList.get(position);
         holder.tagIconView.setImageDrawable(iconAdapter.getIcon(holder.mTag.getIconId()));
         holder.tagNameView.setText(holder.mTag.getName());
         if (mode == MODE_SELECT) {
-            holder.itemView.setSelected(position == selectedItem);
+            holder.itemView.setSelected(holder.mTag.getId() == selectedTag.getId());
         }
     }
 
     @Override
     public int getItemCount() {
-        return mTagList.size();
+        return tagList.size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        registerAdapterDataObserver(observer);
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+        unregisterAdapterDataObserver(observer);
+    }
+
+    public void setSelectedTag(int tagID) {
+        Boolean found = false;
+        for (int i = 0; i < tagList.size(); i++) {
+            if (tagList.get(i).getId() == tagID) {
+                selectedTag = tagList.get(i);
+                selectedItem = i;
+                found = true;
+                break;
+            }
+        }
+        if (!found && tagList.size() > 0) {
+            selectedTag = tagList.get(0);
+            selectedItem = 0;
+            Log.d(TAG, "TagListAdapter: Initial tag ID not found or deleted");
+        }
+        onTagClickListener.onClick(selectedTag);
     }
 }
