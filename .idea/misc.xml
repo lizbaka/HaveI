@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/HAVinew/HaveI3.0/app/src/main/res/layout/activity_bookkeep_add.xml" value="0.24230072463768115" />
-        <entry key="..\:/HAVinew/HaveI3.0/app/src/main/res/layout/activity_bookkeep_property.xml" value="0.15555555555555556" />
-        <entry key="..\:/HAVinew/HaveI3.0/app/src/main/res/layout/activity_bookkeep_statistic_annually.xml" value="0.15555555555555556" />
-        <entry key="..\:/HAVinew/HaveI3.0/app/src/main/res/layout/activity_bookkeep_statistic_monthly.xml" value="0.15555555555555556" />
-        <entry key="..\:/HAVinew/HaveI3.0/app/src/main/res/layout/activity_habit_detail.xml" value="0.3614583333333333" />
-        <entry key="..\:/HAVinew/HaveI3.0/app/src/main/res/layout/activity_long_term_analyze.xml" value="0.24230072463768115" />
-        <entry key="..\:/HAVinew/HaveI3.0/app/src/main/res/layout/activity_modify_habit.xml" value="0.15555555555555556" />
-        <entry key="..\:/HAVinew/HaveI3.0/app/src/main/res/layout/activity_modify_tag.xml" value="0.24230072463768115" />
-      </map>
-    </option>
-  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
