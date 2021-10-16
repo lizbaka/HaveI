@@ -84,12 +84,16 @@ public class HaveITimeWatcher extends Service {
             if(i.isDone()){
                 continue;
             }
+            Intent intent = new Intent(HaveITimeWatcher.this, ActivityTodoDetail.class);
+            intent.putExtra(ActivityTodoDetail.START_PARAM_TODO_ID,i.getId());
+            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this,0,intent, 0);
             Notification notification = new NotificationCompat.Builder(this, UniToolKit.TODO_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.todo_notification_title))
                     .setContentText(i.getName() + getResources().getString(R.string.todo_notification_content))
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.havei_launcher_foreground)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher))
+                    .setContentIntent(pi)
                     .build();
             manager.notify((int)new Date().getTime() + TODO_NOTIFICATION_SEED * i.getId(), notification);
         }
