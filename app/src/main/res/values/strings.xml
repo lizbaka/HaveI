@@ -6,6 +6,7 @@
     <string name="habit_reminder_notification_channel_name">习惯执行提醒</string>
     <string name="default_user_name">HaveI用户</string>
     <string name="default_tag">默认标签</string>
+    <string name="shortcut_disabled">快捷方式已禁用</string>
     <!--system:end-->
 
     <!--universal_UI:Begin-->
@@ -59,12 +60,15 @@
     <string name="property">资产</string>
     <string name="select_icon">选择一个图标</string>
     <string name="suggest">建议</string>
+    <string name="bookkeep">记账</string>
+    <string name="today_event">今天的待办和习惯</string>
+    <string name="today_event_short">今日日程</string>
+    <string name="please_update">请更新</string>
     <!--universal_UI:end-->
 
     <!--activity_main:Begin-->
     <string name="main_drawer_open">抽屉打开</string>
     <string name="main_drawer_close">抽屉关闭</string>
-    <string name="main_today_event">今天的待办和习惯</string>
     <string name="main_all_event">查看所有待办和习惯……</string>
     <string name="main_empty_todo">最近没有未完成的待办</string>
     <string name="main_empty_habit">今天没有未达成目标的习惯</string>
@@ -332,11 +336,6 @@
     <string name="long_term_slogan">在HaveI，\n记录你的生活，遇见更好的自己❤</string>
     <string name="long_term_done_monthly">每月习惯打卡情况</string>
     <string name="long_term_surplus_monthly">每月记账结余</string>
-    <string name="suggest_invest">您拥有一定量的积蓄，拿出一部分闲钱进行投资或许是个不错的选择</string>
-    <string name="suggest_saving">您有时会过度消费，建议您认真考虑削减不必要的开支</string>
-    <string name="suggest_overdone">您有一些常常超额完成目标的习惯，不妨考虑将目标再提高一些</string>
-    <string name="suggest_understate">您有一些习惯常常不能达成目标，不妨考虑降低一些标准？</string>
-    <string name="suggest_never_done">您很久没有打卡了，行动起来！</string>
     <!--long_term_analyze:end-->
 
     <!--widget:start-->

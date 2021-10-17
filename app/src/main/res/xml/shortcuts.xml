@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="habits"
+        android:enabled="true"
+        android:icon="@drawable/hs_record"
+        android:shortcutShortLabel="@string/habit_library"
+        android:shortcutLongLabel="@string/habit_library"
+        android:shortcutDisabledMessage="@string/shortcut_disabled">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="org.teamhavei.havei"
+            android:targetClass="org.teamhavei.havei.activities.ActivityHabitMain"/>
+        <categories android:name="android.shortcut.conversation"/>
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="bookkeep"
+        android:enabled="true"
+        android:icon="@drawable/cs_expense_management"
+        android:shortcutShortLabel="@string/bookkeep"
+        android:shortcutLongLabel="@string/bookkeep"
+        android:shortcutDisabledMessage="@string/shortcut_disabled">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="org.teamhavei.havei"
+            android:targetClass="org.teamhavei.havei.activities.ActivityBookkeep"/>
+        <categories android:name="android.shortcut.conversation"/>
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="events"
+        android:enabled="true"
+        android:icon="@drawable/ic_detail1"
+        android:shortcutShortLabel="@string/today_event_short"
+        android:shortcutLongLabel="@string/today_event"
+        android:shortcutDisabledMessage="@string/shortcut_disabled">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="org.teamhavei.havei"
+            android:targetClass="org.teamhavei.havei.activities.ActivityMainEvent"/>
+        <categories android:name="android.shortcut.conversation"/>
+    </shortcut>
+
+</shortcuts>
