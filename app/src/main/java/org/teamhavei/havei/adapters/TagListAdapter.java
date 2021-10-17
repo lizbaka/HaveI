@@ -139,13 +139,17 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        registerAdapterDataObserver(observer);
+        if(mode == MODE_SELECT) {
+            registerAdapterDataObserver(observer);
+        }
     }
 
     @Override
     public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onDetachedFromRecyclerView(recyclerView);
-        unregisterAdapterDataObserver(observer);
+        if(mode == MODE_SELECT) {
+            unregisterAdapterDataObserver(observer);
+        }
     }
 
     public void setSelectedTag(int tagID) {
