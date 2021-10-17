@@ -1,7 +1,7 @@
 package org.teamhavei.havei.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,14 +37,14 @@ public class ActivityProverbList extends BaseActivity {
     String mShownOnMain;
     ExtendedFloatingActionButton fab;
 
-    public static void startAction(Context context){
-        Intent intent = new Intent(context,ActivityProverbList.class);
+    public static void startAction(Context context) {
+        Intent intent = new Intent(context, ActivityProverbList.class);
         context.startActivity(intent);
     }
 
-    public static void startAction(Context context,String shownOnMain){
-        Intent intent = new Intent(context,ActivityProverbList.class);
-        intent.putExtra(START_PARAM_SHOWN_ON_MAIN,shownOnMain);
+    public static void startAction(Context context, String shownOnMain) {
+        Intent intent = new Intent(context, ActivityProverbList.class);
+        intent.putExtra(START_PARAM_SHOWN_ON_MAIN, shownOnMain);
         context.startActivity(intent);
     }
 
@@ -57,34 +57,20 @@ public class ActivityProverbList extends BaseActivity {
         setContentView(R.layout.activity_proverb_list);
         setSupportActionBar(findViewById(R.id.proverb_list_toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        utilDBHelper = new UtilDBHelper(ActivityProverbList.this, UtilDBHelper.DB_NAME, null, UtilDBHelper.DB_VERSION);
 
         proverbCardListRV = findViewById(R.id.proverb_list_card_list);
         fab = findViewById(R.id.proverb_list_add);
-
-        utilDBHelper = new UtilDBHelper(ActivityProverbList.this,UtilDBHelper.DB_NAME,null,UtilDBHelper.DB_VERSION);
-
-        mProverbList = utilDBHelper.getProverbs();
-        mRemoveList = new ArrayList<String>();
-        proverbCardListRV.setLayoutManager(new LinearLayoutManager(this));
-        proverbCardAdapter = new ProverbCardAdapter(mProverbList,mRemoveList,ActivityProverbList.this);
-        proverbCardListRV.setAdapter(proverbCardAdapter);
-        if(mShownOnMain != null){
-            int position = mProverbList.indexOf(mShownOnMain);
-            proverbCardListRV.scrollToPosition(position-1>=0?position:0);
-        }
-
-        proverbCardListRV.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        ((NestedScrollView) findViewById(R.id.proverb_list_container)).setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if(dy>0){
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (scrollY > oldScrollY) {
                     fab.hide();
-                }else{
+                } else {
                     fab.show();
                 }
             }
         });
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,11 +78,21 @@ public class ActivityProverbList extends BaseActivity {
                 proverbCardAdapter.notifyDataSetChanged();
             }
         });
+
+        mProverbList = utilDBHelper.getProverbs();
+        mRemoveList = new ArrayList<>();
+        proverbCardListRV.setLayoutManager(new LinearLayoutManager(this));
+        proverbCardAdapter = new ProverbCardAdapter(mProverbList, mRemoveList, ActivityProverbList.this);
+        proverbCardListRV.setAdapter(proverbCardAdapter);
+        if (mShownOnMain != null) {
+            int position = mProverbList.indexOf(mShownOnMain);
+            proverbCardListRV.scrollToPosition(position - 1 >= 0 ? position : 0);
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;
@@ -106,7 +102,7 @@ public class ActivityProverbList extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(mRemoveList.size()>0){
+        if (mRemoveList.size() > 0) {
             new AlertDialog.Builder(ActivityProverbList.this)
                     .setNeutralButton(R.string.back, (dialog, which) -> Log.d(TAG, "onBackPressed: back"))
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -127,28 +123,28 @@ public class ActivityProverbList extends BaseActivity {
                     .setTitle(R.string.proverb_remove_confirm_title)
                     .setMessage(R.string.proverb_remove_confirm_msg)
                     .show();
-        }else{
+        } else {
             super.onBackPressed();
         }
     }
 
-    private void showAddDialog(){
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit_text,null);
+    private void showAddDialog() {
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit_text, null);
         EditText newProverbView = (EditText) view.findViewById(R.id.edittext_dialog_edittext);
         AlertDialog.Builder builder = new AlertDialog.Builder(ActivityProverbList.this)
                 .setTitle(getString(R.string.proverb_list_add))
                 .setView(view)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.save,null);
+                .setPositiveButton(R.string.save, null);
 
         AlertDialog dialog = builder.create();
         dialog.show();
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(newProverbView.getText().toString().equals("")){
-                    Toast.makeText(ActivityProverbList.this,getString(R.string.proverb_add_empty_alert),Toast.LENGTH_SHORT).show();
-                }else {
+                if (newProverbView.getText().toString().equals("")) {
+                    Toast.makeText(ActivityProverbList.this, getString(R.string.proverb_add_empty_alert), Toast.LENGTH_SHORT).show();
+                } else {
                     utilDBHelper.insertProverb(newProverbView.getText().toString());
                     mProverbList.add(newProverbView.getText().toString());
                     dialog.dismiss();
