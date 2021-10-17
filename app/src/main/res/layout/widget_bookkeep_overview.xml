@@ -38,7 +38,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:paddingVertical="10dp"
-                android:text="[1234.56]"
+                android:text="@string/please_update"
                 android:textColor="@color/amber_500" />
 
         </RelativeLayout>
@@ -67,7 +67,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:paddingVertical="10dp"
-                android:text="[1234.56]"
+                android:text="@string/please_update"
                 android:textColor="@color/amber_500" />
 
         </RelativeLayout>
@@ -96,7 +96,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:paddingVertical="10dp"
-                android:text="[1234.56]"
+                android:text="@string/please_update"
                 android:textColor="@color/amber_500" />
 
         </RelativeLayout>
