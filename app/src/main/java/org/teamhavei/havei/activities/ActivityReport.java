@@ -124,6 +124,7 @@ public class ActivityReport extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 intent.setType("image/*");
                 startActivity(intent);
+                return true;
             case android.R.id.home:
                 finish();
                 return true;
