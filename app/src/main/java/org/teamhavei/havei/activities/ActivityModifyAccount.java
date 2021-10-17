@@ -154,7 +154,6 @@ public class ActivityModifyAccount extends AppCompatActivity {
                             }
                         })
                         .show();
-                finish();
                 return true;
             case android.R.id.home:
                 finish();
