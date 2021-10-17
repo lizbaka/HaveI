@@ -160,9 +160,9 @@ public class ActivityMain extends BaseActivity {
                     case R.id.nav_menu_report:
                         ActivityReport.startAction(ActivityMain.this);
                         return true;
-                    case R.id.nav_menu_help:
-                        ActivityHelp.startAction(ActivityMain.this);
-                        return true;
+//                    case R.id.nav_menu_help:
+//                        ActivityHelp.startAction(ActivityMain.this);
+//                        return true;
                 }
                 return false;
             }
