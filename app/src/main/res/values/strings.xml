@@ -156,7 +156,7 @@
     <!--habit_main_bottom_nav_menu:begin-->
     <string name="habit_main_bottom_nav_today">Today</string>
     <string name="habit_main_bottom_nav_lib">习惯库</string>
-    <string name="habit_main_bottom_nav_record">完成记录</string>
+    <string name="habit_main_bottom_nav_record">打卡记录</string>
     <!--habit_main_bottom_nav_menu:end-->
 
     <!--event_notification:Begin-->
