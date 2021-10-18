@@ -22,8 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
-import kotlin.Unit;
+import java.util.TreeMap;
 
 public class BookkeepDBHelper extends SQLiteOpenHelper {
 
@@ -262,12 +261,13 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         return surplusData;
     }
 
-    public HashMap<Long, Double> getSurplusListMonthly(Date since) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(since);
-        HashMap<Long, Double> data = new HashMap<>();
-        for (Calendar today = Calendar.getInstance(); calendar.before(today); calendar.add(Calendar.MONTH, 1)) {
-            data.put(calendar.getTimeInMillis(), getIncomeByMonth(calendar.getTime()) - getExpenditureByMonth(calendar.getTime()));
+    public TreeMap<Long, Double> getSurplusListMonthly(Date since) {
+        Calendar calendarSince = Calendar.getInstance();
+        calendarSince.setTime(since);
+        TreeMap<Long, Double> data = new TreeMap<>();
+        for (Calendar today = Calendar.getInstance(); calendarSince.get(Calendar.MONTH) <= today.get(Calendar.MONTH); calendarSince.add(Calendar.MONTH, 1)) {
+            Log.d(TAG, "getSurplusListMonthly: " + calendarSince.get(Calendar.MONTH));
+            data.put(calendarSince.getTimeInMillis(), getIncomeByMonth(calendarSince.getTime()) - getExpenditureByMonth(calendarSince.getTime()));
         }
         return data;
     }

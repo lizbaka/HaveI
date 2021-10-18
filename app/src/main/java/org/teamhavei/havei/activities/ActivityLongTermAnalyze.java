@@ -32,8 +32,8 @@ import org.teamhavei.havei.databases.EventDBHelper;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 public class ActivityLongTermAnalyze extends BaseActivity {
 
@@ -208,7 +208,9 @@ public class ActivityLongTermAnalyze extends BaseActivity {
     public void setBookkeepBAR(BarChart mBar) {
         ArrayList<BarEntry> yValues = new ArrayList<>();
         ArrayList<String> xValues = new ArrayList<>();
-        HashMap<Long, Double> mHash = bookkeepDBHelper.getSurplusListMonthly(firstRun.getTime());
+        TreeMap<Long, Double> mHash = bookkeepDBHelper.getSurplusListMonthly(firstRun.getTime());
+
+        Log.d(TAG, "setBookkeepBAR: " + mHash);
 
         for (Long datel : mHash.keySet()) {
             xValues.add(UniToolKit.eventYearMonthFormatter(new Date(datel)));
@@ -256,7 +258,7 @@ public class ActivityLongTermAnalyze extends BaseActivity {
             public String getFormattedValue(float value) {
                 String lab;
                 int index = (int) value;
-                Log.d(TAG, "getFormattedValue: " + value + "," + index);
+//                Log.d(TAG, "getFormattedValue: " + value + "," + index);
                 lab = xValues.get(index);
                 return lab;
             }
@@ -292,7 +294,7 @@ public class ActivityLongTermAnalyze extends BaseActivity {
     public void setEventBAR(BarChart mBar) {
         ArrayList<BarEntry> yValues = new ArrayList<>();
         ArrayList<String> xValues = new ArrayList<>();
-        HashMap<Long, Integer> mHash = eventDBHelper.getHabitExecCountListMonthly(firstRun.getTime());
+        TreeMap<Long, Integer> mHash = eventDBHelper.getHabitExecCountListMonthly(firstRun.getTime());
 
         for (Long datel : mHash.keySet()) {
             xValues.add(UniToolKit.eventYearMonthFormatter(new Date(datel)));

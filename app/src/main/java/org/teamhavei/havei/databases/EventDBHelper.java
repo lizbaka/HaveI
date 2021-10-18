@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-//import androidx.annotation.Nullable;
-
 import org.teamhavei.havei.Event.EventTag;
 import org.teamhavei.havei.Event.Habit;
 import org.teamhavei.havei.Event.HabitExec;
@@ -25,6 +23,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 public class EventDBHelper extends SQLiteOpenHelper {
 
@@ -404,13 +403,13 @@ public class EventDBHelper extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
-    public HashMap<Long, Integer> getHabitExecCountListMonthly(Date since) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(since);
-        HashMap<Long, Integer> data = new HashMap<>();
-        for (Calendar today = Calendar.getInstance(); calendar.before(today); calendar.add(Calendar.MONTH, 1)) {
-            Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_DATE + " LIKE ?", new String[]{UniToolKit.eventYearMonthFormatter(calendar.getTime()) + "%"}, null, null, null);
-            data.put(calendar.getTimeInMillis(), cursor.getCount());
+    public TreeMap<Long, Integer> getHabitExecCountListMonthly(Date since) {
+        Calendar calendarSince = Calendar.getInstance();
+        calendarSince.setTime(since);
+        TreeMap<Long, Integer> data = new TreeMap<>();
+        for (Calendar today = Calendar.getInstance(); calendarSince.get(Calendar.MONTH) <= today.get(Calendar.MONTH); calendarSince.add(Calendar.MONTH, 1)) {
+            Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_DATE + " LIKE ?", new String[]{UniToolKit.eventYearMonthFormatter(calendarSince.getTime()) + "%"}, null, null, null);
+            data.put(calendarSince.getTimeInMillis(), cursor.getCount());
         }
         return data;
     }
