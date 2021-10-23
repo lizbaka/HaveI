@@ -3,7 +3,7 @@
     android:description="@string/widget_bookkeep_overview_description"
     android:initialKeyguardLayout="@layout/widget_bookkeep_overview"
     android:initialLayout="@layout/widget_bookkeep_overview"
-    android:minWidth="250dp"
+    android:minWidth="320dp"
     android:minHeight="40dp"
     android:previewImage="@mipmap/widget_bookkeep_overview_preview"
 
