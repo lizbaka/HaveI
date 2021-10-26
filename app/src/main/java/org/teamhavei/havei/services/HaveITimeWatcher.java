@@ -57,8 +57,8 @@ public class HaveITimeWatcher extends Service {
         initEventReminder();
     }
 
-    private void initEventReminder(){
-        eventDBHelper = new EventDBHelper(this,EventDBHelper.DB_NAME,null,EventDBHelper.DB_VERSION);
+    private void initEventReminder() {
+        eventDBHelper = new EventDBHelper(this, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_TIME_TICK);
         intentFilter.addAction(Intent.ACTION_TIME_CHANGED);
@@ -66,13 +66,13 @@ public class HaveITimeWatcher extends Service {
         timeChangeReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if(Intent.ACTION_TIME_TICK.equals(intent.getAction()) || Intent.ACTION_TIME_CHANGED.equals(intent.getAction()) || Intent.ACTION_TIMEZONE_CHANGED.equals(intent.getAction())){
+                if (Intent.ACTION_TIME_TICK.equals(intent.getAction()) || Intent.ACTION_TIME_CHANGED.equals(intent.getAction()) || Intent.ACTION_TIMEZONE_CHANGED.equals(intent.getAction())) {
                     checkTodo();
                     checkHabit();
                 }
             }
         };
-        registerReceiver(timeChangeReceiver,intentFilter);
+        registerReceiver(timeChangeReceiver, intentFilter);
     }
 
     private void checkTodo() {
@@ -81,76 +81,77 @@ public class HaveITimeWatcher extends Service {
         List<Todo> todoListReminder = eventDBHelper.findTodoByReminderDatetime(date);
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         for (Todo i : todoList) {
-            if(i.isDone()){
+            if (i.isDone()) {
                 continue;
             }
             Intent intent = new Intent(HaveITimeWatcher.this, ActivityTodoDetail.class);
-            intent.putExtra(ActivityTodoDetail.START_PARAM_TODO_ID,i.getId());
-            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this,0,intent, 0);
+            intent.putExtra(ActivityTodoDetail.START_PARAM_TODO_ID, i.getId());
+            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this, 0, intent, 0);
             Notification notification = new NotificationCompat.Builder(this, UniToolKit.TODO_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.todo_notification_title))
                     .setContentText(i.getName() + getResources().getString(R.string.todo_notification_content))
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.havei_launcher_foreground)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher))
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher_foreground))
                     .setContentIntent(pi)
                     .build();
-            manager.notify((int)new Date().getTime() + TODO_NOTIFICATION_SEED * i.getId(), notification);
+            manager.notify((int) new Date().getTime() + TODO_NOTIFICATION_SEED * i.getId(), notification);
         }
         for (Todo i : todoListReminder) {
-            if(i.isDone()){
+            if (i.isDone()) {
                 continue;
             }
             Intent intent = new Intent(HaveITimeWatcher.this, ActivityTodoDetail.class);
-            intent.putExtra(ActivityTodoDetail.START_PARAM_TODO_ID,i.getId());
-            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this,0,intent, 0);
+            intent.putExtra(ActivityTodoDetail.START_PARAM_TODO_ID, i.getId());
+            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this, 0, intent, 0);
             Notification notification = new NotificationCompat.Builder(this, UniToolKit.TODO_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.todo_advance_notification_title))
                     .setContentText(i.getName() + getResources().getString(R.string.todo_advance_notification_content1) + i.getDateTime() + getResources().getString(R.string.todo_advance_notification_content2))
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.havei_launcher_foreground)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher))
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher_foreground))
                     .setContentIntent(pi)
                     .build();
-            manager.notify((int)new Date().getTime() + TODO_REMINDER_NOTIFICATION_SEED * i.getId(), notification);
+            manager.notify((int) new Date().getTime() + TODO_REMINDER_NOTIFICATION_SEED * i.getId(), notification);
         }
     }
 
-    private void checkHabit(){
+    private void checkHabit() {
         List<Habit> habitList = eventDBHelper.findHabitByReminderTime(new Date());
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         for (Habit i : habitList) {
-            if(eventDBHelper.checkHabitFinishAt(i.getId(), Calendar.getInstance())){
+            if (eventDBHelper.checkHabitFinishAt(i.getId(), Calendar.getInstance())) {
                 continue;
             }
+            Log.d(TAG, "checkHabit: " + i.getName() + i.getId());
             Intent intent = new Intent(HaveITimeWatcher.this, ActivityHabitDetail.class);
             intent.putExtra(ActivityHabitDetail.START_PARAM_HABIT_ID,i.getId());
-            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this,0,intent,0);
+            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this, 0, intent, 0);
             Notification notification = new NotificationCompat.Builder(this, UniToolKit.HABIT_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.habit_notification_title))
                     .setContentText(getResources().getString(R.string.habit_notification_content) + i.getName())
                     .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.mipmap.havei_launcher_foreground)
-                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher))
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher_foreground))
                     .setContentIntent(pi)
                     .build();
-            manager.notify((int)new Date().getTime() + HABIT_NOTIFICATION_SEED * i.getId(), notification);
+            manager.notify((int) new Date().getTime() + HABIT_NOTIFICATION_SEED * i.getId(), notification);
         }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Intent notificationIntent = new Intent(this, ActivityMain.class);
-        PendingIntent pi = PendingIntent.getActivity(this,0,notificationIntent,0);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, notificationIntent, 0);
         Notification fgNotification =
                 new NotificationCompat.Builder(this, UniToolKit.BASIC_NOTIFICATION_CHANNEL_ID)
                         .setContentTitle(getString(UniToolKit.getGreetingTimeId()))
                         .setContentText(getString(UniToolKit.getGreetingSecId()))
-                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher))
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.havei_launcher_foreground))
                         .setSmallIcon(R.mipmap.havei_launcher_foreground)
                         .setContentIntent(pi)
                         .build();
-        startForeground(FOREGROUND_SERVICE_ID,fgNotification);
+        startForeground(FOREGROUND_SERVICE_ID, fgNotification);
         return super.onStartCommand(intent, flags, startId);
     }
 
