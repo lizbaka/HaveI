@@ -86,7 +86,7 @@ public class HaveITimeWatcher extends Service {
             }
             Intent intent = new Intent(HaveITimeWatcher.this, ActivityTodoDetail.class);
             intent.putExtra(ActivityTodoDetail.START_PARAM_TODO_ID, i.getId());
-            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this, 0, intent, 0);
+            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this, (int) new Date().getTime() + TODO_NOTIFICATION_SEED * i.getId(), intent, PendingIntent.FLAG_ONE_SHOT);
             Notification notification = new NotificationCompat.Builder(this, UniToolKit.TODO_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.todo_notification_title))
                     .setContentText(i.getName() + getResources().getString(R.string.todo_notification_content))
@@ -103,7 +103,7 @@ public class HaveITimeWatcher extends Service {
             }
             Intent intent = new Intent(HaveITimeWatcher.this, ActivityTodoDetail.class);
             intent.putExtra(ActivityTodoDetail.START_PARAM_TODO_ID, i.getId());
-            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this, 0, intent, 0);
+            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this, (int) new Date().getTime() + TODO_REMINDER_NOTIFICATION_SEED * i.getId(), intent, PendingIntent.FLAG_ONE_SHOT);
             Notification notification = new NotificationCompat.Builder(this, UniToolKit.TODO_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.todo_advance_notification_title))
                     .setContentText(i.getName() + getResources().getString(R.string.todo_advance_notification_content1) + i.getDateTime() + getResources().getString(R.string.todo_advance_notification_content2))
@@ -126,7 +126,7 @@ public class HaveITimeWatcher extends Service {
             Log.d(TAG, "checkHabit: " + i.getName() + i.getId());
             Intent intent = new Intent(HaveITimeWatcher.this, ActivityHabitDetail.class);
             intent.putExtra(ActivityHabitDetail.START_PARAM_HABIT_ID,i.getId());
-            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this, 0, intent, 0);
+            PendingIntent pi = PendingIntent.getActivity(HaveITimeWatcher.this, (int) new Date().getTime() + HABIT_NOTIFICATION_SEED * i.getId(), intent, PendingIntent.FLAG_ONE_SHOT);
             Notification notification = new NotificationCompat.Builder(this, UniToolKit.HABIT_NOTIFICATION_CHANNEL_ID)
                     .setContentTitle(getResources().getString(R.string.habit_notification_title))
                     .setContentText(getResources().getString(R.string.habit_notification_content) + i.getName())
@@ -142,7 +142,7 @@ public class HaveITimeWatcher extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Intent notificationIntent = new Intent(this, ActivityMain.class);
-        PendingIntent pi = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        PendingIntent pi = PendingIntent.getActivity(this, FOREGROUND_SERVICE_ID, notificationIntent, 0);
         Notification fgNotification =
                 new NotificationCompat.Builder(this, UniToolKit.BASIC_NOTIFICATION_CHANNEL_ID)
                         .setContentTitle(getString(UniToolKit.getGreetingTimeId()))
