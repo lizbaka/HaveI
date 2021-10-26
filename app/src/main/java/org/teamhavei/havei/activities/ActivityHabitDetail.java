@@ -158,15 +158,14 @@ public class ActivityHabitDetail extends BaseActivity {
         });
 
         yearCountVP.setCurrentItem(Calendar.getInstance().get(Calendar.YEAR) - 1970);
-        showExecutionDate();
-        showAnalyze();
-        rankView.setText("No." + Integer.toString(calculateHabitRank()));
+        rankView.setText("No." + calculateHabitRank());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mHabit = dbHelper.findHabitById(getIntent().getIntExtra(START_PARAM_HABIT_ID, NULL_HABIT_ID));
+        mHabit = dbHelper.findHabitById(mHabit.getId());
+        Log.d(TAG, "onResume: " + mHabit.getId()+mHabit.getName());
         getSupportActionBar().setTitle(mHabit.getName());
         frequencyInfoView.setText(new StringBuilder()
                 .append(mHabit.getRepeatTimes())
@@ -179,6 +178,8 @@ public class ActivityHabitDetail extends BaseActivity {
         } else {
             reminderInfoView.setText(mHabit.getReminderTime());
         }
+        showExecutionDate();
+        showAnalyze();
     }
 
     @Override
