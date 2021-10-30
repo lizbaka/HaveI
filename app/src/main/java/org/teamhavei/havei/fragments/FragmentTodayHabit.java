@@ -61,6 +61,7 @@ public class FragmentTodayHabit extends BaseFragment {
     private void updateTodayHabitContainer() {
         View child;
         IconAdapter iconAdapter = new IconAdapter(getContext());
+        todayHabitList = dbHelper.findUnfinishedHabit(Calendar.getInstance());
 
 
         if(todayHabitList.isEmpty()){
@@ -68,7 +69,7 @@ public class FragmentTodayHabit extends BaseFragment {
         }else{
             noUnfinishedTV.setVisibility(View.GONE);
         }
-        Log.d(TAG, "updateTodayHabitContainer: " + todayHabitList.size());
+        todayHabitContainerGL.removeAllViews();
 
         for (int i = 0; i < todayHabitList.size(); i++) {
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();
