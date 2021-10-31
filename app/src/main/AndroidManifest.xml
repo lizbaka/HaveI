@@ -43,8 +43,9 @@
 
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"/>
+                android:resource="@xml/shortcuts" />
         </activity>
+        <activity android:name=".activities.ActivityAbout" />
         <activity android:name=".activities.ActivityLongTermAnalyze" />
         <activity android:name=".activities.ActivityHabitMain" />
         <activity android:name=".activities.ActivitySettingsProverbSrc" />
