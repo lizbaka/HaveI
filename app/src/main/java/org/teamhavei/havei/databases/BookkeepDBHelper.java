@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -107,9 +106,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         List<Bookkeep> mBookkeepList = new ArrayList<>();
         if (cursor != null && cursor.getCount() > 0) {
             try {
-                if (cursor.getCount() > 1) {
-                    Log.d(TAG, "cursorToBookkeepList: Found more than one");
-                }
                 while (cursor.moveToNext()) {
                     Bookkeep mBookkeep = new Bookkeep();
                     mBookkeep.setId(cursor.getInt(cursor.getColumnIndex(BOOKKEEP_ID)));
@@ -123,8 +119,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
-        } else {
-            Log.d(TAG, "cursorToBookkeepList: No such keep");
         }
         return mBookkeepList;
     }
@@ -266,7 +260,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         calendarSince.setTime(since);
         TreeMap<Long, Double> data = new TreeMap<>();
         for (Calendar today = Calendar.getInstance(); calendarSince.get(Calendar.MONTH) <= today.get(Calendar.MONTH); calendarSince.add(Calendar.MONTH, 1)) {
-            Log.d(TAG, "getSurplusListMonthly: " + calendarSince.get(Calendar.MONTH));
             data.put(calendarSince.getTimeInMillis(), getIncomeByMonth(calendarSince.getTime()) - getExpenditureByMonth(calendarSince.getTime()));
         }
         return data;
@@ -288,9 +281,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         BookTag mBookTag = new BookTag();
         if (cursor != null && cursor.getCount() > 0) {
             try {
-                if (cursor.getCount() > 1) {
-                    Log.d(TAG, "cursorToBookTag: Found more than one");
-                }
                 cursor.moveToFirst();
                 mBookTag.setId(cursor.getInt(cursor.getColumnIndex(BOOK_TAGS_ID)));
                 mBookTag.setName(cursor.getString(cursor.getColumnIndex(BOOK_TAGS_NAME)));
@@ -300,8 +290,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
-        } else {
-            Log.d(TAG, "cursorToBookTag: No such BookTag");
         }
         return mBookTag;
     }
@@ -310,9 +298,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         List<BookTag> tagList = new ArrayList<>();
         if (cursor != null && cursor.getCount() > 0) {
             try {
-                if (cursor.getCount() > 1) {
-                    Log.d(TAG, "cursorToBookTagList: Found more than one");
-                }
                 while (cursor.moveToNext()) {
                     BookTag mBookTag = new BookTag();
                     mBookTag.setId(cursor.getInt(cursor.getColumnIndex(BOOK_TAGS_ID)));
@@ -325,8 +310,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
-        } else {
-            Log.d(TAG, "cursorToBookTagList: No suck BookTag");
         }
         return tagList;
     }
@@ -450,9 +433,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
         List<BookAccount> accountList = new ArrayList<>();
         if (cursor != null && cursor.getCount() > 0) {
             try {
-                if (cursor.getCount() > 1) {
-                    Log.d(TAG, "cursorToBookAccountList: Found more than one");
-                }
                 while (cursor.moveToNext()) {
                     BookAccount mBookAccount = new BookAccount();
                     mBookAccount.setId(cursor.getInt(cursor.getColumnIndex(BOOK_ACCOUNT_ID)));
@@ -464,8 +444,6 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
-        } else {
-            Log.d(TAG, "cursorToBookAccountList: No suck BookAccount");
         }
         return accountList;
     }

@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import org.teamhavei.havei.event.EventTag;
 import org.teamhavei.havei.event.Habit;
@@ -137,9 +136,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
         List<Habit> mHabitList = new ArrayList<>();
         if (cursor != null && cursor.getCount() > 0) {
             try {
-                if (cursor.getCount() > 1) {
-                    Log.d(TAG, "cursorToHabit: Found more than one habit");
-                }
                 while (cursor.moveToNext()) {
                     Habit mHabit = new Habit();
                     mHabit.setId(cursor.getInt(cursor.getColumnIndex(HABIT_ID)));
@@ -153,8 +149,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
-        } else {
-            Log.d(TAG, "cursorToHabitList: No such habit");
         }
         return mHabitList;
     }
@@ -291,9 +285,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
         List<HabitExec> mHabitExecList = new ArrayList<>();
         if (cursor != null && cursor.getCount() > 0) {
             try {
-                if (cursor.getCount() > 1) {
-                    Log.d(TAG, "cursorToHabitExecList: Found more than one habit execution record");
-                }
                 while (cursor.moveToNext()) {
                     HabitExec mHabitExec = new HabitExec();
                     mHabitExec.setId(cursor.getInt(cursor.getColumnIndex(HABIT_EXECS_ID)));
@@ -304,8 +295,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
-        } else {
-            Log.d(TAG, "cursorToHabitExecList: No such HabitExec");
         }
         return mHabitExecList;
     }
@@ -429,9 +418,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
         List<EventTag> tagList = new ArrayList<>();
         if (cursor != null && cursor.getCount() > 0) {
             try {
-                if (cursor.getCount() > 1) {
-                    Log.d(TAG, "cursorToEventTag: Found more than one event tag");
-                }
                 while (cursor.moveToNext()) {
                     EventTag mEventTag = new EventTag();
                     mEventTag.setId(cursor.getInt(cursor.getColumnIndex(EVENT_TAGS_ID)));
@@ -443,8 +429,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
-        } else {
-            Log.d(TAG, "cursorToEventTag: No such EventTag");
         }
         return tagList;
     }
@@ -522,9 +506,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
         List<Todo> mTodoList = new ArrayList<>();
         if (cursor != null && cursor.getCount() > 0) {
             try {
-                if (cursor.getCount() > 1) {
-                    Log.d(TAG, "cursorToTodoList: Found more than one todo");
-                }
                 cursor.moveToFirst();
                 do {
                     Todo mTodo = new Todo();
@@ -540,8 +521,6 @@ public class EventDBHelper extends SQLiteOpenHelper {
             } catch (CursorIndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
-        } else {
-            Log.d(TAG, "cursorToTodoList: No such Todo");
         }
         return mTodoList;
     }
