@@ -479,7 +479,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_0"
+                            android:text="00:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -500,7 +500,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_1"
+                            android:text="01:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -521,7 +521,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_2"
+                            android:text="02:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -542,7 +542,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_3"
+                            android:text="03:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -563,7 +563,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_4"
+                            android:text="04:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -584,7 +584,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_5"
+                            android:text="05:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -605,7 +605,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_6"
+                            android:text="06:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -626,7 +626,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_7"
+                            android:text="07:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -647,7 +647,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_8"
+                            android:text="08:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -668,7 +668,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_9"
+                            android:text="09:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -689,7 +689,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_10"
+                            android:text="10:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -710,7 +710,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_11"
+                            android:text="11:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -731,7 +731,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_12"
+                            android:text="12:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -752,7 +752,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_13"
+                            android:text="13:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -773,7 +773,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_14"
+                            android:text="14:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -794,7 +794,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_15"
+                            android:text="15:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -815,7 +815,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_16"
+                            android:text="16:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -836,7 +836,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_17"
+                            android:text="17:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -857,7 +857,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_18"
+                            android:text="18:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -878,7 +878,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_19"
+                            android:text="19:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -899,7 +899,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_20"
+                            android:text="20:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -920,7 +920,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_21"
+                            android:text="21:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -941,7 +941,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_22"
+                            android:text="22:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -962,7 +962,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_23"
+                            android:text="23:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
@@ -983,7 +983,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|top"
-                            android:text="@string/tt_24"
+                            android:text="24:00"
                             android:textColor="@color/grey_500"
                             android:textSize="@dimen/tt_time_font_size" />
 
