@@ -303,9 +303,20 @@ public class ActivityMain extends BaseActivity {
     }
 
     private void firstRun() {
-        // TODO: 2021.08.07 首次运行函数。待实现功能：教程
         eventDBHelper.initializeTag();
         bookkeepDBHelper.initializeTag();
+        Habit firstHabit = new Habit();
+        firstHabit.setName(getString(R.string.first_habit_name));
+        firstHabit.setTagId(1);
+        firstHabit.setRepeatUnit(1);
+        firstHabit.setRepeatTimes(1);
+        eventDBHelper.insertHabit(firstHabit);
+        Todo firstTodo = new Todo();
+        firstTodo.setName(getString(R.string.first_todo_name));
+        firstTodo.setTagId(1);
+        firstTodo.setRemark(getString(R.string.first_todo_remark));
+        firstTodo.setDateTime(UniToolKit.eventDatetimeFormatter(new Date()));
+        eventDBHelper.insertTodo(firstTodo);
     }
 
     private void configProverb() {

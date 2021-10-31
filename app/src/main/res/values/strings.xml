@@ -66,6 +66,12 @@
     <string name="please_update">请更新</string>
     <!--universal_UI:end-->
 
+    <!--first_run:Begin-->
+    <string name="first_habit_name">努力生活！</string>
+    <string name="first_todo_name">了解HaveI</string>
+    <string name="first_todo_remark">记账、习惯、待办、分析、月报、一言……更多功能等你探索！</string>
+    <!--first_run:end-->
+
     <!--activity_main:Begin-->
     <string name="main_drawer_open">抽屉打开</string>
     <string name="main_drawer_close">抽屉关闭</string>
@@ -196,34 +202,6 @@
     <string name="tt_sunday">日</string>
     <string name="tt_wholeday">全天</string>
     <!--time_table:end-->
-
-    <!--time_table_fragment:begin-->
-    <string name="tt_0">0:00</string>
-    <string name="tt_1">1:00</string>
-    <string name="tt_2">2:00</string>
-    <string name="tt_3">3:00</string>
-    <string name="tt_4">4:00</string>
-    <string name="tt_5">5:00</string>
-    <string name="tt_6">6:00</string>
-    <string name="tt_7">7:00</string>
-    <string name="tt_8">8:00</string>
-    <string name="tt_9">9:00</string>
-    <string name="tt_10">10:00</string>
-    <string name="tt_11">11:00</string>
-    <string name="tt_12">12:00</string>
-    <string name="tt_13">13:00</string>
-    <string name="tt_14">14:00</string>
-    <string name="tt_15">15:00</string>
-    <string name="tt_16">16:00</string>
-    <string name="tt_17">17:00</string>
-    <string name="tt_18">18:00</string>
-    <string name="tt_19">19:00</string>
-    <string name="tt_20">20:00</string>
-    <string name="tt_21">21:00</string>
-    <string name="tt_22">22:00</string>
-    <string name="tt_23">23:00</string>
-    <string name="tt_24">24:00</string>
-    <!--time_table_fragment:end-->
 
     <!--todo_detail:begin-->
     <string name="todo_detail_time">待办时间</string>
