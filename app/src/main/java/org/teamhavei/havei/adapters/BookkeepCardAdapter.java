@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.teamhavei.havei.Event.BookTag;
-import org.teamhavei.havei.Event.Bookkeep;
+import org.teamhavei.havei.event.BookTag;
+import org.teamhavei.havei.event.Bookkeep;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
@@ -29,10 +29,10 @@ public class BookkeepCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int VIEW_TYPE_BOOKKEEP = 0;
     private static final int VIEW_TYPE_DATE = 1;
 
-    private List<Bookkeep> mBookList;
-    private BookkeepDBHelper dbHelper;
-    private IconAdapter iconAdapter;
-    private Context mContext;
+    private final List<Bookkeep> mBookList;
+    private final BookkeepDBHelper dbHelper;
+    private final IconAdapter iconAdapter;
+    private final Context mContext;
 
     public interface BookkeepCardCallBack{
         void onLongClick(Bookkeep bookkeep);
@@ -51,6 +51,7 @@ public class BookkeepCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         adjustListForGrouping();
     }
 
+    @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder holder;

@@ -12,7 +12,7 @@
         android:layout_height="@dimen/round_icon_background_size"
         android:layout_margin="@dimen/widget_inview_margin"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_round_icon">
+        android:background="@drawable/shape_bg_round_icon">
 
         <ImageView
             android:id="@+id/icon_title_icon"

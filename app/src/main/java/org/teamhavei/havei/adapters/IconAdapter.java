@@ -13,7 +13,7 @@ import java.util.List;
 
 public class IconAdapter {
 
-    private static String TAG = "DEBUG";
+    private static final String TAG = "DEBUG";
 
     //只能加，不能改！
     //当前已分配到编号 135

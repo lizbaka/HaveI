@@ -66,7 +66,7 @@ public class ActivityHabitMain extends BaseActivity {
                         findViewById(R.id.habit_main_appbar).setBackgroundColor(ContextCompat.getColor(ActivityHabitMain.this,R.color.transparent));
                         tabLayout.setVisibility(View.VISIBLE);
 
-                        getSupportActionBar().setTitle("");;
+                        getSupportActionBar().setTitle("");
                         replaceFragment(new FragmentHabitDoneRecordTable(getSupportActionBar(),tabLayout));
                         return true;
                 }

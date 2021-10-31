@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-import org.teamhavei.havei.Event.Habit;
+import org.teamhavei.havei.event.Habit;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.activities.ActivityModifyHabit;
 import org.teamhavei.havei.adapters.HabitCardAdapter;

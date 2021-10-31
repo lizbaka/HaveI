@@ -16,8 +16,8 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.teamhavei.havei.Event.EventTag;
-import org.teamhavei.havei.Event.Todo;
+import org.teamhavei.havei.event.EventTag;
+import org.teamhavei.havei.event.Todo;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.adapters.IconAdapter;
 import org.teamhavei.havei.databases.EventDBHelper;

@@ -17,7 +17,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginRight="@dimen/widget_inview_margin"
             android:layout_marginBottom="0dp"
-            android:background="@drawable/bg_round_icon_secondary">
+            android:background="@drawable/shape_bg_round_icon_secondary">
 
             <ImageView
                 android:id="@+id/habit_card_icon"

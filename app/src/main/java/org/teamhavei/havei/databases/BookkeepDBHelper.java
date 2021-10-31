@@ -10,9 +10,9 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import org.teamhavei.havei.Event.BookAccount;
-import org.teamhavei.havei.Event.BookTag;
-import org.teamhavei.havei.Event.Bookkeep;
+import org.teamhavei.havei.event.BookAccount;
+import org.teamhavei.havei.event.BookTag;
+import org.teamhavei.havei.event.Bookkeep;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;
@@ -73,8 +73,8 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
                     BOOK_ACCOUNT_ICON + " integer," +//账户图标id
                     BOOK_ACCOUNT_INIT + " double)";//账户初值
 
-    private Context mContext;
-    private SQLiteDatabase db = getReadableDatabase();
+    private final Context mContext;
+    private final SQLiteDatabase db = getReadableDatabase();
 
     public BookkeepDBHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -135,7 +135,7 @@ public class BookkeepDBHelper extends SQLiteOpenHelper {
 
     public Bookkeep findBookkeepById(int id) {
         Cursor cursor = db.query(TABLE_BOOKKEEP, null, BOOKKEEP_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
-        Bookkeep mBookkeep = (Bookkeep) cursorToBookkeepList(cursor).get(0);
+        Bookkeep mBookkeep = cursorToBookkeepList(cursor).get(0);
         cursor.close();
         return mBookkeep;
     }

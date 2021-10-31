@@ -11,8 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.teamhavei.havei.Event.EventTag;
-import org.teamhavei.havei.Event.Habit;
+import org.teamhavei.havei.event.EventTag;
+import org.teamhavei.havei.event.Habit;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.activities.ActivityHabitDetail;
@@ -26,9 +26,9 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
     private static final String TAG = "DEBUG";
 
     private List<Habit> mHabitList;
-    private EventDBHelper dbHelper;
-    private Context mContext;
-    private IconAdapter iconAdapter;
+    private final EventDBHelper dbHelper;
+    private final Context mContext;
+    private final IconAdapter iconAdapter;
 
     public void setHabitList(List<Habit> mHabitList) {
         this.mHabitList = mHabitList;
@@ -45,10 +45,10 @@ public class HabitCardAdapter extends RecyclerView.Adapter<HabitCardAdapter.View
 
         public ViewHolder(View view) {
             super(view);
-            nameView = (TextView) view.findViewById(R.id.habit_card_name);
-            tagView = (TextView) view.findViewById(R.id.habit_card_tag);
-            statusIcon = (ImageView) view.findViewById(R.id.habit_card_status);
-            iconView = (ImageView) view.findViewById(R.id.habit_card_icon);
+            nameView = view.findViewById(R.id.habit_card_name);
+            tagView = view.findViewById(R.id.habit_card_tag);
+            statusIcon = view.findViewById(R.id.habit_card_status);
+            iconView = view.findViewById(R.id.habit_card_icon);
         }
 
     }

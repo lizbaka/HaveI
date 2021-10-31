@@ -18,7 +18,7 @@ import androidx.core.widget.NestedScrollView;
 
 import com.google.android.material.card.MaterialCardView;
 
-import org.teamhavei.havei.Event.HaveIEvent;
+import org.teamhavei.havei.event.HaveIEvent;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 
@@ -50,7 +50,7 @@ public class FragmentTimeTable extends BaseFragment {
     int labelOffset;
     boolean isTodoMode;
 
-    private TimetableSocket timetableSocket;
+    private final TimetableSocket timetableSocket;
 
     public interface TimetableSocket {
         void onCardClick(HaveIEvent event);
@@ -71,9 +71,9 @@ public class FragmentTimeTable extends BaseFragment {
     }
 
     public static class TimeTableEvent {
-        private Calendar startTime;
-        private String text;
-        private HaveIEvent event;
+        private final Calendar startTime;
+        private final String text;
+        private final HaveIEvent event;
 
         public Calendar getStartTime() {
             return startTime;
@@ -236,7 +236,7 @@ public class FragmentTimeTable extends BaseFragment {
         labelOffset = (int) getResources().getDimension(R.dimen.timetable_label_width);
     }
 
-    private Runnable configCurrentTime = new Runnable() {
+    private final Runnable configCurrentTime = new Runnable() {
         @Override
         public void run() {
             Calendar startOfDay = Calendar.getInstance();
@@ -245,7 +245,7 @@ public class FragmentTimeTable extends BaseFragment {
             startOfDay.set(Calendar.SECOND, 0);
             long deltaMilli = Calendar.getInstance().getTimeInMillis() - startOfDay.getTimeInMillis();
             int scrollToY = (int) (1.0 * deltaMilli * dayHeight / MILLISECONDS_PER_DAY) - scrollView.getHeight() / 2;
-            scrollToY = scrollToY >= 0 ? scrollToY : 0;
+            scrollToY = Math.max(scrollToY, 0);
             scrollView.smoothScrollTo(0, scrollToY);
             View view = new View(getContext());
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) getContext().getResources().getDimension(R.dimen.dividing_line_view_height)*2);

@@ -32,8 +32,8 @@ import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.teamhavei.havei.Event.Habit;
-import org.teamhavei.havei.Event.Todo;
+import org.teamhavei.havei.event.Habit;
+import org.teamhavei.havei.event.Todo;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;
@@ -160,9 +160,9 @@ public class ActivityMain extends BaseActivity {
                     case R.id.nav_menu_report:
                         ActivityReport.startAction(ActivityMain.this);
                         return true;
-//                    case R.id.nav_menu_help:
-//                        ActivityHelp.startAction(ActivityMain.this);
-//                        return true;
+                    case R.id.nav_menu_about:
+                        ActivityAbout.startAction(ActivityMain.this);
+                        return true;
                 }
                 return false;
             }
@@ -435,7 +435,7 @@ public class ActivityMain extends BaseActivity {
                     @Override
                     public void run() {
                         try {
-                            final long START_DATE_MILLI = 1477756800000l;
+                            final long START_DATE_MILLI = 1477756800000L;
                             long delta = Calendar.getInstance().getTimeInMillis() - START_DATE_MILLI;
                             Calendar goal = Calendar.getInstance();
                             goal.setTimeInMillis((long) (Math.random() * delta) + START_DATE_MILLI);

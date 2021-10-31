@@ -1,4 +1,4 @@
-package org.teamhavei.havei.Event;
+package org.teamhavei.havei.event;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -22,8 +22,8 @@ public class singleLineManager {
 
     private static String lineName = null;
     private static int count = 0;
-    private static ArrayList<String> Month=new ArrayList<String>(Arrays.asList("1","一","二","三","四","五","六","七","八","九","十","十一","十二",""));
-    private static double max=600;
+    private static final ArrayList<String> Month=new ArrayList<String>(Arrays.asList("1","一","二","三","四","五","六","七","八","九","十","十一","十二",""));
+    private static final double max=600;
     private static int month;
     public static LineData initSingleLineChart(Context context, ArrayList<Double> datas1) {
         // y轴的数据

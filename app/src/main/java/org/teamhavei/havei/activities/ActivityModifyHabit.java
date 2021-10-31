@@ -18,9 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.teamhavei.havei.Event.EventTag;
-import org.teamhavei.havei.Event.Habit;
-import org.teamhavei.havei.Event.HaveITag;
+import org.teamhavei.havei.event.EventTag;
+import org.teamhavei.havei.event.Habit;
+import org.teamhavei.havei.event.HaveITag;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;
@@ -210,11 +210,6 @@ public class ActivityModifyHabit extends BaseActivity {
         }
     }
 
-    /**
-     * 检查输入的数据是否为空或有效
-     *
-     * @return true：输入正确； false：输入无效
-     */
     private boolean checkHabitValidate() {
         boolean status = true;
         /* 空习惯名 */

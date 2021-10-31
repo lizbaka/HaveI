@@ -14,10 +14,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
-import org.teamhavei.havei.Event.Habit;
-import org.teamhavei.havei.Event.HabitExec;
-import org.teamhavei.havei.Event.HaveIEvent;
-import org.teamhavei.havei.Event.Todo;
+import org.teamhavei.havei.event.HaveIEvent;
+import org.teamhavei.havei.event.Todo;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.TimeTablePageAdapter;
@@ -108,7 +106,7 @@ public class ActivityTodoTimetable extends BaseActivity {
         timetableVP.setAdapter(new TimeTablePageAdapter(getSupportFragmentManager(), fragmentList, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT));
         tabLayout.setupWithViewPager(timetableVP);
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            tabLayout.getTabAt(i).setText("第" + Integer.toString(i + 1) + "周");
+            tabLayout.getTabAt(i).setText("第" + (i + 1) + "周");
             if (fragmentList.get(i).getStartOfWeek().get(Calendar.WEEK_OF_YEAR) == Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)) {
                 tabLayout.selectTab(tabLayout.getTabAt(i));
             }

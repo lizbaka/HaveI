@@ -30,7 +30,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/round_amber"
+                android:background="@drawable/shape_round_amber"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:singleLine="true"
@@ -49,7 +49,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/round_amber"
+                android:background="@drawable/shape_round_amber"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:singleLine="true"
@@ -69,7 +69,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/round_amber"
+                android:background="@drawable/shape_round_amber"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:singleLine="true"
@@ -88,7 +88,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/round_amber"
+                android:background="@drawable/shape_round_amber"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:singleLine="true"
@@ -107,7 +107,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/round_amber"
+                android:background="@drawable/shape_round_amber"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:singleLine="true"
@@ -126,7 +126,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/round_amber"
+                android:background="@drawable/shape_round_amber"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:singleLine="true"
@@ -145,7 +145,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/round_amber"
+                android:background="@drawable/shape_round_amber"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:singleLine="true"
@@ -280,7 +280,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_round_icon_secondary"
+                android:background="@drawable/shape_bg_round_icon_secondary"
                 android:backgroundTintMode="src_over"
                 android:clickable="true"
                 android:focusable="true"
@@ -303,7 +303,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_round_icon_secondary"
+                android:background="@drawable/shape_bg_round_icon_secondary"
                 android:backgroundTintMode="src_over"
                 android:clickable="true"
                 android:focusable="true"
@@ -325,7 +325,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_round_icon_secondary"
+                android:background="@drawable/shape_bg_round_icon_secondary"
                 android:backgroundTintMode="src_over"
                 android:clickable="true"
                 android:focusable="true"
@@ -347,7 +347,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_round_icon_secondary"
+                android:background="@drawable/shape_bg_round_icon_secondary"
                 android:backgroundTintMode="src_over"
                 android:clickable="true"
                 android:focusable="true"
@@ -369,7 +369,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_round_icon_secondary"
+                android:background="@drawable/shape_bg_round_icon_secondary"
                 android:backgroundTintMode="src_over"
                 android:clickable="true"
                 android:focusable="true"
@@ -391,7 +391,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_round_icon_secondary"
+                android:background="@drawable/shape_bg_round_icon_secondary"
                 android:backgroundTintMode="src_over"
                 android:clickable="true"
                 android:focusable="true"
@@ -413,7 +413,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/bg_round_icon_secondary"
+                android:background="@drawable/shape_bg_round_icon_secondary"
                 android:backgroundTintMode="src_over"
                 android:clickable="true"
                 android:focusable="true"
@@ -473,7 +473,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -494,7 +494,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -515,7 +515,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -536,7 +536,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -557,7 +557,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -578,7 +578,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -599,7 +599,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -620,7 +620,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -641,7 +641,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -662,7 +662,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -683,7 +683,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -704,7 +704,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -725,7 +725,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -746,7 +746,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -767,7 +767,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -788,7 +788,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -809,7 +809,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -830,7 +830,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -851,7 +851,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -872,7 +872,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -893,7 +893,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -914,7 +914,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -935,7 +935,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -956,7 +956,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -977,7 +977,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dividing_view_container"
-                            android:background="@drawable/dotted_line_stroke" />
+                            android:background="@drawable/shape_dotted_line_stroke" />
 
                         <TextView
                             android:layout_width="wrap_content"

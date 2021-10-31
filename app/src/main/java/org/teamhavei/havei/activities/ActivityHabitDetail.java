@@ -24,8 +24,8 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateLongClickListener;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
-import org.teamhavei.havei.Event.Habit;
-import org.teamhavei.havei.Event.HabitExec;
+import org.teamhavei.havei.event.Habit;
+import org.teamhavei.havei.event.HabitExec;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.YearCountPageAdapter;
@@ -127,7 +127,7 @@ public class ActivityHabitDetail extends BaseActivity {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
                 if (date.getMonth() == 1 || date.getMonth() == 12) {
-                    yearCountVP.setCurrentItem(date.getYear() - 1970 >= 0 ? date.getYear() - 1970 : 0, true);
+                    yearCountVP.setCurrentItem(Math.max(date.getYear() - 1970, 0), true);
                 }
             }
         });
@@ -135,7 +135,7 @@ public class ActivityHabitDetail extends BaseActivity {
         findViewById(R.id.habit_detail_ranking_container).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rankView.setText("No." + Integer.toString(calculateHabitRank()));
+                rankView.setText("No." + calculateHabitRank());
             }
         });
 

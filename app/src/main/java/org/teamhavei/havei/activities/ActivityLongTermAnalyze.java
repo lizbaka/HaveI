@@ -22,8 +22,8 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
-import org.teamhavei.havei.Event.BookTag;
-import org.teamhavei.havei.Event.Bookkeep;
+import org.teamhavei.havei.event.BookTag;
+import org.teamhavei.havei.event.Bookkeep;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
@@ -75,7 +75,7 @@ public class ActivityLongTermAnalyze extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         eventDBHelper = new EventDBHelper(ActivityLongTermAnalyze.this, EventDBHelper.DB_NAME, null, EventDBHelper.DB_VERSION);
-        bookkeepDBHelper = new BookkeepDBHelper(ActivityLongTermAnalyze.this, bookkeepDBHelper.DB_NAME, null, bookkeepDBHelper.DATABASE_VERSION);
+        bookkeepDBHelper = new BookkeepDBHelper(ActivityLongTermAnalyze.this, BookkeepDBHelper.DB_NAME, null, BookkeepDBHelper.DATABASE_VERSION);
         today = Calendar.getInstance();
         firstRun = Calendar.getInstance();
 
@@ -220,18 +220,6 @@ public class ActivityLongTermAnalyze extends BaseActivity {
             yValues.add(new BarEntry(i, mMoney.floatValue()));
             i+=1;
         }
-
-
-        //拖动效果预览
-//        for(Integer  j=0;j<20;j++)
-//        {
-//            yValues.add(new BarEntry(j,j.floatValue() ));
-//        }
-//        for(Integer i=0;i<20;i++)
-//        {
-//            xValues.add(i.toString());
-//
-//        }
 
 
         BarDataSet barDataSet = new BarDataSet(yValues, "每月");

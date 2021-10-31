@@ -34,7 +34,7 @@ public class UtilDBHelper extends SQLiteOpenHelper {
                     PROVERB_ID + " integer primary key autoincrement," +//id
                     PROVERB_CONTENT + " text)";//内容
 
-    private SQLiteDatabase db = getReadableDatabase();
+    private final SQLiteDatabase db = getReadableDatabase();
 
     public UtilDBHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -110,10 +110,5 @@ public class UtilDBHelper extends SQLiteOpenHelper {
             return context.getString(R.string.slogan);
         }
         return proverb.get((int) (System.currentTimeMillis() % proverb.size()));
-    }
-
-    void initData() {
-        insertProverb(context.getString(R.string.slogan));
-        insertProverb("长按我试试");
     }
 }

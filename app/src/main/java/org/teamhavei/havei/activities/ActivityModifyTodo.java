@@ -20,8 +20,8 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.teamhavei.havei.Event.HaveITag;
-import org.teamhavei.havei.Event.Todo;
+import org.teamhavei.havei.event.HaveITag;
+import org.teamhavei.havei.event.Todo;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;

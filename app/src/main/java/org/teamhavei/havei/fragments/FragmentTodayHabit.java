@@ -2,7 +2,6 @@ package org.teamhavei.havei.fragments;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import org.teamhavei.havei.Event.Habit;
+import org.teamhavei.havei.event.Habit;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.activities.ActivityHabitDetail;
 import org.teamhavei.havei.adapters.IconAdapter;

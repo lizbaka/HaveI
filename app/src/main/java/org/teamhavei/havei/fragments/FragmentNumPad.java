@@ -53,6 +53,7 @@ public class FragmentNumPad extends BottomSheetDialogFragment {
         this.originalValue = originalValue;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         return new BottomSheetDialog(this.getContext());

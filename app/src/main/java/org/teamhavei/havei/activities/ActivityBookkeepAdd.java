@@ -2,7 +2,6 @@ package org.teamhavei.havei.activities;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,9 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 
-import org.teamhavei.havei.Event.BookAccount;
-import org.teamhavei.havei.Event.Bookkeep;
-import org.teamhavei.havei.Event.HaveITag;
+import org.teamhavei.havei.event.BookAccount;
+import org.teamhavei.havei.event.Bookkeep;
+import org.teamhavei.havei.event.HaveITag;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;

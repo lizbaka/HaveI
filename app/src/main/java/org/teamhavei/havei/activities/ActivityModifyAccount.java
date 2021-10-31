@@ -21,9 +21,9 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.teamhavei.havei.Event.BookAccount;
-import org.teamhavei.havei.Event.Bookkeep;
-import org.teamhavei.havei.Event.HaveITag;
+import org.teamhavei.havei.event.BookAccount;
+import org.teamhavei.havei.event.Bookkeep;
+import org.teamhavei.havei.event.HaveITag;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;
@@ -102,11 +102,6 @@ public class ActivityModifyAccount extends AppCompatActivity {
         iconIV.setImageDrawable(iconAdapter.getIcon(account.getIconId()));
 
         initIconList();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
     }
 
     @Override

@@ -2,7 +2,7 @@
     style="@style/Widget.HaveI.AppWidget.Container"
     android:layout_width="320dp"
     android:layout_height="80dp"
-    android:background="@drawable/widget_bookkeep_overview_background"
+    android:background="@drawable/shape_widget_bookkeep_overview_background"
     android:paddingLeft="@dimen/card_padding"
     android:paddingTop="@dimen/card_padding"
     android:paddingBottom="@dimen/card_padding"

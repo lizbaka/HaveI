@@ -107,7 +107,7 @@
                             android:layout_marginTop="@dimen/widget_inview_margin"
                             android:layout_marginEnd="@dimen/widget_inview_margin"
                             android:layout_marginBottom="@dimen/widget_inview_margin"
-                            android:background="@drawable/bg_round_icon">
+                            android:background="@drawable/shape_bg_round_icon">
 
                             <ImageView
                                 android:id="@+id/modify_account_icon"

@@ -18,8 +18,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.teamhavei.havei.Event.BookTag;
-import org.teamhavei.havei.Event.Habit;
+import org.teamhavei.havei.event.BookTag;
+import org.teamhavei.havei.event.Habit;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;

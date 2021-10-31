@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import org.teamhavei.havei.Event.EventTag;
-import org.teamhavei.havei.Event.Habit;
-import org.teamhavei.havei.Event.HabitExec;
-import org.teamhavei.havei.Event.Todo;
+import org.teamhavei.havei.event.EventTag;
+import org.teamhavei.havei.event.Habit;
+import org.teamhavei.havei.event.HabitExec;
+import org.teamhavei.havei.event.Todo;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.IconAdapter;
@@ -95,9 +95,9 @@ public class EventDBHelper extends SQLiteOpenHelper {
                     TODO_REMARK + " text," +//备注
                     TODO_DONE + " integer)";//是否已完成 0:未完成 1:已完成
 
-    private Context mContext;
+    private final Context mContext;
 
-    private SQLiteDatabase db = getReadableDatabase();
+    private final SQLiteDatabase db = getReadableDatabase();
 
     public EventDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -338,7 +338,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     public HabitExec findHabitExecById(int id) {
         Cursor cursor = db.query(TABLE_HABIT_EXECS, null, HABIT_EXECS_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
-        HabitExec mHabitExec = (HabitExec) cursorToHabitExecList(cursor).get(0);
+        HabitExec mHabitExec = cursorToHabitExecList(cursor).get(0);
         cursor.close();
         return mHabitExec;
     }
@@ -552,7 +552,7 @@ public class EventDBHelper extends SQLiteOpenHelper {
 
     public Todo findTodoById(int id) {
         Cursor cursor = db.query(TABLE_TODO, null, TODO_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null);
-        Todo mTodo = (Todo) cursorToTodoList(cursor).get(0);
+        Todo mTodo = cursorToTodoList(cursor).get(0);
         cursor.close();
         return mTodo;
     }

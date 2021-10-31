@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.teamhavei.havei.R;
@@ -23,8 +24,8 @@ public class ProverbCardAdapter extends RecyclerView.Adapter<ProverbCardAdapter.
     }
 
     private List<String> mProverbList;
-    private List<String> mRemoveList;
-    private Context mContext;
+    private final List<String> mRemoveList;
+    private final Context mContext;
 
     static class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -34,8 +35,8 @@ public class ProverbCardAdapter extends RecyclerView.Adapter<ProverbCardAdapter.
 
         public ViewHolder(View view) {
             super(view);
-            proverbView = (TextView) view.findViewById(R.id.proverb_card_proverb);
-            favoriteView = (ImageView) view.findViewById(R.id.proverb_card_favorite);
+            proverbView = view.findViewById(R.id.proverb_card_proverb);
+            favoriteView = view.findViewById(R.id.proverb_card_favorite);
             like = true;
             view.setClickable(false);
         }
@@ -47,6 +48,7 @@ public class ProverbCardAdapter extends RecyclerView.Adapter<ProverbCardAdapter.
         mContext = context;
     }
 
+    @NonNull
     @Override
     public ProverbCardAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_proverb_card,parent,false);

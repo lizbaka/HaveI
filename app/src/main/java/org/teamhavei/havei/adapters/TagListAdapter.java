@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.teamhavei.havei.Event.HaveITag;
+import org.teamhavei.havei.event.HaveITag;
 import org.teamhavei.havei.R;
 
 import java.util.List;
@@ -96,6 +96,7 @@ public class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.ViewHold
         iconAdapter = new IconAdapter(context);
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dynamic_icon_title, parent, false);

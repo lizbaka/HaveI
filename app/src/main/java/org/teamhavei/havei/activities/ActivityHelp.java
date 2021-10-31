@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import org.teamhavei.havei.Event.Habit;
-import org.teamhavei.havei.Event.Todo;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.databases.EventDBHelper;
 

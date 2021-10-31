@@ -23,7 +23,7 @@ public class FragmentYearCount extends BaseFragment {
     List<Integer> countList = new ArrayList<>(12);
     int year;
 
-    private FragmentYearCountSocket socket;
+    private final FragmentYearCountSocket socket;
 
     public interface FragmentYearCountSocket {
         void updateCountList(int year, List<Integer> count);
@@ -32,7 +32,7 @@ public class FragmentYearCount extends BaseFragment {
     public void update() {
         socket.updateCountList(year, countList);
         for (int i = 0; i < countList.size(); i++) {
-            countTV.get(i).setText(Integer.toString(countList.get(i)) + getString(R.string.times));
+            countTV.get(i).setText(countList.get(i) + getString(R.string.times));
         }
     }
 

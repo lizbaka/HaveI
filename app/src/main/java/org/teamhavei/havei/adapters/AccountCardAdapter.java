@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.teamhavei.havei.Event.BookAccount;
+import org.teamhavei.havei.event.BookAccount;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.databases.BookkeepDBHelper;

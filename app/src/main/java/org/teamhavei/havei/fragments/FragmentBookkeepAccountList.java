@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.card.MaterialCardView;
 
-import org.teamhavei.havei.Event.BookAccount;
+import org.teamhavei.havei.event.BookAccount;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.adapters.AccountCardAdapter;
 import org.teamhavei.havei.databases.BookkeepDBHelper;

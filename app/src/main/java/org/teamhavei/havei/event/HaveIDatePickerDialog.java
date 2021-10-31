@@ -1,11 +1,10 @@
-package org.teamhavei.havei.Event;
+package org.teamhavei.havei.event;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +43,7 @@ public class HaveIDatePickerDialog extends AlertDialog implements OnClickListene
         LayoutInflater inflater = (LayoutInflater) themeContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.dialog_date_picker, null);
         setView(view);
-        mDatePickerStart = (DatePicker) view.findViewById(R.id.datePickerStart);
+        mDatePickerStart = view.findViewById(R.id.datePickerStart);
         mDatePickerStart.init(year, monthOfYear, dayOfMonth, this);
     }
 
@@ -118,11 +117,6 @@ public class HaveIDatePickerDialog extends AlertDialog implements OnClickListene
             mCallBack.onDateSet(mDatePickerStart, mDatePickerStart.getYear(), mDatePickerStart.getMonth(),
                     mDatePickerStart.getDayOfMonth());
         }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
     }
 
     @Override

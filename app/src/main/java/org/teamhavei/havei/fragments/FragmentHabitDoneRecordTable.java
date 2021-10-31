@@ -14,9 +14,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-import org.teamhavei.havei.Event.Habit;
-import org.teamhavei.havei.Event.HabitExec;
-import org.teamhavei.havei.Event.HaveIEvent;
+import org.teamhavei.havei.event.Habit;
+import org.teamhavei.havei.event.HabitExec;
+import org.teamhavei.havei.event.HaveIEvent;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.activities.ActivityHabitDetail;
@@ -103,7 +103,7 @@ public class FragmentHabitDoneRecordTable extends BaseFragment {
         doneRecordVP.setAdapter(new TimeTablePageAdapter(getChildFragmentManager(), fragmentList, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT));
         mTabLayout.setupWithViewPager(doneRecordVP);
         for (int i = 0; i < mTabLayout.getTabCount(); i++) {
-            mTabLayout.getTabAt(i).setText("第" + Integer.toString(i + 1) + "周");
+            mTabLayout.getTabAt(i).setText("第" + (i + 1) + "周");
             if(fragmentList.get(i).getStartOfWeek().get(Calendar.WEEK_OF_YEAR) == Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)){
                 mTabLayout.selectTab(mTabLayout.getTabAt(i));
             }

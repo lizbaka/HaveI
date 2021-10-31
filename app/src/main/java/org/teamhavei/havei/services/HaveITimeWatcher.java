@@ -14,8 +14,8 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import org.teamhavei.havei.Event.Habit;
-import org.teamhavei.havei.Event.Todo;
+import org.teamhavei.havei.event.Habit;
+import org.teamhavei.havei.event.Todo;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.activities.ActivityHabitDetail;

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.teamhavei.havei.Event.HaveITag;
+import org.teamhavei.havei.event.HaveITag;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.TagListAdapter;

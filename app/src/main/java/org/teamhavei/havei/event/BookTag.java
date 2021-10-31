@@ -1,4 +1,4 @@
-package org.teamhavei.havei.Event;
+package org.teamhavei.havei.event;
 
 public class BookTag extends HaveITag{
 

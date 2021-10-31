@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.teamhavei.havei.Event.EventTag;
-import org.teamhavei.havei.Event.Todo;
+import org.teamhavei.havei.event.EventTag;
+import org.teamhavei.havei.event.Todo;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.databases.EventDBHelper;
@@ -27,7 +27,7 @@ public class TodoCardAdapter extends RecyclerView.Adapter<TodoCardAdapter.ViewHo
 
     private static final String TAG = "DEBUG";
 
-    private int cardType;
+    private final int cardType;
 
     List<Todo> mTodoList;
     Context mContext;

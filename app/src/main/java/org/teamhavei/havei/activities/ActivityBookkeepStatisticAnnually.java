@@ -29,8 +29,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-import org.teamhavei.havei.Event.HaveIDatePickerDialog;
-import org.teamhavei.havei.Event.doubleLineManager;
+import org.teamhavei.havei.event.HaveIDatePickerDialog;
+import org.teamhavei.havei.event.doubleLineManager;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.databases.BookkeepDBHelper;
@@ -61,7 +61,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
     BarChart bar_one;
     double[] expenditureByMonth = new double[12];
     double[] incomeByMonth = new double[12];
-    private static ArrayList<String> Month = new ArrayList<String>(Arrays.asList("1", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二", ""));
+    private static final ArrayList<String> Month = new ArrayList<String>(Arrays.asList("1", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二", ""));
 
     private Date nowDate;
 
@@ -85,7 +85,7 @@ public class ActivityBookkeepStatisticAnnually extends AppCompatActivity {
 
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     private void updateData() {
-        dateTV.setText(Integer.toString(calendar.get(Calendar.YEAR)) + getString(R.string.bookkeep_annual_statistic));
+        dateTV.setText(calendar.get(Calendar.YEAR) + getString(R.string.bookkeep_annual_statistic));
         double totalExpenditure = 0;
         double totalIncome = 0;
         for (int i = 0; i < 12; i++) {

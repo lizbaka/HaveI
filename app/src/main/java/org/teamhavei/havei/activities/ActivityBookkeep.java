@@ -20,8 +20,8 @@ import android.widget.TextView;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-import org.teamhavei.havei.Event.Bookkeep;
-import org.teamhavei.havei.Event.HaveIDatePickerDialog;
+import org.teamhavei.havei.event.Bookkeep;
+import org.teamhavei.havei.event.HaveIDatePickerDialog;
 import org.teamhavei.havei.R;
 import org.teamhavei.havei.UniToolKit;
 import org.teamhavei.havei.adapters.BookkeepCardAdapter;
