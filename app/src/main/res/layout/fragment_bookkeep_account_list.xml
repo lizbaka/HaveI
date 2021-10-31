@@ -35,7 +35,7 @@
                         android:layout_width="@dimen/round_icon_size"
                         android:layout_height="@dimen/round_icon_size"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/hs_repair" />
+                        android:src="@drawable/ic_hs_repair" />
 
 
                     <TextView

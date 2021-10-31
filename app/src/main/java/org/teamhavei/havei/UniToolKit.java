@@ -131,15 +131,15 @@ public class UniToolKit {
     public static int getGreetingIconId() {
         Calendar calendar = Calendar.getInstance();
         if (calendar.get(Calendar.HOUR_OF_DAY) >= 5 && calendar.get(Calendar.HOUR_OF_DAY) < 12) {
-            return R.drawable.star;
+            return R.drawable.ic_planet;
         } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 12 && calendar.get(Calendar.HOUR_OF_DAY) < 14) {
-            return R.drawable.hs_sun3;
+            return R.drawable.ic_hs_sun;
         } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 14 && calendar.get(Calendar.HOUR_OF_DAY) < 18) {
-            return R.drawable.hs_paper_airplane;
+            return R.drawable.ic_hs_paper_airplane;
         } else if (calendar.get(Calendar.HOUR_OF_DAY) >= 18 && calendar.get(Calendar.HOUR_OF_DAY) < 22) {
-            return R.drawable.cs_astronomy;
+            return R.drawable.ic_cs_astronomy;
         } else {
-            return R.drawable.hs_moon3;
+            return R.drawable.ic_hs_moon1;
         }
     }
 

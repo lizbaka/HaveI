@@ -45,7 +45,7 @@
                         android:layout_width="@dimen/ui_icon_size_medium"
                         android:layout_height="@dimen/ui_icon_size_medium"
                         android:layout_margin="@dimen/widget_inview_margin"
-                        android:src="@drawable/cs_else" />
+                        android:src="@drawable/ic_cs_else" />
 
                     <TextView
                         style="@style/TextAppearance.AppCompat.Title"
@@ -75,7 +75,7 @@
                         android:layout_width="@dimen/ui_icon_size_medium"
                         android:layout_height="@dimen/ui_icon_size_medium"
                         android:layout_margin="@dimen/widget_inview_margin"
-                        android:src="@drawable/account_book" />
+                        android:src="@drawable/ic_account_book" />
 
                     <TextView
                         style="@style/TextAppearance.AppCompat.Title"

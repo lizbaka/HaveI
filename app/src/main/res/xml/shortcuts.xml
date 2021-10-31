@@ -3,7 +3,7 @@
     <shortcut
         android:shortcutId="habits"
         android:enabled="true"
-        android:icon="@drawable/hs_record"
+        android:icon="@drawable/ic_hs_record"
         android:shortcutShortLabel="@string/habit_library"
         android:shortcutLongLabel="@string/habit_library"
         android:shortcutDisabledMessage="@string/shortcut_disabled">
@@ -18,7 +18,7 @@
     <shortcut
         android:shortcutId="bookkeep"
         android:enabled="true"
-        android:icon="@drawable/cs_expense_management"
+        android:icon="@drawable/ic_cs_expense_management"
         android:shortcutShortLabel="@string/bookkeep"
         android:shortcutLongLabel="@string/bookkeep"
         android:shortcutDisabledMessage="@string/shortcut_disabled">
@@ -33,7 +33,7 @@
     <shortcut
         android:shortcutId="events"
         android:enabled="true"
-        android:icon="@drawable/ic_detail1"
+        android:icon="@drawable/ic_detail"
         android:shortcutShortLabel="@string/today_event_short"
         android:shortcutLongLabel="@string/today_event"
         android:shortcutDisabledMessage="@string/shortcut_disabled">

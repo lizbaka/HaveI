@@ -88,7 +88,7 @@
             android:layout_height="@dimen/ui_icon_size_medium"
             android:layout_alignParentRight="true"
             android:layout_margin="@dimen/widget_inview_margin"
-            android:src="@drawable/hs_repair" />
+            android:src="@drawable/ic_hs_repair" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bookkeep_add_tag_recyc"
@@ -133,7 +133,7 @@
                                 android:id="@+id/bookkeep_account_icon"
                                 android:layout_width="@dimen/bookkeep_add_record_info_height"
                                 android:layout_height="@dimen/bookkeep_add_record_info_height"
-                                app:srcCompat="@drawable/account_book" />
+                                app:srcCompat="@drawable/ic_account_book" />
 
                             <TextView
                                 android:id="@+id/bookkeep_account_name"

@@ -115,7 +115,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginHorizontal="@dimen/widget_inview_margin"
-                android:src="@drawable/star3"/>
+                android:src="@drawable/ic_star"/>
 
             <TextView
                 android:id="@+id/main_event_todo_date"
@@ -129,7 +129,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginHorizontal="@dimen/widget_inview_margin"
-                android:src="@drawable/moon1"/>
+                android:src="@drawable/ic_moon1"/>
 
             <TextView
                 android:id="@+id/main_event_todo_weekday"

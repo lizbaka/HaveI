@@ -8,7 +8,7 @@
         android:layout_width="@dimen/ui_icon_size_small"
         android:layout_height="@dimen/ui_icon_size_small"
         android:layout_marginHorizontal="@dimen/widget_inview_margin"
-        android:src="@drawable/star3" />
+        android:src="@drawable/ic_star" />
 
     <TextView
         android:id="@+id/bookkeep_date_card_date"

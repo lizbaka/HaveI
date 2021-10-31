@@ -33,15 +33,13 @@ public class IconAdapter {
     public static final int ID_CS_FRUITS = 13;
     public static final int ID_CS_GAME = 14;
     public static final int ID_CS_GIFT1 = 15;
-    public static final int ID_CS_GIFT2 = 16;
-    public static final int ID_CS_GIFT3 = 17;
+    public static final int ID_CS_GIFT2 = 17;
     public static final int ID_CS_HOBBY = 18;
     public static final int ID_CS_HOSPITAL = 19;
     public static final int ID_CS_IN_SCHOOL = 20;
     public static final int ID_CS_JOURNEY = 21;
     public static final int ID_CS_LAUNDRY_DETERGENT = 22;
     public static final int ID_CS_LEND_OUT = 23;//cs_lend_out.xml
-    //WARN: BROKEN!!
     public static final int ID_CS_MAKE_UP = 24;
     public static final int ID_CS_MEDICINE = 25;
     public static final int ID_CS_OTHERS_REPAY_YOU1 = 26;//cs_others_repay_you.xml
@@ -74,8 +72,7 @@ public class IconAdapter {
     public static final int ID_HS_BOOKKEEPING = 52;
     public static final int ID_HS_BOOKS = 53;
     public static final int ID_HS_CAR = 54;
-    public static final int ID_HS_CLOCK1 = 55;
-    public static final int ID_HS_CLOCK2 = 56;
+    public static final int ID_HS_CLOCK = 56;
     public static final int ID_HS_COUPLE = 57;
     public static final int ID_HS_CUP = 58;
     public static final int ID_HS_CUTLERY = 59;
@@ -90,29 +87,22 @@ public class IconAdapter {
     public static final int ID_HS_FRUIT = 68;
     public static final int ID_HS_GAME_MACHINE = 69;
     public static final int ID_HS_GIFT1 = 70;
-    public static final int ID_HS_GIFT2 = 71;
-    public static final int ID_HS_GIFT3 = 72;
+    public static final int ID_HS_GIFT2 = 72;
     public static final int ID_HS_HEART = 73;
-    public static final int ID_HS_HEART2 = 74;
-    public static final int ID_HS_HEART3 = 75;
-    public static final int ID_HS_BEATING = 76;
-    public static final int ID_HS_BEATING2 = 77;
+    public static final int ID_HS_HEART2 = 75;
+    public static final int ID_HS_HEART_BEATING = 77;
     public static final int ID_HS_HOTEL = 78;
     public static final int ID_HS_JOURNEY1 = 79;
     public static final int ID_HS_JOURNEY2 = 80;
     public static final int ID_HS_LEND = 81;
     public static final int ID_HS_LOCATING = 82;
-    //WARN: BROKEN!!
     public static final int ID_HS_MAKE_UP = 83;
     public static final int ID_HS_MEDIACARE = 84;
     public static final int ID_HS_MEDICINE = 85;
-    public static final int ID_HS_MEDICINE3 = 86;
     public static final int ID_HS_MEMORY = 87;
     public static final int ID_HS_MONEY = 88;
     public static final int ID_HS_MOON = 89;
-    public static final int ID_HS_MOON3 = 90;
-    public static final int ID_HS_MOON4 = 91;
-    public static final int ID_HS_MOON5 = 92;
+    public static final int ID_HS_MOON1 = 90;
     public static final int ID_HS_MUSIC = 93;
     public static final int ID_HS_PAPER = 94;
     public static final int ID_HS_PAPER_AIRPLANE = 95;
@@ -130,18 +120,13 @@ public class IconAdapter {
     public static final int ID_HS_REPAIR = 107;
     public static final int ID_HS_SALARY = 108;
     public static final int ID_HS_SCISSORS = 109;
-    public static final int ID_HS_SCISSORS2 = 110;
     public static final int ID_HS_SKIN_CARE = 111;
     public static final int ID_HS_SPORT = 112;
-    public static final int ID_HS_STAR1 = 113;
-    public static final int ID_HS_STAR2 = 114;
-    public static final int ID_HS_STAR3 = 115;
-    public static final int ID_HS_STAR_TRAILS = 116;
+    public static final int ID_HS_STAR = 115;
     public static final int ID_HS_STATISTICS = 117;
     public static final int ID_HS_STUDY = 118;
-    public static final int ID_HS_SUN = 119;
-    public static final int ID_HS_SUN3 = 120;
-    public static final int ID_HS_SUN4 = 121;
+    public static final int ID_HS_SUN = 120;
+    public static final int ID_HS_SUN1 = 121;
     public static final int ID_HS_SUN_AND_MOON = 122;
     public static final int ID_HS_SUN_RISE = 123;
     public static final int ID_HS_SUN_RISE2 = 124;
@@ -190,7 +175,6 @@ public class IconAdapter {
         result.add(ID_CS_GAME);
         result.add(ID_CS_GIFT1);
         result.add(ID_CS_GIFT2);
-        result.add(ID_CS_GIFT3);
         result.add(ID_CS_HOBBY);
         result.add(ID_CS_HOSPITAL);
         result.add(ID_CS_IN_SCHOOL);
@@ -233,8 +217,7 @@ public class IconAdapter {
         result.add(ID_HS_BOOKKEEPING);
         result.add(ID_HS_BOOKS);
         result.add(ID_HS_CAR);
-        result.add(ID_HS_CLOCK1);
-        result.add(ID_HS_CLOCK2);
+        result.add(ID_HS_CLOCK);
         result.add(ID_HS_COUPLE);
         result.add(ID_HS_CUP);
         result.add(ID_HS_CUTLERY);
@@ -250,12 +233,9 @@ public class IconAdapter {
         result.add(ID_HS_GAME_MACHINE);
         result.add(ID_HS_GIFT1);
         result.add(ID_HS_GIFT2);
-        result.add(ID_HS_GIFT3);
         result.add(ID_HS_HEART);
         result.add(ID_HS_HEART2);
-        result.add(ID_HS_HEART3);
-        result.add(ID_HS_BEATING);
-        result.add(ID_HS_BEATING2);
+        result.add(ID_HS_HEART_BEATING);
         result.add(ID_HS_HOTEL);
         result.add(ID_HS_JOURNEY1);
         result.add(ID_HS_JOURNEY2);
@@ -264,13 +244,10 @@ public class IconAdapter {
         result.add(ID_HS_MAKE_UP);
         result.add(ID_HS_MEDIACARE);
         result.add(ID_HS_MEDICINE);
-        result.add(ID_HS_MEDICINE3);
         result.add(ID_HS_MEMORY);
         result.add(ID_HS_MONEY);
         result.add(ID_HS_MOON);
-        result.add(ID_HS_MOON3);
-        result.add(ID_HS_MOON4);
-        result.add(ID_HS_MOON5);
+        result.add(ID_HS_MOON1);
         result.add(ID_HS_MUSIC);
         result.add(ID_HS_PAPER);
         result.add(ID_HS_PAPER_AIRPLANE);
@@ -288,18 +265,13 @@ public class IconAdapter {
         result.add(ID_HS_REPAIR);
         result.add(ID_HS_SALARY);
         result.add(ID_HS_SCISSORS);
-        result.add(ID_HS_SCISSORS2);
         result.add(ID_HS_SKIN_CARE);
         result.add(ID_HS_SPORT);
-        result.add(ID_HS_STAR1);
-        result.add(ID_HS_STAR2);
-        result.add(ID_HS_STAR3);
-        result.add(ID_HS_STAR_TRAILS);
+        result.add(ID_HS_STAR);
         result.add(ID_HS_STATISTICS);
         result.add(ID_HS_STUDY);
         result.add(ID_HS_SUN);
-        result.add(ID_HS_SUN3);
-        result.add(ID_HS_SUN4);
+        result.add(ID_HS_SUN1);
         result.add(ID_HS_SUN_AND_MOON);
         result.add(ID_HS_SUN_RISE);
         result.add(ID_HS_SUN_RISE2);
@@ -328,281 +300,255 @@ public class IconAdapter {
     public Drawable getIcon(int iconID) {
         switch (iconID) {
             case ID_CS_ACCOMMODATION:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_accommodation);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_accommodation);
             case ID_CS_AIR_TICKETS:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_air_tickets);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_air_tickets);
             case ID_CS_ASTRONOMY:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_astronomy);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_astronomy);
             case ID_CS_ATHLETE:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_athlete);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_athlete);
             case ID_CS_BONUS:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_bonus);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_bonus);
             case ID_CS_BORROW:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_borrow);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_borrow);
             case ID_CS_CAR_FARE:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_car_fare);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_car_fare);
             case ID_CS_CLOTHING:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_clothing);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_clothing);
             case ID_CS_DRINKS:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_drinks);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_drinks);
             case ID_CS_ELSE:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_else);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_else);
             case ID_CS_EXERCISE:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_exercize);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_exercize);
             case ID_CS_EXPENSE_MANAGEMENT:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_expense_management);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_expense_management);
             case ID_CS_FRUITS:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_fruits);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_fruits);
             case ID_CS_GAME:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_game);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_game);
             case ID_CS_GIFT1:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_gift1);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_gift1);
             case ID_CS_GIFT2:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_gift2);
-            case ID_CS_GIFT3:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_gift3);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_gift2);
             case ID_CS_HOBBY:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_hobby);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_hobby);
             case ID_CS_HOSPITAL:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_hospital);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_hospital);
             case ID_CS_IN_SCHOOL:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_in_school);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_in_school);
             case ID_CS_JOURNEY:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_journey);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_journey);
             case ID_CS_LAUNDRY_DETERGENT:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_laundry_detergent);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_laundry_detergent);
             case ID_CS_LEND_OUT:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_lend_out);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_lend_out);
             case ID_CS_MAKE_UP:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_make_up);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_make_up);
             case ID_CS_MEDICINE:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_medicine);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_medicine);
             case ID_CS_OTHERS_REPAY_YOU1:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_others_repay_you);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_others_repay_you);
             case ID_CS_OTHERS_REPAY_YOU2:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_others_repay_you2);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_others_repay_you2);
             case ID_CS_TISSUE_PAPER_ROLL:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_paper);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_paper);
             case ID_CS_PARTY:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_party);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_party);
             case ID_CS_PETS:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_pets);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_pets);
             case ID_CS_PHOTOGRAPHING:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_photographing);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_photographing);
             case ID_CS_PLAYTHING:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_plaything);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_plaything);
             case ID_CS_READING:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_reading);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_reading);
             case ID_CS_RECEIPT:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_receipt);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_receipt);
             case ID_CS_RECREATION:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_recreation);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_recreation);
             case ID_CS_RED_PACKET:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_red_packet);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_red_packet);
             case ID_CS_REPAY_OTHERS:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_repay_others);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_repay_others);
             case ID_CS_SALARY:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_salary);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_salary);
             case ID_CS_SCENIC_SPOT:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_scenic_spot);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_scenic_spot);
             case ID_CS_SKIN_CARE:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_skin_care);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_skin_care);
             case ID_CS_SLIPPER:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_slipper);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_slipper);
             case ID_CS_SNACKS:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_snacks);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_snacks);
             case ID_CS_STAPLE_FOOD:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_staple_food);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_staple_food);
             case ID_CS_TEXTBOOK:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_textbook);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_textbook);
             case ID_CS_TRANSPORTATION:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_transportation);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_transportation);
             case ID_CS_UMBRELLA:
-                return ContextCompat.getDrawable(mContext, R.drawable.cs_umbrella);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_cs_umbrella);
             case ID_HS_ALARM_CLOCK:
-                return ContextCompat.getDrawable(mContext, R.drawable.alarm_clock);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_alarm_clock);
             case ID_HS_BACHELOR:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_bachelor);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_bachelor);
             case ID_HS_BASKETBALL:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_basketball);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_basketball);
             case ID_HS_BONUS:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_bonus);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_bonus);
             case ID_HS_BOOK:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_book);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_book);
             case ID_HS_BOOKKEEPING:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_bookkeeping);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_bookkeeping);
             case ID_HS_BOOKS:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_books);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_books);
             case ID_HS_CAR:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_car);
-            case ID_HS_CLOCK1:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_clock1);
-            case ID_HS_CLOCK2:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_clock2);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_car);
+            case ID_HS_CLOCK:
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_clock);
             case ID_HS_COUPLE:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_couple);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_couple);
             case ID_HS_CUP:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_cup);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_cup);
             case ID_HS_CUTLERY:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_cutlery);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_cutlery);
             case ID_HS_DELETE:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_delete);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_delete);
             case ID_HS_DESSERT:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_dessert);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_dessert);
             case ID_HS_DRESS_UP:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_dress_up);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_dress_up);
             case ID_HS_DRINK:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_drink);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_drink);
             case ID_HS_EAT:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_eat);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_eat);
             case ID_HS_ENTERTAINMENT:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_entertainment);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_entertainment);
             case ID_HS_EXERCISE:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_exercise);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_exercise);
             case ID_HS_FOOT:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_foot);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_foot);
             case ID_HS_FRUIT:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_fruit);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_fruit);
             case ID_HS_GAME_MACHINE:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_gamemachine);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_gamemachine);
             case ID_HS_GIFT1:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_gift1);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_gift1);
             case ID_HS_GIFT2:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_gift2);
-            case ID_HS_GIFT3:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_gift3);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_gift2);
             case ID_HS_HEART:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_heart);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_heart);
             case ID_HS_HEART2:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_heart2);
-            case ID_HS_HEART3:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_heart3);
-            case ID_HS_BEATING:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_heart_beating);
-            case ID_HS_BEATING2:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_heart_beating2);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_heart2);
+            case ID_HS_HEART_BEATING:
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_heart_beating);
             case ID_HS_HOTEL:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_hotel);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_hotel);
             case ID_HS_JOURNEY1:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_journey1);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_journey1);
             case ID_HS_JOURNEY2:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_journey2);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_journey2);
             case ID_HS_LEND:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_lend);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_lend);
             case ID_HS_LOCATING:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_locating);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_locating);
             case ID_HS_MAKE_UP:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_make_up);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_make_up);
             case ID_HS_MEDIACARE:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_mediacare);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_mediacare);
             case ID_HS_MEDICINE:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_medicine);
-            case ID_HS_MEDICINE3:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_medicine3);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_medicine);
             case ID_HS_MEMORY:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_memory);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_memory);
             case ID_HS_MONEY:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_money);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_money);
             case ID_HS_MOON:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_moon);
-            case ID_HS_MOON3:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_moon3);
-            case ID_HS_MOON4:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_moon4);
-            case ID_HS_MOON5:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_moon5);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_moon);
+            case ID_HS_MOON1:
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_moon1);
             case ID_HS_MUSIC:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_music);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_music);
             case ID_HS_PAPER:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_paper);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_paper);
             case ID_HS_PAPER_AIRPLANE:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_paper_airplane);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_paper_airplane);
             case ID_HS_PENCIL:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_pencil);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_pencil);
             case ID_HS_PETS:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_pets);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_pets);
             case ID_HS_PHOTOGRAPH:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_photograph);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_photograph);
             case ID_HS_PIG:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_pig);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_pig);
             case ID_HS_PLANE:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_plane);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_plane);
             case ID_HS_PRIZE:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_prize);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_prize);
             case ID_HS_READING:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_reading);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_reading);
             case ID_HS_RECORD:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_record);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_record);
             case ID_HS_RECORD2:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_record2);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_record2);
             case ID_HS_RECREATION:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_recreation);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_recreation);
             case ID_HS_RED_PACKET:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_red_packet);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_red_packet);
             case ID_HS_REPAIR:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_repair);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_repair);
             case ID_HS_SALARY:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_salary);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_salary);
             case ID_HS_SCISSORS:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_scissors);
-            case ID_HS_SCISSORS2:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_scissors2);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_scissors);
             case ID_HS_SKIN_CARE:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_skin_care);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_skin_care);
             case ID_HS_SPORT:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_sport);
-            case ID_HS_STAR1:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_star1);
-            case ID_HS_STAR2:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_star2);
-            case ID_HS_STAR3:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_star3);
-            case ID_HS_STAR_TRAILS:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_star_trails);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_sport);
+            case ID_HS_STAR:
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_star);
             case ID_HS_STATISTICS:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_statistics);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_statistics);
             case ID_HS_STUDY:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_study);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_study);
             case ID_HS_SUN:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_sun);
-            case ID_HS_SUN3:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_sun3);
-            case ID_HS_SUN4:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_sun4);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_sun);
+            case ID_HS_SUN1:
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_sun1);
             case ID_HS_SUN_AND_MOON:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_sun_and_moon);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_sun_and_moon);
             case ID_HS_SUN_RISE:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_sun_rise);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_sun_rise);
             case ID_HS_SUN_RISE2:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_sun_rise2);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_sun_rise2);
             case ID_HS_TOY:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_toy);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_toy);
             case ID_HS_TRANSPORT:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_transport);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_transport);
             case ID_HS_UMBRELLA:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_umbrella);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_umbrella);
             case ID_HS_WATER:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_water);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_water);
             case ID_HS_WATER_DROP:
-                return ContextCompat.getDrawable(mContext, R.drawable.hs_water_drop);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_hs_water_drop);
             case ID_AC_DEFAULT:
-                return ContextCompat.getDrawable(mContext, R.drawable.account_book);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_account_book);
             case ID_AC_CASH:
-                return ContextCompat.getDrawable(mContext, R.drawable.ac_cash);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_ac_cash);
             case ID_AC_WECHAT:
-                return ContextCompat.getDrawable(mContext, R.drawable.ac_wechat_pay);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_ac_wechat_pay);
             case ID_AC_ALIPAY:
-                return ContextCompat.getDrawable(mContext, R.drawable.ac_alipay);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_ac_alipay);
             case ID_AC_CARD:
-                return ContextCompat.getDrawable(mContext, R.drawable.ac_credit_card);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_ac_credit_card);
             case ID_AC_NET_ACCOUNT:
-                return ContextCompat.getDrawable(mContext, R.drawable.ac_net_account);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_ac_net_account);
             case ID_AC_CARD_1:
-                return ContextCompat.getDrawable(mContext, R.drawable.ac_credit_card_1);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_ac_credit_card_1);
             case ID_AC_SCHOOL_CARD:
-                return ContextCompat.getDrawable(mContext, R.drawable.ac_school_card);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_ac_school_card);
             case ID_AC_WALLET:
-                return ContextCompat.getDrawable(mContext, R.drawable.ac_wallet);
+                return ContextCompat.getDrawable(mContext, R.drawable.ic_ac_wallet);
             default:
                 Log.d(TAG, "getIcon: not found, returning lost");
                 return ContextCompat.getDrawable(mContext, R.drawable.ic_baseline_help_24);

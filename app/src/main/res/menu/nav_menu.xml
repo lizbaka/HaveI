@@ -2,11 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_menu_report"
-        android:icon="@drawable/bill"
+        android:icon="@drawable/ic_bill"
         android:title="@string/nav_menu_report"/>
 
     <item
         android:id="@+id/nav_menu_settings"
-        android:icon="@drawable/hs_repair"
+        android:icon="@drawable/ic_hs_repair"
         android:title="@string/nav_menu_settings"/>
+
+    <item
+        android:id="@+id/nav_menu_about"
+        android:icon="@drawable/ic_detail"
+        android:title="@string/about"/>
+
 </menu>

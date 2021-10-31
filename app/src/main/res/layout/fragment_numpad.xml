@@ -272,7 +272,7 @@
                 android:layout_width="37sp"
                 android:layout_height="37sp"
                 android:layout_gravity="center"
-                android:src="@drawable/delete1" />
+                android:src="@drawable/ic_backspace" />
 
         </com.google.android.material.card.MaterialCardView>
 

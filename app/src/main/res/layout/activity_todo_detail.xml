@@ -109,7 +109,7 @@
                     android:layout_height="@dimen/ui_icon_size_small"
                     android:layout_margin="@dimen/widget_inview_margin"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/calendar" />
+                    android:src="@drawable/ic_calendar" />
 
                 <TextView
                     style="@style/TextAppearance.AppCompat.Medium"
@@ -142,7 +142,7 @@
                     android:layout_height="@dimen/ui_icon_size_small"
                     android:layout_margin="@dimen/widget_inview_margin"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/alarm_clock" />
+                    android:src="@drawable/ic_alarm_clock" />
 
                 <TextView
                     style="@style/TextAppearance.AppCompat.Medium"
@@ -173,7 +173,7 @@
                     android:layout_width="@dimen/ui_icon_size_small"
                     android:layout_height="@dimen/ui_icon_size_small"
                     android:layout_margin="@dimen/widget_inview_margin"
-                    android:src="@drawable/detail1"/>
+                    android:src="@drawable/ic_detail"/>
 
                 <TextView
                     style="@style/TextAppearance.AppCompat.Medium"

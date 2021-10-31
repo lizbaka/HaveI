@@ -236,7 +236,7 @@
                             android:layout_width="@dimen/ui_icon_size_medium"
                             android:layout_height="@dimen/ui_icon_size_medium"
                             android:layout_margin="@dimen/widget_inview_margin"
-                            android:src="@drawable/hs_repair" />
+                            android:src="@drawable/ic_hs_repair" />
 
                     </LinearLayout>
 
