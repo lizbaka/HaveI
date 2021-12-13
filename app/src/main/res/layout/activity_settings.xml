@@ -91,6 +91,13 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <TextView
+                android:id="@+id/settings_privacy_policy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/privacy_policy"/>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
