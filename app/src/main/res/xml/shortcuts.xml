@@ -11,7 +11,7 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="org.teamhavei.havei"
-            android:targetClass="org.teamhavei.havei.activities.ActivityHabitMain"/>
+            android:targetClass="org.teamhavei.havei.UI.activity.ActivityHabitMain"/>
         <categories android:name="android.shortcut.conversation"/>
     </shortcut>
 
@@ -26,7 +26,7 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="org.teamhavei.havei"
-            android:targetClass="org.teamhavei.havei.activities.ActivityBookkeep"/>
+            android:targetClass="org.teamhavei.havei.UI.activity.ActivityBookkeep"/>
         <categories android:name="android.shortcut.conversation"/>
     </shortcut>
 
@@ -41,7 +41,7 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="org.teamhavei.havei"
-            android:targetClass="org.teamhavei.havei.activities.ActivityMainEvent"/>
+            android:targetClass="org.teamhavei.havei.UI.activity.ActivityMainEvent"/>
         <categories android:name="android.shortcut.conversation"/>
     </shortcut>
 

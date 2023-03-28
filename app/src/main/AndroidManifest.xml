@@ -15,7 +15,7 @@
         android:theme="@style/Theme.HaveI"
         android:usesCleartextTraffic="true">
         <receiver
-            android:name=".widgets.WidgetBookkeepOverview"
+            android:name=".UI.widget.WidgetBookkeepOverview"
             android:exported="true"
             android:label="@string/widget_bookkeep_overview_description">
             <intent-filter>
@@ -29,11 +29,11 @@
         </receiver>
 
         <service
-            android:name=".services.HaveITimeWatcher"
+            android:name=".service.HaveITimeWatcher"
             android:exported="false" />
 
         <activity
-            android:name=".activities.ActivityMain"
+            android:name=".UI.activity.ActivityMain"
             android:exported="true"
             android:launchMode="singleTask">
             <intent-filter>
@@ -45,39 +45,39 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
-        <activity android:name=".activities.ActivityAbout" />
-        <activity android:name=".activities.ActivityLongTermAnalyze" />
-        <activity android:name=".activities.ActivityHabitMain" />
-        <activity android:name=".activities.ActivitySettingsProverbSrc" />
-        <activity android:name=".activities.ActivityReport" />
-        <activity android:name=".activities.ActivityModifyTag" />
-        <activity android:name=".activities.ActivitySettings" />
-        <activity android:name=".activities.ActivitySettingsTagMng" />
-        <activity android:name=".activities.ActivityTodoDetail" />
-        <activity android:name=".activities.ActivityModifyTodo" />
-        <activity android:name=".activities.ActivityMainEvent" />
-        <activity android:name=".activities.ActivityProverbList" />
-        <activity android:name=".activities.ActivityTodoTimetable" />
-        <activity android:name=".activities.ActivityHelp" />
-        <activity android:name=".activities.ActivityHabitDetail" />
-        <activity android:name=".activities.ActivityModifyHabit" />
-        <activity android:name=".activities.ActivityBookkeep" />
+        <activity android:name=".UI.activity.ActivityAbout" />
+        <activity android:name=".UI.activity.ActivityLongTermAnalyze" />
+        <activity android:name=".UI.activity.ActivityHabitMain" />
+        <activity android:name=".UI.activity.ActivitySettingsProverbSrc" />
+        <activity android:name=".UI.activity.ActivityReport" />
+        <activity android:name=".UI.activity.ActivityModifyTag" />
+        <activity android:name=".UI.activity.ActivitySettings" />
+        <activity android:name=".UI.activity.ActivitySettingsTagMng" />
+        <activity android:name=".UI.activity.ActivityTodoDetail" />
+        <activity android:name=".UI.activity.ActivityModifyTodo" />
+        <activity android:name=".UI.activity.ActivityMainEvent" />
+        <activity android:name=".UI.activity.ActivityProverbList" />
+        <activity android:name=".UI.activity.ActivityTodoTimetable" />
+        <activity android:name=".UI.activity.ActivityHelp" />
+        <activity android:name=".UI.activity.ActivityHabitDetail" />
+        <activity android:name=".UI.activity.ActivityModifyHabit" />
+        <activity android:name=".UI.activity.ActivityBookkeep" />
         <activity
-            android:name=".activities.ActivityBookkeepAdd"
+            android:name=".UI.activity.ActivityBookkeepAdd"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activities.ActivityBookkeepStatisticMonthly" />
-        <activity android:name=".activities.ActivityBudget" />
+        <activity android:name=".UI.activity.ActivityBookkeepStatisticMonthly" />
+        <activity android:name=".UI.activity.ActivityBudget" />
         <activity
-            android:name=".activities.ActivityBookkeepProperty"
-            android:parentActivityName=".activities.ActivityBookkeep" />
+            android:name=".UI.activity.ActivityBookkeepProperty"
+            android:parentActivityName=".UI.activity.ActivityBookkeep" />
         <activity
-            android:name=".activities.ActivityBookkeepStatisticAnnually"
-            android:parentActivityName=".activities.ActivityBookkeep" />
+            android:name=".UI.activity.ActivityBookkeepStatisticAnnually"
+            android:parentActivityName=".UI.activity.ActivityBookkeep" />
         <activity
-            android:name=".activities.ActivityModifyAccount"
+            android:name=".UI.activity.ActivityModifyAccount"
             android:exported="true" />
         <activity
-            android:name=".activities.ActivitySettingsAccount"
+            android:name=".UI.activity.ActivitySettingsAccount"
             android:exported="true" />
 
         <provider
