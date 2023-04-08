@@ -12,9 +12,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/monthly_report_container"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
             <ImageView
                 android:id="@+id/monthly_report_img"
@@ -181,11 +181,11 @@
                 android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
                 app:layout_constraintHeight_percent="0.05"
-                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintHorizontal_bias="0.31"
                 app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
                 app:layout_constraintRight_toRightOf="@id/monthly_report_img"
                 app:layout_constraintTop_toTopOf="@id/monthly_report_img"
-                app:layout_constraintVertical_bias="0.772"
+                app:layout_constraintVertical_bias="0.75"
                 app:layout_constraintWidth_percent="0.15" />
 
             <TextView
@@ -198,11 +198,11 @@
                 android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
                 app:layout_constraintHeight_percent="0.03"
-                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintHorizontal_bias="0.35"
                 app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
                 app:layout_constraintRight_toRightOf="@id/monthly_report_img"
                 app:layout_constraintTop_toTopOf="@id/monthly_report_img"
-                app:layout_constraintVertical_bias="0.854"
+                app:layout_constraintVertical_bias="0.83"
                 app:layout_constraintWidth_percent="0.3" />
 
             <TextView
@@ -215,11 +215,11 @@
                 android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
                 app:layout_constraintHeight_percent="0.03"
-                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintHorizontal_bias="0.35"
                 app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
                 app:layout_constraintRight_toRightOf="@id/monthly_report_img"
                 app:layout_constraintTop_toTopOf="@id/monthly_report_img"
-                app:layout_constraintVertical_bias="0.886"
+                app:layout_constraintVertical_bias="0.865"
                 app:layout_constraintWidth_percent="0.3" />
 
             <TextView
@@ -278,8 +278,8 @@
 
             <TextView
                 android:id="@+id/monthly_report_sentence"
-                android:layout_width="130dp"
-                android:layout_height="80dp"
+                android:layout_width="110dp"
+                android:layout_height="75dp"
                 android:gravity="center_vertical|right"
                 android:maxLines="5"
                 android:text="[monthly_report_sentence]"
@@ -337,17 +337,15 @@
 
             <ImageView
                 android:id="@+id/monthly_report_avatar"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:src="@drawable/ic_moon"
                 app:layout_constraintBottom_toBottomOf="@id/monthly_report_img"
-                app:layout_constraintHeight_percent="0.05"
-                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintHorizontal_bias="0.085"
                 app:layout_constraintLeft_toLeftOf="@id/monthly_report_img"
                 app:layout_constraintRight_toRightOf="@id/monthly_report_img"
                 app:layout_constraintTop_toTopOf="@id/monthly_report_img"
-                app:layout_constraintVertical_bias="0.88"
-                app:layout_constraintWidth_percent="0.09" />
+                app:layout_constraintVertical_bias="0.86" />
 
             <ImageView
                 android:id="@+id/monthly_report_QR_code"

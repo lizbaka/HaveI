@@ -38,10 +38,10 @@ public class ActivityAbout extends AbsAboutActivity {
         items.add(new Card(getString(R.string.app_introduction_detailed)));
 
         items.add(new Category("设计与开发"));
-        items.add(new Contributor(R.drawable.img_ava_lizbaka, "lizbaka", "开发", "https://lizbaka.moe"));
+        items.add(new Contributor(R.drawable.img_ava_lizbaka, "lizbaka", "开发", "https://www.github.com/lizbaka"));
         items.add(new Contributor(R.drawable.img_ava_wufisher, "Wu_Fisher", "开发"));
-        items.add(new Contributor(R.drawable.img_ava_tsuki, "tsuki", "开发，界面设计和应用图标设计"));
-        items.add(new Contributor(R.drawable.img_ava_eternal, "ethereal", "开发，界面设计"));
+        items.add(new Contributor(R.drawable.img_ava_tsuki, "tsuki", "开发，界面设计和应用图标设计","https://gitee.com/linkingsweety"));
+        items.add(new Contributor(R.drawable.img_ava_eternal, "ethereal", "开发，界面设计", "https://gitee.com/etherealtsq"));
 
         items.add(new Category("联系我们"));
         items.add(new Card("email: lizbaka123@outlook.com"));

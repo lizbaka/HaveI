@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.card.MaterialCardView;
 
@@ -16,6 +18,7 @@ public class ActivitySettings extends BaseActivity {
 
     MaterialCardView tagsMng;
     MaterialCardView accountMng;
+    TextView privacyPolicyTV;
 
     public static void startAction(Context context) {
         Intent intent = new Intent(context, ActivitySettings.class);
@@ -37,6 +40,7 @@ public class ActivitySettings extends BaseActivity {
     private void initView() {
         tagsMng = findViewById(R.id.settings_tags_mng);
         accountMng = findViewById(R.id.settings_account_mng);
+        privacyPolicyTV = findViewById(R.id.settings_privacy_policy);
     }
 
     private void setSettingsEntrances() {
@@ -50,6 +54,12 @@ public class ActivitySettings extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ActivitySettingsAccount.startAction(ActivitySettings.this);
+            }
+        });
+        privacyPolicyTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://gitee.com/lizbaka/HaveI/blob/master/privacy-policy.md")));
             }
         });
     }
